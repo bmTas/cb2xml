@@ -1,0 +1,30 @@
+<!ELEMENT condition ( condition* ) >
+<!ATTLIST condition name NMTOKEN #IMPLIED >
+<!ATTLIST condition through NMTOKEN #IMPLIED >
+<!ATTLIST condition value CDATA #IMPLIED >
+
+<!ELEMENT copybook ( item+ ) >
+<!ATTLIST copybook filename NMTOKEN #REQUIRED >
+
+<!ELEMENT item ( condition | item )* >
+<!ATTLIST item assumed-digits NMTOKEN #IMPLIED >
+<!ATTLIST item depending-on NMTOKEN #IMPLIED >
+<!ATTLIST item display-length NMTOKEN #REQUIRED >
+<!ATTLIST item insert-decimal-point NMTOKEN #IMPLIED >
+<!ATTLIST item level NMTOKEN #REQUIRED >
+<!ATTLIST item name CDATA #REQUIRED >
+<!ATTLIST item numeric ( true ) #IMPLIED >
+<!ATTLIST item occurs NMTOKEN #IMPLIED >
+<!ATTLIST item occurs-min NMTOKEN #IMPLIED >
+<!ATTLIST item picture CDATA #IMPLIED >
+<!ATTLIST item position NMTOKEN #REQUIRED >
+<!ATTLIST item redefined NMTOKEN #IMPLIED >
+<!ATTLIST item redefines NMTOKEN #IMPLIED >
+<!ATTLIST item scale NMTOKEN #IMPLIED >
+<!ATTLIST item sign-position NMTOKEN #IMPLIED >
+<!ATTLIST item sign-separate NMTOKEN #IMPLIED >
+<!ATTLIST item signed ( true ) #IMPLIED >
+<!ATTLIST item storage-length NMTOKEN #REQUIRED >
+<!ATTLIST item sync NMTOKEN #IMPLIED >
+<!ATTLIST item usage NMTOKEN #IMPLIED >
+<!ATTLIST item value CDATA #IMPLIED >                   

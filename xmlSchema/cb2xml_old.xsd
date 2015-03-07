@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="condition">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="condition"/>
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:token"/>
+      <xs:attribute name="through" type="xs:token"/>
+      <xs:attribute name="value"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="copybook">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="item"/>
+      </xs:sequence>
+      <xs:attribute name="filename" use="required" type="xs:token"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="item">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="condition"/>
+        <xs:element ref="item"/>
+      </xs:choice>
+      <xs:attribute name="assumed-digits" type="xs:int"/>
+      <xs:attribute name="depending-on" type="xs:token"/>
+      <xs:attribute name="display-length" use="required" type="xs:int"/>
+      <xs:attribute name="insert-decimal-point" type="xs:boolean"/>
+      <xs:attribute name="level" use="required" type="xs:token"/>
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="numeric" type="xs:boolean"/>
+      <xs:attribute name="occurs" type="xs:int"/>
+      <xs:attribute name="occurs-min" type="xs:int"/>
+      <xs:attribute name="picture"/>
+      <xs:attribute name="position" use="required" type="xs:int"/>
+      <xs:attribute name="redefined" type="xs:token"/>
+      <xs:attribute name="redefines" type="xs:token"/>
+      <xs:attribute name="scale" type="xs:int"/>
+      <xs:attribute name="sign-position" type="xs:token"/>
+      <xs:attribute name="sign-separate" type="xs:boolean"/>
+      <xs:attribute name="signed" type="xs:boolean"/>
+      <xs:attribute name="storage-length" use="required" type="xs:int"/>
+      <xs:attribute name="sync" type="xs:boolean"/>
+      <xs:attribute name="usage" type="xs:token"/>
+      <xs:attribute name="value"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

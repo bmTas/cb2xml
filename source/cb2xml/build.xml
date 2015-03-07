@@ -1,0 +1,82 @@
+<!-- 
+/*************************************************************
+ * This file is part of CB2XML.  
+ * See the file "LICENSE" for copyright information and the
+ * terms and conditions for copying, distribution and
+ * modification of CB2XML.
+ *************************************************************
+ */
+-->
+
+<project name="cb2xml" default="build">
+
+	<property name="src.dir" location="src" />
+	<property name="scc.file" location="scc/cb2xml.scc" />
+	<property name="build.dir" location="build" />
+	<property name="lib.dir" location="lib" />
+	<property name="docs.dir" location="docs" />
+	<property name="javadoc.dir" location="${docs.dir}/api" />
+	<property name="sablecc.jar" location="sablecc/sablecc.jar" />
+	<property name="cb2xml.jar" location="${lib.dir}/cb2xml.jar" />
+	<property name="cb2xml_definitions.jar" location="${lib.dir}/cb2xml_definitions.jar" />
+	
+	<target name="sablecc" description="generate parser code and compile">		
+	    <java jar="${sablecc.jar}" fork="true" >
+	        <arg line="-d ${src.dir} ${scc.file}" />
+	    </java>
+		<mkdir dir="${build.dir}" />
+		<javac srcdir="${src.dir}" destdir="${build.dir}"/>
+		<copy todir="${build.dir}">
+			<fileset dir="${src.dir}" excludes="**/*.java"/>
+		</copy>
+	</target>	
+	
+	<target name="Data_Copy">
+		<copy todir="${build.dir}">
+			<fileset dir="${src.dir}" excludes="**/*.java"/>
+		</copy>
+	</target>	
+	
+	<target name="compile" depends="Data_Copy" description="compile cb2xml code" >
+		<mkdir dir="${build.dir}" />
+		<javac srcdir="${src.dir}" destdir="${build.dir}" optimize="true" target="1.4" source="1.4" debug="false"/>
+	</target>
+
+	<target name="build" depends="compile" description="build jar">
+		<mkdir dir="${lib.dir}" />
+		<jar basedir="${build.dir}" destfile="${cb2xml.jar}" filesonly="true">
+			<manifest>
+				<attribute name="Main-Class" value="net.sf.cb2xml.Cb2Xml" />
+			</manifest>
+		</jar>
+		<jar destfile="${cb2xml_definitions.jar}" filesonly="true">
+			<fileset dir="${build.dir}">
+				<include name="net/sf/cb2xml/def/*"/>
+			</fileset>
+		</jar>
+	</target>	
+
+	<target name="javadoc" description="javadoc">
+		<mkdir dir="${javadoc.dir}" />
+		<javadoc destdir="${javadoc.dir}">
+			<fileset dir="${src.dir}" />
+		</javadoc>
+	</target>
+
+	<target name="clean" description="clean">
+		<delete dir="${src.dir}/net/sf/cb2xml/sablecc" />
+		<delete file="${cb2xml.jar}" />
+		<delete dir="${build.dir}" />
+		<delete dir="${lib.dir}" />
+		<delete dir="${javadoc.dir}" />
+	</target>
+
+    <target name="dist" description="zip and pack appropriate files for distribution">
+        <zip destfile="cb2xml.zip" basedir="."
+        	includes="*,**/*.*"
+            excludes=".*,*.zip,**/*.class,**/sablecc.jar"/>
+    </target>
+	
+	<target name="all" depends="sablecc,build,javadoc" description="all" />
+
+</project>
