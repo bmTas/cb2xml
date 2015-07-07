@@ -129,6 +129,10 @@ public class Cb2Xml2 {
 				preProcessed = CobolPreprocessor.preProcess(new FileInputStream(file), FIRST_COBOL_COLUMN, END_COLS[format]);
 				sr = new StringReader(preProcessed);
 				break;
+			case Cb2xmlConstants.USE_SUPPLIED_COLUMNS:
+			    preProcessed = CobolPreprocessor.preProcess(new FileInputStream(file), firstColumn, lastColumn);
+			    sr = new StringReader(preProcessed);
+			    break;
 			default:
 				preProcessed = CobolPreprocessor.preProcess(new FileInputStream(file));
 				sr = new StringReader(preProcessed);
@@ -145,6 +149,10 @@ public class Cb2Xml2 {
 			case Cb2xmlConstants.USE_COLS_6_TO_80:
 			case Cb2xmlConstants.USE_LONG_LINE:
 				preProcessed = CobolPreprocessor.preProcess(is, FIRST_COBOL_COLUMN, END_COLS[format]);
+				sr = new StringReader(preProcessed);
+				break;
+			case Cb2xmlConstants.USE_SUPPLIED_COLUMNS:
+				preProcessed = CobolPreprocessor.preProcess(is, firstColumn, lastColumn);
 				sr = new StringReader(preProcessed);
 				break;
 			default:
