@@ -98,14 +98,14 @@
              15 Num0         pic s99 comp sync.
              15 sep1         pic x.
              15 Num1         pic s9v99  comp sync.
-       03 Comp-4.
+       03 G-Comp-4.
          05 aa.
              15 sep0         pic x.                                                               
              15 Num0         pic s99 comp-4.
              15 sep1         pic x.
              15 Num1         pic s9v99  comp-4.
              15 Num2         pic 9v99   comp-4.
-       03 Comp-5.
+       03 G-Comp-5.
          05 aa.
              15 sep0         pic x.
              15 Num0         pic s99 comp-5.

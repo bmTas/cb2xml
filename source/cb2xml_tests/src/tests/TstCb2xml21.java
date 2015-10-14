@@ -32,7 +32,7 @@ public class TstCb2xml21 {
 	private static String XML_FILE_PREF = "xmlCopybook/cb2xml_Output";
 	
 	
-	private String[] COPBOOK_LIST1 = {
+	private String[] COPYBOOK_LIST1 = {
 			"cpyComp.cbl",
 			"cpyComp3.cbl",
 			"cpyComp5.cbl",
@@ -41,13 +41,13 @@ public class TstCb2xml21 {
 			"cpyComp5P.cbl",
 	};
 
-	private String[] COPBOOK_LIST2 = {
+	private String[] COPYBOOK_LIST2 = {
 			"cpyCompSync.cbl",
 			"cpyComp3Sync.cbl",
 			"cpyComp5Sync.cbl",
 	};
 
-	private String[] COPBOOK_LIST3 = {
+	private String[] COPYBOOK_LIST3 = {
 			"cpyUnxdetail.cbl",
 			"cpyOccurs.cbl",
 			"cpyBitOfEverything.cbl",
@@ -85,17 +85,17 @@ public class TstCb2xml21 {
 
 	@Test
 	public void testArray1() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException {
-		tstArray(COPBOOK_LIST1);
+		tstArray(COPYBOOK_LIST1);
 	}
 
 	@Test
 	public void testArray2() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException {
-		tstArray(COPBOOK_LIST2);
+		tstArray(COPYBOOK_LIST2);
 	}
 
 	@Test
 	public void testArray3() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException {
-		tstArray(COPBOOK_LIST3);
+		tstArray(COPYBOOK_LIST3);
 	}
 
 	public void tstArray(String[] copybooks) throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException  {

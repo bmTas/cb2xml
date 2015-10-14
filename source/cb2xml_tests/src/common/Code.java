@@ -19,6 +19,12 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+
+/**
+ * Common Code to compare Xml Documents
+ * @author Bruce Martin
+ *
+ */
 public class Code {
 
 	public static String toString(String[] lines) {
@@ -64,7 +70,8 @@ public class Code {
 		System.out.println("---------------- " + id);
 		System.out.println(XmlUtils.domToString(doc2).toString());
 		System.out.println();
-		return compare(doc1.getDocumentElement(), doc2.getDocumentElement());
+		return compare(doc1.getDocumentElement(), 
+				doc2.getDocumentElement());
 	}
 	
 	

@@ -15,20 +15,13 @@ package net.sf.cb2xml.example;
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-import java.io.File;
+
+
 import java.util.List;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.Unmarshaller;
-
-import net.sf.cb2xml.Cb2Xml2;
-import net.sf.cb2xml.def.Cb2xmlConstants;
-import net.sf.cb2xml.jaxb.Condition;
 import net.sf.cb2xml.jaxb.Copybook;
 import net.sf.cb2xml.jaxb.Item;
-
-import org.w3c.dom.Document;
+import net.sf.cb2xml.parse.CobolParser;
 
 /**
  * Basic program to process a cb2xml-xml-document using JAXB
@@ -38,17 +31,22 @@ import org.w3c.dom.Document;
  */
 public class Demo2 {
 	public static void main(String[] args) throws Exception {
-        JAXBContext jc = JAXBContext.newInstance(Condition.class, Copybook.class, Item.class);
-   
-        Unmarshaller unmarshaller = jc.createUnmarshaller();
-        Document doc = Cb2Xml2.convertToXMLDOM(new File(Code.getFullName("BitOfEverything.cbl").getFile()), false, Cb2xmlConstants.USE_STANDARD_COLUMNS);
+		String copybookName;
+		
+		if (args != null && args.length > 0) {
+			copybookName = args[0];
+		} else {
+			copybookName = Code.getFullName("BitOfEverything.cbl").getFile();
+		}
 
-        JAXBElement<Copybook> copybook = unmarshaller.unmarshal(doc, Copybook.class);
+		
+		Copybook copybook = CobolParser.newParser()
+								.parseCobol(copybookName);
 
         System.out.println();
         System.out.println("Printing Items");
         System.out.println();
-        List<Item> items = copybook.getValue().getItem();
+        List<Item> items = copybook.getItem();
         for (Item item : items) {
         	Code.printItem("   ", item);
         }

@@ -23,28 +23,35 @@ public class TstCb2xml01 {
 	
 	private static int COPYBOOK_COUNT1 = 112;
 	private static int COPYBOOK_COUNT2 = 204;
-	private static String COPBOOK_PREF = "cobolCopybook/cbl2xml_Test";
-	private static String XML_FILE_PREF = "xmlCopybook/cb2xml_Output";
+	private static final String COPYBOOK_PREF = "cobolCopybook/cbl2xml_Test";
+	private static final String XML_FILE_PREF = "xmlCopybook/cb2xml_Output";
 	
 	
-	private String[] COPBOOK_LIST1 = {
+	private final String[] COPYBOOK_LIST1 = {
+			"cpyComp3aInheritence.cbl",
 			"cpyComp.cbl",
 			"cpyComp3.cbl",
 			"cpyComp5.cbl",
 			"cpyCompP.cbl",
-			"cpyComp3P.cbl",
+			"cpyComp3P.cbl", 
 			"cpyComp5P.cbl",
+			"cpyComp3Inheritence.cbl",
+			"cpyCompInheritence.cbl",
 	};
 
-	private String[] COPBOOK_LIST2 = {
+	private String[] COPYBOOK_LIST2 = {
 			"cpyCompSync.cbl",
 			"cpyComp3Sync.cbl",
 			"cpyComp5Sync.cbl",
 	};
 
-	private String[] COPBOOK_LIST3 = {
+	private String[] COPYBOOK_LIST3 = {
 			"cpyUnxdetail.cbl",
 			"cpyOccurs.cbl",
+			"cpyOccursDepending.cbl",
+			"cpyOccursDependingOn21.cbl",
+			"cpyOccursDependingOn29.cbl",
+			"cpyOccursDependingOn42.cbl",
 	};
 
 	
@@ -62,11 +69,11 @@ public class TstCb2xml01 {
 		String cblFilename, xmlFilename;
 		for (int i = start; i <= end; i++) {
 			System.out.println("Test: " + i);
-			cblFilename = Code.getFullName(COPBOOK_PREF + i + ".cbl");
+			cblFilename = Code.getFullName(COPYBOOK_PREF + i + ".cbl");
 			
 			Document doc = Cb2Xml.convertToXMLDOM(new File(cblFilename));
 			
-			System.out.println(i + ":");
+			System.out.println(i + " " + cblFilename + ":");
 			System.out.println(XmlUtils.domToString(doc));
 			System.out.println();
 		
@@ -79,17 +86,17 @@ public class TstCb2xml01 {
 
 	@Test
 	public void testArray1() throws IOException, SAXException, ParserConfigurationException {
-		tstArray(COPBOOK_LIST1);
+		tstArray(COPYBOOK_LIST1);
 	}
 
 	@Test
 	public void testArray2() throws IOException, SAXException, ParserConfigurationException {
-		tstArray(COPBOOK_LIST2);
+		tstArray(COPYBOOK_LIST2);
 	}
 
 	@Test
 	public void testArray3() throws IOException, SAXException, ParserConfigurationException {
-		tstArray(COPBOOK_LIST3);
+		tstArray(COPYBOOK_LIST3);
 	}
 
 	public void tstArray(String[] copybooks) throws IOException, SAXException, ParserConfigurationException {

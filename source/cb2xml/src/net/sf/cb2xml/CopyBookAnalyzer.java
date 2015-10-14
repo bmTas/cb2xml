@@ -69,6 +69,7 @@ import net.sf.cb2xml.util.XmlUtils;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
@@ -324,7 +325,7 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 			storageLength = Integer.parseInt(curItem.element.getAttribute(Cb2xmlConstants.STORAGE_LENGTH));
 		}
 		int decimalPos = -1;
-		boolean isNumeric = false;
+		boolean isNumeric = false, isEditNumeric=false;
 		boolean isFirstCurrencySymbol = true;
 		String ucCharacterString = characterString.toUpperCase();
 		for (int i = 0; i < characterString.length(); i++) {
@@ -336,11 +337,13 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 				storageLength++;
 			case 'G':
 			case 'N':
+				isEditNumeric = true;
 				storageLength++;
 				displayLength++;
 				break;
 			//==========================================
 			case '.':
+				isEditNumeric = true;
 				displayLength++;
 			case 'V':
 				isNumeric = true;
@@ -361,6 +364,7 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 				break;
 			//==========================================
 			case '$':
+				isEditNumeric = true;
 				if (isFirstCurrencySymbol) {
 					isFirstCurrencySymbol = false;
 					isNumeric = true;
@@ -373,11 +377,12 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 			case 'D': // DR
 				i++;  // skip R
 			case 'Z':
-			case '9':
 			case '0':
 			case '+':
 			case '-':
 			case '*':
+				isEditNumeric = true;
+			case '9':
 				isNumeric = true;
 			case '/':
 			case ',':
@@ -393,6 +398,12 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 			}
 		}
 
+		if (isNumeric) {
+			curItem.element.setAttribute(Cb2xmlConstants.NUMERIC, Cb2xmlConstants.TRUE);
+			if (isEditNumeric) {
+				curItem.element.setAttribute(Cb2xmlConstants.EDITTED_NUMERIC, Cb2xmlConstants.TRUE);
+			}
+		}
         setLength(curItem.element, positive, displayLength, assumedDigitsBeforeDecimal + assumedDigitsAfterDecimal);
 		//curItem.element.setAttribute(Attributes.DISPLAY_LENGTH, displayLength + "");
 		//curItem.element.setAttribute("bytes", bytes + "");
@@ -403,9 +414,6 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 			}
 		} else if (assumedDigitsBeforeDecimal > 0) {
 			curItem.element.setAttribute(Cb2xmlConstants.SCALE, "-" + assumedDigitsBeforeDecimal);
-		}
-		if (isNumeric) {
-			curItem.element.setAttribute(Cb2xmlConstants.NUMERIC, Cb2xmlConstants.TRUE);
 		}
 	}
 
@@ -650,10 +658,9 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 		int displayLength = 0;
 		int assumedDigits = 0;
 		int newPos;
-		String usage = "";
-		if (element.hasAttribute(Cb2xmlConstants.USAGE)) {
-			usage = element.getAttribute(Cb2xmlConstants.USAGE);
-		}
+
+		String usage = getUsage(element);
+		
 		if (element.hasAttribute(Cb2xmlConstants.REDEFINES)) {
 			String redefinedName = element.getAttribute(Cb2xmlConstants.REDEFINES);
 			Element redefinedElement = null;
@@ -727,27 +734,54 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 	private int setLength(Element element, boolean positive, int displayLength, int assumedDigits) {
 	    int storageLength = displayLength - assumedDigits;
 
-	    if (element.hasAttribute(Cb2xmlConstants.USAGE)) {
-	    	if (numDef != null) {
-		    	String usage = element.getAttribute(Cb2xmlConstants.USAGE);
-		    	displayLength = numDef.chkStorageLength(displayLength, usage);
-		        storageLength = numDef.getBinarySize(usage, storageLength, positive, element.hasAttribute(Cb2xmlConstants.SYNC));
-	    	}
-	    } else if (element.hasAttribute(Cb2xmlConstants.SIGN_SEPARATE)
-	    		&& Cb2xmlConstants.TRUE.equalsIgnoreCase(element.getAttribute(Cb2xmlConstants.SIGN_SEPARATE))) {
-	    	storageLength += 1;
-	    	displayLength += 1;
+	    if (element.hasChildNodes()) {
+	    	
+	    } else {
+		    String usage = getUsage(element);
+	    	if (usage != null && usage.length() > 0) {
+	  
+		    	if (numDef != null) {
+			    	displayLength = numDef.chkStorageLength(displayLength, usage);
+			        storageLength = numDef.getBinarySize(usage, storageLength, positive, element.hasAttribute(Cb2xmlConstants.SYNC));
+		    	}
+		    } else if (element.hasAttribute(Cb2xmlConstants.SIGN_SEPARATE)
+		    		&& Cb2xmlConstants.TRUE.equalsIgnoreCase(element.getAttribute(Cb2xmlConstants.SIGN_SEPARATE))) {
+		    	storageLength += 1;
+		    	displayLength += 1;
+		    }
 	    }
 
-	    element.setAttribute(Cb2xmlConstants.DISPLAY_LENGTH, displayLength + "");
-	    element.setAttribute(Cb2xmlConstants.STORAGE_LENGTH, storageLength + "");
+	    element.setAttribute(Cb2xmlConstants.DISPLAY_LENGTH, Integer.toString(displayLength));
+	    element.setAttribute(Cb2xmlConstants.STORAGE_LENGTH, Integer.toString(storageLength));
 	    if (assumedDigits != 0) { 
-	    	element.setAttribute(Cb2xmlConstants.ASSUMED_DIGITS, assumedDigits + "");
+	    	element.setAttribute(Cb2xmlConstants.ASSUMED_DIGITS, Integer.toString(assumedDigits));
 	    }
 
 	    return storageLength;
 	}
 
+	private String getUsage(Element element) {
+		String usage = "";
+		if (element.hasAttribute(Cb2xmlConstants.USAGE)) {
+	    	usage = element.getAttribute(Cb2xmlConstants.USAGE);
+		} else if (Cb2xmlConstants.TRUE.equalsIgnoreCase(element.getAttribute(Cb2xmlConstants.NUMERIC))
+			   && (! Cb2xmlConstants.TRUE.equalsIgnoreCase(element.getAttribute(Cb2xmlConstants.EDITTED_NUMERIC)))) {
+			Node node =  element;
+			do {
+				node =  node.getParentNode();
+			} while (node != null && (node instanceof Element) && (! ((Element) node).hasAttribute(Cb2xmlConstants.USAGE)));
+			
+			if (node != null && (node instanceof Element)) {
+				usage = ((Element) node).getAttribute(Cb2xmlConstants.USAGE);
+				if (usage != null && usage.length() > 0) {
+					element.setAttribute(Cb2xmlConstants.INHERITED_USAGE, Cb2xmlConstants.TRUE);
+					element.setAttribute(Cb2xmlConstants.USAGE, usage);
+				}
+			}
+		}
+		return usage;
+	}
+	
 	/**
 	 * Set the possible Sizes for Comp fields
 	 * @param numericDef numeric definition class

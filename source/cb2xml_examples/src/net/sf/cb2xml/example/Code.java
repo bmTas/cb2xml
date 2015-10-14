@@ -34,7 +34,7 @@ import net.sf.cb2xml.jaxb.Item;
 public class Code {
 	
 	public static void printItem(String indent, Item item) {
-		char[] nc = new char[Math.max(1, 50 - indent.length() - item.getName().length())];
+		char[] nc = new char[Math.max(1, 45 - indent.length() - item.getName().length())];
 		String picture = item.getPicture();
 		Arrays.fill(nc, ' ');
 		
@@ -42,12 +42,12 @@ public class Code {
 			picture = "";
 		}
 		
-		System.out.println(indent + item.getLevel() + " " + item.getName() + new String(nc) + item.getPosition() 
-				+ " " + item.getStorageLength() + "\t" + picture);
+		System.out.println(indent + item.getLevel() + " " + item.getName() + new String(nc) +"\t" + item.getPosition() 
+				+ "\t " + item.getStorageLength() + "\t" + picture);
 		
-		List<Item> conditionOrItem = item.getItem();
+		List<Item> items = item.getItem();
 		
-		for (Item child : conditionOrItem) {
+		for (Item child : items) {
 //			if (child instanceof Item) {
 				printItem(indent + "   ", child);
 //			}
