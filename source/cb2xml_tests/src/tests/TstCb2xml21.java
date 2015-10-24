@@ -18,6 +18,7 @@ import net.sf.cb2xml.util.XmlUtils;
 
 
 
+
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
@@ -28,17 +29,20 @@ public class TstCb2xml21 {
 	
 	private static int COPYBOOK_COUNT1 = 112;
 	private static int COPYBOOK_COUNT2 = 204;
-	private static String COPBOOK_PREF = "cobolCopybook/cbl2xml_Test";
-	private static String XML_FILE_PREF = "xmlCopybook/cb2xml_Output";
+	private static final String COPYBOOK_PREF = "cobolCopybook/cbl2xml_Test";
+	private static final String XML_FILE_PREF = "xmlCopybook/cb2xml_Output";
 	
 	
-	private String[] COPYBOOK_LIST1 = {
+	private final String[] COPYBOOK_LIST1 = {
+			"cpyComp3aInheritence.cbl",
 			"cpyComp.cbl",
 			"cpyComp3.cbl",
 			"cpyComp5.cbl",
 			"cpyCompP.cbl",
 			"cpyComp3P.cbl",
 			"cpyComp5P.cbl",
+			"cpyComp3Inheritence.cbl",
+			"cpyCompInheritence.cbl",
 	};
 
 	private String[] COPYBOOK_LIST2 = {
@@ -50,10 +54,22 @@ public class TstCb2xml21 {
 	private String[] COPYBOOK_LIST3 = {
 			"cpyUnxdetail.cbl",
 			"cpyOccurs.cbl",
+			"cpyOccursDepending.cbl",
+			"cpyOccursDependingOn21.cbl",
+			"cpyOccursDependingOn29.cbl",
+			"cpyOccursDependingOn42.cbl",
 			"cpyBitOfEverything.cbl",
 	};
 
 	
+	private String[] COPYBOOK_LIST4 = {
+			"cpyValueContinuation.cbl",
+			"cpyValueContinuation1.cbl",
+			"cpyValueContinuation2.cbl",
+			"cpyMsg.cbl",
+			"cpyHexValue.cbl",
+	};
+
 	@Test
 	public void test1() throws IOException, SAXException, ParserConfigurationException {
 		doTest(101, COPYBOOK_COUNT1);
@@ -68,11 +84,11 @@ public class TstCb2xml21 {
 		String cblFilename, xmlFilename;
 		for (int i = start; i <= end; i++) {
 			System.out.println("Test: " + i);
-			cblFilename = Code.getFullName(COPBOOK_PREF + i + ".cbl");
+			cblFilename = Code.getFullName(COPYBOOK_PREF + i + ".cbl");
 			
 			Document doc = Cb2Xml.convertToXMLDOM(new File(cblFilename));
 			
-			System.out.println(i + ":");
+			System.out.println(i + " " + cblFilename + ":");
 			System.out.println(XmlUtils.domToString(doc));
 			System.out.println();
 		
@@ -96,6 +112,12 @@ public class TstCb2xml21 {
 	@Test
 	public void testArray3() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException {
 		tstArray(COPYBOOK_LIST3);
+	}
+
+
+	@Test
+	public void testArray4() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException {
+		tstArray(COPYBOOK_LIST4);
 	}
 
 	public void tstArray(String[] copybooks) throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException  {

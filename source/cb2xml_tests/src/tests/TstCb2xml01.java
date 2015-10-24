@@ -52,6 +52,15 @@ public class TstCb2xml01 {
 			"cpyOccursDependingOn21.cbl",
 			"cpyOccursDependingOn29.cbl",
 			"cpyOccursDependingOn42.cbl",
+			"cpyBitOfEverything.cbl",
+	};
+	
+	private String[] COPYBOOK_LIST4 = {
+			"cpyValueContinuation1.cbl",
+			"cpyValueContinuation2.cbl",
+			"cpyValueContinuation.cbl",
+			"cpyMsg.cbl",
+			"cpyHexValue.cbl",
 	};
 
 	
@@ -97,6 +106,12 @@ public class TstCb2xml01 {
 	@Test
 	public void testArray3() throws IOException, SAXException, ParserConfigurationException {
 		tstArray(COPYBOOK_LIST3);
+	}
+
+
+	@Test
+	public void testArray4() throws IOException, SAXException, ParserConfigurationException {
+		tstArray(COPYBOOK_LIST4);
 	}
 
 	public void tstArray(String[] copybooks) throws IOException, SAXException, ParserConfigurationException {
