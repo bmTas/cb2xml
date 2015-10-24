@@ -115,7 +115,7 @@ public interface Analysis extends Switch
     void caseANumberNot88Number(ANumberNot88Number node);
     void caseANumber88Number(ANumber88Number node);
 
-    void caseTWhiteSpace(TWhiteSpace node);
+    void caseTWhiteSpaces(TWhiteSpaces node);
     void caseTComment(TComment node);
     void caseTDot(TDot node);
     void caseTComma(TComma node);

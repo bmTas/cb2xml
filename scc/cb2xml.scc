@@ -18,7 +18,8 @@ Helpers
     all_but_eol = [ all - [ cr + lf ] ];
     digit = [ '0' .. '9' ];
     hex_digit = digit | [ 'a' .. 'f' ] | [ 'A' .. 'F' ];
-    letter = [ 'a' .. 'z' ] | [ 'A' .. 'Z' ];   
+    letter = [ 'a' .. 'z' ] | [ 'A' .. 'Z' ];
+    white_space = ' ' | tab | eol;
 
     a = ['a' + 'A'];
     b = ['b' + 'B'];
@@ -48,7 +49,7 @@ Helpers
     z = ['z' + 'Z'];
 
 Tokens
-    white_space = ( ' ' | tab | eol )+; 
+    white_spaces = white_space+;
     comment = '*' all_but_eol* eol;
     dot = '.';
     comma = ',';
@@ -62,8 +63,8 @@ Tokens
     number88 = '8' '8';  // we need this to identify the 88 levels
     number_not88 = digit+;
     alphanumeric_literal = 
-        ''' ( [all - '''] | ''' ''' )* ''' |
-        '"' ( [all - '"'] | '"' '"' )* '"' |
+        ''' ( ( ''' ''' ) | ( eol white_space? '-' white_space+ ''' ) | [all - '''] )* ''' |
+        '"' ( ( '"' '"' ) | ( eol white_space? '-' white_space+ '"' ) | [all - '"'] )* '"' |
         'X' ''' (hex_digit hex_digit)+ ''' |
         'X' '"' (hex_digit hex_digit)+ '"';
     // unsigned integers will be caught by "number_not88" above; below signed, decimal & scientific
@@ -141,14 +142,14 @@ Tokens
     // we relax this to allow digits to start an identifier
     // and at least one letter has to exist within the identifier
     // some copybooks in the wild are this way 
-    data_name = digit* letter ( letter | digit | '-' )*;            
+    data_name = (digit || letter) ( letter | digit | '-' )*;            
     
     // if any strange (e.g. non ASCII) character is encountered this token matches
     // and it is ignored gracefully in the Ignored Tokens section
     unknown = all;  
 
 Ignored Tokens
-    white_space, comment, unknown;
+    white_spaces, comment, unknown;
     
 Productions
     record_description =

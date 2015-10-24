@@ -580,11 +580,51 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 		if (nodeText.startsWith("X")) {
 			node.setText(nodeText.replace('\"', '\''));
 		} else {
-			if (nodeText.indexOf("\"") != -1) {
-				node.setText(removeChars(nodeText, "\""));
-			} else {
-				node.setText(removeChars(nodeText, "'"));
+			int st = 0;
+			int en = nodeText.length();
+			StringBuilder b = new StringBuilder(en);
+			char ch;
+			char lastChar = (char) -1;
+			boolean skip = false;
+			
+			if (nodeText.startsWith("'") || nodeText.startsWith("\"")) {
+				st = 1;
+				if (nodeText.endsWith(nodeText.substring(0, 1))) {
+					en -= 1;
+				}
 			}
+			for (int i = st; i < en; i++) {
+				ch = nodeText.charAt(i);
+				if (skip) {
+					switch (ch) {
+					case ' ':
+					case '\t':
+					case '\r':
+					case '-':
+						break;
+					default:
+						lastChar = (char) -1;
+						skip = false;
+					}
+				} else {
+					switch (ch) {
+					case '\n':
+						skip = true;
+						lastChar = ch;
+						break;
+					case '\'':
+					case '\"':
+						if (ch == lastChar) {
+							lastChar = (char) -1 ;
+							break;
+						}
+					default:
+						b.append(ch);
+						lastChar = ch;
+					}
+				}
+			}
+			node.setText(b.toString());
 		}
 	}
 

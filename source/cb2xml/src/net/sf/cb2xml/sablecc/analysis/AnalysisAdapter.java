@@ -578,7 +578,7 @@ public class AnalysisAdapter implements Analysis
         defaultCase(node);
     }
 
-    public void caseTWhiteSpace(TWhiteSpace node)
+    public void caseTWhiteSpaces(TWhiteSpaces node)
     {
         defaultCase(node);
     }
