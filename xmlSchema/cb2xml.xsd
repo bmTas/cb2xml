@@ -27,6 +27,8 @@
       <xs:attribute name="assumed-digits" type="xs:int"/>
       <xs:attribute name="depending-on" type="xs:token"/>
       <xs:attribute name="display-length" use="required" type="xs:int"/>
+      <xs:attribute name="editted-numeric" type="xs:boolean"/>
+      <xs:attribute name="inherited-usage" type="xs:boolean"/>
       <xs:attribute name="insert-decimal-point" type="xs:boolean"/>
       <xs:attribute name="level" use="required" type="xs:token"/>
       <xs:attribute name="name" use="required"/>

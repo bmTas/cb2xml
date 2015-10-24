@@ -10,6 +10,8 @@
 <!ATTLIST item assumed-digits NMTOKEN #IMPLIED >
 <!ATTLIST item depending-on NMTOKEN #IMPLIED >
 <!ATTLIST item display-length NMTOKEN #REQUIRED >
+<!ATTLIST item editted-numeric ( true ) #IMPLIED >
+<!ATTLIST item inherited-usage ( true ) #IMPLIED >
 <!ATTLIST item insert-decimal-point NMTOKEN #IMPLIED >
 <!ATTLIST item level NMTOKEN #REQUIRED >
 <!ATTLIST item name CDATA #REQUIRED >
