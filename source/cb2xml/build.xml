@@ -19,6 +19,10 @@
 	<property name="sablecc.jar" location="sablecc/sablecc.jar" />
 	<property name="cb2xml.jar" location="${lib.dir}/cb2xml.jar" />
 	<property name="cb2xml_definitions.jar" location="${lib.dir}/cb2xml_definitions.jar" />
+	<property name="version.num" value="0.95.3"/>
+	<tstamp>
+	  <format property="BUILD_TIMESTAMP" pattern="yyyy-MM-dd HH:mm:ss"/>
+	</tstamp>
 	
 	<target name="sablecc" description="generate parser code and compile">		
 	    <java jar="${sablecc.jar}" fork="true" >
@@ -46,7 +50,9 @@
 		<mkdir dir="${lib.dir}" />
 		<jar basedir="${build.dir}" destfile="${cb2xml.jar}" filesonly="true">
 			<manifest>
-				<attribute name="Main-Class" value="net.sf.cb2xml.Cb2Xml" />
+			    <attribute name="Main-Class" value="net.sf.cb2xml.Cb2Xml"/>
+			    <attribute name="Implementation-Version" value="${version.num}"/>
+			    <attribute name="Built-Date" value="${BUILD_TIMESTAMP}"/>
 			</manifest>
 		</jar>
 		<jar destfile="${cb2xml_definitions.jar}" filesonly="true">
