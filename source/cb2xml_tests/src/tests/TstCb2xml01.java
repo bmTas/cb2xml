@@ -56,6 +56,7 @@ public class TstCb2xml01 {
 	};
 	
 	private String[] COPYBOOK_LIST4 = {
+			"cpyRedefSize.cbl",
 			"cpyValueContinuation1.cbl",
 			"cpyValueContinuation2.cbl",
 			"cpyValueContinuation.cbl",

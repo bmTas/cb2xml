@@ -181,7 +181,7 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 			    if ("01".equals(el.getAttribute(Cb2xmlConstants.LEVEL))) {
 			        postProcessNode(el, 1);
 			    } else {
-			        lastPos = postProcessNode(el, lastPos);
+			        lastPos = Math.max(lastPos, postProcessNode(el, lastPos));
 			    }
 			}
 		}
@@ -757,7 +757,7 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 				startPos = startPos - remainder + syncOn;
 			}
 		}
-		element.setAttribute(Cb2xmlConstants.POSITION, startPos + "");
+		element.setAttribute(Cb2xmlConstants.POSITION, Integer.toString(startPos));
 
 		if (element.hasAttribute(Cb2xmlConstants.OCCURS)) {
 		    actualLength *= Integer.parseInt(element.getAttribute(Cb2xmlConstants.OCCURS));

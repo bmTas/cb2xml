@@ -202,7 +202,7 @@ public class Cb2Xml2 {
 	
 	public static Document convert(Reader r, String copybookName, boolean debug, int format) 
 	throws ParserException, LexerException, IOException {
-		return convert(r, copybookName, debug, format, 6, 71);
+		return convert(r, copybookName, debug, format, 6, 72);
 	}
 
 	public static Document convert(Reader r, String copybookName, boolean debug, int format, int firstColumn, int lastColumn) 

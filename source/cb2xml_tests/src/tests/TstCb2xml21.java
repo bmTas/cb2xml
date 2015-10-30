@@ -3,15 +3,21 @@ package tests;
 //import static org.junit.Assert.*;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import javax.xml.parsers.ParserConfigurationException;
 
 import net.sf.cb2xml.Cb2Xml;
 import net.sf.cb2xml.Cb2Xml2;
+import net.sf.cb2xml.def.Cb2xmlConstants;
 import net.sf.cb2xml.sablecc.lexer.LexerException;
 import net.sf.cb2xml.sablecc.parser.ParserException;
 import net.sf.cb2xml.util.XmlUtils;
+
+
+
 
 
 
@@ -63,12 +69,18 @@ public class TstCb2xml21 {
 
 	
 	private String[] COPYBOOK_LIST4 = {
+			"cpyRedefSize.cbl",
 			"cpyValueContinuation.cbl",
 			"cpyValueContinuation1.cbl",
 			"cpyValueContinuation2.cbl",
 			"cpyMsg.cbl",
 			"cpyHexValue.cbl",
 	};
+	
+	private String[] COPYBOOK_LIST6 = {
+			"cpyUtf8.cbl"
+	};
+
 
 	@Test
 	public void test1() throws IOException, SAXException, ParserConfigurationException {
@@ -120,6 +132,18 @@ public class TstCb2xml21 {
 		tstArray(COPYBOOK_LIST4);
 	}
 
+	@Test
+	public void testArray5() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException {
+		tstArrayEbcdic(COPYBOOK_LIST4);
+	}
+	
+
+	@Test
+	public void testArray6() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException {
+		tstArray(COPYBOOK_LIST6, "cobolCopybook/", "utf-8");
+	}
+
+
 	public void tstArray(String[] copybooks) throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException  {
 		String cblFilename, xmlFilename;
 		for (String c : copybooks) {
@@ -128,6 +152,33 @@ public class TstCb2xml21 {
 			cblFilename = Code.getFullName("cobolCopybook/" + c);
 			
 			Document doc = Cb2Xml2.convertToXMLDOM(new File(cblFilename));
+			
+			System.out.println(c + " --> " + xmlFilename + ":");
+			System.out.println(XmlUtils.domToString(doc));
+			System.out.println();
+		
+			
+			xmlFilename = Code.getFullName("xmlCopybook/" + xmlFilename);
+			common.Code.compare("File: " + cblFilename, doc, xmlFilename);
+			
+		}
+		//fail("Not yet implemented");
+	}
+
+	public void tstArrayEbcdic(String[] copybooks) throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException  {
+		tstArray(copybooks, "ebcdicCopybook/", "cp037");
+	}
+
+	public void tstArray(String[] copybooks, String dir, String font) throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException  {
+		String cblFilename, xmlFilename;
+		for (String c : copybooks) {
+			xmlFilename = "xmlCpy" + c.substring(3, c.length() - 3) + "Xml";
+			System.out.println("Test: " + c + " " + xmlFilename);
+			cblFilename = Code.getFullName(dir + c);
+			
+			Document doc = Cb2Xml2.convert(
+					new InputStreamReader(new FileInputStream(cblFilename), font), 
+					c, false, Cb2xmlConstants.USE_STANDARD_COLUMNS);
 			
 			System.out.println(c + " --> " + xmlFilename + ":");
 			System.out.println(XmlUtils.domToString(doc));
