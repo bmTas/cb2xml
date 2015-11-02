@@ -25,6 +25,7 @@ import net.sf.cb2xml.util.XmlUtils;
 
 
 
+
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
@@ -159,7 +160,7 @@ public class TstCb2xml21 {
 		
 			
 			xmlFilename = Code.getFullName("xmlCopybook/" + xmlFilename);
-			common.Code.compare("File: " + cblFilename, doc, xmlFilename);
+			common.Code.compare("File: " + cblFilename, xmlFilename, doc);
 			
 		}
 		//fail("Not yet implemented");
@@ -181,12 +182,13 @@ public class TstCb2xml21 {
 					c, false, Cb2xmlConstants.USE_STANDARD_COLUMNS);
 			
 			System.out.println(c + " --> " + xmlFilename + ":");
-			System.out.println(XmlUtils.domToString(doc));
+			StringBuffer domToString = XmlUtils.domToString(doc);
+			System.out.println(domToString);
 			System.out.println();
 		
 			
 			xmlFilename = Code.getFullName("xmlCopybook/" + xmlFilename);
-			common.Code.compare("File: " + cblFilename, doc, xmlFilename);
+			common.Code.compare("File: " + cblFilename, xmlFilename, doc);
 			
 		}
 		//fail("Not yet implemented");

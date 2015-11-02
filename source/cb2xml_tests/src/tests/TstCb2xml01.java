@@ -10,9 +10,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import net.sf.cb2xml.Cb2Xml;
 import net.sf.cb2xml.util.XmlUtils;
 
-
-
-
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
@@ -86,6 +83,10 @@ public class TstCb2xml01 {
 			System.out.println(i + " " + cblFilename + ":");
 			System.out.println(XmlUtils.domToString(doc));
 			System.out.println();
+			
+//			Writer w = new OutputStreamWriter(new FileOutputStream("G:\\Temp\\cb2xml\\xmlCopybooks\\cb2xml_Output" + i + ".xml") , "utf-8");
+//			w.write(XmlUtils.domToString(doc).toString());
+//			w.close();
 		
 			
 			xmlFilename = Code.getFullName(XML_FILE_PREF + i + ".xml");
@@ -128,6 +129,9 @@ public class TstCb2xml01 {
 			System.out.println(XmlUtils.domToString(doc));
 			System.out.println();
 		
+//			Writer w = new OutputStreamWriter(new FileOutputStream("G:\\Temp\\cb2xml\\xmlCopybooks\\" + xmlFilename) , "utf-8");
+//			w.write(XmlUtils.domToString(doc).toString());
+//			w.close();
 			
 			xmlFilename = Code.getFullName("xmlCopybook/" + xmlFilename);
 			common.Code.compare("File: " + cblFilename, doc, xmlFilename);

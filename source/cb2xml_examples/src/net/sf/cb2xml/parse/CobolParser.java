@@ -3,6 +3,7 @@ package net.sf.cb2xml.parse;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Reader;
 
 import javax.xml.bind.JAXBException;
 
@@ -107,6 +108,47 @@ public class CobolParser extends XmlParser {
 		);
 	}
 	
+	/**
+	 * 
+	 * @param cobolCopybookReader Copybook reader
+	 * @param copybookName copybookname
+	 * @return Copybook definition this holds all the Cobol Copybook details in 
+	 * easily access recursive Java class structure
+	 * 
+	 * @throws JAXBException
+	 * @throws IOException
+	 * @throws ParserException
+	 * @throws LexerException
+	 */
+	public final Copybook parseCobol(Reader cobolCopybookReader, String copybookName) 
+	throws JAXBException, IOException, ParserException, LexerException {
+		return parseCobol(cobolCopybookReader, copybookName,  Cb2xmlConstants.USE_STANDARD_COLUMNS);
+	}
+
+	/**
+	 * 
+	 * @param cobolCopybookReader Copybook reader
+	 * @param copybookName copybookname
+	 * @param cobolCopybookFormat Format of the Copybook
+	 * @return Copybook definition this holds all the Cobol Copybook details in 
+	 * easily access recursive Java class structure
+	 * 
+	 * @throws JAXBException
+	 * @throws IOException
+	 * @throws ParserException
+	 * @throws LexerException
+	 */
+	public final Copybook parseCobol(Reader cobolCopybookReader, String copybookName, int cobolCopybookFormat) 
+	throws JAXBException, IOException, ParserException, LexerException {
+		return parse(
+				 Cb2Xml2.convert(cobolCopybookReader, copybookName, false, cobolCopybookFormat)
+		);
+	}
+
+	/**
+	 * Create a Cobol-copybook parser
+	 * @return  Cobol-copybook parser
+	 */
 	public static CobolParser newParser() {
 		return new CobolParser();
 	}

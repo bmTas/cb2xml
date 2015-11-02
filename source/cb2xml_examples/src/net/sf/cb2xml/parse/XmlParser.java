@@ -49,10 +49,9 @@ public class XmlParser {
 	 * @throws JAXBException
 	 * @throws IOException
 	 */
-	public final Copybook parseXml(String fileName) throws JAXBException,
-			IOException {
-			    return parseXml(new FileInputStream(fileName));
-			}
+	public final Copybook parseXml(String fileName) throws JAXBException, IOException {
+	    return parseXml(new FileInputStream(fileName));
+	}
 
 	/**
 	 * Convert Xml (from a stream) into <i>Copybook</i> class
@@ -63,15 +62,20 @@ public class XmlParser {
 	 * @throws JAXBException
 	 * @throws IOException
 	 */
-	public final Copybook parseXml(InputStream xml) throws JAXBException,
-			IOException {
-			    JAXBContext jc = JAXBContext.newInstance(Condition.class, Copybook.class, Item.class);
-			    
-			    Unmarshaller unmarshaller = jc.createUnmarshaller();
-			    JAXBElement<Copybook> copybook = unmarshaller.unmarshal(new StreamSource(xml), Copybook.class);
-			    xml.close();
-			
-			    return copybook.getValue();
-			}
+	public final Copybook parseXml(InputStream xml) throws JAXBException, IOException {
+	    JAXBContext jc = JAXBContext.newInstance(Condition.class, Copybook.class, Item.class);
+	    
+	    Unmarshaller unmarshaller = jc.createUnmarshaller();
+	    JAXBElement<Copybook> copybook = unmarshaller.unmarshal(new StreamSource(xml), Copybook.class);
+	    xml.close();
+	
+	    return copybook.getValue();
+	}
+	
+	
+	public static XmlParser newParser() {
+		return new XmlParser();
+	}
+
 
 }

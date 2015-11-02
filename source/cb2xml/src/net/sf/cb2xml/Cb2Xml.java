@@ -9,10 +9,14 @@
 package net.sf.cb2xml;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 
 import net.sf.cb2xml.def.Cb2xmlConstants;
 import net.sf.cb2xml.sablecc.parser.ParserException;
+import net.sf.cb2xml.util.Parms;
 import net.sf.cb2xml.util.XmlUtils;
 
 import org.w3c.dom.Document;
@@ -40,18 +44,54 @@ public class Cb2Xml {
 //
 
 	public static void main(String[] args) {
-        if (args.length < 1) {
-            System.err.println("Usage:\tcb2xml <copybookFileName> [debug]");
-            return;
-        }
+		Parms p = new Parms(args);
+		
+		if (p.ok) {
+			File cobolFile = new File(p.cobol);
 
-		File file = new File(args[0]);
-		boolean debug = false;
-		if (args.length > 1) {
-			debug = true;
+			Document document = null;
+			if (p.font == null || p.font.length() == 0) {
+				document = convert(cobolFile, null, "", p.debug);			
+			} else {
+				try {
+					Reader r= new InputStreamReader(new FileInputStream(cobolFile), p.font);
+					document = Cb2Xml2.convert(r, cobolFile.getName(), p.debug, Cb2xmlConstants.USE_PROPERTIES_FILE);
+					r.close();
+				} catch (DebugParserException dpe) {
+					System.err.println("*** fatal parse error ***");
+					System.err.println(dpe.getMessage());
+					System.err.println("=== buffer dump start ===");
+					System.err.println(dpe.buffer);
+					System.err.println("=== buffer dump end ===");
+
+				} catch (ParserException pe) {
+					System.err.println("*** fatal parse error ***");
+					System.err.println(pe.getMessage());
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+			}
+			
+			if (p.xml == null || p.xml.length() == 0) {
+				XmlUtils.writeDocument(System.out, document, p.indentXml);
+			} else {
+				XmlUtils.writeDocument(p.xml, document, p.indentXml);
+			}
 		}
-		String result = convertToXMLString(file, debug);
-        System.out.println(result);
+//        if (args.length < 1) {
+//            System.err.println("Usage:\tcb2xml <copybookFileName> [debug]");
+//            return;
+//        }
+//
+//		File file = new File(args[0]);
+//		boolean debug = false;
+//		if (args.length > 1) {
+//			debug = true;
+//		}
+//		String result = convertToXMLString(file, debug);
+//        System.out.println(result);
 	}
 
 	// public API methods
