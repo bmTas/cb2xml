@@ -1,3 +1,4 @@
+#!/usr/bin/python
 ##############################################################
 #
 #  Purpose: Illustrate processing a cb2xml xml file in python.

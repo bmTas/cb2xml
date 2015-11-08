@@ -1,6 +1,7 @@
 package tests;
 
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -117,7 +118,7 @@ public class TstCb2xml31a {
 
 	public void tstArray(String[] copybooks,  String dir, String font) throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException  {
 		String cblFilename, xmlFilename, xmlOut;
-			String tmpDir = "G:\\Temp\\cb2xml\\xmlOut\\";//System.getProperty("java.io.tmpdir") + File.separator;
+			String tmpDir = System.getProperty("java.io.tmpdir") + File.separator;
 		
 		for (String c : copybooks) {
 			xmlFilename = "xmlCpy" + c.substring(3, c.length() - 3) + "Xml";

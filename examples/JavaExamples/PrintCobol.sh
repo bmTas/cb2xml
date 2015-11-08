@@ -1,3 +1,5 @@
+#! /bin/sh
+
 ##
 ##  Print the copybook details to the terminal
 ##

@@ -1,3 +1,5 @@
+#! /bin/sh
+
 ##
 ##  Display a Cobol Copybook as a "Tree-Table"
 ##
