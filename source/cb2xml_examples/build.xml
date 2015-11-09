@@ -32,7 +32,7 @@
 			<!--include name="net/sf/cb2xml/jaxb/**"/!-->
 			<!--include name="net/sf/cb2xml/parse/**"/!-->
 			<classpath>
-				<filelist dir="../../workspace/cb2xml/lib">
+				<filelist dir="../cb2xml/lib">
 					<file name="cb2xml.jar"/>
 				</filelist>
 			</classpath>
