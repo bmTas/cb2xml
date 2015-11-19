@@ -18,6 +18,7 @@
 	<property name="javadoc.dir" location="${docs.dir}/api" />
 	<property name="cb2xml_Jaxb.jar" location="${outputLib.dir}/cb2xml_Jaxb.jar" />
 	<property name="cb2xml_example.jar" location="${outputLib.dir}/cb2xml_example.jar" />
+	<property name="ObscureCopybook.jar" location="${outputLib.dir}/ObscureCopybook.jar" />
 	<property name="inputLib.dir" location="../../lib" />
 
 
@@ -27,7 +28,6 @@
 	<!--echo file="${inputLib.dir}/SmallEditorFiles.txt"/-->
 
 		<mkdir dir="${build.dir}" />
-		<mkdir dir="${buildExample.dir}" />
 		<javac srcdir="${src.dir}" destdir="${build.dir}" optimize="false" target="1.5" source="1.5" debug="true">
 			<!--include name="net/sf/cb2xml/jaxb/**"/!-->
 			<!--include name="net/sf/cb2xml/parse/**"/!-->
@@ -51,6 +51,18 @@
 			<fileset dir="${build.dir}">
 				<exclude name="net/sf/cb2xml/jaxb/**"/>
 				<exclude name="net/sf/cb2xml/parse/**"/>
+				<exclude name="net/sf/cb2xml/example/Ob**"/>
+			</fileset>
+		</jar>
+		<jar destfile="${ObscureCopybook.jar}" filesonly="true">
+			<manifest>
+			    <attribute name="Main-Class" value="net.sf.cb2xml.example.ObscureCopybook"/>
+			    <attribute name="Class-Path" value="cb2xml.jar"/>
+			</manifest>
+			<fileset dir="${build.dir}">
+				<include name="net/sf/cb2xml/jaxb/**"/>
+				<include name="net/sf/cb2xml/parse/**"/>
+				<include name="net/sf/cb2xml/example/Ob**"/>
 			</fileset>
 		</jar>
 	</target>

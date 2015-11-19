@@ -181,7 +181,7 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 			    if ("01".equals(el.getAttribute(Cb2xmlConstants.LEVEL))) {
 			        postProcessNode(el, 1);
 			    } else {
-			        lastPos = Math.max(lastPos, postProcessNode(el, lastPos));
+			        lastPos = postProcessNode(el, lastPos);
 			    }
 			}
 		}
@@ -698,6 +698,7 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 		int displayLength = 0;
 		int assumedDigits = 0;
 		int newPos;
+		int oldEnd = startPos;
 
 		String usage = getUsage(element);
 		
@@ -763,7 +764,7 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 		    actualLength *= Integer.parseInt(element.getAttribute(Cb2xmlConstants.OCCURS));
 		}
 
-		return startPos + actualLength;
+		return Math.max(oldEnd, startPos + actualLength);
 	}
 
 

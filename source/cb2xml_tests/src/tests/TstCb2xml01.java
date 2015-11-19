@@ -54,6 +54,19 @@ public class TstCb2xml01 {
 	
 	private String[] COPYBOOK_LIST4 = {
 			"cpyRedefSize.cbl",
+			"cpyRedefSize01.cbl",
+			"cpyRedefSize02.cbl",
+			"cpyRedefSize03.cbl",
+			"cpyRedefSize08.cbl",
+			"cpyRedefSize11.cbl",
+			"cpyRedefSize12.cbl",
+			"cpyRedefSize14.cbl",
+			"cpyRedefSize15.cbl",
+			"cpyRedefSize21.cbl",
+			"cpyRedefSize23.cbl",
+			"cpyRedefSize24.cbl",
+			"cpyRedefSize25.cbl",
+			"cpyRedefSize31.cbl",
 			"cpyValueContinuation1.cbl",
 			"cpyValueContinuation2.cbl",
 			"cpyValueContinuation.cbl",
@@ -134,7 +147,7 @@ public class TstCb2xml01 {
 //			w.close();
 			
 			xmlFilename = Code.getFullName("xmlCopybook/" + xmlFilename);
-			common.Code.compare("File: " + cblFilename, doc, xmlFilename);
+			common.Code.compare("File: " + cblFilename, xmlFilename, doc);
 			
 		}
 		//fail("Not yet implemented");
