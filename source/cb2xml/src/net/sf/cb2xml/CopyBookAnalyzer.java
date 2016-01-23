@@ -316,29 +316,31 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 			characterString = characterString.substring(1);
 			positive = false;
 		}
-		int displayLength = 0, assumedDigitsBeforeDecimal=0, assumedDigitsAfterDecimal=0, storageLength = 0;
+		int displayLength = 0, assumedDigitsBeforeDecimal=0, assumedDigitsAfterDecimal=0, 
+				doubleByteChars = 0, lastSizeAdj = 1, currSizeAdj;
 			/* change "length" to "display-length" - bm  ??*/
 		if (curItem.element.hasAttribute(Cb2xmlConstants.DISPLAY_LENGTH)) {
 			displayLength = Integer.parseInt(curItem.element.getAttribute(Cb2xmlConstants.DISPLAY_LENGTH));
 		}
-		if (curItem.element.hasAttribute(Cb2xmlConstants.STORAGE_LENGTH)) {
-			storageLength = Integer.parseInt(curItem.element.getAttribute(Cb2xmlConstants.STORAGE_LENGTH));
-		}
+//		if (curItem.element.hasAttribute(Cb2xmlConstants.STORAGE_LENGTH)) {
+//			storageLength = Integer.parseInt(curItem.element.getAttribute(Cb2xmlConstants.STORAGE_LENGTH));
+//		}
 		int decimalPos = -1;
 		boolean isNumeric = false, isEditNumeric=false;
 		boolean isFirstCurrencySymbol = true;
 		String ucCharacterString = characterString.toUpperCase();
 		for (int i = 0; i < characterString.length(); i++) {
 			char c = ucCharacterString.charAt(i);
+			currSizeAdj = 0;
 			switch (c) {
+			case 'G':
+			case 'N':
+				doubleByteChars += 1;
+				currSizeAdj = 1;
 			case 'A':
 			case 'B':
 			case 'E':
-				storageLength++;
-			case 'G':
-			case 'N':
 				isEditNumeric = true;
-				storageLength++;
 				displayLength++;
 				break;
 			//==========================================
@@ -394,8 +396,10 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 				int count = Integer.parseInt(characterString.substring(i + 1,
 						endParenPos));
 				i = endParenPos;
-				displayLength = displayLength + count - 1;
+				doubleByteChars += (count - 1) * lastSizeAdj;
+				displayLength += count - 1;
 			}
+			lastSizeAdj = currSizeAdj;
 		}
 
 		if (isNumeric) {
@@ -404,7 +408,7 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 				curItem.element.setAttribute(Cb2xmlConstants.EDITTED_NUMERIC, Cb2xmlConstants.TRUE);
 			}
 		}
-        setLength(curItem.element, positive, displayLength, assumedDigitsBeforeDecimal + assumedDigitsAfterDecimal);
+        setLength(curItem.element, positive, displayLength, assumedDigitsBeforeDecimal + assumedDigitsAfterDecimal, doubleByteChars);
 		//curItem.element.setAttribute(Attributes.DISPLAY_LENGTH, displayLength + "");
 		//curItem.element.setAttribute("bytes", bytes + "");
 		if (decimalPos != -1 && (displayLength - decimalPos != assumedDigitsAfterDecimal)) {
@@ -697,6 +701,7 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 	    int actualLength = 0;
 		int displayLength = 0;
 		int assumedDigits = 0;
+		int doubleByteChars = 0;
 		int newPos;
 		int oldEnd = startPos;
 
@@ -728,6 +733,9 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 			if (element.hasAttribute(Cb2xmlConstants.ASSUMED_DIGITS)) {
 				assumedDigits = Integer.parseInt(element.getAttribute(Cb2xmlConstants.ASSUMED_DIGITS));
 			}
+			if (element.hasAttribute(Cb2xmlConstants.DOUBLE_BYTE_CHARS)) {
+				doubleByteChars = Integer.parseInt(element.getAttribute(Cb2xmlConstants.DOUBLE_BYTE_CHARS));
+			}
 		} else {
 			NodeList nodeList = element.getChildNodes();
 			for (int i = 0; i < nodeList.getLength(); i++) {
@@ -745,7 +753,8 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 			//element.setAttribute(Attributes.DISPLAY_LENGTH, thisElementLength + "");
 			//setLength(element, thisElementLength);
 		}
-		actualLength = setLength(element, ! Cb2xmlConstants.TRUE.equals(element.getAttribute(Cb2xmlConstants.SIGNED)), displayLength, assumedDigits);
+		actualLength = setLength(element, ! Cb2xmlConstants.TRUE.equals(element.getAttribute(Cb2xmlConstants.SIGNED)), 
+				displayLength, assumedDigits, doubleByteChars);
 
 		int syncOn = 1;
 		int remainder;
@@ -772,15 +781,14 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 	 * Assigning display and actual length to current element
 	 *
 	 */
-	private int setLength(Element element, boolean positive, int displayLength, int assumedDigits) {
-	    int storageLength = displayLength - assumedDigits;
+	private int setLength(Element element, boolean positive, int displayLength, int assumedDigits, int doubleByteChars) {
+	    int storageLength = displayLength - assumedDigits + doubleByteChars;
 
 	    if (element.hasChildNodes()) {
 	    	
 	    } else {
 		    String usage = getUsage(element);
 	    	if (usage != null && usage.length() > 0) {
-	  
 		    	if (numDef != null) {
 			    	displayLength = numDef.chkStorageLength(displayLength, usage);
 			        storageLength = numDef.getBinarySize(usage, storageLength, positive, element.hasAttribute(Cb2xmlConstants.SYNC));
@@ -794,6 +802,9 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 
 	    element.setAttribute(Cb2xmlConstants.DISPLAY_LENGTH, Integer.toString(displayLength));
 	    element.setAttribute(Cb2xmlConstants.STORAGE_LENGTH, Integer.toString(storageLength));
+	    if (doubleByteChars > 0) {
+	    	element.setAttribute(Cb2xmlConstants.DOUBLE_BYTE_CHARS, Integer.toString(doubleByteChars));
+	    }
 	    if (assumedDigits != 0) { 
 	    	element.setAttribute(Cb2xmlConstants.ASSUMED_DIGITS, Integer.toString(assumedDigits));
 	    }

@@ -72,6 +72,9 @@ public class TstCb2xml01 {
 			"cpyValueContinuation.cbl",
 			"cpyMsg.cbl",
 			"cpyHexValue.cbl",
+			"cpyPicNG01.cbl",
+			"cpyPicNG02.cbl",
+			"cpyPicNG03.cbl",
 	};
 
 	

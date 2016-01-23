@@ -26,6 +26,7 @@ public class Cb2xmlConstants {
     public static final String INHERITED_USAGE= "inherited-usage";
     public static final String DISPLAY_LENGTH = "display-length";
     public static final String STORAGE_LENGTH = "storage-length";
+    public static final String DOUBLE_BYTE_CHARS = "double-byte-chars";
     public static final String ASSUMED_DIGITS = "assumed-digits";
     public static final String SIGN_SEPARATE  = "sign-separate";
     public static final String SIGN_POSITION  = "sign-position";
