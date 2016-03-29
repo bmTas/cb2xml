@@ -784,8 +784,8 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 	private int setLength(Element element, boolean positive, int displayLength, int assumedDigits, int doubleByteChars) {
 	    int storageLength = displayLength - assumedDigits + doubleByteChars;
 
-	    if (element.hasChildNodes()) {
-	    	
+	    if (hasChildItems(element)) {
+
 	    } else {
 		    String usage = getUsage(element);
 	    	if (usage != null && usage.length() > 0) {
@@ -810,6 +810,21 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 	    }
 
 	    return storageLength;
+	}
+	
+	private boolean hasChildItems(Element element) {
+		if (element.hasChildNodes()) {
+			NodeList childNodes = element.getChildNodes();
+			for (int i = childNodes.getLength() - 1; i >= 0; i--) {
+				if (childNodes.item(i).getNodeType() == org.w3c.dom.Node.ELEMENT_NODE) {
+					Element childElement = (Element) childNodes.item(i);
+					if (!childElement.getTagName().equals(Cb2xmlConstants.CONDITION)) {
+						return true;
+					}
+				}
+			}
+		}
+			return false;
 	}
 
 	private String getUsage(Element element) {
