@@ -25,6 +25,8 @@ public class TstCb2xml01 {
 	
 	
 	private final String[] COPYBOOK_LIST1 = {
+			"cpyComp3_88a.cbl",
+			"cpyComp3_88b.cbl",
 			"cpyComp3aInheritence.cbl",
 			"cpyComp.cbl",
 			"cpyComp3.cbl",
