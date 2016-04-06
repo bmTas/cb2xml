@@ -13,6 +13,7 @@ import java.util.List;
 
 import javax.xml.bind.JAXBException;
 
+import net.sf.cb2xml.def.Cb2xmlConstants;
 import net.sf.cb2xml.jaxb.Condition;
 import net.sf.cb2xml.jaxb.Copybook;
 import net.sf.cb2xml.jaxb.Item;
@@ -64,7 +65,7 @@ public class ObscureCopybook {
 	 */
 	public ObscureCopybook(Reader copybookReader, String copybookname, Writer copybookWriter) throws IOException, JAXBException, ParserException, LexerException {
 		Copybook copybook = CobolParser.newParser() 
-								.parseCobol(copybookReader, copybookname);
+								.parseCobol(copybookReader, copybookname, Cb2xmlConstants.USE_LONG_LINE);
 		List<Item> items = copybook.getItem();
 
 		copybookReader.close();
@@ -116,9 +117,11 @@ public class ObscureCopybook {
 			for (Item item : items) {
 				String name,  str;
 				String usage="";
-				String sign="";
+				String sign="", sync="";
 				String ext = Integer.toString(count++).substring(1, 5);
 				StringBuilder occurs = new StringBuilder();
+				String redefines = "";
+				String dependingOnStr = "";
 				
 				if (item.getUsage() != null && item.isInheritedUsage() != Boolean.TRUE) {
 					usage = item.getUsage();
@@ -127,8 +130,19 @@ public class ObscureCopybook {
 						usage = usageMap.get(usage);
 					}
 				}
-				if (item.getSignPosition() != null && item.getSignPosition().length() > 0) {
+				if (Boolean.TRUE.equals(item.isSync())) {
+					sync = "Sync";
+				}
+				if (isPresent(item.getSignPosition()) ) {
 					sign = "Sign " + item.getSignPosition();
+					if (Boolean.TRUE.equals(item.isSignSeparate())) {
+						sign = sign + " Separate";
+					}
+				} else if (Boolean.TRUE.equals(item.isSignSeparate())) {
+					sign = "Separate";
+				}
+				if (isPresent(item.getRedefines())) {
+					redefines = "Redefines " + item.getRedefines();
 				}
 				if (item.getOccurs() != null) {
 					occurs.append(" Occurs ");
@@ -142,20 +156,20 @@ public class ObscureCopybook {
 					if (dependingOn != null && item.getDependingOn().length() > 0) {
 						String key = dependingOn.toLowerCase();
 						if (fieldMap.containsKey(key)) {
-							dependingOn = fieldMap.get(dependingOn.toLowerCase());
+							dependingOn = fieldMap.get(key);
 						}
 						
-						occurs.append(" Depending on ").append(dependingOn);
+						dependingOnStr = "Depending on " + dependingOn;
 					}
-				}
+				} 
 				if (item.getItem().size() == 0) {
 					name = "Field-" + ext;
 					str = item.getLevel() + " " + name;
-					printLine(w, indent, new String[] {item.getPicture(), sign, usage}, str, occurs.toString());
+					printLine(w, indent, item.getValue(), new String[] {item.getPicture(), sign, usage, sync}, str, redefines, occurs.toString(), dependingOnStr);
 					print88s(w, item, indent);
 				} else {
 					name = "Group-" + ext;
-					printLine(w, indent, null, item.getLevel() + " " + name, usage, occurs.toString());
+					printLine(w, indent, item.getValue(), null, item.getLevel() + " " + name, redefines, usage, sync, occurs.toString());
 					print88s(w, item, indent);
 					
 					printItem(w, item.getItem(), indent + "   ");
@@ -170,6 +184,9 @@ public class ObscureCopybook {
 		
 	}
 
+	private boolean isPresent(String s) {
+		return s != null && s.length() > 0;
+	}
 	/**
 	 * Print the 88's for a field
 	 * 
@@ -200,12 +217,12 @@ public class ObscureCopybook {
 							l[i++] = fix(item.isNumeric(), xx.getValue()) + " Thru " + fix(item.isNumeric(), xx.getThrough());
 						}
 					}
-					printLine(w, indent, null, l);					
+					printLine(w, indent, null, null, l);					
 				} else if (c.getThrough() != null && c.getThrough().length() > 0) {
-					printLine(w, indent, null, "   88 " + fix(item.isNumeric(), c.getName()), 
+					printLine(w, indent, null, null, "   88 " + fix(item.isNumeric(), c.getName()), 
 							"Value", c.getValue(), "Thru", fix(item.isNumeric(), c.getThrough()));
 				} else {
-					printLine(w, indent, null, "   88 " + c.getName(), "Value", fix(item.isNumeric(), c.getValue()));
+					printLine(w, indent, null, null, "   88 " + c.getName(), "Value", fix(item.isNumeric(), c.getValue()));
 				}
 			}
 		}
@@ -220,9 +237,9 @@ public class ObscureCopybook {
 	 * @return
 	 */
 	private String fix(Boolean isNumeric, String s) {
-		if (s != null && isNumeric != Boolean.TRUE) {
-			s = "'" + s.replace("'", "''") + "'";
-		}
+//		if (s != null && isNumeric != Boolean.TRUE) {
+//			s = "'" + s.replace("'", "''") + "'";
+//		}
 		return s;
 	}
 		
@@ -235,15 +252,15 @@ public class ObscureCopybook {
 	 * @param fieldDetails Field details
 	 * @throws IOException
 	 */
-	private void printLine(BufferedWriter w, String indent, String[] pics, String...fieldDetails ) throws IOException {
+	private void printLine(BufferedWriter w, String indent, String value, String[] pics,  String...fieldDetails ) throws IOException {
 		StringBuilder b  = new StringBuilder(indent);
 		
-		for (String s : fieldDetails) {
-			if (s != null) {
-				if (b.length() + s.length() > 70) {
-					w.write(b.toString());
-					w.newLine();
-					b.setLength(indent.length());
+		for (int i = 0; i < fieldDetails.length; i++) {
+		    String s = fieldDetails[i];
+			if (isPresent(s)) {
+				if (b.length() + s.length() > 70/*
+				|| ("value".equalsIgnoreCase(s)  && b.length() + len(fieldDetails, i) > 70 )*/) {
+					printCurrentLine(w, indent.length(), b);
 					b.append("   ");
 				}
 				if (! s.startsWith(" ")) {
@@ -254,9 +271,7 @@ public class ObscureCopybook {
 		}
 		
 		if (b.length() > PIC_POS - 1 && pics != null) {
-			w.write(b.toString());
-			w.newLine();
-			b.setLength(0);
+			printCurrentLine(w, 0, b);
 		}
 		
 		if (pics != null && pics.length > 0) {
@@ -267,9 +282,7 @@ public class ObscureCopybook {
 			for (String s : pics) {
 				if (s != null && s.length() > 0) {
 					if (b.length() + s.length() > 70) {
-						w.write(b.toString());
-						w.newLine();
-						b.setLength(0);
+						printCurrentLine(w, 0, b);
 						
 						b.append(spaces.substring(1, Math.min(PIC_POS + 4, Math.max(20, 70 - s.length()))));
 					}
@@ -284,10 +297,49 @@ public class ObscureCopybook {
 			i -= 1;
 		}
 
+		if (value != null) {
+			int valueLength = "value".length() + value.length();
+			if (b.charAt(b.length()-1) == ' ') {
+				b.setLength(b.length() - 1);
+			}
+			if (b.length() + valueLength < 68) {
+				b.append(" value ");
+			} else if (indent.length() + valueLength < 66) {
+				printCurrentLine(w, Math.min(22, indent.length()), b);
+				b.append("    value");
+			} else if (b.length() + "value".length() < 70) {
+				b.append(" value");
+				printCurrentLine(w, Math.min(22, indent.length()), b);
+			}
+			appendValue(b, value);
+		}
+
 		b.append('.');
 		w.write(b.toString());
 		w.newLine();
+	}
+	
+	private void appendValue(StringBuilder b, String value) {
+		b.append(' ').append(value);
+		
+	}
+	
 
+
+	/**
+	 * @param w
+	 * @param indent
+	 * @param b
+	 * @throws IOException
+	 */
+	private void printCurrentLine(BufferedWriter w, int indentAmount,
+			StringBuilder b) throws IOException {
+		w.write(b.toString());
+		w.newLine();
+		b.setLength(indentAmount);
+		for (int i = 0; i < indentAmount; i++) {
+			b.setCharAt(i, ' ');
+		}
 	}
 	
 	public static void main(String[] args) throws IOException, JAXBException, ParserException, LexerException {

@@ -1,0 +1,24 @@
+<copybook filename="DTAR119.cbl">
+	<!--******************************************************************-->
+	<!--*                                                                *-->
+	<!--*   DTAR119 - KEYCODE / BONUS FILE                               *-->
+	<!--*                                                                *-->
+	<!--*   FORMAT  -  FB   54 CHARS.                                    *-->
+	<!--*                                                                *-->
+	<!--*  VER| DATE     | DESCRIPTION                  | AUTHOR         *-->
+	<!--*  ===|- - - - - - - - - -|- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -|- - - - - - - - - - - -    *-->
+	<!--*  01 | JUN 94   | FIRST ISSUE                  | R. GEALL       *-->
+	<!--*                                                                *-->
+	<!--******************************************************************-->
+	<item display-length="3" level="03" name="DTAR119-STORE-NO" numeric="true" picture="9(03)" position="1" storage-length="2" usage="computational-3"/>
+	<item display-length="7" level="03" name="DTAR119-TRANS-DATE" numeric="true" picture="9(07)" position="3" storage-length="4" usage="computational-3"/>
+	<item display-length="2" level="03" name="DTAR119-TRANS-CODE" numeric="true" picture="9(02)" position="7" storage-length="2" usage="computational-3"/>
+	<item display-length="16" level="03" name="DTAR119-CARD-NO" numeric="true" picture="9(16)" position="9" storage-length="16"/>
+	<item display-length="3" level="03" name="DTAR119-TERMINAL-ID" numeric="true" picture="9(03)" position="25" storage-length="3"/>
+	<item display-length="4" level="03" name="DTAR119-TRANS-NO" numeric="true" picture="9(04)" position="28" storage-length="4"/>
+	<item display-length="6" level="03" name="DTAR119-BONUS-POINTS" numeric="true" picture="S9(06)" position="32" signed="true" storage-length="4" usage="computational-3"/>
+	<item display-length="8" level="03" name="DTAR119-KEYCODE" numeric="true" picture="9(08)" position="36" storage-length="5" usage="computational-3"/>
+	<item display-length="9" level="03" name="DTAR119-KEYCODE-AMT" numeric="true" picture="S9(07)V99" position="41" scale="2" signed="true" storage-length="5" usage="computational-3"/>
+	<item display-length="9" level="03" name="DTAR119-KEYCODE-QTY" numeric="true" picture="S9(07)V99" position="46" scale="2" signed="true" storage-length="5" usage="computational-3"/>
+	<item display-length="5" level="03" name="DTAR119-PROM-NO" numeric="true" picture="9(05)" position="51" storage-length="3" usage="computational-3"/>
+</copybook>

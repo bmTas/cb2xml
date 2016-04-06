@@ -202,7 +202,7 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 			Iterator i = list.iterator();
 			while (i.hasNext()) {
 				String s = i.next().toString().trim();
-				if (s.length() > 1) {
+				if (s.length() > 0) {
                     curItem.element.getParentNode().insertBefore(
                             document.createComment(correctForMinus(s)),
                             curItem.element);
@@ -213,7 +213,7 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 
 
     /**
-     * Replace '-' chars with '=' to aviod invalid XML comments
+     * Replace '-' chars with '=' to avoid invalid XML comments
      *
      * @param s input string Comment
      * @return corrected comment
@@ -223,10 +223,20 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
         if (start >= 0){
             int i=start;
             StringBuffer buf = new StringBuffer(s);
+            boolean wasMinus = false;
 
-            while (i < s.length() && buf.charAt(i) == '-') {
-                buf.replace(i, i+1, "=");
+            while (i < s.length()-1) {
+            	if (buf.charAt(i) == '-' && (wasMinus || buf.charAt(i + 1) == '-')) {
+            		buf.setCharAt(i, '=');
+            		wasMinus = true;
+            	} else {
+            		wasMinus = false;
+            	}
                 i += 1;
+            }
+            i = s.length()-1;
+            if (buf.charAt(i) == '-' && wasMinus) {
+            	buf.setCharAt(i, '=');
             }
             s = buf.toString();
         }
@@ -590,12 +600,14 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 			char ch;
 			char lastChar = (char) -1;
 			boolean skip = false;
+			boolean addQuote = false;
 			
 			if (nodeText.startsWith("'") || nodeText.startsWith("\"")) {
 				st = 1;
 				if (nodeText.endsWith(nodeText.substring(0, 1))) {
 					en -= 1;
 				}
+				addQuote = true;
 			}
 			for (int i = st; i < en; i++) {
 				ch = nodeText.charAt(i);
@@ -628,7 +640,30 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 					}
 				}
 			}
+			
+		
+			if (addQuote) {
+				char q = '"';
+				if (b.indexOf("\"") > 0) {
+					q = '\'';
+					adj(b);
+				}
+				b.insert(0, q);
+				b.append(q);
+			} 
 			node.setText(b.toString());
+		}
+	}
+
+	public static void adj(StringBuilder b) {
+		int len = b.length() - 2;
+		if (b.charAt(b.length() - 1) == '\'') {
+			b.append('\'');
+		}
+		for (int i = len; i >= 0; i--) {
+			if (b.charAt(i) == '\'') {
+				b.insert(i+1, '\'');
+			}
 		}
 	}
 

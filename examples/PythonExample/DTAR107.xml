@@ -1,0 +1,55 @@
+<copybook filename="DTAR107.cbl">
+	<!--******************************************************************-->
+	<!--*                                                                *-->
+	<!--*   DTAR107 - CUSTOMER FILE                                      *-->
+	<!--*                                                                *-->
+	<!--*   FORMAT  -  FB   54 CHARS.                                    *-->
+	<!--*                                                                *-->
+	<!--*  VER| DATE     | DESCRIPTION                  | AUTHOR         *-->
+	<!--*  ===|- - - - - - - - - -|- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -|- - - - - - - - - - - -    *-->
+	<!--*  01 | FEB 94   | FIRST ISSUE                  | R. GEALL       *-->
+	<!--*                                                                *-->
+	<!--******************************************************************-->
+	<item display-length="3" level="03" name="DTAR107-STORE-NO" numeric="true" picture="S9(03)" position="1" redefined="true" signed="true" storage-length="2" usage="computational-3"/>
+	<item display-length="2" level="03" name="Filler" position="1" redefines="DTAR107-STORE-NO" storage-length="2">
+		<item display-length="2" level="05" name="DTAR107-STORE-NO-REDEF" picture="X(2)" position="1" storage-length="2"/>
+	</item>
+	<item display-length="6" level="03" name="DTAR107-TRANS-DATE" numeric="true" picture="S9(06)" position="3" signed="true" storage-length="4" usage="computational-3"/>
+	<item display-length="16" level="03" name="DTAR107-CUST-NO" numeric="true" picture="9(16)" position="7" storage-length="16"/>
+	<item display-length="9" level="03" name="DTAR107-AMOUNT" numeric="true" picture="S9(07)V99" position="23" scale="2" signed="true" storage-length="5" usage="computational-3"/>
+	<item display-length="8" level="03" name="DTAR107-OPERATOR-NO" numeric="true" picture="S9(08)" position="28" signed="true" storage-length="5" usage="computational-3"/>
+	<item display-length="3" level="03" name="DTAR107-TERMINAL-NO" numeric="true" picture="S9(03)" position="33" signed="true" storage-length="2" usage="computational-3"/>
+	<item display-length="4" level="03" name="DTAR107-TIME" numeric="true" picture="S9(04)" position="35" signed="true" storage-length="3" usage="computational-3"/>
+	<item display-length="4" level="03" name="DTAR107-TRANS-NO" numeric="true" picture="S9(04)" position="38" signed="true" storage-length="3" usage="computational-3"/>
+	<item display-length="2" level="03" name="DTAR107-TRANS-TYPE" numeric="true" picture="9(02)" position="41" storage-length="2">
+		<condition name="DTAR107-SALE">
+			<condition value="1"/>
+		</condition>
+		<condition name="DTAR107-REFUND">
+			<condition value="2"/>
+		</condition>
+		<condition name="DTAR107-LAYBY">
+			<condition value="3"/>
+		</condition>
+		<condition name="DTAR107-VOID">
+			<condition value="4"/>
+		</condition>
+	</item>
+	<item display-length="2" level="03" name="DTAR107-TRANS-CODE" numeric="true" picture="9(02)" position="43" storage-length="2">
+		<condition name="DTAR107-SALE-DR">
+			<condition value="10"/>
+		</condition>
+		<condition name="DTAR107-REFUND-CR">
+			<condition value="20"/>
+		</condition>
+		<condition name="DTAR107-DR-REVERSAL">
+			<condition value="12"/>
+		</condition>
+		<condition name="DTAR107-CR-REVERSAL">
+			<condition value="22"/>
+		</condition>
+	</item>
+	<item display-length="6" level="03" name="DTAR107-STD-POINTS" numeric="true" picture="S9(06)" position="45" signed="true" storage-length="4" usage="computational-3"/>
+	<item display-length="6" level="03" name="DTAR107-BONUS-POINTS" numeric="true" picture="S9(06)" position="49" signed="true" storage-length="4" usage="computational-3"/>
+	<item display-length="2" level="03" name="DTAR107-NO-OF-TXNS" numeric="true" picture="9(02)" position="53" storage-length="2"/>
+</copybook>

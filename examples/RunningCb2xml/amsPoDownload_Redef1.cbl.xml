@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<copybook filename="amsPoDownload_Redef1.cbl">
+	<!--******************************************************************-->
+	<!--*  Ams PO download file-->
+	<!--******************************************************************-->
+	<item display-length="151" level="01" name="PO-Records" position="1" storage-length="151">
+		<item display-length="2" level="05" name="Record-Type" picture="X(2)" position="1" storage-length="2"/>
+		<item display-length="86" level="05" name="PO-Header-Record" position="3" redefined="true" storage-length="86">
+			<item display-length="5" level="10" name="Sequence-Number" numeric="true" picture="99v999" position="3" scale="3" storage-length="5"/>
+			<item display-length="10" level="10" name="Vendor" numeric="true" picture="9(10)" position="8" storage-length="10"/>
+			<item display-length="12" level="10" name="PO" numeric="true" picture="9(12)" position="18" storage-length="12"/>
+			<item display-length="6" level="10" name="Entry-Date" picture="X(6)" position="30" storage-length="6"/>
+			<item display-length="8" level="10" name="Filler" picture="X(8)" position="36" storage-length="8"/>
+			<item display-length="2" level="10" name="beg01-code" picture="X(2)" position="44" storage-length="2"/>
+			<item display-length="2" level="10" name="beg02-code" picture="X(2)" position="46" storage-length="2"/>
+			<item display-length="4" level="10" name="Department" picture="X(4)" position="48" storage-length="4"/>
+			<item display-length="6" level="10" name="Expected-Reciept-Date" picture="X(6)" position="52" storage-length="6"/>
+			<item display-length="4" level="10" name="Filler" picture="X(4)" position="58" storage-length="4"/>
+			<item display-length="6" level="10" name="Cancel-by-date" picture="X(6)" position="62" storage-length="6"/>
+			<item display-length="1" level="10" name="EDI-Type" picture="X(1)" position="68" storage-length="1"/>
+			<item display-length="6" level="10" name="Add-Date" picture="X(6)" position="69" storage-length="6"/>
+			<item display-length="1" level="10" name="Filler" picture="X(1)" position="75" storage-length="1"/>
+			<item display-length="10" level="10" name="Department-Name" picture="X(10)" position="76" storage-length="10"/>
+			<item display-length="1" level="10" name="Prcoess-Type" picture="X(1)" position="86" storage-length="1"/>
+			<item display-length="2" level="10" name="Order-Type" picture="X(2)" position="87" storage-length="2"/>
+		</item>
+		<item display-length="149" level="05" name="Product-Record" position="3" redefines="PO-Header-Record" storage-length="149">
+			<item display-length="9" level="10" name="Pack-Qty" numeric="true" picture="9(5)V9999" position="3" scale="4" storage-length="9"/>
+			<item display-length="13" level="10" name="Pack-Cost" numeric="true" picture="9(9)V9999" position="12" scale="4" storage-length="13"/>
+			<item display-length="13" level="10" name="APN" numeric="true" picture="9(13)" position="25" storage-length="13"/>
+			<item display-length="1" level="10" name="Filler" picture="X(1)" position="38" storage-length="1"/>
+			<item display-length="8" level="10" name="Product" numeric="true" picture="9(8)" position="39" storage-length="8"/>
+			<item display-length="25" level="10" name="Filler" picture="X(25)" position="47" storage-length="25"/>
+			<item display-length="15" level="10" name="pmg-dtl-tech-key" picture="X(15)" position="72" storage-length="15"/>
+			<item display-length="15" level="10" name="Case-Pack-id" picture="X(15)" position="87" storage-length="15"/>
+			<item display-length="50" level="10" name="Product-Name" picture="X(50)" position="102" storage-length="50"/>
+		</item>
+		<item display-length="120" level="05" name="Location-Record" position="3" redefines="PO-Header-Record" storage-length="120">
+			<item display-length="12" level="10" name="location" occurs="10" position="3" storage-length="12">
+				<item display-length="4" level="15" name="DC-Number" numeric="true" picture="9(4)" position="3" storage-length="4"/>
+				<item display-length="8" level="15" name="Pack-Quantity" numeric="true" picture="9(8)" position="7" storage-length="8"/>
+			</item>
+		</item>
+	</item>
+</copybook>
