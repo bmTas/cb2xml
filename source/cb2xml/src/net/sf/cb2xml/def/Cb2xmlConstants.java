@@ -16,13 +16,14 @@ public class Cb2xmlConstants {
     public static final String NAME           = "name";
     public static final String PICTURE        = "picture";
     public static final String NUMERIC        = "numeric";
-    public static final String EDITTED_NUMERIC        = "editted-numeric";
+    public static final String EDITTED_NUMERIC  = "editted-numeric";
     public static final String REDEFINED      = "redefined";
     public static final String REDEFINES      = "redefines";
     public static final String POSITION       = "position";
     public static final String LEVEL          = "level";
     public static final String OCCURS         = "occurs";
     public static final String USAGE          = "usage";
+    public static final String JUSTIFIED      = "justified";
     public static final String INHERITED_USAGE= "inherited-usage";
     public static final String DISPLAY_LENGTH = "display-length";
     public static final String STORAGE_LENGTH = "storage-length";
@@ -49,7 +50,8 @@ public class Cb2xmlConstants {
     public static final String TRUE           = "true";
     public static final String LEADING        = "leading";
     public static final String TRAILING       = "trailing";
-    
+    public static final String RIGHT          = "right";
+   
     public static final String PACKED_DECIMAL = "packed-decimal";
     public static final String BINARY         = "binary";
     public static final String COMP           = "computational";

@@ -154,6 +154,7 @@ public class Code {
     	URL resource = Code.class.getResource(filename);
     	if (resource == null) {
     		System.out.println(" --> Can not find: " + filename);
+    		throw new RuntimeException(" --> Can not find: " + filename);
     	}
 		return resource.getFile();
     }
