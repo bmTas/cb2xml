@@ -19,7 +19,7 @@
 	<property name="sablecc.jar" location="sablecc/sablecc.jar" />
 	<property name="cb2xml.jar" location="${lib.dir}/cb2xml.jar" />
 	<property name="cb2xml_definitions.jar" location="${lib.dir}/cb2xml_definitions.jar" />
-	<property name="version.num" value="0.95.6"/>
+	<property name="version.num" value="0.95.7"/>
 	<tstamp>
 	  <format property="BUILD_TIMESTAMP" pattern="yyyy-MM-dd HH:mm:ss"/>
 	</tstamp>
