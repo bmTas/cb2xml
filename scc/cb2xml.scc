@@ -142,7 +142,7 @@ Tokens
     // we relax this to allow digits to start an identifier
     // and at least one letter has to exist within the identifier
     // some copybooks in the wild are this way 
-    data_name = (digit || letter) ( letter | digit | '-' )*;            
+    data_name = (digit || letter) ( letter | digit | '-' | '_' )*;            
     
     // if any strange (e.g. non ASCII) character is encountered this token matches
     // and it is ignored gracefully in the Ignored Tokens section

@@ -567,7 +567,6 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 	/* (non-Javadoc)
 	 * @see net.sf.cb2xml.sablecc.analysis.DepthFirstAdapter#inAJustifiedClause(net.sf.cb2xml.sablecc.node.AJustifiedClause)
 	 */
-	@Override
 	public void inAJustifiedClause(AJustifiedClause node) {
 		String s = Cb2xmlConstants.RIGHT;
 		if (node.getRight() == null) {
