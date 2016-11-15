@@ -54,21 +54,30 @@ public class CobolPreprocessor {
 	  public static	 String preProcess(Reader r) {
 	  	int columnStart = 6;
 	  	int columnEnd = 72;
-	  	try {
-	  	  	FileInputStream propsStream = new FileInputStream("cb2xml.properties");
-		  	Properties props = new Properties();
-		  	props.load(propsStream);
-		  	propsStream.close();
-		  	String columnStartProperty = props.getProperty("column.start");
-		  	String columnEndProperty = props.getProperty("column.end");
-		  	if (columnStartProperty != null) {
-		  		columnStart = Integer.parseInt(columnStartProperty);
+	  	File properties = new File("cb2xml.properties");
+	  	
+	  	if (properties.exists()) {
+		  	try {
+		  	  	FileInputStream propsStream = new FileInputStream(properties);
+			  	Properties props = new Properties();
+			  	props.load(propsStream);
+			  	propsStream.close();
+			  	String columnStartProperty = props.getProperty("column.start");
+			  	String columnEndProperty = props.getProperty("column.end");
+			  	if (columnStartProperty != null) {
+			  		columnStart = Integer.parseInt(columnStartProperty);
+			  	}
+			  	if (columnEndProperty != null) {
+			  		columnEnd = Integer.parseInt(columnEndProperty);
+			  	}
+		  	} catch (Exception e) {
+		  		e.printStackTrace();
 		  	}
-		  	if (columnEndProperty != null) {
-		  		columnEnd = Integer.parseInt(columnEndProperty);
-		  	}
-	  	} catch (Exception e) {
-	  		e.printStackTrace();
+	  	} else {
+	  		System.err.println("*** -------------------------------------------------------");
+	  		System.err.println("*** Warning there was no \"cb2xml.properties\" file, ");
+	  		System.err.println("*** using the default Cobol columns of 6 to 72 ");
+	  		System.err.println("*** -------------------------------------------------------");
 	  	}
 	  	System.err.println("*** using start column = " + columnStart + ", end column = " + columnEnd);
 	  	
@@ -119,6 +128,5 @@ public class CobolPreprocessor {
 			    }
 			    return sb.toString();
 	  }
-	  
-	
+
 }
