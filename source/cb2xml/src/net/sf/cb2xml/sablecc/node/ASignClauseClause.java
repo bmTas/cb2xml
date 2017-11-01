@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ASignClauseClause extends PClause
 {
     private PSignClause _signClause_;
 
     public ASignClauseClause()
     {
+        // Constructor
     }
 
     public ASignClauseClause(
-        PSignClause _signClause_)
+        @SuppressWarnings("hiding") PSignClause _signClause_)
     {
+        // Constructor
         setSignClause(_signClause_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ASignClauseClause(
-            (PSignClause) cloneNode(_signClause_));
+            cloneNode(this._signClause_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseASignClauseClause(this);
@@ -32,14 +37,14 @@ public final class ASignClauseClause extends PClause
 
     public PSignClause getSignClause()
     {
-        return _signClause_;
+        return this._signClause_;
     }
 
     public void setSignClause(PSignClause node)
     {
-        if(_signClause_ != null)
+        if(this._signClause_ != null)
         {
-            _signClause_.parent(null);
+            this._signClause_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ASignClauseClause extends PClause
             node.parent(this);
         }
 
-        _signClause_ = node;
+        this._signClause_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_signClause_);
+            + toString(this._signClause_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_signClause_ == child)
+        // Remove child
+        if(this._signClause_ == child)
         {
-            _signClause_ = null;
+            this._signClause_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_signClause_ == oldChild)
+        // Replace child
+        if(this._signClause_ == oldChild)
         {
             setSignClause((PSignClause) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

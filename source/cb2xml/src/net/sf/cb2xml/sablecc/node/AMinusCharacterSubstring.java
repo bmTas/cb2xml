@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AMinusCharacterSubstring extends PCharacterSubstring
 {
     private TMinus _minus_;
 
     public AMinusCharacterSubstring()
     {
+        // Constructor
     }
 
     public AMinusCharacterSubstring(
-        TMinus _minus_)
+        @SuppressWarnings("hiding") TMinus _minus_)
     {
+        // Constructor
         setMinus(_minus_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AMinusCharacterSubstring(
-            (TMinus) cloneNode(_minus_));
+            cloneNode(this._minus_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAMinusCharacterSubstring(this);
@@ -32,14 +37,14 @@ public final class AMinusCharacterSubstring extends PCharacterSubstring
 
     public TMinus getMinus()
     {
-        return _minus_;
+        return this._minus_;
     }
 
     public void setMinus(TMinus node)
     {
-        if(_minus_ != null)
+        if(this._minus_ != null)
         {
-            _minus_.parent(null);
+            this._minus_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class AMinusCharacterSubstring extends PCharacterSubstring
             node.parent(this);
         }
 
-        _minus_ = node;
+        this._minus_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_minus_);
+            + toString(this._minus_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_minus_ == child)
+        // Remove child
+        if(this._minus_ == child)
         {
-            _minus_ = null;
+            this._minus_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_minus_ == oldChild)
+        // Replace child
+        if(this._minus_ == oldChild)
         {
             setMinus((TMinus) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

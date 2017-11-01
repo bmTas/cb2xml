@@ -19,9 +19,11 @@ package net.sf.cb2xml.example;
 
 import java.util.List;
 
-import net.sf.cb2xml.jaxb.Copybook;
-import net.sf.cb2xml.jaxb.Item;
-import net.sf.cb2xml.parse.CobolParser;
+import net.sf.cb2xml.Cb2Xml3;
+import net.sf.cb2xml.def.ICopybook;
+import net.sf.cb2xml.def.IItem;
+
+
 
 /**
  * Basic program to process a cb2xml-xml-document using JAXB
@@ -39,16 +41,14 @@ public class Demo2 {
 			copybookName = Code.getFullName("BitOfEverything.cbl").getFile();
 		}
 
-		
-		Copybook copybook = CobolParser.newParser()
-								.parseCobol(copybookName);
+		ICopybook copybook = Cb2Xml3.newBuilder(copybookName).asCobolItemTree();
 
         System.out.println();
         System.out.println("Printing Items");
         System.out.println();
-        List<Item> items = copybook.getItem();
-        for (Item item : items) {
-        	Code.printItem("   ", item);
+        List<? extends IItem> items = copybook.getChildItems();
+        for (IItem item : items) {
+        	Code2.printItem("   ", item);
         }
     }
 }

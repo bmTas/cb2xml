@@ -37,6 +37,8 @@ import net.sf.cb2xml.sablecc.node.AJustifiedClause;
 import net.sf.cb2xml.sablecc.node.ALeadingLeadingOrTrailing;
 import net.sf.cb2xml.sablecc.node.ANationalUsagePhrase;
 import net.sf.cb2xml.sablecc.node.AObjectReferencePhrase;
+import net.sf.cb2xml.sablecc.node.AOccursClause;
+import net.sf.cb2xml.sablecc.node.AOccursClauseClause;
 import net.sf.cb2xml.sablecc.node.AOccursTo;
 import net.sf.cb2xml.sablecc.node.APackedDecimalUsagePhrase;
 import net.sf.cb2xml.sablecc.node.APictureClause;
@@ -114,11 +116,14 @@ import org.w3c.dom.NodeList;
  * <li>Add blank-when-zero attribute to xml
  * <li>allow numeric-definition to be passed in as a parameter
  * </ol>
- */
+ * 
+ * @deprecated Replaced by   {@link  net.sf.cb2xml.analysis.CopyBookAnalyzer}
 
+ */
+@Deprecated
 public class CopyBookAnalyzer extends DepthFirstAdapter {
 
-	private static NumericDefinition defaultNumDef = DialectManager.MAINFRAME_NUMERIC_DEFINITION;
+	private static NumericDefinition defaultNumDef = DialectManager.MAINFRAME_COBOL.getNumericDefinition();
 
 	
 
@@ -164,7 +169,7 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 	// enter copybook, set up XML DOM and root element
 	public void inARecordDescription(ARecordDescription node) {
 	    document = XmlUtils.getNewXmlDocument();
-	    Element root = document.createElement("copybook");
+	    Element root = document.createElement(Cb2xmlConstants.COPYBOOK);
 	    root.setAttribute(Cb2xmlConstants.FILENAME, copyBookName);
 	    document.appendChild(root);
 	}
@@ -223,7 +228,7 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
         int start = s.indexOf("--");
         if (start >= 0){
             int i=start;
-            StringBuffer buf = new StringBuffer(s);
+            StringBuilder buf = new StringBuilder(s);
             boolean wasMinus = false;
 
             while (i < s.length()-1) {
@@ -304,6 +309,26 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 		curItem.element.setAttribute(Cb2xmlConstants.OCCURS, node.getNumber().toString().trim());
 		curItem.element.setAttribute(Cb2xmlConstants.DEPENDING_ON, node.getDataName().getText());
 	}
+
+	/* (non-Javadoc)
+	 * @see net.sf.cb2xml.sablecc.analysis.DepthFirstAdapter#inAOccursClauseClause(net.sf.cb2xml.sablecc.node.AOccursClauseClause)
+	 */
+	@Override
+	public void inAOccursClauseClause(AOccursClauseClause node) {
+		// TODO Auto-generated method stub
+		super.inAOccursClauseClause(node);
+	}
+
+
+	/* (non-Javadoc)
+	 * @see net.sf.cb2xml.sablecc.analysis.DepthFirstAdapter#inAOccursClause(net.sf.cb2xml.sablecc.node.AOccursClause)
+	 */
+	@Override
+	public void inAOccursClause(AOccursClause node) {
+		// TODO Auto-generated method stub
+		super.inAOccursClause(node);
+	}
+
 
 	public void inAOccursTo(AOccursTo node) {
 		curItem.element.setAttribute(Cb2xmlConstants.OCCURS_MIN, node.getNumber().toString()
@@ -536,11 +561,11 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 	}
 
 	public void inAIndexUsagePhrase(AIndexUsagePhrase node) {
-		curItem.element.setAttribute(Cb2xmlConstants.USAGE, "index");
+		curItem.element.setAttribute(Cb2xmlConstants.USAGE, Cb2xmlConstants.INDEX);
 	}
 
 	public void inANationalUsagePhrase(ANationalUsagePhrase node) {
-		curItem.element.setAttribute(Cb2xmlConstants.USAGE, "national");
+		curItem.element.setAttribute(Cb2xmlConstants.USAGE, Cb2xmlConstants.NATIONAL);
 	}
 
 	public void inAObjectReferencePhrase(AObjectReferencePhrase node) {
@@ -737,7 +762,7 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 
 	private String removeChars(String s, String charToRemove) {
 		StringTokenizer st = new StringTokenizer(s, charToRemove, false);
-		StringBuffer b = new StringBuffer();
+		StringBuilder b = new StringBuilder();
 		while (st.hasMoreElements()) {
 			b.append(st.nextElement());
 		}
@@ -774,8 +799,13 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 					break;
 				}
 			}
-			if (redefinedElement != null && redefinedElement.hasAttribute(Cb2xmlConstants.POSITION)) {
+			if (redefinedElement != null 
+			&& redefinedElement.hasAttribute(Cb2xmlConstants.POSITION)) {
 				startPos = Integer.parseInt(redefinedElement.getAttribute(Cb2xmlConstants.POSITION));
+				redefinedElement.setAttribute(Cb2xmlConstants.REDEFINED, Cb2xmlConstants.TRUE); 
+			} else if (redefinedElement.hasAttribute(Cb2xmlConstants.LEVEL) 
+					&& "01".equals(Cb2xmlConstants.LEVEL)) {
+				startPos = 0;
 				redefinedElement.setAttribute(Cb2xmlConstants.REDEFINED, Cb2xmlConstants.TRUE); 
 			} else {
 				System.out.println(">> position error " + element.getAttribute(Cb2xmlConstants.NAME) + " %% "+ redefinedName);
@@ -904,12 +934,12 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 		return usage;
 	}
 	
-	/**
-	 * Set the possible Sizes for Comp fields
-	 * @param numericDef numeric definition class
-	 */
-	public static void setNumericDetails(NumericDefinition numericDef) {
-		defaultNumDef = numericDef;
-	}
+//	/**
+//	 * Set the possible Sizes for Comp fields
+//	 * @param numericDef numeric definition class
+//	 */
+//	public static void setNumericDetails(NumericDefinition numericDef) {
+//		defaultNumDef = numericDef;
+//	}
 
 }

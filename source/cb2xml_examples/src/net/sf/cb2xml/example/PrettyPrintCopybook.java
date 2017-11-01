@@ -34,6 +34,7 @@ import net.sf.cb2xml.util.XmlUtils;
  * @author Bruce Martin
  *
  */
+@SuppressWarnings("deprecation")
 public class PrettyPrintCopybook {
 
 	public static final int PIC_POS = 46;

@@ -2,6 +2,7 @@ package net.sf.cb2xml;
 
 import net.sf.cb2xml.sablecc.parser.ParserException;
 
+@SuppressWarnings("serial")
 public class DebugParserException extends ParserException {
 
 	public final String buffer;

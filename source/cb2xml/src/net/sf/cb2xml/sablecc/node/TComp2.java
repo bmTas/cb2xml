@@ -4,6 +4,7 @@ package net.sf.cb2xml.sablecc.node;
 
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class TComp2 extends Token
 {
     public TComp2(String text)
@@ -18,11 +19,13 @@ public final class TComp2 extends Token
         setPos(pos);
     }
 
+    @Override
     public Object clone()
     {
       return new TComp2(getText(), getLine(), getPos());
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTComp2(this);

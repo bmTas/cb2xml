@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ANumericLiteralCharacterSubstring extends PCharacterSubstring
 {
     private TNumericLiteral _numericLiteral_;
 
     public ANumericLiteralCharacterSubstring()
     {
+        // Constructor
     }
 
     public ANumericLiteralCharacterSubstring(
-        TNumericLiteral _numericLiteral_)
+        @SuppressWarnings("hiding") TNumericLiteral _numericLiteral_)
     {
+        // Constructor
         setNumericLiteral(_numericLiteral_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ANumericLiteralCharacterSubstring(
-            (TNumericLiteral) cloneNode(_numericLiteral_));
+            cloneNode(this._numericLiteral_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseANumericLiteralCharacterSubstring(this);
@@ -32,14 +37,14 @@ public final class ANumericLiteralCharacterSubstring extends PCharacterSubstring
 
     public TNumericLiteral getNumericLiteral()
     {
-        return _numericLiteral_;
+        return this._numericLiteral_;
     }
 
     public void setNumericLiteral(TNumericLiteral node)
     {
-        if(_numericLiteral_ != null)
+        if(this._numericLiteral_ != null)
         {
-            _numericLiteral_.parent(null);
+            this._numericLiteral_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ANumericLiteralCharacterSubstring extends PCharacterSubstring
             node.parent(this);
         }
 
-        _numericLiteral_ = node;
+        this._numericLiteral_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_numericLiteral_);
+            + toString(this._numericLiteral_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_numericLiteral_ == child)
+        // Remove child
+        if(this._numericLiteral_ == child)
         {
-            _numericLiteral_ = null;
+            this._numericLiteral_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_numericLiteral_ == oldChild)
+        // Replace child
+        if(this._numericLiteral_ == oldChild)
         {
             setNumericLiteral((TNumericLiteral) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

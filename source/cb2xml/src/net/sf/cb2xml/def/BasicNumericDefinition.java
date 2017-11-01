@@ -31,14 +31,14 @@ public class BasicNumericDefinition implements NumericDefinition {
 	public final static int[]  FUJITSU_SIZES = MAINFRAME_SIZES;
 	public final static int[]  FUJITSU_SYNC = {2, 2, 4, 4};
 	
-	public final static int[]  OPEN_COBOL_SIZES = {1, 2, 4, 8};
-	public final static int[]  OPEN_COBOL_SYNC = {2, 2, 4, 4};
+	public final static int[]  GNU_COBOL_SIZES = {1, 2, 4, 8};
+	public final static int[]  GNU_COBOL_SYNC = {2, 2, 4, 4};
 	
 	public final static int[]  BS2000_SIZES = MAINFRAME_SIZES;
 	public final static int[]  BS2000_SYNC = {2, 2, 4, 8};
 
-	public final static int[]  OPEN_COBOL_MVS_SIZES = MAINFRAME_SIZES;
-	public final static int[]  OPEN_COBOL_MVS_SYNC = BS2000_SYNC;
+	public final static int[]  GNU_COBOL_MVS_SIZES = MAINFRAME_SIZES;
+	public final static int[]  GNU_COBOL_MVS_SYNC = BS2000_SYNC;
 
 	public final static int[]  MICROFOCUS_SIZES = {1, 2, 3, 4, 5, 6, 7, 8};
 	public final static int[]  MICROFOCUS_SIZES_SYNC = {1, 1, 1, 1};

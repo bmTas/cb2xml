@@ -5,68 +5,47 @@ package net.sf.cb2xml.sablecc.node;
 import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AAscendingOrDescendingKeyPhrase extends PAscendingOrDescendingKeyPhrase
 {
     private PAscendingOrDescending _ascendingOrDescending_;
     private TKey _key_;
     private TIs _is_;
-    private final LinkedList _dataName_ = new TypedLinkedList(new DataName_Cast());
+    private final LinkedList<TDataName> _dataName_ = new LinkedList<TDataName>();
 
     public AAscendingOrDescendingKeyPhrase()
     {
+        // Constructor
     }
 
     public AAscendingOrDescendingKeyPhrase(
-        PAscendingOrDescending _ascendingOrDescending_,
-        TKey _key_,
-        TIs _is_,
-        List _dataName_)
+        @SuppressWarnings("hiding") PAscendingOrDescending _ascendingOrDescending_,
+        @SuppressWarnings("hiding") TKey _key_,
+        @SuppressWarnings("hiding") TIs _is_,
+        @SuppressWarnings("hiding") List<?> _dataName_)
     {
+        // Constructor
         setAscendingOrDescending(_ascendingOrDescending_);
 
         setKey(_key_);
 
         setIs(_is_);
 
-        {
-            this._dataName_.clear();
-            this._dataName_.addAll(_dataName_);
-        }
+        setDataName(_dataName_);
 
     }
 
-    public AAscendingOrDescendingKeyPhrase(
-        PAscendingOrDescending _ascendingOrDescending_,
-        TKey _key_,
-        TIs _is_,
-        XTDataName _dataName_)
-    {
-        setAscendingOrDescending(_ascendingOrDescending_);
-
-        setKey(_key_);
-
-        setIs(_is_);
-
-        if(_dataName_ != null)
-        {
-            while(_dataName_ instanceof X1TDataName)
-            {
-                this._dataName_.addFirst(((X1TDataName) _dataName_).getTDataName());
-                _dataName_ = ((X1TDataName) _dataName_).getXTDataName();
-            }
-            this._dataName_.addFirst(((X2TDataName) _dataName_).getTDataName());
-        }
-
-    }
+    @Override
     public Object clone()
     {
         return new AAscendingOrDescendingKeyPhrase(
-            (PAscendingOrDescending) cloneNode(_ascendingOrDescending_),
-            (TKey) cloneNode(_key_),
-            (TIs) cloneNode(_is_),
-            cloneList(_dataName_));
+            cloneNode(this._ascendingOrDescending_),
+            cloneNode(this._key_),
+            cloneNode(this._is_),
+            cloneList(this._dataName_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAAscendingOrDescendingKeyPhrase(this);
@@ -74,14 +53,14 @@ public final class AAscendingOrDescendingKeyPhrase extends PAscendingOrDescendin
 
     public PAscendingOrDescending getAscendingOrDescending()
     {
-        return _ascendingOrDescending_;
+        return this._ascendingOrDescending_;
     }
 
     public void setAscendingOrDescending(PAscendingOrDescending node)
     {
-        if(_ascendingOrDescending_ != null)
+        if(this._ascendingOrDescending_ != null)
         {
-            _ascendingOrDescending_.parent(null);
+            this._ascendingOrDescending_.parent(null);
         }
 
         if(node != null)
@@ -94,19 +73,19 @@ public final class AAscendingOrDescendingKeyPhrase extends PAscendingOrDescendin
             node.parent(this);
         }
 
-        _ascendingOrDescending_ = node;
+        this._ascendingOrDescending_ = node;
     }
 
     public TKey getKey()
     {
-        return _key_;
+        return this._key_;
     }
 
     public void setKey(TKey node)
     {
-        if(_key_ != null)
+        if(this._key_ != null)
         {
-            _key_.parent(null);
+            this._key_.parent(null);
         }
 
         if(node != null)
@@ -119,19 +98,19 @@ public final class AAscendingOrDescendingKeyPhrase extends PAscendingOrDescendin
             node.parent(this);
         }
 
-        _key_ = node;
+        this._key_ = node;
     }
 
     public TIs getIs()
     {
-        return _is_;
+        return this._is_;
     }
 
     public void setIs(TIs node)
     {
-        if(_is_ != null)
+        if(this._is_ != null)
         {
-            _is_.parent(null);
+            this._is_.parent(null);
         }
 
         if(node != null)
@@ -144,83 +123,105 @@ public final class AAscendingOrDescendingKeyPhrase extends PAscendingOrDescendin
             node.parent(this);
         }
 
-        _is_ = node;
+        this._is_ = node;
     }
 
-    public LinkedList getDataName()
+    public LinkedList<TDataName> getDataName()
     {
-        return _dataName_;
+        return this._dataName_;
     }
 
-    public void setDataName(List list)
+    public void setDataName(List<?> list)
     {
-        _dataName_.clear();
-        _dataName_.addAll(list);
+        for(TDataName e : this._dataName_)
+        {
+            e.parent(null);
+        }
+        this._dataName_.clear();
+
+        for(Object obj_e : list)
+        {
+            TDataName e = (TDataName) obj_e;
+            if(e.parent() != null)
+            {
+                e.parent().removeChild(e);
+            }
+
+            e.parent(this);
+            this._dataName_.add(e);
+        }
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_ascendingOrDescending_)
-            + toString(_key_)
-            + toString(_is_)
-            + toString(_dataName_);
+            + toString(this._ascendingOrDescending_)
+            + toString(this._key_)
+            + toString(this._is_)
+            + toString(this._dataName_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_ascendingOrDescending_ == child)
+        // Remove child
+        if(this._ascendingOrDescending_ == child)
         {
-            _ascendingOrDescending_ = null;
+            this._ascendingOrDescending_ = null;
             return;
         }
 
-        if(_key_ == child)
+        if(this._key_ == child)
         {
-            _key_ = null;
+            this._key_ = null;
             return;
         }
 
-        if(_is_ == child)
+        if(this._is_ == child)
         {
-            _is_ = null;
+            this._is_ = null;
             return;
         }
 
-        if(_dataName_.remove(child))
+        if(this._dataName_.remove(child))
         {
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_ascendingOrDescending_ == oldChild)
+        // Replace child
+        if(this._ascendingOrDescending_ == oldChild)
         {
             setAscendingOrDescending((PAscendingOrDescending) newChild);
             return;
         }
 
-        if(_key_ == oldChild)
+        if(this._key_ == oldChild)
         {
             setKey((TKey) newChild);
             return;
         }
 
-        if(_is_ == oldChild)
+        if(this._is_ == oldChild)
         {
             setIs((TIs) newChild);
             return;
         }
 
-        for(ListIterator i = _dataName_.listIterator(); i.hasNext();)
+        for(ListIterator<TDataName> i = this._dataName_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
             {
                 if(newChild != null)
                 {
-                    i.set(newChild);
+                    i.set((TDataName) newChild);
+                    newChild.parent(this);
                     oldChild.parent(null);
                     return;
                 }
@@ -231,27 +232,6 @@ public final class AAscendingOrDescendingKeyPhrase extends PAscendingOrDescendin
             }
         }
 
-    }
-
-    private class DataName_Cast implements Cast
-    {
-        public Object cast(Object o)
-        {
-            TDataName node = (TDataName) o;
-
-            if((node.parent() != null) &&
-                (node.parent() != AAscendingOrDescendingKeyPhrase.this))
-            {
-                node.parent().removeChild(node);
-            }
-
-            if((node.parent() == null) ||
-                (node.parent() != AAscendingOrDescendingKeyPhrase.this))
-            {
-                node.parent(AAscendingOrDescendingKeyPhrase.this);
-            }
-
-            return node;
-        }
+        throw new RuntimeException("Not a child.");
     }
 }

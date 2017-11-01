@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ASingleGroupItem extends PGroupItem
 {
     private PElementaryItem _elementaryItem_;
 
     public ASingleGroupItem()
     {
+        // Constructor
     }
 
     public ASingleGroupItem(
-        PElementaryItem _elementaryItem_)
+        @SuppressWarnings("hiding") PElementaryItem _elementaryItem_)
     {
+        // Constructor
         setElementaryItem(_elementaryItem_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ASingleGroupItem(
-            (PElementaryItem) cloneNode(_elementaryItem_));
+            cloneNode(this._elementaryItem_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseASingleGroupItem(this);
@@ -32,14 +37,14 @@ public final class ASingleGroupItem extends PGroupItem
 
     public PElementaryItem getElementaryItem()
     {
-        return _elementaryItem_;
+        return this._elementaryItem_;
     }
 
     public void setElementaryItem(PElementaryItem node)
     {
-        if(_elementaryItem_ != null)
+        if(this._elementaryItem_ != null)
         {
-            _elementaryItem_.parent(null);
+            this._elementaryItem_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ASingleGroupItem extends PGroupItem
             node.parent(this);
         }
 
-        _elementaryItem_ = node;
+        this._elementaryItem_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_elementaryItem_);
+            + toString(this._elementaryItem_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_elementaryItem_ == child)
+        // Remove child
+        if(this._elementaryItem_ == child)
         {
-            _elementaryItem_ = null;
+            this._elementaryItem_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_elementaryItem_ == oldChild)
+        // Replace child
+        if(this._elementaryItem_ == oldChild)
         {
             setElementaryItem((PElementaryItem) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

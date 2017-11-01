@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AUsageClause extends PUsageClause
 {
     private PUsageIs _usageIs_;
@@ -12,24 +12,29 @@ public final class AUsageClause extends PUsageClause
 
     public AUsageClause()
     {
+        // Constructor
     }
 
     public AUsageClause(
-        PUsageIs _usageIs_,
-        PUsagePhrase _usagePhrase_)
+        @SuppressWarnings("hiding") PUsageIs _usageIs_,
+        @SuppressWarnings("hiding") PUsagePhrase _usagePhrase_)
     {
+        // Constructor
         setUsageIs(_usageIs_);
 
         setUsagePhrase(_usagePhrase_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AUsageClause(
-            (PUsageIs) cloneNode(_usageIs_),
-            (PUsagePhrase) cloneNode(_usagePhrase_));
+            cloneNode(this._usageIs_),
+            cloneNode(this._usagePhrase_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAUsageClause(this);
@@ -37,14 +42,14 @@ public final class AUsageClause extends PUsageClause
 
     public PUsageIs getUsageIs()
     {
-        return _usageIs_;
+        return this._usageIs_;
     }
 
     public void setUsageIs(PUsageIs node)
     {
-        if(_usageIs_ != null)
+        if(this._usageIs_ != null)
         {
-            _usageIs_.parent(null);
+            this._usageIs_.parent(null);
         }
 
         if(node != null)
@@ -57,19 +62,19 @@ public final class AUsageClause extends PUsageClause
             node.parent(this);
         }
 
-        _usageIs_ = node;
+        this._usageIs_ = node;
     }
 
     public PUsagePhrase getUsagePhrase()
     {
-        return _usagePhrase_;
+        return this._usagePhrase_;
     }
 
     public void setUsagePhrase(PUsagePhrase node)
     {
-        if(_usagePhrase_ != null)
+        if(this._usagePhrase_ != null)
         {
-            _usagePhrase_.parent(null);
+            this._usagePhrase_.parent(null);
         }
 
         if(node != null)
@@ -82,45 +87,52 @@ public final class AUsageClause extends PUsageClause
             node.parent(this);
         }
 
-        _usagePhrase_ = node;
+        this._usagePhrase_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_usageIs_)
-            + toString(_usagePhrase_);
+            + toString(this._usageIs_)
+            + toString(this._usagePhrase_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_usageIs_ == child)
+        // Remove child
+        if(this._usageIs_ == child)
         {
-            _usageIs_ = null;
+            this._usageIs_ = null;
             return;
         }
 
-        if(_usagePhrase_ == child)
+        if(this._usagePhrase_ == child)
         {
-            _usagePhrase_ = null;
+            this._usagePhrase_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_usageIs_ == oldChild)
+        // Replace child
+        if(this._usageIs_ == oldChild)
         {
             setUsageIs((PUsageIs) newChild);
             return;
         }
 
-        if(_usagePhrase_ == oldChild)
+        if(this._usagePhrase_ == oldChild)
         {
             setUsagePhrase((PUsagePhrase) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

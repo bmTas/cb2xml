@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ADotZeeCharacterSubstring extends PCharacterSubstring
 {
     private TDotZee _dotZee_;
 
     public ADotZeeCharacterSubstring()
     {
+        // Constructor
     }
 
     public ADotZeeCharacterSubstring(
-        TDotZee _dotZee_)
+        @SuppressWarnings("hiding") TDotZee _dotZee_)
     {
+        // Constructor
         setDotZee(_dotZee_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ADotZeeCharacterSubstring(
-            (TDotZee) cloneNode(_dotZee_));
+            cloneNode(this._dotZee_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseADotZeeCharacterSubstring(this);
@@ -32,14 +37,14 @@ public final class ADotZeeCharacterSubstring extends PCharacterSubstring
 
     public TDotZee getDotZee()
     {
-        return _dotZee_;
+        return this._dotZee_;
     }
 
     public void setDotZee(TDotZee node)
     {
-        if(_dotZee_ != null)
+        if(this._dotZee_ != null)
         {
-            _dotZee_.parent(null);
+            this._dotZee_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ADotZeeCharacterSubstring extends PCharacterSubstring
             node.parent(this);
         }
 
-        _dotZee_ = node;
+        this._dotZee_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_dotZee_);
+            + toString(this._dotZee_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_dotZee_ == child)
+        // Remove child
+        if(this._dotZee_ == child)
         {
-            _dotZee_ = null;
+            this._dotZee_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_dotZee_ == oldChild)
+        // Replace child
+        if(this._dotZee_ == oldChild)
         {
             setDotZee((TDotZee) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

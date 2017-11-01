@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.Reader;
 
 import javax.xml.bind.JAXBException;
+import javax.xml.stream.XMLStreamException;
 
 import net.sf.cb2xml.Cb2Xml2;
 import net.sf.cb2xml.def.Cb2xmlConstants;
@@ -32,8 +33,9 @@ public class CobolParser extends XmlParser {
 	 * @throws IOException
 	 * @throws ParserException
 	 * @throws LexerException
+	 * @throws XMLStreamException 
 	 */
-	public final Copybook parseCobol(String cobolCopybookFileName) throws JAXBException, IOException, ParserException, LexerException{
+	public final Copybook parseCobol(String cobolCopybookFileName) throws JAXBException, IOException, ParserException, LexerException, XMLStreamException{
 		return parseCobol(cobolCopybookFileName,  Cb2xmlConstants.USE_STANDARD_COLUMNS);
 	}
 	
@@ -55,9 +57,10 @@ public class CobolParser extends XmlParser {
 	 * @throws IOException
 	 * @throws ParserException
 	 * @throws LexerException
+	 * @throws XMLStreamException 
 	 */
 	public final Copybook parseCobol(String cobolCopybookFileName, int cobolCopybookFormat) 
-	throws JAXBException, IOException, ParserException, LexerException {
+	throws JAXBException, IOException, ParserException, LexerException, XMLStreamException {
 		return parse(
 				 Cb2Xml2.convertToXMLDOM(new File(cobolCopybookFileName), false, cobolCopybookFormat)
 		);
@@ -75,9 +78,10 @@ public class CobolParser extends XmlParser {
 	 * @throws IOException
 	 * @throws ParserException
 	 * @throws LexerException
+	 * @throws XMLStreamException 
 	 */
 	public final Copybook parseCobol(InputStream cobolCopybook, String copybookName) 
-	throws JAXBException, IOException, ParserException, LexerException {
+	throws JAXBException, IOException, ParserException, LexerException, XMLStreamException {
 		return parseCobol(cobolCopybook, copybookName, Cb2xmlConstants.USE_STANDARD_COLUMNS);
 	} 
 	
@@ -100,9 +104,10 @@ public class CobolParser extends XmlParser {
 	 * @throws IOException
 	 * @throws ParserException
 	 * @throws LexerException
+	 * @throws XMLStreamException 
 	 */
 	public final Copybook parseCobol(InputStream cobolCopybook, String copybookName, int cobolCopybookFormat) 
-	throws JAXBException, IOException, ParserException, LexerException {
+	throws JAXBException, IOException, ParserException, LexerException, XMLStreamException {
 		return parse(
 				 Cb2Xml2.convertToXMLDOM(cobolCopybook, copybookName, false, cobolCopybookFormat)
 		);
@@ -119,9 +124,10 @@ public class CobolParser extends XmlParser {
 	 * @throws IOException
 	 * @throws ParserException
 	 * @throws LexerException
+	 * @throws XMLStreamException 
 	 */
 	public final Copybook parseCobol(Reader cobolCopybookReader, String copybookName) 
-	throws JAXBException, IOException, ParserException, LexerException {
+	throws JAXBException, IOException, ParserException, LexerException, XMLStreamException {
 		return parseCobol(cobolCopybookReader, copybookName,  Cb2xmlConstants.USE_STANDARD_COLUMNS);
 	}
 
@@ -135,11 +141,12 @@ public class CobolParser extends XmlParser {
 	 * 
 	 * @throws JAXBException
 	 * @throws IOException
-	 * @throws ParserException
+	 * @throws ParserException 
 	 * @throws LexerException
+	 * @throws XMLStreamException 
 	 */
 	public final Copybook parseCobol(Reader cobolCopybookReader, String copybookName, int cobolCopybookFormat) 
-	throws JAXBException, IOException, ParserException, LexerException {
+	throws JAXBException, IOException, ParserException, LexerException, XMLStreamException {
 		return parse(
 				 Cb2Xml2.convert(cobolCopybookReader, copybookName, false, cobolCopybookFormat)
 		);

@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.xml.bind.JAXBException;
+import javax.xml.stream.XMLStreamException;
 
 import net.sf.cb2xml.def.Cb2xmlConstants;
 import net.sf.cb2xml.jaxb.Condition;
@@ -29,7 +30,7 @@ import net.sf.cb2xml.sablecc.parser.ParserException;
  * @author Bruce Martin
  *
  */
-public class ObscureCopybook {
+public class ObscureCopybookClassicCb2xml {
 
 	public static final int PIC_POS = 46;
 	
@@ -40,15 +41,15 @@ public class ObscureCopybook {
 	HashMap<String, String> fieldMap = new HashMap<String, String>(150);
 	HashMap<String, String> usageMap = new HashMap<String, String>(150);
 	
-	public ObscureCopybook(String input) throws IOException, JAXBException, ParserException, LexerException {
+	public ObscureCopybookClassicCb2xml(String input) throws IOException, JAXBException, ParserException, LexerException, XMLStreamException {
 		this(new File(input), new OutputStreamWriter(System.out));
 	}
 
-	public ObscureCopybook(String input, String ouput) throws IOException, JAXBException, ParserException, LexerException {
+	public ObscureCopybookClassicCb2xml(String input, String ouput) throws IOException, JAXBException, ParserException, LexerException, XMLStreamException {
 		this(new File(input), new FileWriter(ouput)); 
 	}
 	
-	public ObscureCopybook(File in , Writer w) throws IOException, JAXBException, ParserException, LexerException {
+	public ObscureCopybookClassicCb2xml(File in , Writer w) throws IOException, JAXBException, ParserException, LexerException, XMLStreamException {
 		this(new FileReader(in), in.getName(), w);
 	}
 	
@@ -62,8 +63,9 @@ public class ObscureCopybook {
 	 * @throws JAXBException
 	 * @throws ParserException
 	 * @throws LexerException
+	 * @throws XMLStreamException 
 	 */
-	public ObscureCopybook(Reader copybookReader, String copybookname, Writer copybookWriter) throws IOException, JAXBException, ParserException, LexerException {
+	public ObscureCopybookClassicCb2xml(Reader copybookReader, String copybookname, Writer copybookWriter) throws IOException, JAXBException, ParserException, LexerException, XMLStreamException {
 		Copybook copybook = CobolParser.newParser() 
 								.parseCobol(copybookReader, copybookname, Cb2xmlConstants.USE_LONG_LINE);
 		List<Item> items = copybook.getItem();
@@ -342,14 +344,14 @@ public class ObscureCopybook {
 		}
 	}
 	
-	public static void main(String[] args) throws IOException, JAXBException, ParserException, LexerException {
+	public static void main(String[] args) throws IOException, JAXBException, ParserException, LexerException, XMLStreamException {
 		if (args == null || args.length == 0) {
 			//System.err.println("You must supply atleast the Cobol copybook name");
-			new ObscureCopybook(Code.getFullName("BitOfEverything.cbl").getFile());
+			new ObscureCopybookClassicCb2xml(Code.getFullName("BitOfEverything.cbl").getFile());
 		} else if (args.length == 1) {
-			new ObscureCopybook(args[0]);
+			new ObscureCopybookClassicCb2xml(args[0]);
 		} else {
-			new ObscureCopybook(args[0], args[1]);
+			new ObscureCopybookClassicCb2xml(args[0], args[1]);
 		}
 
 	}

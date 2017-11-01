@@ -4,6 +4,7 @@ package net.sf.cb2xml.sablecc.node;
 
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class EOF extends Token
 {
     public EOF()
@@ -18,11 +19,13 @@ public final class EOF extends Token
         setPos(pos);
     }
 
+    @Override
     public Object clone()
     {
         return new EOF(getLine(), getPos());
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseEOF(this);

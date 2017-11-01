@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ABinaryUsagePhrase extends PUsagePhrase
 {
     private TBinary _binary_;
@@ -12,24 +12,29 @@ public final class ABinaryUsagePhrase extends PUsagePhrase
 
     public ABinaryUsagePhrase()
     {
+        // Constructor
     }
 
     public ABinaryUsagePhrase(
-        TBinary _binary_,
-        TNative _native_)
+        @SuppressWarnings("hiding") TBinary _binary_,
+        @SuppressWarnings("hiding") TNative _native_)
     {
+        // Constructor
         setBinary(_binary_);
 
         setNative(_native_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ABinaryUsagePhrase(
-            (TBinary) cloneNode(_binary_),
-            (TNative) cloneNode(_native_));
+            cloneNode(this._binary_),
+            cloneNode(this._native_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseABinaryUsagePhrase(this);
@@ -37,14 +42,14 @@ public final class ABinaryUsagePhrase extends PUsagePhrase
 
     public TBinary getBinary()
     {
-        return _binary_;
+        return this._binary_;
     }
 
     public void setBinary(TBinary node)
     {
-        if(_binary_ != null)
+        if(this._binary_ != null)
         {
-            _binary_.parent(null);
+            this._binary_.parent(null);
         }
 
         if(node != null)
@@ -57,19 +62,19 @@ public final class ABinaryUsagePhrase extends PUsagePhrase
             node.parent(this);
         }
 
-        _binary_ = node;
+        this._binary_ = node;
     }
 
     public TNative getNative()
     {
-        return _native_;
+        return this._native_;
     }
 
     public void setNative(TNative node)
     {
-        if(_native_ != null)
+        if(this._native_ != null)
         {
-            _native_.parent(null);
+            this._native_.parent(null);
         }
 
         if(node != null)
@@ -82,45 +87,52 @@ public final class ABinaryUsagePhrase extends PUsagePhrase
             node.parent(this);
         }
 
-        _native_ = node;
+        this._native_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_binary_)
-            + toString(_native_);
+            + toString(this._binary_)
+            + toString(this._native_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_binary_ == child)
+        // Remove child
+        if(this._binary_ == child)
         {
-            _binary_ = null;
+            this._binary_ = null;
             return;
         }
 
-        if(_native_ == child)
+        if(this._native_ == child)
         {
-            _native_ = null;
+            this._native_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_binary_ == oldChild)
+        // Replace child
+        if(this._binary_ == oldChild)
         {
             setBinary((TBinary) newChild);
             return;
         }
 
-        if(_native_ == oldChild)
+        if(this._native_ == oldChild)
         {
             setNative((TNative) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

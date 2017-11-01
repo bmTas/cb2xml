@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AFixedOccursFixedOrVariable extends POccursFixedOrVariable
 {
     private TOccurs _occurs_;
@@ -13,13 +13,15 @@ public final class AFixedOccursFixedOrVariable extends POccursFixedOrVariable
 
     public AFixedOccursFixedOrVariable()
     {
+        // Constructor
     }
 
     public AFixedOccursFixedOrVariable(
-        TOccurs _occurs_,
-        PNumber _number_,
-        TTimes _times_)
+        @SuppressWarnings("hiding") TOccurs _occurs_,
+        @SuppressWarnings("hiding") PNumber _number_,
+        @SuppressWarnings("hiding") TTimes _times_)
     {
+        // Constructor
         setOccurs(_occurs_);
 
         setNumber(_number_);
@@ -27,14 +29,17 @@ public final class AFixedOccursFixedOrVariable extends POccursFixedOrVariable
         setTimes(_times_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AFixedOccursFixedOrVariable(
-            (TOccurs) cloneNode(_occurs_),
-            (PNumber) cloneNode(_number_),
-            (TTimes) cloneNode(_times_));
+            cloneNode(this._occurs_),
+            cloneNode(this._number_),
+            cloneNode(this._times_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAFixedOccursFixedOrVariable(this);
@@ -42,14 +47,14 @@ public final class AFixedOccursFixedOrVariable extends POccursFixedOrVariable
 
     public TOccurs getOccurs()
     {
-        return _occurs_;
+        return this._occurs_;
     }
 
     public void setOccurs(TOccurs node)
     {
-        if(_occurs_ != null)
+        if(this._occurs_ != null)
         {
-            _occurs_.parent(null);
+            this._occurs_.parent(null);
         }
 
         if(node != null)
@@ -62,19 +67,19 @@ public final class AFixedOccursFixedOrVariable extends POccursFixedOrVariable
             node.parent(this);
         }
 
-        _occurs_ = node;
+        this._occurs_ = node;
     }
 
     public PNumber getNumber()
     {
-        return _number_;
+        return this._number_;
     }
 
     public void setNumber(PNumber node)
     {
-        if(_number_ != null)
+        if(this._number_ != null)
         {
-            _number_.parent(null);
+            this._number_.parent(null);
         }
 
         if(node != null)
@@ -87,19 +92,19 @@ public final class AFixedOccursFixedOrVariable extends POccursFixedOrVariable
             node.parent(this);
         }
 
-        _number_ = node;
+        this._number_ = node;
     }
 
     public TTimes getTimes()
     {
-        return _times_;
+        return this._times_;
     }
 
     public void setTimes(TTimes node)
     {
-        if(_times_ != null)
+        if(this._times_ != null)
         {
-            _times_.parent(null);
+            this._times_.parent(null);
         }
 
         if(node != null)
@@ -112,58 +117,65 @@ public final class AFixedOccursFixedOrVariable extends POccursFixedOrVariable
             node.parent(this);
         }
 
-        _times_ = node;
+        this._times_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_occurs_)
-            + toString(_number_)
-            + toString(_times_);
+            + toString(this._occurs_)
+            + toString(this._number_)
+            + toString(this._times_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_occurs_ == child)
+        // Remove child
+        if(this._occurs_ == child)
         {
-            _occurs_ = null;
+            this._occurs_ = null;
             return;
         }
 
-        if(_number_ == child)
+        if(this._number_ == child)
         {
-            _number_ = null;
+            this._number_ = null;
             return;
         }
 
-        if(_times_ == child)
+        if(this._times_ == child)
         {
-            _times_ = null;
+            this._times_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_occurs_ == oldChild)
+        // Replace child
+        if(this._occurs_ == oldChild)
         {
             setOccurs((TOccurs) newChild);
             return;
         }
 
-        if(_number_ == oldChild)
+        if(this._number_ == oldChild)
         {
             setNumber((PNumber) newChild);
             return;
         }
 
-        if(_times_ == oldChild)
+        if(this._times_ == oldChild)
         {
             setTimes((TTimes) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

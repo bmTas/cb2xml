@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ASeparateCharacter extends PSeparateCharacter
 {
     private TSeparate _separate_;
@@ -12,24 +12,29 @@ public final class ASeparateCharacter extends PSeparateCharacter
 
     public ASeparateCharacter()
     {
+        // Constructor
     }
 
     public ASeparateCharacter(
-        TSeparate _separate_,
-        TCharacter _character_)
+        @SuppressWarnings("hiding") TSeparate _separate_,
+        @SuppressWarnings("hiding") TCharacter _character_)
     {
+        // Constructor
         setSeparate(_separate_);
 
         setCharacter(_character_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ASeparateCharacter(
-            (TSeparate) cloneNode(_separate_),
-            (TCharacter) cloneNode(_character_));
+            cloneNode(this._separate_),
+            cloneNode(this._character_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseASeparateCharacter(this);
@@ -37,14 +42,14 @@ public final class ASeparateCharacter extends PSeparateCharacter
 
     public TSeparate getSeparate()
     {
-        return _separate_;
+        return this._separate_;
     }
 
     public void setSeparate(TSeparate node)
     {
-        if(_separate_ != null)
+        if(this._separate_ != null)
         {
-            _separate_.parent(null);
+            this._separate_.parent(null);
         }
 
         if(node != null)
@@ -57,19 +62,19 @@ public final class ASeparateCharacter extends PSeparateCharacter
             node.parent(this);
         }
 
-        _separate_ = node;
+        this._separate_ = node;
     }
 
     public TCharacter getCharacter()
     {
-        return _character_;
+        return this._character_;
     }
 
     public void setCharacter(TCharacter node)
     {
-        if(_character_ != null)
+        if(this._character_ != null)
         {
-            _character_.parent(null);
+            this._character_.parent(null);
         }
 
         if(node != null)
@@ -82,45 +87,52 @@ public final class ASeparateCharacter extends PSeparateCharacter
             node.parent(this);
         }
 
-        _character_ = node;
+        this._character_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_separate_)
-            + toString(_character_);
+            + toString(this._separate_)
+            + toString(this._character_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_separate_ == child)
+        // Remove child
+        if(this._separate_ == child)
         {
-            _separate_ = null;
+            this._separate_ = null;
             return;
         }
 
-        if(_character_ == child)
+        if(this._character_ == child)
         {
-            _character_ = null;
+            this._character_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_separate_ == oldChild)
+        // Replace child
+        if(this._separate_ == oldChild)
         {
             setSeparate((TSeparate) newChild);
             return;
         }
 
-        if(_character_ == oldChild)
+        if(this._character_ == oldChild)
         {
             setCharacter((TCharacter) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

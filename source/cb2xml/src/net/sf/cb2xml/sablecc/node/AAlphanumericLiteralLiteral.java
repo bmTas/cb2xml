@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AAlphanumericLiteralLiteral extends PLiteral
 {
     private TAlphanumericLiteral _alphanumericLiteral_;
 
     public AAlphanumericLiteralLiteral()
     {
+        // Constructor
     }
 
     public AAlphanumericLiteralLiteral(
-        TAlphanumericLiteral _alphanumericLiteral_)
+        @SuppressWarnings("hiding") TAlphanumericLiteral _alphanumericLiteral_)
     {
+        // Constructor
         setAlphanumericLiteral(_alphanumericLiteral_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AAlphanumericLiteralLiteral(
-            (TAlphanumericLiteral) cloneNode(_alphanumericLiteral_));
+            cloneNode(this._alphanumericLiteral_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAAlphanumericLiteralLiteral(this);
@@ -32,14 +37,14 @@ public final class AAlphanumericLiteralLiteral extends PLiteral
 
     public TAlphanumericLiteral getAlphanumericLiteral()
     {
-        return _alphanumericLiteral_;
+        return this._alphanumericLiteral_;
     }
 
     public void setAlphanumericLiteral(TAlphanumericLiteral node)
     {
-        if(_alphanumericLiteral_ != null)
+        if(this._alphanumericLiteral_ != null)
         {
-            _alphanumericLiteral_.parent(null);
+            this._alphanumericLiteral_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class AAlphanumericLiteralLiteral extends PLiteral
             node.parent(this);
         }
 
-        _alphanumericLiteral_ = node;
+        this._alphanumericLiteral_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_alphanumericLiteral_);
+            + toString(this._alphanumericLiteral_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_alphanumericLiteral_ == child)
+        // Remove child
+        if(this._alphanumericLiteral_ == child)
         {
-            _alphanumericLiteral_ = null;
+            this._alphanumericLiteral_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_alphanumericLiteral_ == oldChild)
+        // Replace child
+        if(this._alphanumericLiteral_ == oldChild)
         {
             setAlphanumericLiteral((TAlphanumericLiteral) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

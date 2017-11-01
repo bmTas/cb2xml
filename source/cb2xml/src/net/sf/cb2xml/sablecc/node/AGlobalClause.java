@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AGlobalClause extends PGlobalClause
 {
     private TGlobal _global_;
 
     public AGlobalClause()
     {
+        // Constructor
     }
 
     public AGlobalClause(
-        TGlobal _global_)
+        @SuppressWarnings("hiding") TGlobal _global_)
     {
+        // Constructor
         setGlobal(_global_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AGlobalClause(
-            (TGlobal) cloneNode(_global_));
+            cloneNode(this._global_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAGlobalClause(this);
@@ -32,14 +37,14 @@ public final class AGlobalClause extends PGlobalClause
 
     public TGlobal getGlobal()
     {
-        return _global_;
+        return this._global_;
     }
 
     public void setGlobal(TGlobal node)
     {
-        if(_global_ != null)
+        if(this._global_ != null)
         {
-            _global_.parent(null);
+            this._global_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class AGlobalClause extends PGlobalClause
             node.parent(this);
         }
 
-        _global_ = node;
+        this._global_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_global_);
+            + toString(this._global_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_global_ == child)
+        // Remove child
+        if(this._global_ == child)
         {
-            _global_ = null;
+            this._global_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_global_ == oldChild)
+        // Replace child
+        if(this._global_ == oldChild)
         {
             setGlobal((TGlobal) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

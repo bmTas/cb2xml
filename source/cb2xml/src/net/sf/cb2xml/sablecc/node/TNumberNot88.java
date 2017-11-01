@@ -4,6 +4,7 @@ package net.sf.cb2xml.sablecc.node;
 
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class TNumberNot88 extends Token
 {
     public TNumberNot88(String text)
@@ -18,11 +19,13 @@ public final class TNumberNot88 extends Token
         setPos(pos);
     }
 
+    @Override
     public Object clone()
     {
       return new TNumberNot88(getText(), getLine(), getPos());
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTNumberNot88(this);

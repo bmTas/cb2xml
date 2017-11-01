@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class APointerUsagePhrase extends PUsagePhrase
 {
     private TPointer _pointer_;
 
     public APointerUsagePhrase()
     {
+        // Constructor
     }
 
     public APointerUsagePhrase(
-        TPointer _pointer_)
+        @SuppressWarnings("hiding") TPointer _pointer_)
     {
+        // Constructor
         setPointer(_pointer_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new APointerUsagePhrase(
-            (TPointer) cloneNode(_pointer_));
+            cloneNode(this._pointer_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAPointerUsagePhrase(this);
@@ -32,14 +37,14 @@ public final class APointerUsagePhrase extends PUsagePhrase
 
     public TPointer getPointer()
     {
-        return _pointer_;
+        return this._pointer_;
     }
 
     public void setPointer(TPointer node)
     {
-        if(_pointer_ != null)
+        if(this._pointer_ != null)
         {
-            _pointer_.parent(null);
+            this._pointer_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class APointerUsagePhrase extends PUsagePhrase
             node.parent(this);
         }
 
-        _pointer_ = node;
+        this._pointer_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_pointer_);
+            + toString(this._pointer_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_pointer_ == child)
+        // Remove child
+        if(this._pointer_ == child)
         {
-            _pointer_ = null;
+            this._pointer_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_pointer_ == oldChild)
+        // Replace child
+        if(this._pointer_ == oldChild)
         {
             setPointer((TPointer) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

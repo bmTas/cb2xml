@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ABracketedNumberCharacterSubstring extends PCharacterSubstring
 {
     private PBracketedNumber _bracketedNumber_;
 
     public ABracketedNumberCharacterSubstring()
     {
+        // Constructor
     }
 
     public ABracketedNumberCharacterSubstring(
-        PBracketedNumber _bracketedNumber_)
+        @SuppressWarnings("hiding") PBracketedNumber _bracketedNumber_)
     {
+        // Constructor
         setBracketedNumber(_bracketedNumber_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ABracketedNumberCharacterSubstring(
-            (PBracketedNumber) cloneNode(_bracketedNumber_));
+            cloneNode(this._bracketedNumber_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseABracketedNumberCharacterSubstring(this);
@@ -32,14 +37,14 @@ public final class ABracketedNumberCharacterSubstring extends PCharacterSubstrin
 
     public PBracketedNumber getBracketedNumber()
     {
-        return _bracketedNumber_;
+        return this._bracketedNumber_;
     }
 
     public void setBracketedNumber(PBracketedNumber node)
     {
-        if(_bracketedNumber_ != null)
+        if(this._bracketedNumber_ != null)
         {
-            _bracketedNumber_.parent(null);
+            this._bracketedNumber_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ABracketedNumberCharacterSubstring extends PCharacterSubstrin
             node.parent(this);
         }
 
-        _bracketedNumber_ = node;
+        this._bracketedNumber_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_bracketedNumber_);
+            + toString(this._bracketedNumber_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_bracketedNumber_ == child)
+        // Remove child
+        if(this._bracketedNumber_ == child)
         {
-            _bracketedNumber_ = null;
+            this._bracketedNumber_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_bracketedNumber_ == oldChild)
+        // Replace child
+        if(this._bracketedNumber_ == oldChild)
         {
             setBracketedNumber((PBracketedNumber) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

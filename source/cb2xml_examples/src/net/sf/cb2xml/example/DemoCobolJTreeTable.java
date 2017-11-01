@@ -25,13 +25,14 @@ import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.xml.bind.JAXBException;
+import javax.xml.stream.XMLStreamException;
 
+import net.sf.cb2xml.Cb2Xml3;
+import net.sf.cb2xml.def.ICopybook;
+import net.sf.cb2xml.def.IItem;
 import net.sf.cb2xml.example.cobolItemTT.CobolItemModel;
 import net.sf.cb2xml.example.cobolItemTT.CobolItemNode;
 import net.sf.cb2xml.example.swing.treeTable.JTreeTable;
-import net.sf.cb2xml.jaxb.Copybook;
-import net.sf.cb2xml.jaxb.Item;
-import net.sf.cb2xml.parse.CobolParser;
 import net.sf.cb2xml.sablecc.lexer.LexerException;
 import net.sf.cb2xml.sablecc.parser.ParserException;
 
@@ -45,7 +46,7 @@ import net.sf.cb2xml.sablecc.parser.ParserException;
  */
 public class DemoCobolJTreeTable {
 
-	public static void main(String[] args) throws ParserException, LexerException, IOException, JAXBException {
+	public static void main(String[] args) throws ParserException, LexerException, IOException, JAXBException, XMLStreamException {
 //        JAXBContext jc = JAXBContext.newInstance(Condition.class, Copybook.class, Item.class);
 //        
 //        Unmarshaller unmarshaller = jc.createUnmarshaller();
@@ -62,12 +63,13 @@ public class DemoCobolJTreeTable {
 			copybookName = Code.getFullName("Vendor.cbl").getFile();
 		}
         
-        JFrame frame = new JFrame();
-		Copybook copybook = CobolParser.newParser() .parseCobol(copybookName);
-
+        JFrame frame = new JFrame();      
+        
+		ICopybook copybook = Cb2Xml3.newBuilder(copybookName).asCobolItemTree();
 		DefaultMutableTreeNode root = new DefaultMutableTreeNode(copybook.getFilename());
-        List<Item> items = copybook.getItem();
-        for (Item item : items) {
+
+        List<? extends IItem> items = copybook.getChildItems();
+        for (IItem item : items) {
         	root.add(new CobolItemNode(item));
         }
         

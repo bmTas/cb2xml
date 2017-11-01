@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ABlankWhenZeroClause extends PBlankWhenZeroClause
 {
     private TBlank _blank_;
@@ -13,13 +13,15 @@ public final class ABlankWhenZeroClause extends PBlankWhenZeroClause
 
     public ABlankWhenZeroClause()
     {
+        // Constructor
     }
 
     public ABlankWhenZeroClause(
-        TBlank _blank_,
-        TWhen _when_,
-        TZeros _zeros_)
+        @SuppressWarnings("hiding") TBlank _blank_,
+        @SuppressWarnings("hiding") TWhen _when_,
+        @SuppressWarnings("hiding") TZeros _zeros_)
     {
+        // Constructor
         setBlank(_blank_);
 
         setWhen(_when_);
@@ -27,14 +29,17 @@ public final class ABlankWhenZeroClause extends PBlankWhenZeroClause
         setZeros(_zeros_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ABlankWhenZeroClause(
-            (TBlank) cloneNode(_blank_),
-            (TWhen) cloneNode(_when_),
-            (TZeros) cloneNode(_zeros_));
+            cloneNode(this._blank_),
+            cloneNode(this._when_),
+            cloneNode(this._zeros_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseABlankWhenZeroClause(this);
@@ -42,14 +47,14 @@ public final class ABlankWhenZeroClause extends PBlankWhenZeroClause
 
     public TBlank getBlank()
     {
-        return _blank_;
+        return this._blank_;
     }
 
     public void setBlank(TBlank node)
     {
-        if(_blank_ != null)
+        if(this._blank_ != null)
         {
-            _blank_.parent(null);
+            this._blank_.parent(null);
         }
 
         if(node != null)
@@ -62,19 +67,19 @@ public final class ABlankWhenZeroClause extends PBlankWhenZeroClause
             node.parent(this);
         }
 
-        _blank_ = node;
+        this._blank_ = node;
     }
 
     public TWhen getWhen()
     {
-        return _when_;
+        return this._when_;
     }
 
     public void setWhen(TWhen node)
     {
-        if(_when_ != null)
+        if(this._when_ != null)
         {
-            _when_.parent(null);
+            this._when_.parent(null);
         }
 
         if(node != null)
@@ -87,19 +92,19 @@ public final class ABlankWhenZeroClause extends PBlankWhenZeroClause
             node.parent(this);
         }
 
-        _when_ = node;
+        this._when_ = node;
     }
 
     public TZeros getZeros()
     {
-        return _zeros_;
+        return this._zeros_;
     }
 
     public void setZeros(TZeros node)
     {
-        if(_zeros_ != null)
+        if(this._zeros_ != null)
         {
-            _zeros_.parent(null);
+            this._zeros_.parent(null);
         }
 
         if(node != null)
@@ -112,58 +117,65 @@ public final class ABlankWhenZeroClause extends PBlankWhenZeroClause
             node.parent(this);
         }
 
-        _zeros_ = node;
+        this._zeros_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_blank_)
-            + toString(_when_)
-            + toString(_zeros_);
+            + toString(this._blank_)
+            + toString(this._when_)
+            + toString(this._zeros_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_blank_ == child)
+        // Remove child
+        if(this._blank_ == child)
         {
-            _blank_ = null;
+            this._blank_ = null;
             return;
         }
 
-        if(_when_ == child)
+        if(this._when_ == child)
         {
-            _when_ = null;
+            this._when_ = null;
             return;
         }
 
-        if(_zeros_ == child)
+        if(this._zeros_ == child)
         {
-            _zeros_ = null;
+            this._zeros_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_blank_ == oldChild)
+        // Replace child
+        if(this._blank_ == oldChild)
         {
             setBlank((TBlank) newChild);
             return;
         }
 
-        if(_when_ == oldChild)
+        if(this._when_ == oldChild)
         {
             setWhen((TWhen) newChild);
             return;
         }
 
-        if(_zeros_ == oldChild)
+        if(this._zeros_ == oldChild)
         {
             setZeros((TZeros) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

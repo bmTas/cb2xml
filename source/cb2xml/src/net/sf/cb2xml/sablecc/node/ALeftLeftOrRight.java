@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ALeftLeftOrRight extends PLeftOrRight
 {
     private TLeft _left_;
 
     public ALeftLeftOrRight()
     {
+        // Constructor
     }
 
     public ALeftLeftOrRight(
-        TLeft _left_)
+        @SuppressWarnings("hiding") TLeft _left_)
     {
+        // Constructor
         setLeft(_left_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ALeftLeftOrRight(
-            (TLeft) cloneNode(_left_));
+            cloneNode(this._left_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseALeftLeftOrRight(this);
@@ -32,14 +37,14 @@ public final class ALeftLeftOrRight extends PLeftOrRight
 
     public TLeft getLeft()
     {
-        return _left_;
+        return this._left_;
     }
 
     public void setLeft(TLeft node)
     {
-        if(_left_ != null)
+        if(this._left_ != null)
         {
-            _left_.parent(null);
+            this._left_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ALeftLeftOrRight extends PLeftOrRight
             node.parent(this);
         }
 
-        _left_ = node;
+        this._left_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_left_);
+            + toString(this._left_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_left_ == child)
+        // Remove child
+        if(this._left_ == child)
         {
-            _left_ = null;
+            this._left_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_left_ == oldChild)
+        // Replace child
+        if(this._left_ == oldChild)
         {
             setLeft((TLeft) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

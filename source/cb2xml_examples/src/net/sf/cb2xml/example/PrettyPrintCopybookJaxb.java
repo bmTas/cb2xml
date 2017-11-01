@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.xml.bind.JAXBException;
+import javax.xml.stream.XMLStreamException;
 
 import net.sf.cb2xml.def.Cb2xmlConstants;
 import net.sf.cb2xml.jaxb.Condition;
@@ -39,15 +40,15 @@ public class PrettyPrintCopybookJaxb {
 	HashMap<String, String> fieldMap = new HashMap<String, String>(150);
 	HashMap<String, String> usageMap = new HashMap<String, String>(150);
 	
-	public PrettyPrintCopybookJaxb(String input) throws IOException, JAXBException, ParserException, LexerException {
+	public PrettyPrintCopybookJaxb(String input) throws IOException, JAXBException, ParserException, LexerException, XMLStreamException {
 		this(new File(input), new OutputStreamWriter(System.out));
 	}
 
-	public PrettyPrintCopybookJaxb(String input, String ouput) throws IOException, JAXBException, ParserException, LexerException {
+	public PrettyPrintCopybookJaxb(String input, String ouput) throws IOException, JAXBException, ParserException, LexerException, XMLStreamException {
 		this(new File(input), new FileWriter(ouput)); 
 	}
 	
-	public PrettyPrintCopybookJaxb(File in , Writer w) throws IOException, JAXBException, ParserException, LexerException {
+	public PrettyPrintCopybookJaxb(File in , Writer w) throws IOException, JAXBException, ParserException, LexerException, XMLStreamException {
 		this(new FileReader(in), in.getName(), w);
 	}
 	
@@ -61,8 +62,9 @@ public class PrettyPrintCopybookJaxb {
 	 * @throws JAXBException
 	 * @throws ParserException
 	 * @throws LexerException
+	 * @throws XMLStreamException 
 	 */
-	public PrettyPrintCopybookJaxb(Reader copybookReader, String copybookname, Writer copybookWriter) throws IOException, JAXBException, ParserException, LexerException {
+	public PrettyPrintCopybookJaxb(Reader copybookReader, String copybookname, Writer copybookWriter) throws IOException, JAXBException, ParserException, LexerException, XMLStreamException {
 		Copybook copybook = CobolParser.newParser() 				
 								.parseCobol(copybookReader, copybookname, Cb2xmlConstants.USE_LONG_LINE);
 		List<Item> items = copybook.getItem();
@@ -342,7 +344,7 @@ public class PrettyPrintCopybookJaxb {
 		}
 	}
 	
-	public static void main(String[] args) throws IOException, JAXBException, ParserException, LexerException {
+	public static void main(String[] args) throws IOException, JAXBException, ParserException, LexerException, XMLStreamException {
 		if (args == null || args.length == 0) {
 			//System.err.println("You must supply atleast the Cobol copybook name");
 			new PrettyPrintCopybookJaxb(Code.getFullName("BitOfEverything.cbl").getFile());

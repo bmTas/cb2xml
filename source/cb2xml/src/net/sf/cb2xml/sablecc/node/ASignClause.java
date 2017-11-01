@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ASignClause extends PSignClause
 {
     private PSignIs _signIs_;
@@ -13,13 +13,15 @@ public final class ASignClause extends PSignClause
 
     public ASignClause()
     {
+        // Constructor
     }
 
     public ASignClause(
-        PSignIs _signIs_,
-        PLeadingOrTrailing _leadingOrTrailing_,
-        PSeparateCharacter _separateCharacter_)
+        @SuppressWarnings("hiding") PSignIs _signIs_,
+        @SuppressWarnings("hiding") PLeadingOrTrailing _leadingOrTrailing_,
+        @SuppressWarnings("hiding") PSeparateCharacter _separateCharacter_)
     {
+        // Constructor
         setSignIs(_signIs_);
 
         setLeadingOrTrailing(_leadingOrTrailing_);
@@ -27,14 +29,17 @@ public final class ASignClause extends PSignClause
         setSeparateCharacter(_separateCharacter_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ASignClause(
-            (PSignIs) cloneNode(_signIs_),
-            (PLeadingOrTrailing) cloneNode(_leadingOrTrailing_),
-            (PSeparateCharacter) cloneNode(_separateCharacter_));
+            cloneNode(this._signIs_),
+            cloneNode(this._leadingOrTrailing_),
+            cloneNode(this._separateCharacter_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseASignClause(this);
@@ -42,14 +47,14 @@ public final class ASignClause extends PSignClause
 
     public PSignIs getSignIs()
     {
-        return _signIs_;
+        return this._signIs_;
     }
 
     public void setSignIs(PSignIs node)
     {
-        if(_signIs_ != null)
+        if(this._signIs_ != null)
         {
-            _signIs_.parent(null);
+            this._signIs_.parent(null);
         }
 
         if(node != null)
@@ -62,19 +67,19 @@ public final class ASignClause extends PSignClause
             node.parent(this);
         }
 
-        _signIs_ = node;
+        this._signIs_ = node;
     }
 
     public PLeadingOrTrailing getLeadingOrTrailing()
     {
-        return _leadingOrTrailing_;
+        return this._leadingOrTrailing_;
     }
 
     public void setLeadingOrTrailing(PLeadingOrTrailing node)
     {
-        if(_leadingOrTrailing_ != null)
+        if(this._leadingOrTrailing_ != null)
         {
-            _leadingOrTrailing_.parent(null);
+            this._leadingOrTrailing_.parent(null);
         }
 
         if(node != null)
@@ -87,19 +92,19 @@ public final class ASignClause extends PSignClause
             node.parent(this);
         }
 
-        _leadingOrTrailing_ = node;
+        this._leadingOrTrailing_ = node;
     }
 
     public PSeparateCharacter getSeparateCharacter()
     {
-        return _separateCharacter_;
+        return this._separateCharacter_;
     }
 
     public void setSeparateCharacter(PSeparateCharacter node)
     {
-        if(_separateCharacter_ != null)
+        if(this._separateCharacter_ != null)
         {
-            _separateCharacter_.parent(null);
+            this._separateCharacter_.parent(null);
         }
 
         if(node != null)
@@ -112,58 +117,65 @@ public final class ASignClause extends PSignClause
             node.parent(this);
         }
 
-        _separateCharacter_ = node;
+        this._separateCharacter_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_signIs_)
-            + toString(_leadingOrTrailing_)
-            + toString(_separateCharacter_);
+            + toString(this._signIs_)
+            + toString(this._leadingOrTrailing_)
+            + toString(this._separateCharacter_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_signIs_ == child)
+        // Remove child
+        if(this._signIs_ == child)
         {
-            _signIs_ = null;
+            this._signIs_ = null;
             return;
         }
 
-        if(_leadingOrTrailing_ == child)
+        if(this._leadingOrTrailing_ == child)
         {
-            _leadingOrTrailing_ = null;
+            this._leadingOrTrailing_ = null;
             return;
         }
 
-        if(_separateCharacter_ == child)
+        if(this._separateCharacter_ == child)
         {
-            _separateCharacter_ = null;
+            this._separateCharacter_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_signIs_ == oldChild)
+        // Replace child
+        if(this._signIs_ == oldChild)
         {
             setSignIs((PSignIs) newChild);
             return;
         }
 
-        if(_leadingOrTrailing_ == oldChild)
+        if(this._leadingOrTrailing_ == oldChild)
         {
             setLeadingOrTrailing((PLeadingOrTrailing) newChild);
             return;
         }
 
-        if(_separateCharacter_ == oldChild)
+        if(this._separateCharacter_ == oldChild)
         {
             setSeparateCharacter((PSeparateCharacter) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

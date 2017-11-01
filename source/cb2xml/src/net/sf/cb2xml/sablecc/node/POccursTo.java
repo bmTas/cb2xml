@@ -4,4 +4,5 @@ package net.sf.cb2xml.sablecc.node;
 
 public abstract class POccursTo extends Node
 {
+    // Empty body
 }

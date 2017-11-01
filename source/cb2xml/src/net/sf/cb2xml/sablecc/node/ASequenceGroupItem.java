@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ASequenceGroupItem extends PGroupItem
 {
     private PGroupItem _groupItem_;
@@ -13,13 +13,15 @@ public final class ASequenceGroupItem extends PGroupItem
 
     public ASequenceGroupItem()
     {
+        // Constructor
     }
 
     public ASequenceGroupItem(
-        PGroupItem _groupItem_,
-        TDot _dot_,
-        PElementaryItem _elementaryItem_)
+        @SuppressWarnings("hiding") PGroupItem _groupItem_,
+        @SuppressWarnings("hiding") TDot _dot_,
+        @SuppressWarnings("hiding") PElementaryItem _elementaryItem_)
     {
+        // Constructor
         setGroupItem(_groupItem_);
 
         setDot(_dot_);
@@ -27,14 +29,17 @@ public final class ASequenceGroupItem extends PGroupItem
         setElementaryItem(_elementaryItem_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ASequenceGroupItem(
-            (PGroupItem) cloneNode(_groupItem_),
-            (TDot) cloneNode(_dot_),
-            (PElementaryItem) cloneNode(_elementaryItem_));
+            cloneNode(this._groupItem_),
+            cloneNode(this._dot_),
+            cloneNode(this._elementaryItem_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseASequenceGroupItem(this);
@@ -42,14 +47,14 @@ public final class ASequenceGroupItem extends PGroupItem
 
     public PGroupItem getGroupItem()
     {
-        return _groupItem_;
+        return this._groupItem_;
     }
 
     public void setGroupItem(PGroupItem node)
     {
-        if(_groupItem_ != null)
+        if(this._groupItem_ != null)
         {
-            _groupItem_.parent(null);
+            this._groupItem_.parent(null);
         }
 
         if(node != null)
@@ -62,19 +67,19 @@ public final class ASequenceGroupItem extends PGroupItem
             node.parent(this);
         }
 
-        _groupItem_ = node;
+        this._groupItem_ = node;
     }
 
     public TDot getDot()
     {
-        return _dot_;
+        return this._dot_;
     }
 
     public void setDot(TDot node)
     {
-        if(_dot_ != null)
+        if(this._dot_ != null)
         {
-            _dot_.parent(null);
+            this._dot_.parent(null);
         }
 
         if(node != null)
@@ -87,19 +92,19 @@ public final class ASequenceGroupItem extends PGroupItem
             node.parent(this);
         }
 
-        _dot_ = node;
+        this._dot_ = node;
     }
 
     public PElementaryItem getElementaryItem()
     {
-        return _elementaryItem_;
+        return this._elementaryItem_;
     }
 
     public void setElementaryItem(PElementaryItem node)
     {
-        if(_elementaryItem_ != null)
+        if(this._elementaryItem_ != null)
         {
-            _elementaryItem_.parent(null);
+            this._elementaryItem_.parent(null);
         }
 
         if(node != null)
@@ -112,58 +117,65 @@ public final class ASequenceGroupItem extends PGroupItem
             node.parent(this);
         }
 
-        _elementaryItem_ = node;
+        this._elementaryItem_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_groupItem_)
-            + toString(_dot_)
-            + toString(_elementaryItem_);
+            + toString(this._groupItem_)
+            + toString(this._dot_)
+            + toString(this._elementaryItem_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_groupItem_ == child)
+        // Remove child
+        if(this._groupItem_ == child)
         {
-            _groupItem_ = null;
+            this._groupItem_ = null;
             return;
         }
 
-        if(_dot_ == child)
+        if(this._dot_ == child)
         {
-            _dot_ = null;
+            this._dot_ = null;
             return;
         }
 
-        if(_elementaryItem_ == child)
+        if(this._elementaryItem_ == child)
         {
-            _elementaryItem_ = null;
+            this._elementaryItem_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_groupItem_ == oldChild)
+        // Replace child
+        if(this._groupItem_ == oldChild)
         {
             setGroupItem((PGroupItem) newChild);
             return;
         }
 
-        if(_dot_ == oldChild)
+        if(this._dot_ == oldChild)
         {
             setDot((TDot) newChild);
             return;
         }
 
-        if(_elementaryItem_ == oldChild)
+        if(this._elementaryItem_ == oldChild)
         {
             setElementaryItem((PElementaryItem) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

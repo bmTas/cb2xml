@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AQuotesLiteral extends PLiteral
 {
     private TQuotes _quotes_;
 
     public AQuotesLiteral()
     {
+        // Constructor
     }
 
     public AQuotesLiteral(
-        TQuotes _quotes_)
+        @SuppressWarnings("hiding") TQuotes _quotes_)
     {
+        // Constructor
         setQuotes(_quotes_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AQuotesLiteral(
-            (TQuotes) cloneNode(_quotes_));
+            cloneNode(this._quotes_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAQuotesLiteral(this);
@@ -32,14 +37,14 @@ public final class AQuotesLiteral extends PLiteral
 
     public TQuotes getQuotes()
     {
-        return _quotes_;
+        return this._quotes_;
     }
 
     public void setQuotes(TQuotes node)
     {
-        if(_quotes_ != null)
+        if(this._quotes_ != null)
         {
-            _quotes_.parent(null);
+            this._quotes_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class AQuotesLiteral extends PLiteral
             node.parent(this);
         }
 
-        _quotes_ = node;
+        this._quotes_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_quotes_);
+            + toString(this._quotes_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_quotes_ == child)
+        // Remove child
+        if(this._quotes_ == child)
         {
-            _quotes_ = null;
+            this._quotes_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_quotes_ == oldChild)
+        // Replace child
+        if(this._quotes_ == oldChild)
         {
             setQuotes((TQuotes) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

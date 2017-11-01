@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AThroughSequenceLiteralSequence extends PLiteralSequence
 {
     private PLiteralSequence _literalSequence_;
@@ -15,15 +15,17 @@ public final class AThroughSequenceLiteralSequence extends PLiteralSequence
 
     public AThroughSequenceLiteralSequence()
     {
+        // Constructor
     }
 
     public AThroughSequenceLiteralSequence(
-        PLiteralSequence _literalSequence_,
-        TComma _comma_,
-        PLiteral _from_,
-        TThrough _through_,
-        PLiteral _to_)
+        @SuppressWarnings("hiding") PLiteralSequence _literalSequence_,
+        @SuppressWarnings("hiding") TComma _comma_,
+        @SuppressWarnings("hiding") PLiteral _from_,
+        @SuppressWarnings("hiding") TThrough _through_,
+        @SuppressWarnings("hiding") PLiteral _to_)
     {
+        // Constructor
         setLiteralSequence(_literalSequence_);
 
         setComma(_comma_);
@@ -35,16 +37,19 @@ public final class AThroughSequenceLiteralSequence extends PLiteralSequence
         setTo(_to_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AThroughSequenceLiteralSequence(
-            (PLiteralSequence) cloneNode(_literalSequence_),
-            (TComma) cloneNode(_comma_),
-            (PLiteral) cloneNode(_from_),
-            (TThrough) cloneNode(_through_),
-            (PLiteral) cloneNode(_to_));
+            cloneNode(this._literalSequence_),
+            cloneNode(this._comma_),
+            cloneNode(this._from_),
+            cloneNode(this._through_),
+            cloneNode(this._to_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAThroughSequenceLiteralSequence(this);
@@ -52,14 +57,14 @@ public final class AThroughSequenceLiteralSequence extends PLiteralSequence
 
     public PLiteralSequence getLiteralSequence()
     {
-        return _literalSequence_;
+        return this._literalSequence_;
     }
 
     public void setLiteralSequence(PLiteralSequence node)
     {
-        if(_literalSequence_ != null)
+        if(this._literalSequence_ != null)
         {
-            _literalSequence_.parent(null);
+            this._literalSequence_.parent(null);
         }
 
         if(node != null)
@@ -72,19 +77,19 @@ public final class AThroughSequenceLiteralSequence extends PLiteralSequence
             node.parent(this);
         }
 
-        _literalSequence_ = node;
+        this._literalSequence_ = node;
     }
 
     public TComma getComma()
     {
-        return _comma_;
+        return this._comma_;
     }
 
     public void setComma(TComma node)
     {
-        if(_comma_ != null)
+        if(this._comma_ != null)
         {
-            _comma_.parent(null);
+            this._comma_.parent(null);
         }
 
         if(node != null)
@@ -97,19 +102,19 @@ public final class AThroughSequenceLiteralSequence extends PLiteralSequence
             node.parent(this);
         }
 
-        _comma_ = node;
+        this._comma_ = node;
     }
 
     public PLiteral getFrom()
     {
-        return _from_;
+        return this._from_;
     }
 
     public void setFrom(PLiteral node)
     {
-        if(_from_ != null)
+        if(this._from_ != null)
         {
-            _from_.parent(null);
+            this._from_.parent(null);
         }
 
         if(node != null)
@@ -122,19 +127,19 @@ public final class AThroughSequenceLiteralSequence extends PLiteralSequence
             node.parent(this);
         }
 
-        _from_ = node;
+        this._from_ = node;
     }
 
     public TThrough getThrough()
     {
-        return _through_;
+        return this._through_;
     }
 
     public void setThrough(TThrough node)
     {
-        if(_through_ != null)
+        if(this._through_ != null)
         {
-            _through_.parent(null);
+            this._through_.parent(null);
         }
 
         if(node != null)
@@ -147,19 +152,19 @@ public final class AThroughSequenceLiteralSequence extends PLiteralSequence
             node.parent(this);
         }
 
-        _through_ = node;
+        this._through_ = node;
     }
 
     public PLiteral getTo()
     {
-        return _to_;
+        return this._to_;
     }
 
     public void setTo(PLiteral node)
     {
-        if(_to_ != null)
+        if(this._to_ != null)
         {
-            _to_.parent(null);
+            this._to_.parent(null);
         }
 
         if(node != null)
@@ -172,84 +177,91 @@ public final class AThroughSequenceLiteralSequence extends PLiteralSequence
             node.parent(this);
         }
 
-        _to_ = node;
+        this._to_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_literalSequence_)
-            + toString(_comma_)
-            + toString(_from_)
-            + toString(_through_)
-            + toString(_to_);
+            + toString(this._literalSequence_)
+            + toString(this._comma_)
+            + toString(this._from_)
+            + toString(this._through_)
+            + toString(this._to_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_literalSequence_ == child)
+        // Remove child
+        if(this._literalSequence_ == child)
         {
-            _literalSequence_ = null;
+            this._literalSequence_ = null;
             return;
         }
 
-        if(_comma_ == child)
+        if(this._comma_ == child)
         {
-            _comma_ = null;
+            this._comma_ = null;
             return;
         }
 
-        if(_from_ == child)
+        if(this._from_ == child)
         {
-            _from_ = null;
+            this._from_ = null;
             return;
         }
 
-        if(_through_ == child)
+        if(this._through_ == child)
         {
-            _through_ = null;
+            this._through_ = null;
             return;
         }
 
-        if(_to_ == child)
+        if(this._to_ == child)
         {
-            _to_ = null;
+            this._to_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_literalSequence_ == oldChild)
+        // Replace child
+        if(this._literalSequence_ == oldChild)
         {
             setLiteralSequence((PLiteralSequence) newChild);
             return;
         }
 
-        if(_comma_ == oldChild)
+        if(this._comma_ == oldChild)
         {
             setComma((TComma) newChild);
             return;
         }
 
-        if(_from_ == oldChild)
+        if(this._from_ == oldChild)
         {
             setFrom((PLiteral) newChild);
             return;
         }
 
-        if(_through_ == oldChild)
+        if(this._through_ == oldChild)
         {
             setThrough((TThrough) newChild);
             return;
         }
 
-        if(_to_ == oldChild)
+        if(this._to_ == oldChild)
         {
             setTo((PLiteral) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

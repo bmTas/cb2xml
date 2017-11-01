@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ANumberLiteral extends PLiteral
 {
     private PNumber _number_;
 
     public ANumberLiteral()
     {
+        // Constructor
     }
 
     public ANumberLiteral(
-        PNumber _number_)
+        @SuppressWarnings("hiding") PNumber _number_)
     {
+        // Constructor
         setNumber(_number_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ANumberLiteral(
-            (PNumber) cloneNode(_number_));
+            cloneNode(this._number_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseANumberLiteral(this);
@@ -32,14 +37,14 @@ public final class ANumberLiteral extends PLiteral
 
     public PNumber getNumber()
     {
-        return _number_;
+        return this._number_;
     }
 
     public void setNumber(PNumber node)
     {
-        if(_number_ != null)
+        if(this._number_ != null)
         {
-            _number_.parent(null);
+            this._number_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ANumberLiteral extends PLiteral
             node.parent(this);
         }
 
-        _number_ = node;
+        this._number_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_number_);
+            + toString(this._number_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_number_ == child)
+        // Remove child
+        if(this._number_ == child)
         {
-            _number_ = null;
+            this._number_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_number_ == oldChild)
+        // Replace child
+        if(this._number_ == oldChild)
         {
             setNumber((PNumber) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

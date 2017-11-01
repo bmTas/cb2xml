@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AGlobalClauseClause extends PClause
 {
     private PGlobalClause _globalClause_;
 
     public AGlobalClauseClause()
     {
+        // Constructor
     }
 
     public AGlobalClauseClause(
-        PGlobalClause _globalClause_)
+        @SuppressWarnings("hiding") PGlobalClause _globalClause_)
     {
+        // Constructor
         setGlobalClause(_globalClause_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AGlobalClauseClause(
-            (PGlobalClause) cloneNode(_globalClause_));
+            cloneNode(this._globalClause_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAGlobalClauseClause(this);
@@ -32,14 +37,14 @@ public final class AGlobalClauseClause extends PClause
 
     public PGlobalClause getGlobalClause()
     {
-        return _globalClause_;
+        return this._globalClause_;
     }
 
     public void setGlobalClause(PGlobalClause node)
     {
-        if(_globalClause_ != null)
+        if(this._globalClause_ != null)
         {
-            _globalClause_.parent(null);
+            this._globalClause_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class AGlobalClauseClause extends PClause
             node.parent(this);
         }
 
-        _globalClause_ = node;
+        this._globalClause_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_globalClause_);
+            + toString(this._globalClause_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_globalClause_ == child)
+        // Remove child
+        if(this._globalClause_ == child)
         {
-            _globalClause_ = null;
+            this._globalClause_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_globalClause_ == oldChild)
+        // Replace child
+        if(this._globalClause_ == oldChild)
         {
             setGlobalClause((PGlobalClause) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

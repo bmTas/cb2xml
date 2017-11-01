@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class APictureClause extends PPictureClause
 {
     private TPicture _picture_;
@@ -13,13 +13,15 @@ public final class APictureClause extends PPictureClause
 
     public APictureClause()
     {
+        // Constructor
     }
 
     public APictureClause(
-        TPicture _picture_,
-        TIs _is_,
-        PCharacterString _characterString_)
+        @SuppressWarnings("hiding") TPicture _picture_,
+        @SuppressWarnings("hiding") TIs _is_,
+        @SuppressWarnings("hiding") PCharacterString _characterString_)
     {
+        // Constructor
         setPicture(_picture_);
 
         setIs(_is_);
@@ -27,14 +29,17 @@ public final class APictureClause extends PPictureClause
         setCharacterString(_characterString_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new APictureClause(
-            (TPicture) cloneNode(_picture_),
-            (TIs) cloneNode(_is_),
-            (PCharacterString) cloneNode(_characterString_));
+            cloneNode(this._picture_),
+            cloneNode(this._is_),
+            cloneNode(this._characterString_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAPictureClause(this);
@@ -42,14 +47,14 @@ public final class APictureClause extends PPictureClause
 
     public TPicture getPicture()
     {
-        return _picture_;
+        return this._picture_;
     }
 
     public void setPicture(TPicture node)
     {
-        if(_picture_ != null)
+        if(this._picture_ != null)
         {
-            _picture_.parent(null);
+            this._picture_.parent(null);
         }
 
         if(node != null)
@@ -62,19 +67,19 @@ public final class APictureClause extends PPictureClause
             node.parent(this);
         }
 
-        _picture_ = node;
+        this._picture_ = node;
     }
 
     public TIs getIs()
     {
-        return _is_;
+        return this._is_;
     }
 
     public void setIs(TIs node)
     {
-        if(_is_ != null)
+        if(this._is_ != null)
         {
-            _is_.parent(null);
+            this._is_.parent(null);
         }
 
         if(node != null)
@@ -87,19 +92,19 @@ public final class APictureClause extends PPictureClause
             node.parent(this);
         }
 
-        _is_ = node;
+        this._is_ = node;
     }
 
     public PCharacterString getCharacterString()
     {
-        return _characterString_;
+        return this._characterString_;
     }
 
     public void setCharacterString(PCharacterString node)
     {
-        if(_characterString_ != null)
+        if(this._characterString_ != null)
         {
-            _characterString_.parent(null);
+            this._characterString_.parent(null);
         }
 
         if(node != null)
@@ -112,58 +117,65 @@ public final class APictureClause extends PPictureClause
             node.parent(this);
         }
 
-        _characterString_ = node;
+        this._characterString_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_picture_)
-            + toString(_is_)
-            + toString(_characterString_);
+            + toString(this._picture_)
+            + toString(this._is_)
+            + toString(this._characterString_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_picture_ == child)
+        // Remove child
+        if(this._picture_ == child)
         {
-            _picture_ = null;
+            this._picture_ = null;
             return;
         }
 
-        if(_is_ == child)
+        if(this._is_ == child)
         {
-            _is_ = null;
+            this._is_ = null;
             return;
         }
 
-        if(_characterString_ == child)
+        if(this._characterString_ == child)
         {
-            _characterString_ = null;
+            this._characterString_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_picture_ == oldChild)
+        // Replace child
+        if(this._picture_ == oldChild)
         {
             setPicture((TPicture) newChild);
             return;
         }
 
-        if(_is_ == oldChild)
+        if(this._is_ == oldChild)
         {
             setIs((TIs) newChild);
             return;
         }
 
-        if(_characterString_ == oldChild)
+        if(this._characterString_ == oldChild)
         {
             setCharacterString((PCharacterString) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

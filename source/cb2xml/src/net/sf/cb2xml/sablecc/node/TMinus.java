@@ -4,6 +4,7 @@ package net.sf.cb2xml.sablecc.node;
 
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class TMinus extends Token
 {
     public TMinus()
@@ -18,17 +19,20 @@ public final class TMinus extends Token
         setPos(pos);
     }
 
+    @Override
     public Object clone()
     {
       return new TMinus(getLine(), getPos());
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTMinus(this);
     }
 
-    public void setText(String text)
+    @Override
+    public void setText(@SuppressWarnings("unused") String text)
     {
         throw new RuntimeException("Cannot change TMinus text.");
     }

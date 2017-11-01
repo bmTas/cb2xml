@@ -2,14 +2,16 @@
 
 package net.sf.cb2xml.sablecc.parser;
 
+import java.util.ArrayList;
+
 final class State
 {
     int state;
-    Object node;
+    ArrayList<Object> nodes;
 
-    State(int state, Object node)
+    State(@SuppressWarnings("hiding") int state, @SuppressWarnings("hiding") ArrayList<Object> nodes)
     {
         this.state = state;
-        this.node = node;
+        this.nodes = nodes;
     }
 }

@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AJustifiedClause extends PJustifiedClause
 {
     private TJustified _justified_;
@@ -12,24 +12,29 @@ public final class AJustifiedClause extends PJustifiedClause
 
     public AJustifiedClause()
     {
+        // Constructor
     }
 
     public AJustifiedClause(
-        TJustified _justified_,
-        TRight _right_)
+        @SuppressWarnings("hiding") TJustified _justified_,
+        @SuppressWarnings("hiding") TRight _right_)
     {
+        // Constructor
         setJustified(_justified_);
 
         setRight(_right_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AJustifiedClause(
-            (TJustified) cloneNode(_justified_),
-            (TRight) cloneNode(_right_));
+            cloneNode(this._justified_),
+            cloneNode(this._right_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAJustifiedClause(this);
@@ -37,14 +42,14 @@ public final class AJustifiedClause extends PJustifiedClause
 
     public TJustified getJustified()
     {
-        return _justified_;
+        return this._justified_;
     }
 
     public void setJustified(TJustified node)
     {
-        if(_justified_ != null)
+        if(this._justified_ != null)
         {
-            _justified_.parent(null);
+            this._justified_.parent(null);
         }
 
         if(node != null)
@@ -57,19 +62,19 @@ public final class AJustifiedClause extends PJustifiedClause
             node.parent(this);
         }
 
-        _justified_ = node;
+        this._justified_ = node;
     }
 
     public TRight getRight()
     {
-        return _right_;
+        return this._right_;
     }
 
     public void setRight(TRight node)
     {
-        if(_right_ != null)
+        if(this._right_ != null)
         {
-            _right_.parent(null);
+            this._right_.parent(null);
         }
 
         if(node != null)
@@ -82,45 +87,52 @@ public final class AJustifiedClause extends PJustifiedClause
             node.parent(this);
         }
 
-        _right_ = node;
+        this._right_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_justified_)
-            + toString(_right_);
+            + toString(this._justified_)
+            + toString(this._right_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_justified_ == child)
+        // Remove child
+        if(this._justified_ == child)
         {
-            _justified_ = null;
+            this._justified_ = null;
             return;
         }
 
-        if(_right_ == child)
+        if(this._right_ == child)
         {
-            _right_ = null;
+            this._right_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_justified_ == oldChild)
+        // Replace child
+        if(this._justified_ == oldChild)
         {
             setJustified((TJustified) newChild);
             return;
         }
 
-        if(_right_ == oldChild)
+        if(this._right_ == oldChild)
         {
             setRight((TRight) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

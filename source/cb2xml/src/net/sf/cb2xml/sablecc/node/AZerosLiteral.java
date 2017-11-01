@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AZerosLiteral extends PLiteral
 {
     private TZeros _zeros_;
 
     public AZerosLiteral()
     {
+        // Constructor
     }
 
     public AZerosLiteral(
-        TZeros _zeros_)
+        @SuppressWarnings("hiding") TZeros _zeros_)
     {
+        // Constructor
         setZeros(_zeros_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AZerosLiteral(
-            (TZeros) cloneNode(_zeros_));
+            cloneNode(this._zeros_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAZerosLiteral(this);
@@ -32,14 +37,14 @@ public final class AZerosLiteral extends PLiteral
 
     public TZeros getZeros()
     {
-        return _zeros_;
+        return this._zeros_;
     }
 
     public void setZeros(TZeros node)
     {
-        if(_zeros_ != null)
+        if(this._zeros_ != null)
         {
-            _zeros_.parent(null);
+            this._zeros_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class AZerosLiteral extends PLiteral
             node.parent(this);
         }
 
-        _zeros_ = node;
+        this._zeros_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_zeros_);
+            + toString(this._zeros_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_zeros_ == child)
+        // Remove child
+        if(this._zeros_ == child)
         {
-            _zeros_ = null;
+            this._zeros_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_zeros_ == oldChild)
+        // Replace child
+        if(this._zeros_ == oldChild)
         {
             setZeros((TZeros) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ARightLeftOrRight extends PLeftOrRight
 {
     private TRight _right_;
 
     public ARightLeftOrRight()
     {
+        // Constructor
     }
 
     public ARightLeftOrRight(
-        TRight _right_)
+        @SuppressWarnings("hiding") TRight _right_)
     {
+        // Constructor
         setRight(_right_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ARightLeftOrRight(
-            (TRight) cloneNode(_right_));
+            cloneNode(this._right_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseARightLeftOrRight(this);
@@ -32,14 +37,14 @@ public final class ARightLeftOrRight extends PLeftOrRight
 
     public TRight getRight()
     {
-        return _right_;
+        return this._right_;
     }
 
     public void setRight(TRight node)
     {
-        if(_right_ != null)
+        if(this._right_ != null)
         {
-            _right_.parent(null);
+            this._right_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ARightLeftOrRight extends PLeftOrRight
             node.parent(this);
         }
 
-        _right_ = node;
+        this._right_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_right_);
+            + toString(this._right_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_right_ == child)
+        // Remove child
+        if(this._right_ == child)
         {
-            _right_ = null;
+            this._right_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_right_ == oldChild)
+        // Replace child
+        if(this._right_ == oldChild)
         {
             setRight((TRight) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

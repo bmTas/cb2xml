@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AProcedurePointerUsagePhrase extends PUsagePhrase
 {
     private TProcedurePointer _procedurePointer_;
 
     public AProcedurePointerUsagePhrase()
     {
+        // Constructor
     }
 
     public AProcedurePointerUsagePhrase(
-        TProcedurePointer _procedurePointer_)
+        @SuppressWarnings("hiding") TProcedurePointer _procedurePointer_)
     {
+        // Constructor
         setProcedurePointer(_procedurePointer_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AProcedurePointerUsagePhrase(
-            (TProcedurePointer) cloneNode(_procedurePointer_));
+            cloneNode(this._procedurePointer_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAProcedurePointerUsagePhrase(this);
@@ -32,14 +37,14 @@ public final class AProcedurePointerUsagePhrase extends PUsagePhrase
 
     public TProcedurePointer getProcedurePointer()
     {
-        return _procedurePointer_;
+        return this._procedurePointer_;
     }
 
     public void setProcedurePointer(TProcedurePointer node)
     {
-        if(_procedurePointer_ != null)
+        if(this._procedurePointer_ != null)
         {
-            _procedurePointer_.parent(null);
+            this._procedurePointer_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class AProcedurePointerUsagePhrase extends PUsagePhrase
             node.parent(this);
         }
 
-        _procedurePointer_ = node;
+        this._procedurePointer_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_procedurePointer_);
+            + toString(this._procedurePointer_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_procedurePointer_ == child)
+        // Remove child
+        if(this._procedurePointer_ == child)
         {
-            _procedurePointer_ = null;
+            this._procedurePointer_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_procedurePointer_ == oldChild)
+        // Replace child
+        if(this._procedurePointer_ == oldChild)
         {
             setProcedurePointer((TProcedurePointer) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

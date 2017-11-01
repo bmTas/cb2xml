@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ASlashCharacterSubstring extends PCharacterSubstring
 {
     private TSlash _slash_;
 
     public ASlashCharacterSubstring()
     {
+        // Constructor
     }
 
     public ASlashCharacterSubstring(
-        TSlash _slash_)
+        @SuppressWarnings("hiding") TSlash _slash_)
     {
+        // Constructor
         setSlash(_slash_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ASlashCharacterSubstring(
-            (TSlash) cloneNode(_slash_));
+            cloneNode(this._slash_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseASlashCharacterSubstring(this);
@@ -32,14 +37,14 @@ public final class ASlashCharacterSubstring extends PCharacterSubstring
 
     public TSlash getSlash()
     {
-        return _slash_;
+        return this._slash_;
     }
 
     public void setSlash(TSlash node)
     {
-        if(_slash_ != null)
+        if(this._slash_ != null)
         {
-            _slash_.parent(null);
+            this._slash_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ASlashCharacterSubstring extends PCharacterSubstring
             node.parent(this);
         }
 
-        _slash_ = node;
+        this._slash_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_slash_);
+            + toString(this._slash_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_slash_ == child)
+        // Remove child
+        if(this._slash_ == child)
         {
-            _slash_ = null;
+            this._slash_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_slash_ == oldChild)
+        // Replace child
+        if(this._slash_ == oldChild)
         {
             setSlash((TSlash) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

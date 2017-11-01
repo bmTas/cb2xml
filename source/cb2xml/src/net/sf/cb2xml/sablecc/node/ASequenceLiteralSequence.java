@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ASequenceLiteralSequence extends PLiteralSequence
 {
     private PLiteralSequence _literalSequence_;
@@ -13,13 +13,15 @@ public final class ASequenceLiteralSequence extends PLiteralSequence
 
     public ASequenceLiteralSequence()
     {
+        // Constructor
     }
 
     public ASequenceLiteralSequence(
-        PLiteralSequence _literalSequence_,
-        TComma _comma_,
-        PLiteral _literal_)
+        @SuppressWarnings("hiding") PLiteralSequence _literalSequence_,
+        @SuppressWarnings("hiding") TComma _comma_,
+        @SuppressWarnings("hiding") PLiteral _literal_)
     {
+        // Constructor
         setLiteralSequence(_literalSequence_);
 
         setComma(_comma_);
@@ -27,14 +29,17 @@ public final class ASequenceLiteralSequence extends PLiteralSequence
         setLiteral(_literal_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ASequenceLiteralSequence(
-            (PLiteralSequence) cloneNode(_literalSequence_),
-            (TComma) cloneNode(_comma_),
-            (PLiteral) cloneNode(_literal_));
+            cloneNode(this._literalSequence_),
+            cloneNode(this._comma_),
+            cloneNode(this._literal_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseASequenceLiteralSequence(this);
@@ -42,14 +47,14 @@ public final class ASequenceLiteralSequence extends PLiteralSequence
 
     public PLiteralSequence getLiteralSequence()
     {
-        return _literalSequence_;
+        return this._literalSequence_;
     }
 
     public void setLiteralSequence(PLiteralSequence node)
     {
-        if(_literalSequence_ != null)
+        if(this._literalSequence_ != null)
         {
-            _literalSequence_.parent(null);
+            this._literalSequence_.parent(null);
         }
 
         if(node != null)
@@ -62,19 +67,19 @@ public final class ASequenceLiteralSequence extends PLiteralSequence
             node.parent(this);
         }
 
-        _literalSequence_ = node;
+        this._literalSequence_ = node;
     }
 
     public TComma getComma()
     {
-        return _comma_;
+        return this._comma_;
     }
 
     public void setComma(TComma node)
     {
-        if(_comma_ != null)
+        if(this._comma_ != null)
         {
-            _comma_.parent(null);
+            this._comma_.parent(null);
         }
 
         if(node != null)
@@ -87,19 +92,19 @@ public final class ASequenceLiteralSequence extends PLiteralSequence
             node.parent(this);
         }
 
-        _comma_ = node;
+        this._comma_ = node;
     }
 
     public PLiteral getLiteral()
     {
-        return _literal_;
+        return this._literal_;
     }
 
     public void setLiteral(PLiteral node)
     {
-        if(_literal_ != null)
+        if(this._literal_ != null)
         {
-            _literal_.parent(null);
+            this._literal_.parent(null);
         }
 
         if(node != null)
@@ -112,58 +117,65 @@ public final class ASequenceLiteralSequence extends PLiteralSequence
             node.parent(this);
         }
 
-        _literal_ = node;
+        this._literal_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_literalSequence_)
-            + toString(_comma_)
-            + toString(_literal_);
+            + toString(this._literalSequence_)
+            + toString(this._comma_)
+            + toString(this._literal_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_literalSequence_ == child)
+        // Remove child
+        if(this._literalSequence_ == child)
         {
-            _literalSequence_ = null;
+            this._literalSequence_ = null;
             return;
         }
 
-        if(_comma_ == child)
+        if(this._comma_ == child)
         {
-            _comma_ = null;
+            this._comma_ = null;
             return;
         }
 
-        if(_literal_ == child)
+        if(this._literal_ == child)
         {
-            _literal_ = null;
+            this._literal_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_literalSequence_ == oldChild)
+        // Replace child
+        if(this._literalSequence_ == oldChild)
         {
             setLiteralSequence((PLiteralSequence) newChild);
             return;
         }
 
-        if(_comma_ == oldChild)
+        if(this._comma_ == oldChild)
         {
             setComma((TComma) newChild);
             return;
         }
 
-        if(_literal_ == oldChild)
+        if(this._literal_ == oldChild)
         {
             setLiteral((PLiteral) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

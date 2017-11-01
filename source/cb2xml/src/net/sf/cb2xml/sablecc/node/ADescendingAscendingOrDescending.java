@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ADescendingAscendingOrDescending extends PAscendingOrDescending
 {
     private TDescending _descending_;
 
     public ADescendingAscendingOrDescending()
     {
+        // Constructor
     }
 
     public ADescendingAscendingOrDescending(
-        TDescending _descending_)
+        @SuppressWarnings("hiding") TDescending _descending_)
     {
+        // Constructor
         setDescending(_descending_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ADescendingAscendingOrDescending(
-            (TDescending) cloneNode(_descending_));
+            cloneNode(this._descending_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseADescendingAscendingOrDescending(this);
@@ -32,14 +37,14 @@ public final class ADescendingAscendingOrDescending extends PAscendingOrDescendi
 
     public TDescending getDescending()
     {
-        return _descending_;
+        return this._descending_;
     }
 
     public void setDescending(TDescending node)
     {
-        if(_descending_ != null)
+        if(this._descending_ != null)
         {
-            _descending_.parent(null);
+            this._descending_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ADescendingAscendingOrDescending extends PAscendingOrDescendi
             node.parent(this);
         }
 
-        _descending_ = node;
+        this._descending_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_descending_);
+            + toString(this._descending_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_descending_ == child)
+        // Remove child
+        if(this._descending_ == child)
         {
-            _descending_ = null;
+            this._descending_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_descending_ == oldChild)
+        // Replace child
+        if(this._descending_ == oldChild)
         {
             setDescending((TDescending) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

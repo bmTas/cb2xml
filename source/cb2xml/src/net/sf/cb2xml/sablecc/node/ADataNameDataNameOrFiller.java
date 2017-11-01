@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ADataNameDataNameOrFiller extends PDataNameOrFiller
 {
     private TDataName _dataName_;
 
     public ADataNameDataNameOrFiller()
     {
+        // Constructor
     }
 
     public ADataNameDataNameOrFiller(
-        TDataName _dataName_)
+        @SuppressWarnings("hiding") TDataName _dataName_)
     {
+        // Constructor
         setDataName(_dataName_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ADataNameDataNameOrFiller(
-            (TDataName) cloneNode(_dataName_));
+            cloneNode(this._dataName_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseADataNameDataNameOrFiller(this);
@@ -32,14 +37,14 @@ public final class ADataNameDataNameOrFiller extends PDataNameOrFiller
 
     public TDataName getDataName()
     {
-        return _dataName_;
+        return this._dataName_;
     }
 
     public void setDataName(TDataName node)
     {
-        if(_dataName_ != null)
+        if(this._dataName_ != null)
         {
-            _dataName_.parent(null);
+            this._dataName_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ADataNameDataNameOrFiller extends PDataNameOrFiller
             node.parent(this);
         }
 
-        _dataName_ = node;
+        this._dataName_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_dataName_);
+            + toString(this._dataName_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_dataName_ == child)
+        // Remove child
+        if(this._dataName_ == child)
         {
-            _dataName_ = null;
+            this._dataName_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_dataName_ == oldChild)
+        // Replace child
+        if(this._dataName_ == oldChild)
         {
             setDataName((TDataName) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

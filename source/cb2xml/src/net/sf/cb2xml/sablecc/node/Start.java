@@ -4,6 +4,7 @@ package net.sf.cb2xml.sablecc.node;
 
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class Start extends Node
 {
     private PRecordDescription _pRecordDescription_;
@@ -11,23 +12,26 @@ public final class Start extends Node
 
     public Start()
     {
+        // Empty body
     }
 
     public Start(
-        PRecordDescription _pRecordDescription_,
-        EOF _eof_)
+        @SuppressWarnings("hiding") PRecordDescription _pRecordDescription_,
+        @SuppressWarnings("hiding") EOF _eof_)
     {
         setPRecordDescription(_pRecordDescription_);
         setEOF(_eof_);
     }
 
+    @Override
     public Object clone()
     {
         return new Start(
-            (PRecordDescription) cloneNode(_pRecordDescription_),
-            (EOF) cloneNode(_eof_));
+            cloneNode(this._pRecordDescription_),
+            cloneNode(this._eof_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseStart(this);
@@ -35,14 +39,14 @@ public final class Start extends Node
 
     public PRecordDescription getPRecordDescription()
     {
-        return _pRecordDescription_;
+        return this._pRecordDescription_;
     }
 
     public void setPRecordDescription(PRecordDescription node)
     {
-        if(_pRecordDescription_ != null)
+        if(this._pRecordDescription_ != null)
         {
-            _pRecordDescription_.parent(null);
+            this._pRecordDescription_.parent(null);
         }
 
         if(node != null)
@@ -55,19 +59,19 @@ public final class Start extends Node
             node.parent(this);
         }
 
-        _pRecordDescription_ = node;
+        this._pRecordDescription_ = node;
     }
 
     public EOF getEOF()
     {
-        return _eof_;
+        return this._eof_;
     }
 
     public void setEOF(EOF node)
     {
-        if(_eof_ != null)
+        if(this._eof_ != null)
         {
-            _eof_.parent(null);
+            this._eof_.parent(null);
         }
 
         if(node != null)
@@ -80,43 +84,50 @@ public final class Start extends Node
             node.parent(this);
         }
 
-        _eof_ = node;
+        this._eof_ = node;
     }
 
+    @Override
     void removeChild(Node child)
     {
-        if(_pRecordDescription_ == child)
+        if(this._pRecordDescription_ == child)
         {
-            _pRecordDescription_ = null;
+            this._pRecordDescription_ = null;
             return;
         }
 
-        if(_eof_ == child)
+        if(this._eof_ == child)
         {
-            _eof_ = null;
+            this._eof_ = null;
             return;
         }
+
+        throw new RuntimeException("Not a child.");
     }
 
+    @Override
     void replaceChild(Node oldChild, Node newChild)
     {
-        if(_pRecordDescription_ == oldChild)
+        if(this._pRecordDescription_ == oldChild)
         {
             setPRecordDescription((PRecordDescription) newChild);
             return;
         }
 
-        if(_eof_ == oldChild)
+        if(this._eof_ == oldChild)
         {
             setEOF((EOF) newChild);
             return;
         }
+
+        throw new RuntimeException("Not a child.");
     }
 
+    @Override
     public String toString()
     {
         return "" +
-            toString(_pRecordDescription_) +
-            toString(_eof_);
+            toString(this._pRecordDescription_) +
+            toString(this._eof_);
     }
 }

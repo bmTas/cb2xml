@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ABracketedNumber extends PBracketedNumber
 {
     private TLparen _lparen_;
@@ -13,13 +13,15 @@ public final class ABracketedNumber extends PBracketedNumber
 
     public ABracketedNumber()
     {
+        // Constructor
     }
 
     public ABracketedNumber(
-        TLparen _lparen_,
-        PNumber _number_,
-        TRparen _rparen_)
+        @SuppressWarnings("hiding") TLparen _lparen_,
+        @SuppressWarnings("hiding") PNumber _number_,
+        @SuppressWarnings("hiding") TRparen _rparen_)
     {
+        // Constructor
         setLparen(_lparen_);
 
         setNumber(_number_);
@@ -27,14 +29,17 @@ public final class ABracketedNumber extends PBracketedNumber
         setRparen(_rparen_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ABracketedNumber(
-            (TLparen) cloneNode(_lparen_),
-            (PNumber) cloneNode(_number_),
-            (TRparen) cloneNode(_rparen_));
+            cloneNode(this._lparen_),
+            cloneNode(this._number_),
+            cloneNode(this._rparen_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseABracketedNumber(this);
@@ -42,14 +47,14 @@ public final class ABracketedNumber extends PBracketedNumber
 
     public TLparen getLparen()
     {
-        return _lparen_;
+        return this._lparen_;
     }
 
     public void setLparen(TLparen node)
     {
-        if(_lparen_ != null)
+        if(this._lparen_ != null)
         {
-            _lparen_.parent(null);
+            this._lparen_.parent(null);
         }
 
         if(node != null)
@@ -62,19 +67,19 @@ public final class ABracketedNumber extends PBracketedNumber
             node.parent(this);
         }
 
-        _lparen_ = node;
+        this._lparen_ = node;
     }
 
     public PNumber getNumber()
     {
-        return _number_;
+        return this._number_;
     }
 
     public void setNumber(PNumber node)
     {
-        if(_number_ != null)
+        if(this._number_ != null)
         {
-            _number_.parent(null);
+            this._number_.parent(null);
         }
 
         if(node != null)
@@ -87,19 +92,19 @@ public final class ABracketedNumber extends PBracketedNumber
             node.parent(this);
         }
 
-        _number_ = node;
+        this._number_ = node;
     }
 
     public TRparen getRparen()
     {
-        return _rparen_;
+        return this._rparen_;
     }
 
     public void setRparen(TRparen node)
     {
-        if(_rparen_ != null)
+        if(this._rparen_ != null)
         {
-            _rparen_.parent(null);
+            this._rparen_.parent(null);
         }
 
         if(node != null)
@@ -112,58 +117,65 @@ public final class ABracketedNumber extends PBracketedNumber
             node.parent(this);
         }
 
-        _rparen_ = node;
+        this._rparen_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_lparen_)
-            + toString(_number_)
-            + toString(_rparen_);
+            + toString(this._lparen_)
+            + toString(this._number_)
+            + toString(this._rparen_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_lparen_ == child)
+        // Remove child
+        if(this._lparen_ == child)
         {
-            _lparen_ = null;
+            this._lparen_ = null;
             return;
         }
 
-        if(_number_ == child)
+        if(this._number_ == child)
         {
-            _number_ = null;
+            this._number_ = null;
             return;
         }
 
-        if(_rparen_ == child)
+        if(this._rparen_ == child)
         {
-            _rparen_ = null;
+            this._rparen_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_lparen_ == oldChild)
+        // Replace child
+        if(this._lparen_ == oldChild)
         {
             setLparen((TLparen) newChild);
             return;
         }
 
-        if(_number_ == oldChild)
+        if(this._number_ == oldChild)
         {
             setNumber((PNumber) newChild);
             return;
         }
 
-        if(_rparen_ == oldChild)
+        if(this._rparen_ == oldChild)
         {
             setRparen((TRparen) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

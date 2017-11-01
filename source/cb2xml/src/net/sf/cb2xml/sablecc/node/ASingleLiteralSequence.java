@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ASingleLiteralSequence extends PLiteralSequence
 {
     private TAll _all_;
@@ -12,24 +12,29 @@ public final class ASingleLiteralSequence extends PLiteralSequence
 
     public ASingleLiteralSequence()
     {
+        // Constructor
     }
 
     public ASingleLiteralSequence(
-        TAll _all_,
-        PLiteral _literal_)
+        @SuppressWarnings("hiding") TAll _all_,
+        @SuppressWarnings("hiding") PLiteral _literal_)
     {
+        // Constructor
         setAll(_all_);
 
         setLiteral(_literal_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ASingleLiteralSequence(
-            (TAll) cloneNode(_all_),
-            (PLiteral) cloneNode(_literal_));
+            cloneNode(this._all_),
+            cloneNode(this._literal_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseASingleLiteralSequence(this);
@@ -37,14 +42,14 @@ public final class ASingleLiteralSequence extends PLiteralSequence
 
     public TAll getAll()
     {
-        return _all_;
+        return this._all_;
     }
 
     public void setAll(TAll node)
     {
-        if(_all_ != null)
+        if(this._all_ != null)
         {
-            _all_.parent(null);
+            this._all_.parent(null);
         }
 
         if(node != null)
@@ -57,19 +62,19 @@ public final class ASingleLiteralSequence extends PLiteralSequence
             node.parent(this);
         }
 
-        _all_ = node;
+        this._all_ = node;
     }
 
     public PLiteral getLiteral()
     {
-        return _literal_;
+        return this._literal_;
     }
 
     public void setLiteral(PLiteral node)
     {
-        if(_literal_ != null)
+        if(this._literal_ != null)
         {
-            _literal_.parent(null);
+            this._literal_.parent(null);
         }
 
         if(node != null)
@@ -82,45 +87,52 @@ public final class ASingleLiteralSequence extends PLiteralSequence
             node.parent(this);
         }
 
-        _literal_ = node;
+        this._literal_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_all_)
-            + toString(_literal_);
+            + toString(this._all_)
+            + toString(this._literal_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_all_ == child)
+        // Remove child
+        if(this._all_ == child)
         {
-            _all_ = null;
+            this._all_ = null;
             return;
         }
 
-        if(_literal_ == child)
+        if(this._literal_ == child)
         {
-            _literal_ = null;
+            this._literal_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_all_ == oldChild)
+        // Replace child
+        if(this._all_ == oldChild)
         {
             setAll((TAll) newChild);
             return;
         }
 
-        if(_literal_ == oldChild)
+        if(this._literal_ == oldChild)
         {
             setLiteral((PLiteral) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

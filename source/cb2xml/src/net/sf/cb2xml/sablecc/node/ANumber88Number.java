@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ANumber88Number extends PNumber
 {
     private TNumber88 _number88_;
 
     public ANumber88Number()
     {
+        // Constructor
     }
 
     public ANumber88Number(
-        TNumber88 _number88_)
+        @SuppressWarnings("hiding") TNumber88 _number88_)
     {
+        // Constructor
         setNumber88(_number88_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ANumber88Number(
-            (TNumber88) cloneNode(_number88_));
+            cloneNode(this._number88_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseANumber88Number(this);
@@ -32,14 +37,14 @@ public final class ANumber88Number extends PNumber
 
     public TNumber88 getNumber88()
     {
-        return _number88_;
+        return this._number88_;
     }
 
     public void setNumber88(TNumber88 node)
     {
-        if(_number88_ != null)
+        if(this._number88_ != null)
         {
-            _number88_.parent(null);
+            this._number88_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ANumber88Number extends PNumber
             node.parent(this);
         }
 
-        _number88_ = node;
+        this._number88_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_number88_);
+            + toString(this._number88_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_number88_ == child)
+        // Remove child
+        if(this._number88_ == child)
         {
-            _number88_ = null;
+            this._number88_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_number88_ == oldChild)
+        // Replace child
+        if(this._number88_ == oldChild)
         {
             setNumber88((TNumber88) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

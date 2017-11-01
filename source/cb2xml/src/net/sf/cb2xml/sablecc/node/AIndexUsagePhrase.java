@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AIndexUsagePhrase extends PUsagePhrase
 {
     private TIndex _index_;
 
     public AIndexUsagePhrase()
     {
+        // Constructor
     }
 
     public AIndexUsagePhrase(
-        TIndex _index_)
+        @SuppressWarnings("hiding") TIndex _index_)
     {
+        // Constructor
         setIndex(_index_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AIndexUsagePhrase(
-            (TIndex) cloneNode(_index_));
+            cloneNode(this._index_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAIndexUsagePhrase(this);
@@ -32,14 +37,14 @@ public final class AIndexUsagePhrase extends PUsagePhrase
 
     public TIndex getIndex()
     {
-        return _index_;
+        return this._index_;
     }
 
     public void setIndex(TIndex node)
     {
-        if(_index_ != null)
+        if(this._index_ != null)
         {
-            _index_.parent(null);
+            this._index_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class AIndexUsagePhrase extends PUsagePhrase
             node.parent(this);
         }
 
-        _index_ = node;
+        this._index_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_index_);
+            + toString(this._index_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_index_ == child)
+        // Remove child
+        if(this._index_ == child)
         {
-            _index_ = null;
+            this._index_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_index_ == oldChild)
+        // Replace child
+        if(this._index_ == oldChild)
         {
             setIndex((TIndex) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

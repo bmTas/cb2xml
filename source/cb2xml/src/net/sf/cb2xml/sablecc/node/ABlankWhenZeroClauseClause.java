@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ABlankWhenZeroClauseClause extends PClause
 {
     private PBlankWhenZeroClause _blankWhenZeroClause_;
 
     public ABlankWhenZeroClauseClause()
     {
+        // Constructor
     }
 
     public ABlankWhenZeroClauseClause(
-        PBlankWhenZeroClause _blankWhenZeroClause_)
+        @SuppressWarnings("hiding") PBlankWhenZeroClause _blankWhenZeroClause_)
     {
+        // Constructor
         setBlankWhenZeroClause(_blankWhenZeroClause_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ABlankWhenZeroClauseClause(
-            (PBlankWhenZeroClause) cloneNode(_blankWhenZeroClause_));
+            cloneNode(this._blankWhenZeroClause_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseABlankWhenZeroClauseClause(this);
@@ -32,14 +37,14 @@ public final class ABlankWhenZeroClauseClause extends PClause
 
     public PBlankWhenZeroClause getBlankWhenZeroClause()
     {
-        return _blankWhenZeroClause_;
+        return this._blankWhenZeroClause_;
     }
 
     public void setBlankWhenZeroClause(PBlankWhenZeroClause node)
     {
-        if(_blankWhenZeroClause_ != null)
+        if(this._blankWhenZeroClause_ != null)
         {
-            _blankWhenZeroClause_.parent(null);
+            this._blankWhenZeroClause_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ABlankWhenZeroClauseClause extends PClause
             node.parent(this);
         }
 
-        _blankWhenZeroClause_ = node;
+        this._blankWhenZeroClause_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_blankWhenZeroClause_);
+            + toString(this._blankWhenZeroClause_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_blankWhenZeroClause_ == child)
+        // Remove child
+        if(this._blankWhenZeroClause_ == child)
         {
-            _blankWhenZeroClause_ = null;
+            this._blankWhenZeroClause_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_blankWhenZeroClause_ == oldChild)
+        // Replace child
+        if(this._blankWhenZeroClause_ == oldChild)
         {
             setBlankWhenZeroClause((PBlankWhenZeroClause) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

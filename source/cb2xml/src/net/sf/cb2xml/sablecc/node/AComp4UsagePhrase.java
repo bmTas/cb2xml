@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AComp4UsagePhrase extends PUsagePhrase
 {
     private TComp4 _comp4_;
@@ -12,24 +12,29 @@ public final class AComp4UsagePhrase extends PUsagePhrase
 
     public AComp4UsagePhrase()
     {
+        // Constructor
     }
 
     public AComp4UsagePhrase(
-        TComp4 _comp4_,
-        TNative _native_)
+        @SuppressWarnings("hiding") TComp4 _comp4_,
+        @SuppressWarnings("hiding") TNative _native_)
     {
+        // Constructor
         setComp4(_comp4_);
 
         setNative(_native_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AComp4UsagePhrase(
-            (TComp4) cloneNode(_comp4_),
-            (TNative) cloneNode(_native_));
+            cloneNode(this._comp4_),
+            cloneNode(this._native_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAComp4UsagePhrase(this);
@@ -37,14 +42,14 @@ public final class AComp4UsagePhrase extends PUsagePhrase
 
     public TComp4 getComp4()
     {
-        return _comp4_;
+        return this._comp4_;
     }
 
     public void setComp4(TComp4 node)
     {
-        if(_comp4_ != null)
+        if(this._comp4_ != null)
         {
-            _comp4_.parent(null);
+            this._comp4_.parent(null);
         }
 
         if(node != null)
@@ -57,19 +62,19 @@ public final class AComp4UsagePhrase extends PUsagePhrase
             node.parent(this);
         }
 
-        _comp4_ = node;
+        this._comp4_ = node;
     }
 
     public TNative getNative()
     {
-        return _native_;
+        return this._native_;
     }
 
     public void setNative(TNative node)
     {
-        if(_native_ != null)
+        if(this._native_ != null)
         {
-            _native_.parent(null);
+            this._native_.parent(null);
         }
 
         if(node != null)
@@ -82,45 +87,52 @@ public final class AComp4UsagePhrase extends PUsagePhrase
             node.parent(this);
         }
 
-        _native_ = node;
+        this._native_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_comp4_)
-            + toString(_native_);
+            + toString(this._comp4_)
+            + toString(this._native_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_comp4_ == child)
+        // Remove child
+        if(this._comp4_ == child)
         {
-            _comp4_ = null;
+            this._comp4_ = null;
             return;
         }
 
-        if(_native_ == child)
+        if(this._native_ == child)
         {
-            _native_ = null;
+            this._native_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_comp4_ == oldChild)
+        // Replace child
+        if(this._comp4_ == oldChild)
         {
             setComp4((TComp4) newChild);
             return;
         }
 
-        if(_native_ == oldChild)
+        if(this._native_ == oldChild)
         {
             setNative((TNative) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AOccursClauseClause extends PClause
 {
     private POccursClause _occursClause_;
 
     public AOccursClauseClause()
     {
+        // Constructor
     }
 
     public AOccursClauseClause(
-        POccursClause _occursClause_)
+        @SuppressWarnings("hiding") POccursClause _occursClause_)
     {
+        // Constructor
         setOccursClause(_occursClause_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AOccursClauseClause(
-            (POccursClause) cloneNode(_occursClause_));
+            cloneNode(this._occursClause_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAOccursClauseClause(this);
@@ -32,14 +37,14 @@ public final class AOccursClauseClause extends PClause
 
     public POccursClause getOccursClause()
     {
-        return _occursClause_;
+        return this._occursClause_;
     }
 
     public void setOccursClause(POccursClause node)
     {
-        if(_occursClause_ != null)
+        if(this._occursClause_ != null)
         {
-            _occursClause_.parent(null);
+            this._occursClause_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class AOccursClauseClause extends PClause
             node.parent(this);
         }
 
-        _occursClause_ = node;
+        this._occursClause_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_occursClause_);
+            + toString(this._occursClause_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_occursClause_ == child)
+        // Remove child
+        if(this._occursClause_ == child)
         {
-            _occursClause_ = null;
+            this._occursClause_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_occursClause_ == oldChild)
+        // Replace child
+        if(this._occursClause_ == oldChild)
         {
             setOccursClause((POccursClause) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

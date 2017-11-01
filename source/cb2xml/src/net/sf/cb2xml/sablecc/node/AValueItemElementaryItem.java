@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AValueItemElementaryItem extends PElementaryItem
 {
     private PValueItem _valueItem_;
 
     public AValueItemElementaryItem()
     {
+        // Constructor
     }
 
     public AValueItemElementaryItem(
-        PValueItem _valueItem_)
+        @SuppressWarnings("hiding") PValueItem _valueItem_)
     {
+        // Constructor
         setValueItem(_valueItem_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AValueItemElementaryItem(
-            (PValueItem) cloneNode(_valueItem_));
+            cloneNode(this._valueItem_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAValueItemElementaryItem(this);
@@ -32,14 +37,14 @@ public final class AValueItemElementaryItem extends PElementaryItem
 
     public PValueItem getValueItem()
     {
-        return _valueItem_;
+        return this._valueItem_;
     }
 
     public void setValueItem(PValueItem node)
     {
-        if(_valueItem_ != null)
+        if(this._valueItem_ != null)
         {
-            _valueItem_.parent(null);
+            this._valueItem_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class AValueItemElementaryItem extends PElementaryItem
             node.parent(this);
         }
 
-        _valueItem_ = node;
+        this._valueItem_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_valueItem_);
+            + toString(this._valueItem_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_valueItem_ == child)
+        // Remove child
+        if(this._valueItem_ == child)
         {
-            _valueItem_ = null;
+            this._valueItem_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_valueItem_ == oldChild)
+        // Replace child
+        if(this._valueItem_ == oldChild)
         {
             setValueItem((PValueItem) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

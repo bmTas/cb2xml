@@ -4,6 +4,7 @@ package net.sf.cb2xml.sablecc.node;
 
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class TWhen extends Token
 {
     public TWhen(String text)
@@ -18,11 +19,13 @@ public final class TWhen extends Token
         setPos(pos);
     }
 
+    @Override
     public Object clone()
     {
       return new TWhen(getText(), getLine(), getPos());
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTWhen(this);

@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ANationalUsagePhrase extends PUsagePhrase
 {
     private TNational _national_;
 
     public ANationalUsagePhrase()
     {
+        // Constructor
     }
 
     public ANationalUsagePhrase(
-        TNational _national_)
+        @SuppressWarnings("hiding") TNational _national_)
     {
+        // Constructor
         setNational(_national_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ANationalUsagePhrase(
-            (TNational) cloneNode(_national_));
+            cloneNode(this._national_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseANationalUsagePhrase(this);
@@ -32,14 +37,14 @@ public final class ANationalUsagePhrase extends PUsagePhrase
 
     public TNational getNational()
     {
-        return _national_;
+        return this._national_;
     }
 
     public void setNational(TNational node)
     {
-        if(_national_ != null)
+        if(this._national_ != null)
         {
-            _national_.parent(null);
+            this._national_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ANationalUsagePhrase extends PUsagePhrase
             node.parent(this);
         }
 
-        _national_ = node;
+        this._national_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_national_);
+            + toString(this._national_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_national_ == child)
+        // Remove child
+        if(this._national_ == child)
         {
-            _national_ = null;
+            this._national_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_national_ == oldChild)
+        // Replace child
+        if(this._national_ == oldChild)
         {
             setNational((TNational) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ATrailingLeadingOrTrailing extends PLeadingOrTrailing
 {
     private TTrailing _trailing_;
 
     public ATrailingLeadingOrTrailing()
     {
+        // Constructor
     }
 
     public ATrailingLeadingOrTrailing(
-        TTrailing _trailing_)
+        @SuppressWarnings("hiding") TTrailing _trailing_)
     {
+        // Constructor
         setTrailing(_trailing_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ATrailingLeadingOrTrailing(
-            (TTrailing) cloneNode(_trailing_));
+            cloneNode(this._trailing_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseATrailingLeadingOrTrailing(this);
@@ -32,14 +37,14 @@ public final class ATrailingLeadingOrTrailing extends PLeadingOrTrailing
 
     public TTrailing getTrailing()
     {
-        return _trailing_;
+        return this._trailing_;
     }
 
     public void setTrailing(TTrailing node)
     {
-        if(_trailing_ != null)
+        if(this._trailing_ != null)
         {
-            _trailing_.parent(null);
+            this._trailing_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ATrailingLeadingOrTrailing extends PLeadingOrTrailing
             node.parent(this);
         }
 
-        _trailing_ = node;
+        this._trailing_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_trailing_);
+            + toString(this._trailing_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_trailing_ == child)
+        // Remove child
+        if(this._trailing_ == child)
         {
-            _trailing_ = null;
+            this._trailing_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_trailing_ == oldChild)
+        // Replace child
+        if(this._trailing_ == oldChild)
         {
             setTrailing((TTrailing) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

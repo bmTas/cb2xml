@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ASingleCharacterString extends PCharacterString
 {
     private PCharacterSubstring _characterSubstring_;
 
     public ASingleCharacterString()
     {
+        // Constructor
     }
 
     public ASingleCharacterString(
-        PCharacterSubstring _characterSubstring_)
+        @SuppressWarnings("hiding") PCharacterSubstring _characterSubstring_)
     {
+        // Constructor
         setCharacterSubstring(_characterSubstring_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ASingleCharacterString(
-            (PCharacterSubstring) cloneNode(_characterSubstring_));
+            cloneNode(this._characterSubstring_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseASingleCharacterString(this);
@@ -32,14 +37,14 @@ public final class ASingleCharacterString extends PCharacterString
 
     public PCharacterSubstring getCharacterSubstring()
     {
-        return _characterSubstring_;
+        return this._characterSubstring_;
     }
 
     public void setCharacterSubstring(PCharacterSubstring node)
     {
-        if(_characterSubstring_ != null)
+        if(this._characterSubstring_ != null)
         {
-            _characterSubstring_.parent(null);
+            this._characterSubstring_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ASingleCharacterString extends PCharacterString
             node.parent(this);
         }
 
-        _characterSubstring_ = node;
+        this._characterSubstring_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_characterSubstring_);
+            + toString(this._characterSubstring_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_characterSubstring_ == child)
+        // Remove child
+        if(this._characterSubstring_ == child)
         {
-            _characterSubstring_ = null;
+            this._characterSubstring_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_characterSubstring_ == oldChild)
+        // Replace child
+        if(this._characterSubstring_ == oldChild)
         {
             setCharacterSubstring((PCharacterSubstring) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

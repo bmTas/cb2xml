@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AValueItem extends PValueItem
 {
     private TNumber88 _number88_;
@@ -14,14 +14,16 @@ public final class AValueItem extends PValueItem
 
     public AValueItem()
     {
+        // Constructor
     }
 
     public AValueItem(
-        TNumber88 _number88_,
-        TDataName _dataName_,
-        PValueOrValues _valueOrValues_,
-        PLiteralSequence _literalSequence_)
+        @SuppressWarnings("hiding") TNumber88 _number88_,
+        @SuppressWarnings("hiding") TDataName _dataName_,
+        @SuppressWarnings("hiding") PValueOrValues _valueOrValues_,
+        @SuppressWarnings("hiding") PLiteralSequence _literalSequence_)
     {
+        // Constructor
         setNumber88(_number88_);
 
         setDataName(_dataName_);
@@ -31,15 +33,18 @@ public final class AValueItem extends PValueItem
         setLiteralSequence(_literalSequence_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AValueItem(
-            (TNumber88) cloneNode(_number88_),
-            (TDataName) cloneNode(_dataName_),
-            (PValueOrValues) cloneNode(_valueOrValues_),
-            (PLiteralSequence) cloneNode(_literalSequence_));
+            cloneNode(this._number88_),
+            cloneNode(this._dataName_),
+            cloneNode(this._valueOrValues_),
+            cloneNode(this._literalSequence_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAValueItem(this);
@@ -47,14 +52,14 @@ public final class AValueItem extends PValueItem
 
     public TNumber88 getNumber88()
     {
-        return _number88_;
+        return this._number88_;
     }
 
     public void setNumber88(TNumber88 node)
     {
-        if(_number88_ != null)
+        if(this._number88_ != null)
         {
-            _number88_.parent(null);
+            this._number88_.parent(null);
         }
 
         if(node != null)
@@ -67,19 +72,19 @@ public final class AValueItem extends PValueItem
             node.parent(this);
         }
 
-        _number88_ = node;
+        this._number88_ = node;
     }
 
     public TDataName getDataName()
     {
-        return _dataName_;
+        return this._dataName_;
     }
 
     public void setDataName(TDataName node)
     {
-        if(_dataName_ != null)
+        if(this._dataName_ != null)
         {
-            _dataName_.parent(null);
+            this._dataName_.parent(null);
         }
 
         if(node != null)
@@ -92,19 +97,19 @@ public final class AValueItem extends PValueItem
             node.parent(this);
         }
 
-        _dataName_ = node;
+        this._dataName_ = node;
     }
 
     public PValueOrValues getValueOrValues()
     {
-        return _valueOrValues_;
+        return this._valueOrValues_;
     }
 
     public void setValueOrValues(PValueOrValues node)
     {
-        if(_valueOrValues_ != null)
+        if(this._valueOrValues_ != null)
         {
-            _valueOrValues_.parent(null);
+            this._valueOrValues_.parent(null);
         }
 
         if(node != null)
@@ -117,19 +122,19 @@ public final class AValueItem extends PValueItem
             node.parent(this);
         }
 
-        _valueOrValues_ = node;
+        this._valueOrValues_ = node;
     }
 
     public PLiteralSequence getLiteralSequence()
     {
-        return _literalSequence_;
+        return this._literalSequence_;
     }
 
     public void setLiteralSequence(PLiteralSequence node)
     {
-        if(_literalSequence_ != null)
+        if(this._literalSequence_ != null)
         {
-            _literalSequence_.parent(null);
+            this._literalSequence_.parent(null);
         }
 
         if(node != null)
@@ -142,71 +147,78 @@ public final class AValueItem extends PValueItem
             node.parent(this);
         }
 
-        _literalSequence_ = node;
+        this._literalSequence_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_number88_)
-            + toString(_dataName_)
-            + toString(_valueOrValues_)
-            + toString(_literalSequence_);
+            + toString(this._number88_)
+            + toString(this._dataName_)
+            + toString(this._valueOrValues_)
+            + toString(this._literalSequence_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_number88_ == child)
+        // Remove child
+        if(this._number88_ == child)
         {
-            _number88_ = null;
+            this._number88_ = null;
             return;
         }
 
-        if(_dataName_ == child)
+        if(this._dataName_ == child)
         {
-            _dataName_ = null;
+            this._dataName_ = null;
             return;
         }
 
-        if(_valueOrValues_ == child)
+        if(this._valueOrValues_ == child)
         {
-            _valueOrValues_ = null;
+            this._valueOrValues_ = null;
             return;
         }
 
-        if(_literalSequence_ == child)
+        if(this._literalSequence_ == child)
         {
-            _literalSequence_ = null;
+            this._literalSequence_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_number88_ == oldChild)
+        // Replace child
+        if(this._number88_ == oldChild)
         {
             setNumber88((TNumber88) newChild);
             return;
         }
 
-        if(_dataName_ == oldChild)
+        if(this._dataName_ == oldChild)
         {
             setDataName((TDataName) newChild);
             return;
         }
 
-        if(_valueOrValues_ == oldChild)
+        if(this._valueOrValues_ == oldChild)
         {
             setValueOrValues((PValueOrValues) newChild);
             return;
         }
 
-        if(_literalSequence_ == oldChild)
+        if(this._literalSequence_ == oldChild)
         {
             setLiteralSequence((PLiteralSequence) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

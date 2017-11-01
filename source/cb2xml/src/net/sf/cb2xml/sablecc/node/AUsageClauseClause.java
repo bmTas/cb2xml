@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AUsageClauseClause extends PClause
 {
     private PUsageClause _usageClause_;
 
     public AUsageClauseClause()
     {
+        // Constructor
     }
 
     public AUsageClauseClause(
-        PUsageClause _usageClause_)
+        @SuppressWarnings("hiding") PUsageClause _usageClause_)
     {
+        // Constructor
         setUsageClause(_usageClause_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AUsageClauseClause(
-            (PUsageClause) cloneNode(_usageClause_));
+            cloneNode(this._usageClause_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAUsageClauseClause(this);
@@ -32,14 +37,14 @@ public final class AUsageClauseClause extends PClause
 
     public PUsageClause getUsageClause()
     {
-        return _usageClause_;
+        return this._usageClause_;
     }
 
     public void setUsageClause(PUsageClause node)
     {
-        if(_usageClause_ != null)
+        if(this._usageClause_ != null)
         {
-            _usageClause_.parent(null);
+            this._usageClause_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class AUsageClauseClause extends PClause
             node.parent(this);
         }
 
-        _usageClause_ = node;
+        this._usageClause_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_usageClause_);
+            + toString(this._usageClause_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_usageClause_ == child)
+        // Remove child
+        if(this._usageClause_ == child)
         {
-            _usageClause_ = null;
+            this._usageClause_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_usageClause_ == oldChild)
+        // Replace child
+        if(this._usageClause_ == oldChild)
         {
             setUsageClause((PUsageClause) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

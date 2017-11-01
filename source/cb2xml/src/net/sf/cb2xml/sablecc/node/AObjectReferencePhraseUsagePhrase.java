@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AObjectReferencePhraseUsagePhrase extends PUsagePhrase
 {
     private PObjectReferencePhrase _objectReferencePhrase_;
 
     public AObjectReferencePhraseUsagePhrase()
     {
+        // Constructor
     }
 
     public AObjectReferencePhraseUsagePhrase(
-        PObjectReferencePhrase _objectReferencePhrase_)
+        @SuppressWarnings("hiding") PObjectReferencePhrase _objectReferencePhrase_)
     {
+        // Constructor
         setObjectReferencePhrase(_objectReferencePhrase_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AObjectReferencePhraseUsagePhrase(
-            (PObjectReferencePhrase) cloneNode(_objectReferencePhrase_));
+            cloneNode(this._objectReferencePhrase_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAObjectReferencePhraseUsagePhrase(this);
@@ -32,14 +37,14 @@ public final class AObjectReferencePhraseUsagePhrase extends PUsagePhrase
 
     public PObjectReferencePhrase getObjectReferencePhrase()
     {
-        return _objectReferencePhrase_;
+        return this._objectReferencePhrase_;
     }
 
     public void setObjectReferencePhrase(PObjectReferencePhrase node)
     {
-        if(_objectReferencePhrase_ != null)
+        if(this._objectReferencePhrase_ != null)
         {
-            _objectReferencePhrase_.parent(null);
+            this._objectReferencePhrase_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class AObjectReferencePhraseUsagePhrase extends PUsagePhrase
             node.parent(this);
         }
 
-        _objectReferencePhrase_ = node;
+        this._objectReferencePhrase_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_objectReferencePhrase_);
+            + toString(this._objectReferencePhrase_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_objectReferencePhrase_ == child)
+        // Remove child
+        if(this._objectReferencePhrase_ == child)
         {
-            _objectReferencePhrase_ = null;
+            this._objectReferencePhrase_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_objectReferencePhrase_ == oldChild)
+        // Replace child
+        if(this._objectReferencePhrase_ == oldChild)
         {
             setObjectReferencePhrase((PObjectReferencePhrase) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

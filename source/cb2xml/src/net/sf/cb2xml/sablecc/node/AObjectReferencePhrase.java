@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AObjectReferencePhrase extends PObjectReferencePhrase
 {
     private TObject _object_;
@@ -13,13 +13,15 @@ public final class AObjectReferencePhrase extends PObjectReferencePhrase
 
     public AObjectReferencePhrase()
     {
+        // Constructor
     }
 
     public AObjectReferencePhrase(
-        TObject _object_,
-        TReference _reference_,
-        TDataName _dataName_)
+        @SuppressWarnings("hiding") TObject _object_,
+        @SuppressWarnings("hiding") TReference _reference_,
+        @SuppressWarnings("hiding") TDataName _dataName_)
     {
+        // Constructor
         setObject(_object_);
 
         setReference(_reference_);
@@ -27,14 +29,17 @@ public final class AObjectReferencePhrase extends PObjectReferencePhrase
         setDataName(_dataName_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AObjectReferencePhrase(
-            (TObject) cloneNode(_object_),
-            (TReference) cloneNode(_reference_),
-            (TDataName) cloneNode(_dataName_));
+            cloneNode(this._object_),
+            cloneNode(this._reference_),
+            cloneNode(this._dataName_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAObjectReferencePhrase(this);
@@ -42,14 +47,14 @@ public final class AObjectReferencePhrase extends PObjectReferencePhrase
 
     public TObject getObject()
     {
-        return _object_;
+        return this._object_;
     }
 
     public void setObject(TObject node)
     {
-        if(_object_ != null)
+        if(this._object_ != null)
         {
-            _object_.parent(null);
+            this._object_.parent(null);
         }
 
         if(node != null)
@@ -62,19 +67,19 @@ public final class AObjectReferencePhrase extends PObjectReferencePhrase
             node.parent(this);
         }
 
-        _object_ = node;
+        this._object_ = node;
     }
 
     public TReference getReference()
     {
-        return _reference_;
+        return this._reference_;
     }
 
     public void setReference(TReference node)
     {
-        if(_reference_ != null)
+        if(this._reference_ != null)
         {
-            _reference_.parent(null);
+            this._reference_.parent(null);
         }
 
         if(node != null)
@@ -87,19 +92,19 @@ public final class AObjectReferencePhrase extends PObjectReferencePhrase
             node.parent(this);
         }
 
-        _reference_ = node;
+        this._reference_ = node;
     }
 
     public TDataName getDataName()
     {
-        return _dataName_;
+        return this._dataName_;
     }
 
     public void setDataName(TDataName node)
     {
-        if(_dataName_ != null)
+        if(this._dataName_ != null)
         {
-            _dataName_.parent(null);
+            this._dataName_.parent(null);
         }
 
         if(node != null)
@@ -112,58 +117,65 @@ public final class AObjectReferencePhrase extends PObjectReferencePhrase
             node.parent(this);
         }
 
-        _dataName_ = node;
+        this._dataName_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_object_)
-            + toString(_reference_)
-            + toString(_dataName_);
+            + toString(this._object_)
+            + toString(this._reference_)
+            + toString(this._dataName_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_object_ == child)
+        // Remove child
+        if(this._object_ == child)
         {
-            _object_ = null;
+            this._object_ = null;
             return;
         }
 
-        if(_reference_ == child)
+        if(this._reference_ == child)
         {
-            _reference_ = null;
+            this._reference_ = null;
             return;
         }
 
-        if(_dataName_ == child)
+        if(this._dataName_ == child)
         {
-            _dataName_ = null;
+            this._dataName_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_object_ == oldChild)
+        // Replace child
+        if(this._object_ == oldChild)
         {
             setObject((TObject) newChild);
             return;
         }
 
-        if(_reference_ == oldChild)
+        if(this._reference_ == oldChild)
         {
             setReference((TReference) newChild);
             return;
         }
 
-        if(_dataName_ == oldChild)
+        if(this._dataName_ == oldChild)
         {
             setDataName((TDataName) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.stream.XMLStreamException;
 
 import net.sf.cb2xml.Cb2Xml2;
 import net.sf.cb2xml.def.Cb2xmlConstants;
@@ -22,7 +23,7 @@ public class TstCb2xml22 {
 	private static String XML_FILE_PREF = "xmlCopybook/cb2xml_Output";
 
 	@Test
-	public void test() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException {
+	public void test() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException, XMLStreamException {
 		String xmlFilename = Code.getFullName(XML_FILE_PREF +  "102.xml");
 		String cblFilename = Code.getFullName(COPBOOK_PREF  +  "102.cbl");
 		String freeFormatCbl = Code.getFullName("cobolCopybook/FreeFormat.cbl");
@@ -49,7 +50,5 @@ public class TstCb2xml22 {
 		common.Code.compare("Check 17: " , expected, Cb2Xml2.convertToXMLDOM(new FileInputStream(freeFormatFile), "Ams-Vendor", false, Cb2xmlConstants.FREE_FORMAT));
 		common.Code.compare("Check 18: " , expected, Cb2Xml2.convertToXMLDOM(new FileInputStream(cobolCopybookFile), "Ams-Vendor", false, Cb2xmlConstants.USE_COLS_6_TO_80)); 
 		common.Code.compare("Check 19: " , expected, Cb2Xml2.convertToXMLDOM(new FileInputStream(cobolCopybookFile), "Ams-Vendor", false, Cb2xmlConstants.USE_LONG_LINE)); 
-
 	}
-
 }

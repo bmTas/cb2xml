@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AUsageIs extends PUsageIs
 {
     private TUsage _usage_;
@@ -12,24 +12,29 @@ public final class AUsageIs extends PUsageIs
 
     public AUsageIs()
     {
+        // Constructor
     }
 
     public AUsageIs(
-        TUsage _usage_,
-        TIs _is_)
+        @SuppressWarnings("hiding") TUsage _usage_,
+        @SuppressWarnings("hiding") TIs _is_)
     {
+        // Constructor
         setUsage(_usage_);
 
         setIs(_is_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AUsageIs(
-            (TUsage) cloneNode(_usage_),
-            (TIs) cloneNode(_is_));
+            cloneNode(this._usage_),
+            cloneNode(this._is_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAUsageIs(this);
@@ -37,14 +42,14 @@ public final class AUsageIs extends PUsageIs
 
     public TUsage getUsage()
     {
-        return _usage_;
+        return this._usage_;
     }
 
     public void setUsage(TUsage node)
     {
-        if(_usage_ != null)
+        if(this._usage_ != null)
         {
-            _usage_.parent(null);
+            this._usage_.parent(null);
         }
 
         if(node != null)
@@ -57,19 +62,19 @@ public final class AUsageIs extends PUsageIs
             node.parent(this);
         }
 
-        _usage_ = node;
+        this._usage_ = node;
     }
 
     public TIs getIs()
     {
-        return _is_;
+        return this._is_;
     }
 
     public void setIs(TIs node)
     {
-        if(_is_ != null)
+        if(this._is_ != null)
         {
-            _is_.parent(null);
+            this._is_.parent(null);
         }
 
         if(node != null)
@@ -82,45 +87,52 @@ public final class AUsageIs extends PUsageIs
             node.parent(this);
         }
 
-        _is_ = node;
+        this._is_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_usage_)
-            + toString(_is_);
+            + toString(this._usage_)
+            + toString(this._is_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_usage_ == child)
+        // Remove child
+        if(this._usage_ == child)
         {
-            _usage_ = null;
+            this._usage_ = null;
             return;
         }
 
-        if(_is_ == child)
+        if(this._is_ == child)
         {
-            _is_ = null;
+            this._is_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_usage_ == oldChild)
+        // Replace child
+        if(this._usage_ == oldChild)
         {
             setUsage((TUsage) newChild);
             return;
         }
 
-        if(_is_ == oldChild)
+        if(this._is_ == oldChild)
         {
             setIs((TIs) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

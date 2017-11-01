@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ASignIs extends PSignIs
 {
     private TSign _sign_;
@@ -12,24 +12,29 @@ public final class ASignIs extends PSignIs
 
     public ASignIs()
     {
+        // Constructor
     }
 
     public ASignIs(
-        TSign _sign_,
-        TIs _is_)
+        @SuppressWarnings("hiding") TSign _sign_,
+        @SuppressWarnings("hiding") TIs _is_)
     {
+        // Constructor
         setSign(_sign_);
 
         setIs(_is_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ASignIs(
-            (TSign) cloneNode(_sign_),
-            (TIs) cloneNode(_is_));
+            cloneNode(this._sign_),
+            cloneNode(this._is_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseASignIs(this);
@@ -37,14 +42,14 @@ public final class ASignIs extends PSignIs
 
     public TSign getSign()
     {
-        return _sign_;
+        return this._sign_;
     }
 
     public void setSign(TSign node)
     {
-        if(_sign_ != null)
+        if(this._sign_ != null)
         {
-            _sign_.parent(null);
+            this._sign_.parent(null);
         }
 
         if(node != null)
@@ -57,19 +62,19 @@ public final class ASignIs extends PSignIs
             node.parent(this);
         }
 
-        _sign_ = node;
+        this._sign_ = node;
     }
 
     public TIs getIs()
     {
-        return _is_;
+        return this._is_;
     }
 
     public void setIs(TIs node)
     {
-        if(_is_ != null)
+        if(this._is_ != null)
         {
-            _is_.parent(null);
+            this._is_.parent(null);
         }
 
         if(node != null)
@@ -82,45 +87,52 @@ public final class ASignIs extends PSignIs
             node.parent(this);
         }
 
-        _is_ = node;
+        this._is_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_sign_)
-            + toString(_is_);
+            + toString(this._sign_)
+            + toString(this._is_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_sign_ == child)
+        // Remove child
+        if(this._sign_ == child)
         {
-            _sign_ = null;
+            this._sign_ = null;
             return;
         }
 
-        if(_is_ == child)
+        if(this._is_ == child)
         {
-            _is_ = null;
+            this._is_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_sign_ == oldChild)
+        // Replace child
+        if(this._sign_ == oldChild)
         {
             setSign((TSign) newChild);
             return;
         }
 
-        if(_is_ == oldChild)
+        if(this._is_ == oldChild)
         {
             setIs((TIs) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

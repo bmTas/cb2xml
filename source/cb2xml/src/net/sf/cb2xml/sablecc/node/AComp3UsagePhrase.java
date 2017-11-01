@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AComp3UsagePhrase extends PUsagePhrase
 {
     private TComp3 _comp3_;
 
     public AComp3UsagePhrase()
     {
+        // Constructor
     }
 
     public AComp3UsagePhrase(
-        TComp3 _comp3_)
+        @SuppressWarnings("hiding") TComp3 _comp3_)
     {
+        // Constructor
         setComp3(_comp3_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AComp3UsagePhrase(
-            (TComp3) cloneNode(_comp3_));
+            cloneNode(this._comp3_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAComp3UsagePhrase(this);
@@ -32,14 +37,14 @@ public final class AComp3UsagePhrase extends PUsagePhrase
 
     public TComp3 getComp3()
     {
-        return _comp3_;
+        return this._comp3_;
     }
 
     public void setComp3(TComp3 node)
     {
-        if(_comp3_ != null)
+        if(this._comp3_ != null)
         {
-            _comp3_.parent(null);
+            this._comp3_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class AComp3UsagePhrase extends PUsagePhrase
             node.parent(this);
         }
 
-        _comp3_ = node;
+        this._comp3_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_comp3_);
+            + toString(this._comp3_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_comp3_ == child)
+        // Remove child
+        if(this._comp3_ == child)
         {
-            _comp3_ = null;
+            this._comp3_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_comp3_ == oldChild)
+        // Replace child
+        if(this._comp3_ == oldChild)
         {
             setComp3((TComp3) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AThroughPhrase extends PThroughPhrase
 {
     private TThrough _through_;
@@ -12,24 +12,29 @@ public final class AThroughPhrase extends PThroughPhrase
 
     public AThroughPhrase()
     {
+        // Constructor
     }
 
     public AThroughPhrase(
-        TThrough _through_,
-        TDataName _dataName_)
+        @SuppressWarnings("hiding") TThrough _through_,
+        @SuppressWarnings("hiding") TDataName _dataName_)
     {
+        // Constructor
         setThrough(_through_);
 
         setDataName(_dataName_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AThroughPhrase(
-            (TThrough) cloneNode(_through_),
-            (TDataName) cloneNode(_dataName_));
+            cloneNode(this._through_),
+            cloneNode(this._dataName_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAThroughPhrase(this);
@@ -37,14 +42,14 @@ public final class AThroughPhrase extends PThroughPhrase
 
     public TThrough getThrough()
     {
-        return _through_;
+        return this._through_;
     }
 
     public void setThrough(TThrough node)
     {
-        if(_through_ != null)
+        if(this._through_ != null)
         {
-            _through_.parent(null);
+            this._through_.parent(null);
         }
 
         if(node != null)
@@ -57,19 +62,19 @@ public final class AThroughPhrase extends PThroughPhrase
             node.parent(this);
         }
 
-        _through_ = node;
+        this._through_ = node;
     }
 
     public TDataName getDataName()
     {
-        return _dataName_;
+        return this._dataName_;
     }
 
     public void setDataName(TDataName node)
     {
-        if(_dataName_ != null)
+        if(this._dataName_ != null)
         {
-            _dataName_.parent(null);
+            this._dataName_.parent(null);
         }
 
         if(node != null)
@@ -82,45 +87,52 @@ public final class AThroughPhrase extends PThroughPhrase
             node.parent(this);
         }
 
-        _dataName_ = node;
+        this._dataName_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_through_)
-            + toString(_dataName_);
+            + toString(this._through_)
+            + toString(this._dataName_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_through_ == child)
+        // Remove child
+        if(this._through_ == child)
         {
-            _through_ = null;
+            this._through_ = null;
             return;
         }
 
-        if(_dataName_ == child)
+        if(this._dataName_ == child)
         {
-            _dataName_ = null;
+            this._dataName_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_through_ == oldChild)
+        // Replace child
+        if(this._through_ == oldChild)
         {
             setThrough((TThrough) newChild);
             return;
         }
 
-        if(_dataName_ == oldChild)
+        if(this._dataName_ == oldChild)
         {
             setDataName((TDataName) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

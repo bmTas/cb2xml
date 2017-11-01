@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ADateFormatClause extends PDateFormatClause
 {
     private TDate _date_;
@@ -14,14 +14,16 @@ public final class ADateFormatClause extends PDateFormatClause
 
     public ADateFormatClause()
     {
+        // Constructor
     }
 
     public ADateFormatClause(
-        TDate _date_,
-        TFormat _format_,
-        TIs _is_,
-        TDataName _dataName_)
+        @SuppressWarnings("hiding") TDate _date_,
+        @SuppressWarnings("hiding") TFormat _format_,
+        @SuppressWarnings("hiding") TIs _is_,
+        @SuppressWarnings("hiding") TDataName _dataName_)
     {
+        // Constructor
         setDate(_date_);
 
         setFormat(_format_);
@@ -31,15 +33,18 @@ public final class ADateFormatClause extends PDateFormatClause
         setDataName(_dataName_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ADateFormatClause(
-            (TDate) cloneNode(_date_),
-            (TFormat) cloneNode(_format_),
-            (TIs) cloneNode(_is_),
-            (TDataName) cloneNode(_dataName_));
+            cloneNode(this._date_),
+            cloneNode(this._format_),
+            cloneNode(this._is_),
+            cloneNode(this._dataName_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseADateFormatClause(this);
@@ -47,14 +52,14 @@ public final class ADateFormatClause extends PDateFormatClause
 
     public TDate getDate()
     {
-        return _date_;
+        return this._date_;
     }
 
     public void setDate(TDate node)
     {
-        if(_date_ != null)
+        if(this._date_ != null)
         {
-            _date_.parent(null);
+            this._date_.parent(null);
         }
 
         if(node != null)
@@ -67,19 +72,19 @@ public final class ADateFormatClause extends PDateFormatClause
             node.parent(this);
         }
 
-        _date_ = node;
+        this._date_ = node;
     }
 
     public TFormat getFormat()
     {
-        return _format_;
+        return this._format_;
     }
 
     public void setFormat(TFormat node)
     {
-        if(_format_ != null)
+        if(this._format_ != null)
         {
-            _format_.parent(null);
+            this._format_.parent(null);
         }
 
         if(node != null)
@@ -92,19 +97,19 @@ public final class ADateFormatClause extends PDateFormatClause
             node.parent(this);
         }
 
-        _format_ = node;
+        this._format_ = node;
     }
 
     public TIs getIs()
     {
-        return _is_;
+        return this._is_;
     }
 
     public void setIs(TIs node)
     {
-        if(_is_ != null)
+        if(this._is_ != null)
         {
-            _is_.parent(null);
+            this._is_.parent(null);
         }
 
         if(node != null)
@@ -117,19 +122,19 @@ public final class ADateFormatClause extends PDateFormatClause
             node.parent(this);
         }
 
-        _is_ = node;
+        this._is_ = node;
     }
 
     public TDataName getDataName()
     {
-        return _dataName_;
+        return this._dataName_;
     }
 
     public void setDataName(TDataName node)
     {
-        if(_dataName_ != null)
+        if(this._dataName_ != null)
         {
-            _dataName_.parent(null);
+            this._dataName_.parent(null);
         }
 
         if(node != null)
@@ -142,71 +147,78 @@ public final class ADateFormatClause extends PDateFormatClause
             node.parent(this);
         }
 
-        _dataName_ = node;
+        this._dataName_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_date_)
-            + toString(_format_)
-            + toString(_is_)
-            + toString(_dataName_);
+            + toString(this._date_)
+            + toString(this._format_)
+            + toString(this._is_)
+            + toString(this._dataName_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_date_ == child)
+        // Remove child
+        if(this._date_ == child)
         {
-            _date_ = null;
+            this._date_ = null;
             return;
         }
 
-        if(_format_ == child)
+        if(this._format_ == child)
         {
-            _format_ = null;
+            this._format_ = null;
             return;
         }
 
-        if(_is_ == child)
+        if(this._is_ == child)
         {
-            _is_ = null;
+            this._is_ = null;
             return;
         }
 
-        if(_dataName_ == child)
+        if(this._dataName_ == child)
         {
-            _dataName_ = null;
+            this._dataName_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_date_ == oldChild)
+        // Replace child
+        if(this._date_ == oldChild)
         {
             setDate((TDate) newChild);
             return;
         }
 
-        if(_format_ == oldChild)
+        if(this._format_ == oldChild)
         {
             setFormat((TFormat) newChild);
             return;
         }
 
-        if(_is_ == oldChild)
+        if(this._is_ == oldChild)
         {
             setIs((TIs) newChild);
             return;
         }
 
-        if(_dataName_ == oldChild)
+        if(this._dataName_ == oldChild)
         {
             setDataName((TDataName) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

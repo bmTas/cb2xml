@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ADisplayUsagePhrase extends PUsagePhrase
 {
     private TDisplay _display_;
@@ -12,24 +12,29 @@ public final class ADisplayUsagePhrase extends PUsagePhrase
 
     public ADisplayUsagePhrase()
     {
+        // Constructor
     }
 
     public ADisplayUsagePhrase(
-        TDisplay _display_,
-        TNative _native_)
+        @SuppressWarnings("hiding") TDisplay _display_,
+        @SuppressWarnings("hiding") TNative _native_)
     {
+        // Constructor
         setDisplay(_display_);
 
         setNative(_native_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ADisplayUsagePhrase(
-            (TDisplay) cloneNode(_display_),
-            (TNative) cloneNode(_native_));
+            cloneNode(this._display_),
+            cloneNode(this._native_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseADisplayUsagePhrase(this);
@@ -37,14 +42,14 @@ public final class ADisplayUsagePhrase extends PUsagePhrase
 
     public TDisplay getDisplay()
     {
-        return _display_;
+        return this._display_;
     }
 
     public void setDisplay(TDisplay node)
     {
-        if(_display_ != null)
+        if(this._display_ != null)
         {
-            _display_.parent(null);
+            this._display_.parent(null);
         }
 
         if(node != null)
@@ -57,19 +62,19 @@ public final class ADisplayUsagePhrase extends PUsagePhrase
             node.parent(this);
         }
 
-        _display_ = node;
+        this._display_ = node;
     }
 
     public TNative getNative()
     {
-        return _native_;
+        return this._native_;
     }
 
     public void setNative(TNative node)
     {
-        if(_native_ != null)
+        if(this._native_ != null)
         {
-            _native_.parent(null);
+            this._native_.parent(null);
         }
 
         if(node != null)
@@ -82,45 +87,52 @@ public final class ADisplayUsagePhrase extends PUsagePhrase
             node.parent(this);
         }
 
-        _native_ = node;
+        this._native_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_display_)
-            + toString(_native_);
+            + toString(this._display_)
+            + toString(this._native_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_display_ == child)
+        // Remove child
+        if(this._display_ == child)
         {
-            _display_ = null;
+            this._display_ = null;
             return;
         }
 
-        if(_native_ == child)
+        if(this._native_ == child)
         {
-            _native_ = null;
+            this._native_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_display_ == oldChild)
+        // Replace child
+        if(this._display_ == oldChild)
         {
             setDisplay((TDisplay) newChild);
             return;
         }
 
-        if(_native_ == oldChild)
+        if(this._native_ == oldChild)
         {
             setNative((TNative) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

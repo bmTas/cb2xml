@@ -3,20 +3,21 @@
 package net.sf.cb2xml.sablecc.node;
 
 import java.util.*;
-import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public abstract class Node implements Switchable, Cloneable
 {
     private Node parent;
 
+    @Override
     public abstract Object clone();
 
     public Node parent()
     {
-        return parent;
+        return this.parent;
     }
 
-    void parent(Node parent)
+    void parent(@SuppressWarnings("hiding") Node parent)
     {
         this.parent = parent;
     }
@@ -26,10 +27,7 @@ public abstract class Node implements Switchable, Cloneable
 
     public void replaceBy(Node node)
     {
-        if(parent != null)
-        {
-            parent.replaceChild(this, node);
-        }
+        this.parent.replaceChild(this, node);
     }
 
     protected String toString(Node node)
@@ -42,11 +40,11 @@ public abstract class Node implements Switchable, Cloneable
         return "";
     }
 
-    protected String toString(List list)
+    protected String toString(List<?> list)
     {
         StringBuffer s = new StringBuffer();
 
-        for(Iterator i = list.iterator(); i.hasNext();)
+        for(Iterator<?> i = list.iterator(); i.hasNext();)
         {
             s.append(i.next());
         }
@@ -54,23 +52,25 @@ public abstract class Node implements Switchable, Cloneable
         return s.toString();
     }
 
-    protected Node cloneNode(Node node)
+    @SuppressWarnings("unchecked")
+    protected <T extends Node> T cloneNode(T node)
     {
         if(node != null)
         {
-            return (Node) node.clone();
+            return (T) node.clone();
         }
 
         return null;
     }
 
-    protected List cloneList(List list)
+    @SuppressWarnings("unchecked")
+    protected <T extends Node> List<T> cloneList(List<T> list)
     {
-        List clone = new LinkedList();
+        List<T> clone = new LinkedList<T>();
 
-        for(Iterator i = list.iterator(); i.hasNext();)
+        for(T n : list)
         {
-            clone.add(((Node) i.next()).clone());
+            clone.add((T) n.clone());
         }
 
         return clone;

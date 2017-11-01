@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ACommaCharacterSubstring extends PCharacterSubstring
 {
     private TComma _comma_;
 
     public ACommaCharacterSubstring()
     {
+        // Constructor
     }
 
     public ACommaCharacterSubstring(
-        TComma _comma_)
+        @SuppressWarnings("hiding") TComma _comma_)
     {
+        // Constructor
         setComma(_comma_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ACommaCharacterSubstring(
-            (TComma) cloneNode(_comma_));
+            cloneNode(this._comma_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseACommaCharacterSubstring(this);
@@ -32,14 +37,14 @@ public final class ACommaCharacterSubstring extends PCharacterSubstring
 
     public TComma getComma()
     {
-        return _comma_;
+        return this._comma_;
     }
 
     public void setComma(TComma node)
     {
-        if(_comma_ != null)
+        if(this._comma_ != null)
         {
-            _comma_.parent(null);
+            this._comma_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ACommaCharacterSubstring extends PCharacterSubstring
             node.parent(this);
         }
 
-        _comma_ = node;
+        this._comma_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_comma_);
+            + toString(this._comma_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_comma_ == child)
+        // Remove child
+        if(this._comma_ == child)
         {
-            _comma_ = null;
+            this._comma_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_comma_ == oldChild)
+        // Replace child
+        if(this._comma_ == oldChild)
         {
             setComma((TComma) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

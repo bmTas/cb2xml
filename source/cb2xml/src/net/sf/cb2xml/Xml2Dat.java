@@ -7,6 +7,8 @@ import org.w3c.dom.Document;
 
 /**
  * Converts a XML data file + a XML copybook description into a .DAT (data) file.
+ * 
+ * Use https://sourceforge.net/projects/coboltoxml/ instead of this program !!!
  */
 public class Xml2Dat
 {

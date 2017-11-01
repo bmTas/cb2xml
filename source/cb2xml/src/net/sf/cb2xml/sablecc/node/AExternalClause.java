@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AExternalClause extends PExternalClause
 {
     private TExternal _external_;
 
     public AExternalClause()
     {
+        // Constructor
     }
 
     public AExternalClause(
-        TExternal _external_)
+        @SuppressWarnings("hiding") TExternal _external_)
     {
+        // Constructor
         setExternal(_external_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AExternalClause(
-            (TExternal) cloneNode(_external_));
+            cloneNode(this._external_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAExternalClause(this);
@@ -32,14 +37,14 @@ public final class AExternalClause extends PExternalClause
 
     public TExternal getExternal()
     {
-        return _external_;
+        return this._external_;
     }
 
     public void setExternal(TExternal node)
     {
-        if(_external_ != null)
+        if(this._external_ != null)
         {
-            _external_.parent(null);
+            this._external_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class AExternalClause extends PExternalClause
             node.parent(this);
         }
 
-        _external_ = node;
+        this._external_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_external_);
+            + toString(this._external_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_external_ == child)
+        // Remove child
+        if(this._external_ == child)
         {
-            _external_ = null;
+            this._external_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_external_ == oldChild)
+        // Replace child
+        if(this._external_ == oldChild)
         {
             setExternal((TExternal) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

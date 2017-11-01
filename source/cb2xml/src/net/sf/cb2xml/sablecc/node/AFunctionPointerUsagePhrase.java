@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AFunctionPointerUsagePhrase extends PUsagePhrase
 {
     private TFunctionPointer _functionPointer_;
 
     public AFunctionPointerUsagePhrase()
     {
+        // Constructor
     }
 
     public AFunctionPointerUsagePhrase(
-        TFunctionPointer _functionPointer_)
+        @SuppressWarnings("hiding") TFunctionPointer _functionPointer_)
     {
+        // Constructor
         setFunctionPointer(_functionPointer_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AFunctionPointerUsagePhrase(
-            (TFunctionPointer) cloneNode(_functionPointer_));
+            cloneNode(this._functionPointer_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAFunctionPointerUsagePhrase(this);
@@ -32,14 +37,14 @@ public final class AFunctionPointerUsagePhrase extends PUsagePhrase
 
     public TFunctionPointer getFunctionPointer()
     {
-        return _functionPointer_;
+        return this._functionPointer_;
     }
 
     public void setFunctionPointer(TFunctionPointer node)
     {
-        if(_functionPointer_ != null)
+        if(this._functionPointer_ != null)
         {
-            _functionPointer_.parent(null);
+            this._functionPointer_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class AFunctionPointerUsagePhrase extends PUsagePhrase
             node.parent(this);
         }
 
-        _functionPointer_ = node;
+        this._functionPointer_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_functionPointer_);
+            + toString(this._functionPointer_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_functionPointer_ == child)
+        // Remove child
+        if(this._functionPointer_ == child)
         {
-            _functionPointer_ = null;
+            this._functionPointer_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_functionPointer_ == oldChild)
+        // Replace child
+        if(this._functionPointer_ == oldChild)
         {
             setFunctionPointer((TFunctionPointer) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

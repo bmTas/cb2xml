@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class APictureClauseClause extends PClause
 {
     private PPictureClause _pictureClause_;
 
     public APictureClauseClause()
     {
+        // Constructor
     }
 
     public APictureClauseClause(
-        PPictureClause _pictureClause_)
+        @SuppressWarnings("hiding") PPictureClause _pictureClause_)
     {
+        // Constructor
         setPictureClause(_pictureClause_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new APictureClauseClause(
-            (PPictureClause) cloneNode(_pictureClause_));
+            cloneNode(this._pictureClause_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAPictureClauseClause(this);
@@ -32,14 +37,14 @@ public final class APictureClauseClause extends PClause
 
     public PPictureClause getPictureClause()
     {
-        return _pictureClause_;
+        return this._pictureClause_;
     }
 
     public void setPictureClause(PPictureClause node)
     {
-        if(_pictureClause_ != null)
+        if(this._pictureClause_ != null)
         {
-            _pictureClause_.parent(null);
+            this._pictureClause_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class APictureClauseClause extends PClause
             node.parent(this);
         }
 
-        _pictureClause_ = node;
+        this._pictureClause_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_pictureClause_);
+            + toString(this._pictureClause_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_pictureClause_ == child)
+        // Remove child
+        if(this._pictureClause_ == child)
         {
-            _pictureClause_ = null;
+            this._pictureClause_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_pictureClause_ == oldChild)
+        // Replace child
+        if(this._pictureClause_ == oldChild)
         {
             setPictureClause((PPictureClause) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

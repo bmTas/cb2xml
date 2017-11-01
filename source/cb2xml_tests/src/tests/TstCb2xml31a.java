@@ -140,9 +140,10 @@ public class TstCb2xml31a {
 			
 			Cb2Xml.main(args);
 
+			System.out.println(c + " --> " + xmlFilename + ":");
+			System.out.println(c + " --> " + xmlFilename + ":");
 			Document doc = Code.fileToDom(xmlOut);
 			
-			System.out.println(c + " --> " + xmlFilename + ":");
 			System.out.println(XmlUtils.domToString(doc));
 			System.out.println();
 		

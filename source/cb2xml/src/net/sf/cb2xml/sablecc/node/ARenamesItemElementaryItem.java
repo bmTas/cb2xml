@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ARenamesItemElementaryItem extends PElementaryItem
 {
     private PRenamesItem _renamesItem_;
 
     public ARenamesItemElementaryItem()
     {
+        // Constructor
     }
 
     public ARenamesItemElementaryItem(
-        PRenamesItem _renamesItem_)
+        @SuppressWarnings("hiding") PRenamesItem _renamesItem_)
     {
+        // Constructor
         setRenamesItem(_renamesItem_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ARenamesItemElementaryItem(
-            (PRenamesItem) cloneNode(_renamesItem_));
+            cloneNode(this._renamesItem_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseARenamesItemElementaryItem(this);
@@ -32,14 +37,14 @@ public final class ARenamesItemElementaryItem extends PElementaryItem
 
     public PRenamesItem getRenamesItem()
     {
-        return _renamesItem_;
+        return this._renamesItem_;
     }
 
     public void setRenamesItem(PRenamesItem node)
     {
-        if(_renamesItem_ != null)
+        if(this._renamesItem_ != null)
         {
-            _renamesItem_.parent(null);
+            this._renamesItem_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ARenamesItemElementaryItem extends PElementaryItem
             node.parent(this);
         }
 
-        _renamesItem_ = node;
+        this._renamesItem_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_renamesItem_);
+            + toString(this._renamesItem_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_renamesItem_ == child)
+        // Remove child
+        if(this._renamesItem_ == child)
         {
-            _renamesItem_ = null;
+            this._renamesItem_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_renamesItem_ == oldChild)
+        // Replace child
+        if(this._renamesItem_ == oldChild)
         {
             setRenamesItem((PRenamesItem) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

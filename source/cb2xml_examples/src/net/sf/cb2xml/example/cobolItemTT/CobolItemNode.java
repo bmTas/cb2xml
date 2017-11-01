@@ -20,7 +20,7 @@ import java.util.List;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
-import net.sf.cb2xml.jaxb.Item;
+import net.sf.cb2xml.def.IItem;
 
  
 /**
@@ -32,14 +32,14 @@ import net.sf.cb2xml.jaxb.Item;
  */
 @SuppressWarnings("serial")
 public class CobolItemNode extends DefaultMutableTreeNode {
-	final Item cobolItem;
+	final IItem cobolItem;
 
-	public CobolItemNode(Item cobolItem) {
-		super(cobolItem.getLevel() + " " + cobolItem.getName());
+	public CobolItemNode(IItem cobolItem) {
+		super(cobolItem.getLevelString() + " " + cobolItem.getFieldName());
 		this.cobolItem = cobolItem;
 		
-		List<Item> children = cobolItem.getItem();
-		for (Item o : children) {
+		List<? extends IItem> children = cobolItem.getChildItems();
+		for (IItem o : children) {
 			super.add(new CobolItemNode(o));
 		}
 	}

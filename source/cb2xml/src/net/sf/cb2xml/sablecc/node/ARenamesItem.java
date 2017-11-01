@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ARenamesItem extends PRenamesItem
 {
     private TNumberNot88 _numberNot88_;
@@ -15,15 +15,17 @@ public final class ARenamesItem extends PRenamesItem
 
     public ARenamesItem()
     {
+        // Constructor
     }
 
     public ARenamesItem(
-        TNumberNot88 _numberNot88_,
-        TDataName _renameTo_,
-        TRenames _renames_,
-        TDataName _renameFrom_,
-        PThroughPhrase _throughPhrase_)
+        @SuppressWarnings("hiding") TNumberNot88 _numberNot88_,
+        @SuppressWarnings("hiding") TDataName _renameTo_,
+        @SuppressWarnings("hiding") TRenames _renames_,
+        @SuppressWarnings("hiding") TDataName _renameFrom_,
+        @SuppressWarnings("hiding") PThroughPhrase _throughPhrase_)
     {
+        // Constructor
         setNumberNot88(_numberNot88_);
 
         setRenameTo(_renameTo_);
@@ -35,16 +37,19 @@ public final class ARenamesItem extends PRenamesItem
         setThroughPhrase(_throughPhrase_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ARenamesItem(
-            (TNumberNot88) cloneNode(_numberNot88_),
-            (TDataName) cloneNode(_renameTo_),
-            (TRenames) cloneNode(_renames_),
-            (TDataName) cloneNode(_renameFrom_),
-            (PThroughPhrase) cloneNode(_throughPhrase_));
+            cloneNode(this._numberNot88_),
+            cloneNode(this._renameTo_),
+            cloneNode(this._renames_),
+            cloneNode(this._renameFrom_),
+            cloneNode(this._throughPhrase_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseARenamesItem(this);
@@ -52,14 +57,14 @@ public final class ARenamesItem extends PRenamesItem
 
     public TNumberNot88 getNumberNot88()
     {
-        return _numberNot88_;
+        return this._numberNot88_;
     }
 
     public void setNumberNot88(TNumberNot88 node)
     {
-        if(_numberNot88_ != null)
+        if(this._numberNot88_ != null)
         {
-            _numberNot88_.parent(null);
+            this._numberNot88_.parent(null);
         }
 
         if(node != null)
@@ -72,19 +77,19 @@ public final class ARenamesItem extends PRenamesItem
             node.parent(this);
         }
 
-        _numberNot88_ = node;
+        this._numberNot88_ = node;
     }
 
     public TDataName getRenameTo()
     {
-        return _renameTo_;
+        return this._renameTo_;
     }
 
     public void setRenameTo(TDataName node)
     {
-        if(_renameTo_ != null)
+        if(this._renameTo_ != null)
         {
-            _renameTo_.parent(null);
+            this._renameTo_.parent(null);
         }
 
         if(node != null)
@@ -97,19 +102,19 @@ public final class ARenamesItem extends PRenamesItem
             node.parent(this);
         }
 
-        _renameTo_ = node;
+        this._renameTo_ = node;
     }
 
     public TRenames getRenames()
     {
-        return _renames_;
+        return this._renames_;
     }
 
     public void setRenames(TRenames node)
     {
-        if(_renames_ != null)
+        if(this._renames_ != null)
         {
-            _renames_.parent(null);
+            this._renames_.parent(null);
         }
 
         if(node != null)
@@ -122,19 +127,19 @@ public final class ARenamesItem extends PRenamesItem
             node.parent(this);
         }
 
-        _renames_ = node;
+        this._renames_ = node;
     }
 
     public TDataName getRenameFrom()
     {
-        return _renameFrom_;
+        return this._renameFrom_;
     }
 
     public void setRenameFrom(TDataName node)
     {
-        if(_renameFrom_ != null)
+        if(this._renameFrom_ != null)
         {
-            _renameFrom_.parent(null);
+            this._renameFrom_.parent(null);
         }
 
         if(node != null)
@@ -147,19 +152,19 @@ public final class ARenamesItem extends PRenamesItem
             node.parent(this);
         }
 
-        _renameFrom_ = node;
+        this._renameFrom_ = node;
     }
 
     public PThroughPhrase getThroughPhrase()
     {
-        return _throughPhrase_;
+        return this._throughPhrase_;
     }
 
     public void setThroughPhrase(PThroughPhrase node)
     {
-        if(_throughPhrase_ != null)
+        if(this._throughPhrase_ != null)
         {
-            _throughPhrase_.parent(null);
+            this._throughPhrase_.parent(null);
         }
 
         if(node != null)
@@ -172,84 +177,91 @@ public final class ARenamesItem extends PRenamesItem
             node.parent(this);
         }
 
-        _throughPhrase_ = node;
+        this._throughPhrase_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_numberNot88_)
-            + toString(_renameTo_)
-            + toString(_renames_)
-            + toString(_renameFrom_)
-            + toString(_throughPhrase_);
+            + toString(this._numberNot88_)
+            + toString(this._renameTo_)
+            + toString(this._renames_)
+            + toString(this._renameFrom_)
+            + toString(this._throughPhrase_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_numberNot88_ == child)
+        // Remove child
+        if(this._numberNot88_ == child)
         {
-            _numberNot88_ = null;
+            this._numberNot88_ = null;
             return;
         }
 
-        if(_renameTo_ == child)
+        if(this._renameTo_ == child)
         {
-            _renameTo_ = null;
+            this._renameTo_ = null;
             return;
         }
 
-        if(_renames_ == child)
+        if(this._renames_ == child)
         {
-            _renames_ = null;
+            this._renames_ = null;
             return;
         }
 
-        if(_renameFrom_ == child)
+        if(this._renameFrom_ == child)
         {
-            _renameFrom_ = null;
+            this._renameFrom_ = null;
             return;
         }
 
-        if(_throughPhrase_ == child)
+        if(this._throughPhrase_ == child)
         {
-            _throughPhrase_ = null;
+            this._throughPhrase_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_numberNot88_ == oldChild)
+        // Replace child
+        if(this._numberNot88_ == oldChild)
         {
             setNumberNot88((TNumberNot88) newChild);
             return;
         }
 
-        if(_renameTo_ == oldChild)
+        if(this._renameTo_ == oldChild)
         {
             setRenameTo((TDataName) newChild);
             return;
         }
 
-        if(_renames_ == oldChild)
+        if(this._renames_ == oldChild)
         {
             setRenames((TRenames) newChild);
             return;
         }
 
-        if(_renameFrom_ == oldChild)
+        if(this._renameFrom_ == oldChild)
         {
             setRenameFrom((TDataName) newChild);
             return;
         }
 
-        if(_throughPhrase_ == oldChild)
+        if(this._throughPhrase_ == oldChild)
         {
             setThroughPhrase((PThroughPhrase) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

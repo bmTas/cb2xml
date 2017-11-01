@@ -4,4 +4,5 @@ package net.sf.cb2xml.sablecc.node;
 
 public abstract class PCharacterString extends Node
 {
+    // Empty body
 }

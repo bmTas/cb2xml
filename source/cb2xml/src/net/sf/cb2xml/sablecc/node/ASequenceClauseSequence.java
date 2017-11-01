@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ASequenceClauseSequence extends PClauseSequence
 {
     private PClauseSequence _clauseSequence_;
@@ -12,24 +12,29 @@ public final class ASequenceClauseSequence extends PClauseSequence
 
     public ASequenceClauseSequence()
     {
+        // Constructor
     }
 
     public ASequenceClauseSequence(
-        PClauseSequence _clauseSequence_,
-        PClause _clause_)
+        @SuppressWarnings("hiding") PClauseSequence _clauseSequence_,
+        @SuppressWarnings("hiding") PClause _clause_)
     {
+        // Constructor
         setClauseSequence(_clauseSequence_);
 
         setClause(_clause_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ASequenceClauseSequence(
-            (PClauseSequence) cloneNode(_clauseSequence_),
-            (PClause) cloneNode(_clause_));
+            cloneNode(this._clauseSequence_),
+            cloneNode(this._clause_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseASequenceClauseSequence(this);
@@ -37,14 +42,14 @@ public final class ASequenceClauseSequence extends PClauseSequence
 
     public PClauseSequence getClauseSequence()
     {
-        return _clauseSequence_;
+        return this._clauseSequence_;
     }
 
     public void setClauseSequence(PClauseSequence node)
     {
-        if(_clauseSequence_ != null)
+        if(this._clauseSequence_ != null)
         {
-            _clauseSequence_.parent(null);
+            this._clauseSequence_.parent(null);
         }
 
         if(node != null)
@@ -57,19 +62,19 @@ public final class ASequenceClauseSequence extends PClauseSequence
             node.parent(this);
         }
 
-        _clauseSequence_ = node;
+        this._clauseSequence_ = node;
     }
 
     public PClause getClause()
     {
-        return _clause_;
+        return this._clause_;
     }
 
     public void setClause(PClause node)
     {
-        if(_clause_ != null)
+        if(this._clause_ != null)
         {
-            _clause_.parent(null);
+            this._clause_.parent(null);
         }
 
         if(node != null)
@@ -82,45 +87,52 @@ public final class ASequenceClauseSequence extends PClauseSequence
             node.parent(this);
         }
 
-        _clause_ = node;
+        this._clause_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_clauseSequence_)
-            + toString(_clause_);
+            + toString(this._clauseSequence_)
+            + toString(this._clause_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_clauseSequence_ == child)
+        // Remove child
+        if(this._clauseSequence_ == child)
         {
-            _clauseSequence_ = null;
+            this._clauseSequence_ = null;
             return;
         }
 
-        if(_clause_ == child)
+        if(this._clause_ == child)
         {
-            _clause_ = null;
+            this._clause_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_clauseSequence_ == oldChild)
+        // Replace child
+        if(this._clauseSequence_ == oldChild)
         {
             setClauseSequence((PClauseSequence) newChild);
             return;
         }
 
-        if(_clause_ == oldChild)
+        if(this._clause_ == oldChild)
         {
             setClause((PClause) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

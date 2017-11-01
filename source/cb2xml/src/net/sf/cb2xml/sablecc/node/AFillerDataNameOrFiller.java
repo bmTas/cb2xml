@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AFillerDataNameOrFiller extends PDataNameOrFiller
 {
     private TFiller _filler_;
 
     public AFillerDataNameOrFiller()
     {
+        // Constructor
     }
 
     public AFillerDataNameOrFiller(
-        TFiller _filler_)
+        @SuppressWarnings("hiding") TFiller _filler_)
     {
+        // Constructor
         setFiller(_filler_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AFillerDataNameOrFiller(
-            (TFiller) cloneNode(_filler_));
+            cloneNode(this._filler_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAFillerDataNameOrFiller(this);
@@ -32,14 +37,14 @@ public final class AFillerDataNameOrFiller extends PDataNameOrFiller
 
     public TFiller getFiller()
     {
-        return _filler_;
+        return this._filler_;
     }
 
     public void setFiller(TFiller node)
     {
-        if(_filler_ != null)
+        if(this._filler_ != null)
         {
-            _filler_.parent(null);
+            this._filler_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class AFillerDataNameOrFiller extends PDataNameOrFiller
             node.parent(this);
         }
 
-        _filler_ = node;
+        this._filler_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_filler_);
+            + toString(this._filler_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_filler_ == child)
+        // Remove child
+        if(this._filler_ == child)
         {
-            _filler_ = null;
+            this._filler_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_filler_ == oldChild)
+        // Replace child
+        if(this._filler_ == oldChild)
         {
             setFiller((TFiller) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AComp5UsagePhrase extends PUsagePhrase
 {
     private TComp5 _comp5_;
 
     public AComp5UsagePhrase()
     {
+        // Constructor
     }
 
     public AComp5UsagePhrase(
-        TComp5 _comp5_)
+        @SuppressWarnings("hiding") TComp5 _comp5_)
     {
+        // Constructor
         setComp5(_comp5_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AComp5UsagePhrase(
-            (TComp5) cloneNode(_comp5_));
+            cloneNode(this._comp5_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAComp5UsagePhrase(this);
@@ -32,14 +37,14 @@ public final class AComp5UsagePhrase extends PUsagePhrase
 
     public TComp5 getComp5()
     {
-        return _comp5_;
+        return this._comp5_;
     }
 
     public void setComp5(TComp5 node)
     {
-        if(_comp5_ != null)
+        if(this._comp5_ != null)
         {
-            _comp5_.parent(null);
+            this._comp5_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class AComp5UsagePhrase extends PUsagePhrase
             node.parent(this);
         }
 
-        _comp5_ = node;
+        this._comp5_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_comp5_);
+            + toString(this._comp5_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_comp5_ == child)
+        // Remove child
+        if(this._comp5_ == child)
         {
-            _comp5_ = null;
+            this._comp5_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_comp5_ == oldChild)
+        // Replace child
+        if(this._comp5_ == oldChild)
         {
             setComp5((TComp5) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

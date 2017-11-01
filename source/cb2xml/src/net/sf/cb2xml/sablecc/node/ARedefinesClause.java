@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ARedefinesClause extends PRedefinesClause
 {
     private TRedefines _redefines_;
@@ -12,24 +12,29 @@ public final class ARedefinesClause extends PRedefinesClause
 
     public ARedefinesClause()
     {
+        // Constructor
     }
 
     public ARedefinesClause(
-        TRedefines _redefines_,
-        TDataName _dataName_)
+        @SuppressWarnings("hiding") TRedefines _redefines_,
+        @SuppressWarnings("hiding") TDataName _dataName_)
     {
+        // Constructor
         setRedefines(_redefines_);
 
         setDataName(_dataName_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ARedefinesClause(
-            (TRedefines) cloneNode(_redefines_),
-            (TDataName) cloneNode(_dataName_));
+            cloneNode(this._redefines_),
+            cloneNode(this._dataName_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseARedefinesClause(this);
@@ -37,14 +42,14 @@ public final class ARedefinesClause extends PRedefinesClause
 
     public TRedefines getRedefines()
     {
-        return _redefines_;
+        return this._redefines_;
     }
 
     public void setRedefines(TRedefines node)
     {
-        if(_redefines_ != null)
+        if(this._redefines_ != null)
         {
-            _redefines_.parent(null);
+            this._redefines_.parent(null);
         }
 
         if(node != null)
@@ -57,19 +62,19 @@ public final class ARedefinesClause extends PRedefinesClause
             node.parent(this);
         }
 
-        _redefines_ = node;
+        this._redefines_ = node;
     }
 
     public TDataName getDataName()
     {
-        return _dataName_;
+        return this._dataName_;
     }
 
     public void setDataName(TDataName node)
     {
-        if(_dataName_ != null)
+        if(this._dataName_ != null)
         {
-            _dataName_.parent(null);
+            this._dataName_.parent(null);
         }
 
         if(node != null)
@@ -82,45 +87,52 @@ public final class ARedefinesClause extends PRedefinesClause
             node.parent(this);
         }
 
-        _dataName_ = node;
+        this._dataName_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_redefines_)
-            + toString(_dataName_);
+            + toString(this._redefines_)
+            + toString(this._dataName_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_redefines_ == child)
+        // Remove child
+        if(this._redefines_ == child)
         {
-            _redefines_ = null;
+            this._redefines_ = null;
             return;
         }
 
-        if(_dataName_ == child)
+        if(this._dataName_ == child)
         {
-            _dataName_ = null;
+            this._dataName_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_redefines_ == oldChild)
+        // Replace child
+        if(this._redefines_ == oldChild)
         {
             setRedefines((TRedefines) newChild);
             return;
         }
 
-        if(_dataName_ == oldChild)
+        if(this._dataName_ == oldChild)
         {
             setDataName((TDataName) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

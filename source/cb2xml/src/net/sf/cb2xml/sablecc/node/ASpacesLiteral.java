@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ASpacesLiteral extends PLiteral
 {
     private TSpaces _spaces_;
 
     public ASpacesLiteral()
     {
+        // Constructor
     }
 
     public ASpacesLiteral(
-        TSpaces _spaces_)
+        @SuppressWarnings("hiding") TSpaces _spaces_)
     {
+        // Constructor
         setSpaces(_spaces_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ASpacesLiteral(
-            (TSpaces) cloneNode(_spaces_));
+            cloneNode(this._spaces_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseASpacesLiteral(this);
@@ -32,14 +37,14 @@ public final class ASpacesLiteral extends PLiteral
 
     public TSpaces getSpaces()
     {
-        return _spaces_;
+        return this._spaces_;
     }
 
     public void setSpaces(TSpaces node)
     {
-        if(_spaces_ != null)
+        if(this._spaces_ != null)
         {
-            _spaces_.parent(null);
+            this._spaces_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ASpacesLiteral extends PLiteral
             node.parent(this);
         }
 
-        _spaces_ = node;
+        this._spaces_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_spaces_);
+            + toString(this._spaces_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_spaces_ == child)
+        // Remove child
+        if(this._spaces_ == child)
         {
-            _spaces_ = null;
+            this._spaces_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_spaces_ == oldChild)
+        // Replace child
+        if(this._spaces_ == oldChild)
         {
             setSpaces((TSpaces) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

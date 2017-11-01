@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.stream.XMLStreamException;
 
 import net.sf.cb2xml.Cb2Xml;
 import net.sf.cb2xml.Cb2Xml2;
@@ -32,6 +33,7 @@ import org.xml.sax.SAXException;
 
 import common.Code;
 
+@SuppressWarnings("deprecation")
 public class TstCb2xml21 {
 	
 	private static int COPYBOOK_COUNT1 = 112;
@@ -113,39 +115,39 @@ public class TstCb2xml21 {
 	}
 
 	@Test
-	public void testArray1() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException {
+	public void testArray1() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException, XMLStreamException {
 		tstArray(COPYBOOK_LIST1);
 	}
 
 	@Test
-	public void testArray2() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException {
+	public void testArray2() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException, XMLStreamException {
 		tstArray(COPYBOOK_LIST2);
 	}
 
 	@Test
-	public void testArray3() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException {
+	public void testArray3() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException, XMLStreamException {
 		tstArray(COPYBOOK_LIST3);
 	}
 
 
 	@Test
-	public void testArray4() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException {
+	public void testArray4() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException, XMLStreamException {
 		tstArray(COPYBOOK_LIST4);
 	}
 
 	@Test
-	public void testArray5() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException {
+	public void testArray5() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException, XMLStreamException {
 		tstArrayEbcdic(COPYBOOK_LIST4);
 	}
 	
 
 	@Test
-	public void testArray6() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException {
+	public void testArray6() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException, XMLStreamException {
 		tstArray(COPYBOOK_LIST6, "cobolCopybook/", "utf-8");
 	}
 
 
-	public void tstArray(String[] copybooks) throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException  {
+	public void tstArray(String[] copybooks) throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException, XMLStreamException  {
 		String cblFilename, xmlFilename;
 		for (String c : copybooks) {
 			xmlFilename = "xmlCpy" + c.substring(3, c.length() - 3) + "Xml";
@@ -166,11 +168,11 @@ public class TstCb2xml21 {
 		//fail("Not yet implemented");
 	}
 
-	public void tstArrayEbcdic(String[] copybooks) throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException  {
+	public void tstArrayEbcdic(String[] copybooks) throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException, XMLStreamException  {
 		tstArray(copybooks, "ebcdicCopybook/", "cp037");
 	}
 
-	public void tstArray(String[] copybooks, String dir, String font) throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException  {
+	public void tstArray(String[] copybooks, String dir, String font) throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException, XMLStreamException  {
 		String cblFilename, xmlFilename;
 		for (String c : copybooks) {
 			xmlFilename = "xmlCpy" + c.substring(3, c.length() - 3) + "Xml";

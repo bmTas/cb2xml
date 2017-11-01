@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ACompUsagePhrase extends PUsagePhrase
 {
     private TComp _comp_;
 
     public ACompUsagePhrase()
     {
+        // Constructor
     }
 
     public ACompUsagePhrase(
-        TComp _comp_)
+        @SuppressWarnings("hiding") TComp _comp_)
     {
+        // Constructor
         setComp(_comp_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ACompUsagePhrase(
-            (TComp) cloneNode(_comp_));
+            cloneNode(this._comp_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseACompUsagePhrase(this);
@@ -32,14 +37,14 @@ public final class ACompUsagePhrase extends PUsagePhrase
 
     public TComp getComp()
     {
-        return _comp_;
+        return this._comp_;
     }
 
     public void setComp(TComp node)
     {
-        if(_comp_ != null)
+        if(this._comp_ != null)
         {
-            _comp_.parent(null);
+            this._comp_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ACompUsagePhrase extends PUsagePhrase
             node.parent(this);
         }
 
-        _comp_ = node;
+        this._comp_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_comp_);
+            + toString(this._comp_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_comp_ == child)
+        // Remove child
+        if(this._comp_ == child)
         {
-            _comp_ = null;
+            this._comp_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_comp_ == oldChild)
+        // Replace child
+        if(this._comp_ == oldChild)
         {
             setComp((TComp) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

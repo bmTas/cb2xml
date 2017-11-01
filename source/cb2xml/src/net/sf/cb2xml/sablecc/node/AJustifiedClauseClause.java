@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AJustifiedClauseClause extends PClause
 {
     private PJustifiedClause _justifiedClause_;
 
     public AJustifiedClauseClause()
     {
+        // Constructor
     }
 
     public AJustifiedClauseClause(
-        PJustifiedClause _justifiedClause_)
+        @SuppressWarnings("hiding") PJustifiedClause _justifiedClause_)
     {
+        // Constructor
         setJustifiedClause(_justifiedClause_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AJustifiedClauseClause(
-            (PJustifiedClause) cloneNode(_justifiedClause_));
+            cloneNode(this._justifiedClause_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAJustifiedClauseClause(this);
@@ -32,14 +37,14 @@ public final class AJustifiedClauseClause extends PClause
 
     public PJustifiedClause getJustifiedClause()
     {
-        return _justifiedClause_;
+        return this._justifiedClause_;
     }
 
     public void setJustifiedClause(PJustifiedClause node)
     {
-        if(_justifiedClause_ != null)
+        if(this._justifiedClause_ != null)
         {
-            _justifiedClause_.parent(null);
+            this._justifiedClause_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class AJustifiedClauseClause extends PClause
             node.parent(this);
         }
 
-        _justifiedClause_ = node;
+        this._justifiedClause_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_justifiedClause_);
+            + toString(this._justifiedClause_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_justifiedClause_ == child)
+        // Remove child
+        if(this._justifiedClause_ == child)
         {
-            _justifiedClause_ = null;
+            this._justifiedClause_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_justifiedClause_ == oldChild)
+        // Replace child
+        if(this._justifiedClause_ == oldChild)
         {
             setJustifiedClause((PJustifiedClause) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ASingleClauseSequence extends PClauseSequence
 {
     private PClause _clause_;
 
     public ASingleClauseSequence()
     {
+        // Constructor
     }
 
     public ASingleClauseSequence(
-        PClause _clause_)
+        @SuppressWarnings("hiding") PClause _clause_)
     {
+        // Constructor
         setClause(_clause_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ASingleClauseSequence(
-            (PClause) cloneNode(_clause_));
+            cloneNode(this._clause_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseASingleClauseSequence(this);
@@ -32,14 +37,14 @@ public final class ASingleClauseSequence extends PClauseSequence
 
     public PClause getClause()
     {
-        return _clause_;
+        return this._clause_;
     }
 
     public void setClause(PClause node)
     {
-        if(_clause_ != null)
+        if(this._clause_ != null)
         {
-            _clause_.parent(null);
+            this._clause_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ASingleClauseSequence extends PClauseSequence
             node.parent(this);
         }
 
-        _clause_ = node;
+        this._clause_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_clause_);
+            + toString(this._clause_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_clause_ == child)
+        // Remove child
+        if(this._clause_ == child)
         {
-            _clause_ = null;
+            this._clause_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_clause_ == oldChild)
+        // Replace child
+        if(this._clause_ == oldChild)
         {
             setClause((PClause) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

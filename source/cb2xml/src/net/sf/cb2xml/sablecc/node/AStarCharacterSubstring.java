@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AStarCharacterSubstring extends PCharacterSubstring
 {
     private TStar _star_;
 
     public AStarCharacterSubstring()
     {
+        // Constructor
     }
 
     public AStarCharacterSubstring(
-        TStar _star_)
+        @SuppressWarnings("hiding") TStar _star_)
     {
+        // Constructor
         setStar(_star_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AStarCharacterSubstring(
-            (TStar) cloneNode(_star_));
+            cloneNode(this._star_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAStarCharacterSubstring(this);
@@ -32,14 +37,14 @@ public final class AStarCharacterSubstring extends PCharacterSubstring
 
     public TStar getStar()
     {
-        return _star_;
+        return this._star_;
     }
 
     public void setStar(TStar node)
     {
-        if(_star_ != null)
+        if(this._star_ != null)
         {
-            _star_.parent(null);
+            this._star_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class AStarCharacterSubstring extends PCharacterSubstring
             node.parent(this);
         }
 
-        _star_ = node;
+        this._star_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_star_);
+            + toString(this._star_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_star_ == child)
+        // Remove child
+        if(this._star_ == child)
         {
-            _star_ = null;
+            this._star_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_star_ == oldChild)
+        // Replace child
+        if(this._star_ == oldChild)
         {
             setStar((TStar) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

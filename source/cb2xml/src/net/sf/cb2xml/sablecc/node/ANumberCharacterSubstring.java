@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ANumberCharacterSubstring extends PCharacterSubstring
 {
     private TNumberNot88 _numberNot88_;
 
     public ANumberCharacterSubstring()
     {
+        // Constructor
     }
 
     public ANumberCharacterSubstring(
-        TNumberNot88 _numberNot88_)
+        @SuppressWarnings("hiding") TNumberNot88 _numberNot88_)
     {
+        // Constructor
         setNumberNot88(_numberNot88_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ANumberCharacterSubstring(
-            (TNumberNot88) cloneNode(_numberNot88_));
+            cloneNode(this._numberNot88_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseANumberCharacterSubstring(this);
@@ -32,14 +37,14 @@ public final class ANumberCharacterSubstring extends PCharacterSubstring
 
     public TNumberNot88 getNumberNot88()
     {
-        return _numberNot88_;
+        return this._numberNot88_;
     }
 
     public void setNumberNot88(TNumberNot88 node)
     {
-        if(_numberNot88_ != null)
+        if(this._numberNot88_ != null)
         {
-            _numberNot88_.parent(null);
+            this._numberNot88_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ANumberCharacterSubstring extends PCharacterSubstring
             node.parent(this);
         }
 
-        _numberNot88_ = node;
+        this._numberNot88_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_numberNot88_);
+            + toString(this._numberNot88_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_numberNot88_ == child)
+        // Remove child
+        if(this._numberNot88_ == child)
         {
-            _numberNot88_ = null;
+            this._numberNot88_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_numberNot88_ == oldChild)
+        // Replace child
+        if(this._numberNot88_ == oldChild)
         {
             setNumberNot88((TNumberNot88) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

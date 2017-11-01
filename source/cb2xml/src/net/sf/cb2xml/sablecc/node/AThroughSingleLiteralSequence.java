@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AThroughSingleLiteralSequence extends PLiteralSequence
 {
     private PLiteral _from_;
@@ -13,13 +13,15 @@ public final class AThroughSingleLiteralSequence extends PLiteralSequence
 
     public AThroughSingleLiteralSequence()
     {
+        // Constructor
     }
 
     public AThroughSingleLiteralSequence(
-        PLiteral _from_,
-        TThrough _through_,
-        PLiteral _to_)
+        @SuppressWarnings("hiding") PLiteral _from_,
+        @SuppressWarnings("hiding") TThrough _through_,
+        @SuppressWarnings("hiding") PLiteral _to_)
     {
+        // Constructor
         setFrom(_from_);
 
         setThrough(_through_);
@@ -27,14 +29,17 @@ public final class AThroughSingleLiteralSequence extends PLiteralSequence
         setTo(_to_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AThroughSingleLiteralSequence(
-            (PLiteral) cloneNode(_from_),
-            (TThrough) cloneNode(_through_),
-            (PLiteral) cloneNode(_to_));
+            cloneNode(this._from_),
+            cloneNode(this._through_),
+            cloneNode(this._to_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAThroughSingleLiteralSequence(this);
@@ -42,14 +47,14 @@ public final class AThroughSingleLiteralSequence extends PLiteralSequence
 
     public PLiteral getFrom()
     {
-        return _from_;
+        return this._from_;
     }
 
     public void setFrom(PLiteral node)
     {
-        if(_from_ != null)
+        if(this._from_ != null)
         {
-            _from_.parent(null);
+            this._from_.parent(null);
         }
 
         if(node != null)
@@ -62,19 +67,19 @@ public final class AThroughSingleLiteralSequence extends PLiteralSequence
             node.parent(this);
         }
 
-        _from_ = node;
+        this._from_ = node;
     }
 
     public TThrough getThrough()
     {
-        return _through_;
+        return this._through_;
     }
 
     public void setThrough(TThrough node)
     {
-        if(_through_ != null)
+        if(this._through_ != null)
         {
-            _through_.parent(null);
+            this._through_.parent(null);
         }
 
         if(node != null)
@@ -87,19 +92,19 @@ public final class AThroughSingleLiteralSequence extends PLiteralSequence
             node.parent(this);
         }
 
-        _through_ = node;
+        this._through_ = node;
     }
 
     public PLiteral getTo()
     {
-        return _to_;
+        return this._to_;
     }
 
     public void setTo(PLiteral node)
     {
-        if(_to_ != null)
+        if(this._to_ != null)
         {
-            _to_.parent(null);
+            this._to_.parent(null);
         }
 
         if(node != null)
@@ -112,58 +117,65 @@ public final class AThroughSingleLiteralSequence extends PLiteralSequence
             node.parent(this);
         }
 
-        _to_ = node;
+        this._to_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_from_)
-            + toString(_through_)
-            + toString(_to_);
+            + toString(this._from_)
+            + toString(this._through_)
+            + toString(this._to_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_from_ == child)
+        // Remove child
+        if(this._from_ == child)
         {
-            _from_ = null;
+            this._from_ = null;
             return;
         }
 
-        if(_through_ == child)
+        if(this._through_ == child)
         {
-            _through_ = null;
+            this._through_ = null;
             return;
         }
 
-        if(_to_ == child)
+        if(this._to_ == child)
         {
-            _to_ = null;
+            this._to_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_from_ == oldChild)
+        // Replace child
+        if(this._from_ == oldChild)
         {
             setFrom((PLiteral) newChild);
             return;
         }
 
-        if(_through_ == oldChild)
+        if(this._through_ == oldChild)
         {
             setThrough((TThrough) newChild);
             return;
         }
 
-        if(_to_ == oldChild)
+        if(this._to_ == oldChild)
         {
             setTo((PLiteral) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

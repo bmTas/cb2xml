@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class APlusCharacterSubstring extends PCharacterSubstring
 {
     private TPlus _plus_;
 
     public APlusCharacterSubstring()
     {
+        // Constructor
     }
 
     public APlusCharacterSubstring(
-        TPlus _plus_)
+        @SuppressWarnings("hiding") TPlus _plus_)
     {
+        // Constructor
         setPlus(_plus_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new APlusCharacterSubstring(
-            (TPlus) cloneNode(_plus_));
+            cloneNode(this._plus_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAPlusCharacterSubstring(this);
@@ -32,14 +37,14 @@ public final class APlusCharacterSubstring extends PCharacterSubstring
 
     public TPlus getPlus()
     {
-        return _plus_;
+        return this._plus_;
     }
 
     public void setPlus(TPlus node)
     {
-        if(_plus_ != null)
+        if(this._plus_ != null)
         {
-            _plus_.parent(null);
+            this._plus_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class APlusCharacterSubstring extends PCharacterSubstring
             node.parent(this);
         }
 
-        _plus_ = node;
+        this._plus_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_plus_);
+            + toString(this._plus_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_plus_ == child)
+        // Remove child
+        if(this._plus_ == child)
         {
-            _plus_ = null;
+            this._plus_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_plus_ == oldChild)
+        // Replace child
+        if(this._plus_ == oldChild)
         {
             setPlus((TPlus) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

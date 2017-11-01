@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ASynchronizedClause extends PSynchronizedClause
 {
     private TSynchronized _synchronized_;
@@ -12,24 +12,29 @@ public final class ASynchronizedClause extends PSynchronizedClause
 
     public ASynchronizedClause()
     {
+        // Constructor
     }
 
     public ASynchronizedClause(
-        TSynchronized _synchronized_,
-        PLeftOrRight _leftOrRight_)
+        @SuppressWarnings("hiding") TSynchronized _synchronized_,
+        @SuppressWarnings("hiding") PLeftOrRight _leftOrRight_)
     {
+        // Constructor
         setSynchronized(_synchronized_);
 
         setLeftOrRight(_leftOrRight_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ASynchronizedClause(
-            (TSynchronized) cloneNode(_synchronized_),
-            (PLeftOrRight) cloneNode(_leftOrRight_));
+            cloneNode(this._synchronized_),
+            cloneNode(this._leftOrRight_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseASynchronizedClause(this);
@@ -37,14 +42,14 @@ public final class ASynchronizedClause extends PSynchronizedClause
 
     public TSynchronized getSynchronized()
     {
-        return _synchronized_;
+        return this._synchronized_;
     }
 
     public void setSynchronized(TSynchronized node)
     {
-        if(_synchronized_ != null)
+        if(this._synchronized_ != null)
         {
-            _synchronized_.parent(null);
+            this._synchronized_.parent(null);
         }
 
         if(node != null)
@@ -57,19 +62,19 @@ public final class ASynchronizedClause extends PSynchronizedClause
             node.parent(this);
         }
 
-        _synchronized_ = node;
+        this._synchronized_ = node;
     }
 
     public PLeftOrRight getLeftOrRight()
     {
-        return _leftOrRight_;
+        return this._leftOrRight_;
     }
 
     public void setLeftOrRight(PLeftOrRight node)
     {
-        if(_leftOrRight_ != null)
+        if(this._leftOrRight_ != null)
         {
-            _leftOrRight_.parent(null);
+            this._leftOrRight_.parent(null);
         }
 
         if(node != null)
@@ -82,45 +87,52 @@ public final class ASynchronizedClause extends PSynchronizedClause
             node.parent(this);
         }
 
-        _leftOrRight_ = node;
+        this._leftOrRight_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_synchronized_)
-            + toString(_leftOrRight_);
+            + toString(this._synchronized_)
+            + toString(this._leftOrRight_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_synchronized_ == child)
+        // Remove child
+        if(this._synchronized_ == child)
         {
-            _synchronized_ = null;
+            this._synchronized_ = null;
             return;
         }
 
-        if(_leftOrRight_ == child)
+        if(this._leftOrRight_ == child)
         {
-            _leftOrRight_ = null;
+            this._leftOrRight_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_synchronized_ == oldChild)
+        // Replace child
+        if(this._synchronized_ == oldChild)
         {
             setSynchronized((TSynchronized) newChild);
             return;
         }
 
-        if(_leftOrRight_ == oldChild)
+        if(this._leftOrRight_ == oldChild)
         {
             setLeftOrRight((PLeftOrRight) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AOccursTo extends POccursTo
 {
     private PNumber _number_;
@@ -12,24 +12,29 @@ public final class AOccursTo extends POccursTo
 
     public AOccursTo()
     {
+        // Constructor
     }
 
     public AOccursTo(
-        PNumber _number_,
-        TTo _to_)
+        @SuppressWarnings("hiding") PNumber _number_,
+        @SuppressWarnings("hiding") TTo _to_)
     {
+        // Constructor
         setNumber(_number_);
 
         setTo(_to_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AOccursTo(
-            (PNumber) cloneNode(_number_),
-            (TTo) cloneNode(_to_));
+            cloneNode(this._number_),
+            cloneNode(this._to_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAOccursTo(this);
@@ -37,14 +42,14 @@ public final class AOccursTo extends POccursTo
 
     public PNumber getNumber()
     {
-        return _number_;
+        return this._number_;
     }
 
     public void setNumber(PNumber node)
     {
-        if(_number_ != null)
+        if(this._number_ != null)
         {
-            _number_.parent(null);
+            this._number_.parent(null);
         }
 
         if(node != null)
@@ -57,19 +62,19 @@ public final class AOccursTo extends POccursTo
             node.parent(this);
         }
 
-        _number_ = node;
+        this._number_ = node;
     }
 
     public TTo getTo()
     {
-        return _to_;
+        return this._to_;
     }
 
     public void setTo(TTo node)
     {
-        if(_to_ != null)
+        if(this._to_ != null)
         {
-            _to_.parent(null);
+            this._to_.parent(null);
         }
 
         if(node != null)
@@ -82,45 +87,52 @@ public final class AOccursTo extends POccursTo
             node.parent(this);
         }
 
-        _to_ = node;
+        this._to_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_number_)
-            + toString(_to_);
+            + toString(this._number_)
+            + toString(this._to_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_number_ == child)
+        // Remove child
+        if(this._number_ == child)
         {
-            _number_ = null;
+            this._number_ = null;
             return;
         }
 
-        if(_to_ == child)
+        if(this._to_ == child)
         {
-            _to_ = null;
+            this._to_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_number_ == oldChild)
+        // Replace child
+        if(this._number_ == oldChild)
         {
             setNumber((PNumber) newChild);
             return;
         }
 
-        if(_to_ == oldChild)
+        if(this._to_ == oldChild)
         {
             setTo((TTo) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

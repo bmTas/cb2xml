@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ASynchronizedClauseClause extends PClause
 {
     private PSynchronizedClause _synchronizedClause_;
 
     public ASynchronizedClauseClause()
     {
+        // Constructor
     }
 
     public ASynchronizedClauseClause(
-        PSynchronizedClause _synchronizedClause_)
+        @SuppressWarnings("hiding") PSynchronizedClause _synchronizedClause_)
     {
+        // Constructor
         setSynchronizedClause(_synchronizedClause_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ASynchronizedClauseClause(
-            (PSynchronizedClause) cloneNode(_synchronizedClause_));
+            cloneNode(this._synchronizedClause_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseASynchronizedClauseClause(this);
@@ -32,14 +37,14 @@ public final class ASynchronizedClauseClause extends PClause
 
     public PSynchronizedClause getSynchronizedClause()
     {
-        return _synchronizedClause_;
+        return this._synchronizedClause_;
     }
 
     public void setSynchronizedClause(PSynchronizedClause node)
     {
-        if(_synchronizedClause_ != null)
+        if(this._synchronizedClause_ != null)
         {
-            _synchronizedClause_.parent(null);
+            this._synchronizedClause_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ASynchronizedClauseClause extends PClause
             node.parent(this);
         }
 
-        _synchronizedClause_ = node;
+        this._synchronizedClause_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_synchronizedClause_);
+            + toString(this._synchronizedClause_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_synchronizedClause_ == child)
+        // Remove child
+        if(this._synchronizedClause_ == child)
         {
-            _synchronizedClause_ = null;
+            this._synchronizedClause_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_synchronizedClause_ == oldChild)
+        // Replace child
+        if(this._synchronizedClause_ == oldChild)
         {
             setSynchronizedClause((PSynchronizedClause) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

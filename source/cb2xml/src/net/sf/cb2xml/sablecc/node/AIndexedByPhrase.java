@@ -5,60 +5,42 @@ package net.sf.cb2xml.sablecc.node;
 import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AIndexedByPhrase extends PIndexedByPhrase
 {
     private TIndexed _indexed_;
     private TBy _by_;
-    private final LinkedList _dataName_ = new TypedLinkedList(new DataName_Cast());
+    private final LinkedList<TDataName> _dataName_ = new LinkedList<TDataName>();
 
     public AIndexedByPhrase()
     {
+        // Constructor
     }
 
     public AIndexedByPhrase(
-        TIndexed _indexed_,
-        TBy _by_,
-        List _dataName_)
+        @SuppressWarnings("hiding") TIndexed _indexed_,
+        @SuppressWarnings("hiding") TBy _by_,
+        @SuppressWarnings("hiding") List<?> _dataName_)
     {
+        // Constructor
         setIndexed(_indexed_);
 
         setBy(_by_);
 
-        {
-            this._dataName_.clear();
-            this._dataName_.addAll(_dataName_);
-        }
+        setDataName(_dataName_);
 
     }
 
-    public AIndexedByPhrase(
-        TIndexed _indexed_,
-        TBy _by_,
-        XTDataName _dataName_)
-    {
-        setIndexed(_indexed_);
-
-        setBy(_by_);
-
-        if(_dataName_ != null)
-        {
-            while(_dataName_ instanceof X1TDataName)
-            {
-                this._dataName_.addFirst(((X1TDataName) _dataName_).getTDataName());
-                _dataName_ = ((X1TDataName) _dataName_).getXTDataName();
-            }
-            this._dataName_.addFirst(((X2TDataName) _dataName_).getTDataName());
-        }
-
-    }
+    @Override
     public Object clone()
     {
         return new AIndexedByPhrase(
-            (TIndexed) cloneNode(_indexed_),
-            (TBy) cloneNode(_by_),
-            cloneList(_dataName_));
+            cloneNode(this._indexed_),
+            cloneNode(this._by_),
+            cloneList(this._dataName_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAIndexedByPhrase(this);
@@ -66,14 +48,14 @@ public final class AIndexedByPhrase extends PIndexedByPhrase
 
     public TIndexed getIndexed()
     {
-        return _indexed_;
+        return this._indexed_;
     }
 
     public void setIndexed(TIndexed node)
     {
-        if(_indexed_ != null)
+        if(this._indexed_ != null)
         {
-            _indexed_.parent(null);
+            this._indexed_.parent(null);
         }
 
         if(node != null)
@@ -86,19 +68,19 @@ public final class AIndexedByPhrase extends PIndexedByPhrase
             node.parent(this);
         }
 
-        _indexed_ = node;
+        this._indexed_ = node;
     }
 
     public TBy getBy()
     {
-        return _by_;
+        return this._by_;
     }
 
     public void setBy(TBy node)
     {
-        if(_by_ != null)
+        if(this._by_ != null)
         {
-            _by_.parent(null);
+            this._by_.parent(null);
         }
 
         if(node != null)
@@ -111,70 +93,92 @@ public final class AIndexedByPhrase extends PIndexedByPhrase
             node.parent(this);
         }
 
-        _by_ = node;
+        this._by_ = node;
     }
 
-    public LinkedList getDataName()
+    public LinkedList<TDataName> getDataName()
     {
-        return _dataName_;
+        return this._dataName_;
     }
 
-    public void setDataName(List list)
+    public void setDataName(List<?> list)
     {
-        _dataName_.clear();
-        _dataName_.addAll(list);
+        for(TDataName e : this._dataName_)
+        {
+            e.parent(null);
+        }
+        this._dataName_.clear();
+
+        for(Object obj_e : list)
+        {
+            TDataName e = (TDataName) obj_e;
+            if(e.parent() != null)
+            {
+                e.parent().removeChild(e);
+            }
+
+            e.parent(this);
+            this._dataName_.add(e);
+        }
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_indexed_)
-            + toString(_by_)
-            + toString(_dataName_);
+            + toString(this._indexed_)
+            + toString(this._by_)
+            + toString(this._dataName_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_indexed_ == child)
+        // Remove child
+        if(this._indexed_ == child)
         {
-            _indexed_ = null;
+            this._indexed_ = null;
             return;
         }
 
-        if(_by_ == child)
+        if(this._by_ == child)
         {
-            _by_ = null;
+            this._by_ = null;
             return;
         }
 
-        if(_dataName_.remove(child))
+        if(this._dataName_.remove(child))
         {
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_indexed_ == oldChild)
+        // Replace child
+        if(this._indexed_ == oldChild)
         {
             setIndexed((TIndexed) newChild);
             return;
         }
 
-        if(_by_ == oldChild)
+        if(this._by_ == oldChild)
         {
             setBy((TBy) newChild);
             return;
         }
 
-        for(ListIterator i = _dataName_.listIterator(); i.hasNext();)
+        for(ListIterator<TDataName> i = this._dataName_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
             {
                 if(newChild != null)
                 {
-                    i.set(newChild);
+                    i.set((TDataName) newChild);
+                    newChild.parent(this);
                     oldChild.parent(null);
                     return;
                 }
@@ -185,27 +189,6 @@ public final class AIndexedByPhrase extends PIndexedByPhrase
             }
         }
 
-    }
-
-    private class DataName_Cast implements Cast
-    {
-        public Object cast(Object o)
-        {
-            TDataName node = (TDataName) o;
-
-            if((node.parent() != null) &&
-                (node.parent() != AIndexedByPhrase.this))
-            {
-                node.parent().removeChild(node);
-            }
-
-            if((node.parent() == null) ||
-                (node.parent() != AIndexedByPhrase.this))
-            {
-                node.parent(AIndexedByPhrase.this);
-            }
-
-            return node;
-        }
+        throw new RuntimeException("Not a child.");
     }
 }

@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ADotPlusCharacterSubstring extends PCharacterSubstring
 {
     private TDotPlus _dotPlus_;
 
     public ADotPlusCharacterSubstring()
     {
+        // Constructor
     }
 
     public ADotPlusCharacterSubstring(
-        TDotPlus _dotPlus_)
+        @SuppressWarnings("hiding") TDotPlus _dotPlus_)
     {
+        // Constructor
         setDotPlus(_dotPlus_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ADotPlusCharacterSubstring(
-            (TDotPlus) cloneNode(_dotPlus_));
+            cloneNode(this._dotPlus_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseADotPlusCharacterSubstring(this);
@@ -32,14 +37,14 @@ public final class ADotPlusCharacterSubstring extends PCharacterSubstring
 
     public TDotPlus getDotPlus()
     {
-        return _dotPlus_;
+        return this._dotPlus_;
     }
 
     public void setDotPlus(TDotPlus node)
     {
-        if(_dotPlus_ != null)
+        if(this._dotPlus_ != null)
         {
-            _dotPlus_.parent(null);
+            this._dotPlus_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ADotPlusCharacterSubstring extends PCharacterSubstring
             node.parent(this);
         }
 
-        _dotPlus_ = node;
+        this._dotPlus_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_dotPlus_);
+            + toString(this._dotPlus_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_dotPlus_ == child)
+        // Remove child
+        if(this._dotPlus_ == child)
         {
-            _dotPlus_ = null;
+            this._dotPlus_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_dotPlus_ == oldChild)
+        // Replace child
+        if(this._dotPlus_ == oldChild)
         {
             setDotPlus((TDotPlus) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

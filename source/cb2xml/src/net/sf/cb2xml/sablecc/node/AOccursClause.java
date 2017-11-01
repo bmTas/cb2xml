@@ -5,71 +5,42 @@ package net.sf.cb2xml.sablecc.node;
 import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AOccursClause extends POccursClause
 {
     private POccursFixedOrVariable _occursFixedOrVariable_;
-    private final LinkedList _ascendingOrDescendingKeyPhrase_ = new TypedLinkedList(new AscendingOrDescendingKeyPhrase_Cast());
-    private final LinkedList _indexedByPhrase_ = new TypedLinkedList(new IndexedByPhrase_Cast());
+    private final LinkedList<PAscendingOrDescendingKeyPhrase> _ascendingOrDescendingKeyPhrase_ = new LinkedList<PAscendingOrDescendingKeyPhrase>();
+    private final LinkedList<PIndexedByPhrase> _indexedByPhrase_ = new LinkedList<PIndexedByPhrase>();
 
     public AOccursClause()
     {
+        // Constructor
     }
 
     public AOccursClause(
-        POccursFixedOrVariable _occursFixedOrVariable_,
-        List _ascendingOrDescendingKeyPhrase_,
-        List _indexedByPhrase_)
+        @SuppressWarnings("hiding") POccursFixedOrVariable _occursFixedOrVariable_,
+        @SuppressWarnings("hiding") List<?> _ascendingOrDescendingKeyPhrase_,
+        @SuppressWarnings("hiding") List<?> _indexedByPhrase_)
     {
+        // Constructor
         setOccursFixedOrVariable(_occursFixedOrVariable_);
 
-        {
-            this._ascendingOrDescendingKeyPhrase_.clear();
-            this._ascendingOrDescendingKeyPhrase_.addAll(_ascendingOrDescendingKeyPhrase_);
-        }
+        setAscendingOrDescendingKeyPhrase(_ascendingOrDescendingKeyPhrase_);
 
-        {
-            this._indexedByPhrase_.clear();
-            this._indexedByPhrase_.addAll(_indexedByPhrase_);
-        }
+        setIndexedByPhrase(_indexedByPhrase_);
 
     }
 
-    public AOccursClause(
-        POccursFixedOrVariable _occursFixedOrVariable_,
-        XPAscendingOrDescendingKeyPhrase _ascendingOrDescendingKeyPhrase_,
-        XPIndexedByPhrase _indexedByPhrase_)
-    {
-        setOccursFixedOrVariable(_occursFixedOrVariable_);
-
-        if(_ascendingOrDescendingKeyPhrase_ != null)
-        {
-            while(_ascendingOrDescendingKeyPhrase_ instanceof X1PAscendingOrDescendingKeyPhrase)
-            {
-                this._ascendingOrDescendingKeyPhrase_.addFirst(((X1PAscendingOrDescendingKeyPhrase) _ascendingOrDescendingKeyPhrase_).getPAscendingOrDescendingKeyPhrase());
-                _ascendingOrDescendingKeyPhrase_ = ((X1PAscendingOrDescendingKeyPhrase) _ascendingOrDescendingKeyPhrase_).getXPAscendingOrDescendingKeyPhrase();
-            }
-            this._ascendingOrDescendingKeyPhrase_.addFirst(((X2PAscendingOrDescendingKeyPhrase) _ascendingOrDescendingKeyPhrase_).getPAscendingOrDescendingKeyPhrase());
-        }
-
-        if(_indexedByPhrase_ != null)
-        {
-            while(_indexedByPhrase_ instanceof X1PIndexedByPhrase)
-            {
-                this._indexedByPhrase_.addFirst(((X1PIndexedByPhrase) _indexedByPhrase_).getPIndexedByPhrase());
-                _indexedByPhrase_ = ((X1PIndexedByPhrase) _indexedByPhrase_).getXPIndexedByPhrase();
-            }
-            this._indexedByPhrase_.addFirst(((X2PIndexedByPhrase) _indexedByPhrase_).getPIndexedByPhrase());
-        }
-
-    }
+    @Override
     public Object clone()
     {
         return new AOccursClause(
-            (POccursFixedOrVariable) cloneNode(_occursFixedOrVariable_),
-            cloneList(_ascendingOrDescendingKeyPhrase_),
-            cloneList(_indexedByPhrase_));
+            cloneNode(this._occursFixedOrVariable_),
+            cloneList(this._ascendingOrDescendingKeyPhrase_),
+            cloneList(this._indexedByPhrase_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAOccursClause(this);
@@ -77,14 +48,14 @@ public final class AOccursClause extends POccursClause
 
     public POccursFixedOrVariable getOccursFixedOrVariable()
     {
-        return _occursFixedOrVariable_;
+        return this._occursFixedOrVariable_;
     }
 
     public void setOccursFixedOrVariable(POccursFixedOrVariable node)
     {
-        if(_occursFixedOrVariable_ != null)
+        if(this._occursFixedOrVariable_ != null)
         {
-            _occursFixedOrVariable_.parent(null);
+            this._occursFixedOrVariable_.parent(null);
         }
 
         if(node != null)
@@ -97,74 +68,111 @@ public final class AOccursClause extends POccursClause
             node.parent(this);
         }
 
-        _occursFixedOrVariable_ = node;
+        this._occursFixedOrVariable_ = node;
     }
 
-    public LinkedList getAscendingOrDescendingKeyPhrase()
+    public LinkedList<PAscendingOrDescendingKeyPhrase> getAscendingOrDescendingKeyPhrase()
     {
-        return _ascendingOrDescendingKeyPhrase_;
+        return this._ascendingOrDescendingKeyPhrase_;
     }
 
-    public void setAscendingOrDescendingKeyPhrase(List list)
+    public void setAscendingOrDescendingKeyPhrase(List<?> list)
     {
-        _ascendingOrDescendingKeyPhrase_.clear();
-        _ascendingOrDescendingKeyPhrase_.addAll(list);
+        for(PAscendingOrDescendingKeyPhrase e : this._ascendingOrDescendingKeyPhrase_)
+        {
+            e.parent(null);
+        }
+        this._ascendingOrDescendingKeyPhrase_.clear();
+
+        for(Object obj_e : list)
+        {
+            PAscendingOrDescendingKeyPhrase e = (PAscendingOrDescendingKeyPhrase) obj_e;
+            if(e.parent() != null)
+            {
+                e.parent().removeChild(e);
+            }
+
+            e.parent(this);
+            this._ascendingOrDescendingKeyPhrase_.add(e);
+        }
     }
 
-    public LinkedList getIndexedByPhrase()
+    public LinkedList<PIndexedByPhrase> getIndexedByPhrase()
     {
-        return _indexedByPhrase_;
+        return this._indexedByPhrase_;
     }
 
-    public void setIndexedByPhrase(List list)
+    public void setIndexedByPhrase(List<?> list)
     {
-        _indexedByPhrase_.clear();
-        _indexedByPhrase_.addAll(list);
+        for(PIndexedByPhrase e : this._indexedByPhrase_)
+        {
+            e.parent(null);
+        }
+        this._indexedByPhrase_.clear();
+
+        for(Object obj_e : list)
+        {
+            PIndexedByPhrase e = (PIndexedByPhrase) obj_e;
+            if(e.parent() != null)
+            {
+                e.parent().removeChild(e);
+            }
+
+            e.parent(this);
+            this._indexedByPhrase_.add(e);
+        }
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_occursFixedOrVariable_)
-            + toString(_ascendingOrDescendingKeyPhrase_)
-            + toString(_indexedByPhrase_);
+            + toString(this._occursFixedOrVariable_)
+            + toString(this._ascendingOrDescendingKeyPhrase_)
+            + toString(this._indexedByPhrase_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_occursFixedOrVariable_ == child)
+        // Remove child
+        if(this._occursFixedOrVariable_ == child)
         {
-            _occursFixedOrVariable_ = null;
+            this._occursFixedOrVariable_ = null;
             return;
         }
 
-        if(_ascendingOrDescendingKeyPhrase_.remove(child))
-        {
-            return;
-        }
-
-        if(_indexedByPhrase_.remove(child))
+        if(this._ascendingOrDescendingKeyPhrase_.remove(child))
         {
             return;
         }
 
+        if(this._indexedByPhrase_.remove(child))
+        {
+            return;
+        }
+
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_occursFixedOrVariable_ == oldChild)
+        // Replace child
+        if(this._occursFixedOrVariable_ == oldChild)
         {
             setOccursFixedOrVariable((POccursFixedOrVariable) newChild);
             return;
         }
 
-        for(ListIterator i = _ascendingOrDescendingKeyPhrase_.listIterator(); i.hasNext();)
+        for(ListIterator<PAscendingOrDescendingKeyPhrase> i = this._ascendingOrDescendingKeyPhrase_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
             {
                 if(newChild != null)
                 {
-                    i.set(newChild);
+                    i.set((PAscendingOrDescendingKeyPhrase) newChild);
+                    newChild.parent(this);
                     oldChild.parent(null);
                     return;
                 }
@@ -175,13 +183,14 @@ public final class AOccursClause extends POccursClause
             }
         }
 
-        for(ListIterator i = _indexedByPhrase_.listIterator(); i.hasNext();)
+        for(ListIterator<PIndexedByPhrase> i = this._indexedByPhrase_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
             {
                 if(newChild != null)
                 {
-                    i.set(newChild);
+                    i.set((PIndexedByPhrase) newChild);
+                    newChild.parent(this);
                     oldChild.parent(null);
                     return;
                 }
@@ -192,49 +201,6 @@ public final class AOccursClause extends POccursClause
             }
         }
 
-    }
-
-    private class AscendingOrDescendingKeyPhrase_Cast implements Cast
-    {
-        public Object cast(Object o)
-        {
-            PAscendingOrDescendingKeyPhrase node = (PAscendingOrDescendingKeyPhrase) o;
-
-            if((node.parent() != null) &&
-                (node.parent() != AOccursClause.this))
-            {
-                node.parent().removeChild(node);
-            }
-
-            if((node.parent() == null) ||
-                (node.parent() != AOccursClause.this))
-            {
-                node.parent(AOccursClause.this);
-            }
-
-            return node;
-        }
-    }
-
-    private class IndexedByPhrase_Cast implements Cast
-    {
-        public Object cast(Object o)
-        {
-            PIndexedByPhrase node = (PIndexedByPhrase) o;
-
-            if((node.parent() != null) &&
-                (node.parent() != AOccursClause.this))
-            {
-                node.parent().removeChild(node);
-            }
-
-            if((node.parent() == null) ||
-                (node.parent() != AOccursClause.this))
-            {
-                node.parent(AOccursClause.this);
-            }
-
-            return node;
-        }
+        throw new RuntimeException("Not a child.");
     }
 }

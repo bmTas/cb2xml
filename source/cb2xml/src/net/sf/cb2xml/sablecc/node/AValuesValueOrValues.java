@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AValuesValueOrValues extends PValueOrValues
 {
     private TValues _values_;
@@ -12,24 +12,29 @@ public final class AValuesValueOrValues extends PValueOrValues
 
     public AValuesValueOrValues()
     {
+        // Constructor
     }
 
     public AValuesValueOrValues(
-        TValues _values_,
-        TAre _are_)
+        @SuppressWarnings("hiding") TValues _values_,
+        @SuppressWarnings("hiding") TAre _are_)
     {
+        // Constructor
         setValues(_values_);
 
         setAre(_are_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AValuesValueOrValues(
-            (TValues) cloneNode(_values_),
-            (TAre) cloneNode(_are_));
+            cloneNode(this._values_),
+            cloneNode(this._are_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAValuesValueOrValues(this);
@@ -37,14 +42,14 @@ public final class AValuesValueOrValues extends PValueOrValues
 
     public TValues getValues()
     {
-        return _values_;
+        return this._values_;
     }
 
     public void setValues(TValues node)
     {
-        if(_values_ != null)
+        if(this._values_ != null)
         {
-            _values_.parent(null);
+            this._values_.parent(null);
         }
 
         if(node != null)
@@ -57,19 +62,19 @@ public final class AValuesValueOrValues extends PValueOrValues
             node.parent(this);
         }
 
-        _values_ = node;
+        this._values_ = node;
     }
 
     public TAre getAre()
     {
-        return _are_;
+        return this._are_;
     }
 
     public void setAre(TAre node)
     {
-        if(_are_ != null)
+        if(this._are_ != null)
         {
-            _are_.parent(null);
+            this._are_.parent(null);
         }
 
         if(node != null)
@@ -82,45 +87,52 @@ public final class AValuesValueOrValues extends PValueOrValues
             node.parent(this);
         }
 
-        _are_ = node;
+        this._are_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_values_)
-            + toString(_are_);
+            + toString(this._values_)
+            + toString(this._are_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_values_ == child)
+        // Remove child
+        if(this._values_ == child)
         {
-            _values_ = null;
+            this._values_ = null;
             return;
         }
 
-        if(_are_ == child)
+        if(this._are_ == child)
         {
-            _are_ = null;
+            this._are_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_values_ == oldChild)
+        // Replace child
+        if(this._values_ == oldChild)
         {
             setValues((TValues) newChild);
             return;
         }
 
-        if(_are_ == oldChild)
+        if(this._are_ == oldChild)
         {
             setAre((TAre) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

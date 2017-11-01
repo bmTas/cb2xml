@@ -4,6 +4,7 @@ package net.sf.cb2xml.sablecc.node;
 
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class TSlash extends Token
 {
     public TSlash()
@@ -18,17 +19,20 @@ public final class TSlash extends Token
         setPos(pos);
     }
 
+    @Override
     public Object clone()
     {
       return new TSlash(getLine(), getPos());
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTSlash(this);
     }
 
-    public void setText(String text)
+    @Override
+    public void setText(@SuppressWarnings("unused") String text)
     {
         throw new RuntimeException("Cannot change TSlash text.");
     }

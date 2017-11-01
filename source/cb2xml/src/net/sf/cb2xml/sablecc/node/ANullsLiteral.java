@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ANullsLiteral extends PLiteral
 {
     private TNulls _nulls_;
 
     public ANullsLiteral()
     {
+        // Constructor
     }
 
     public ANullsLiteral(
-        TNulls _nulls_)
+        @SuppressWarnings("hiding") TNulls _nulls_)
     {
+        // Constructor
         setNulls(_nulls_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ANullsLiteral(
-            (TNulls) cloneNode(_nulls_));
+            cloneNode(this._nulls_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseANullsLiteral(this);
@@ -32,14 +37,14 @@ public final class ANullsLiteral extends PLiteral
 
     public TNulls getNulls()
     {
-        return _nulls_;
+        return this._nulls_;
     }
 
     public void setNulls(TNulls node)
     {
-        if(_nulls_ != null)
+        if(this._nulls_ != null)
         {
-            _nulls_.parent(null);
+            this._nulls_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ANullsLiteral extends PLiteral
             node.parent(this);
         }
 
-        _nulls_ = node;
+        this._nulls_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_nulls_);
+            + toString(this._nulls_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_nulls_ == child)
+        // Remove child
+        if(this._nulls_ == child)
         {
-            _nulls_ = null;
+            this._nulls_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_nulls_ == oldChild)
+        // Replace child
+        if(this._nulls_ == oldChild)
         {
             setNulls((TNulls) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

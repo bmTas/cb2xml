@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AVariableOccursFixedOrVariable extends POccursFixedOrVariable
 {
     private TOccurs _occurs_;
@@ -17,17 +17,19 @@ public final class AVariableOccursFixedOrVariable extends POccursFixedOrVariable
 
     public AVariableOccursFixedOrVariable()
     {
+        // Constructor
     }
 
     public AVariableOccursFixedOrVariable(
-        TOccurs _occurs_,
-        POccursTo _occursTo_,
-        PNumber _number_,
-        TTimes _times_,
-        TDepending _depending_,
-        TOn _on_,
-        TDataName _dataName_)
+        @SuppressWarnings("hiding") TOccurs _occurs_,
+        @SuppressWarnings("hiding") POccursTo _occursTo_,
+        @SuppressWarnings("hiding") PNumber _number_,
+        @SuppressWarnings("hiding") TTimes _times_,
+        @SuppressWarnings("hiding") TDepending _depending_,
+        @SuppressWarnings("hiding") TOn _on_,
+        @SuppressWarnings("hiding") TDataName _dataName_)
     {
+        // Constructor
         setOccurs(_occurs_);
 
         setOccursTo(_occursTo_);
@@ -43,18 +45,21 @@ public final class AVariableOccursFixedOrVariable extends POccursFixedOrVariable
         setDataName(_dataName_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AVariableOccursFixedOrVariable(
-            (TOccurs) cloneNode(_occurs_),
-            (POccursTo) cloneNode(_occursTo_),
-            (PNumber) cloneNode(_number_),
-            (TTimes) cloneNode(_times_),
-            (TDepending) cloneNode(_depending_),
-            (TOn) cloneNode(_on_),
-            (TDataName) cloneNode(_dataName_));
+            cloneNode(this._occurs_),
+            cloneNode(this._occursTo_),
+            cloneNode(this._number_),
+            cloneNode(this._times_),
+            cloneNode(this._depending_),
+            cloneNode(this._on_),
+            cloneNode(this._dataName_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAVariableOccursFixedOrVariable(this);
@@ -62,14 +67,14 @@ public final class AVariableOccursFixedOrVariable extends POccursFixedOrVariable
 
     public TOccurs getOccurs()
     {
-        return _occurs_;
+        return this._occurs_;
     }
 
     public void setOccurs(TOccurs node)
     {
-        if(_occurs_ != null)
+        if(this._occurs_ != null)
         {
-            _occurs_.parent(null);
+            this._occurs_.parent(null);
         }
 
         if(node != null)
@@ -82,19 +87,19 @@ public final class AVariableOccursFixedOrVariable extends POccursFixedOrVariable
             node.parent(this);
         }
 
-        _occurs_ = node;
+        this._occurs_ = node;
     }
 
     public POccursTo getOccursTo()
     {
-        return _occursTo_;
+        return this._occursTo_;
     }
 
     public void setOccursTo(POccursTo node)
     {
-        if(_occursTo_ != null)
+        if(this._occursTo_ != null)
         {
-            _occursTo_.parent(null);
+            this._occursTo_.parent(null);
         }
 
         if(node != null)
@@ -107,19 +112,19 @@ public final class AVariableOccursFixedOrVariable extends POccursFixedOrVariable
             node.parent(this);
         }
 
-        _occursTo_ = node;
+        this._occursTo_ = node;
     }
 
     public PNumber getNumber()
     {
-        return _number_;
+        return this._number_;
     }
 
     public void setNumber(PNumber node)
     {
-        if(_number_ != null)
+        if(this._number_ != null)
         {
-            _number_.parent(null);
+            this._number_.parent(null);
         }
 
         if(node != null)
@@ -132,19 +137,19 @@ public final class AVariableOccursFixedOrVariable extends POccursFixedOrVariable
             node.parent(this);
         }
 
-        _number_ = node;
+        this._number_ = node;
     }
 
     public TTimes getTimes()
     {
-        return _times_;
+        return this._times_;
     }
 
     public void setTimes(TTimes node)
     {
-        if(_times_ != null)
+        if(this._times_ != null)
         {
-            _times_.parent(null);
+            this._times_.parent(null);
         }
 
         if(node != null)
@@ -157,19 +162,19 @@ public final class AVariableOccursFixedOrVariable extends POccursFixedOrVariable
             node.parent(this);
         }
 
-        _times_ = node;
+        this._times_ = node;
     }
 
     public TDepending getDepending()
     {
-        return _depending_;
+        return this._depending_;
     }
 
     public void setDepending(TDepending node)
     {
-        if(_depending_ != null)
+        if(this._depending_ != null)
         {
-            _depending_.parent(null);
+            this._depending_.parent(null);
         }
 
         if(node != null)
@@ -182,19 +187,19 @@ public final class AVariableOccursFixedOrVariable extends POccursFixedOrVariable
             node.parent(this);
         }
 
-        _depending_ = node;
+        this._depending_ = node;
     }
 
     public TOn getOn()
     {
-        return _on_;
+        return this._on_;
     }
 
     public void setOn(TOn node)
     {
-        if(_on_ != null)
+        if(this._on_ != null)
         {
-            _on_.parent(null);
+            this._on_.parent(null);
         }
 
         if(node != null)
@@ -207,19 +212,19 @@ public final class AVariableOccursFixedOrVariable extends POccursFixedOrVariable
             node.parent(this);
         }
 
-        _on_ = node;
+        this._on_ = node;
     }
 
     public TDataName getDataName()
     {
-        return _dataName_;
+        return this._dataName_;
     }
 
     public void setDataName(TDataName node)
     {
-        if(_dataName_ != null)
+        if(this._dataName_ != null)
         {
-            _dataName_.parent(null);
+            this._dataName_.parent(null);
         }
 
         if(node != null)
@@ -232,110 +237,117 @@ public final class AVariableOccursFixedOrVariable extends POccursFixedOrVariable
             node.parent(this);
         }
 
-        _dataName_ = node;
+        this._dataName_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_occurs_)
-            + toString(_occursTo_)
-            + toString(_number_)
-            + toString(_times_)
-            + toString(_depending_)
-            + toString(_on_)
-            + toString(_dataName_);
+            + toString(this._occurs_)
+            + toString(this._occursTo_)
+            + toString(this._number_)
+            + toString(this._times_)
+            + toString(this._depending_)
+            + toString(this._on_)
+            + toString(this._dataName_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_occurs_ == child)
+        // Remove child
+        if(this._occurs_ == child)
         {
-            _occurs_ = null;
+            this._occurs_ = null;
             return;
         }
 
-        if(_occursTo_ == child)
+        if(this._occursTo_ == child)
         {
-            _occursTo_ = null;
+            this._occursTo_ = null;
             return;
         }
 
-        if(_number_ == child)
+        if(this._number_ == child)
         {
-            _number_ = null;
+            this._number_ = null;
             return;
         }
 
-        if(_times_ == child)
+        if(this._times_ == child)
         {
-            _times_ = null;
+            this._times_ = null;
             return;
         }
 
-        if(_depending_ == child)
+        if(this._depending_ == child)
         {
-            _depending_ = null;
+            this._depending_ = null;
             return;
         }
 
-        if(_on_ == child)
+        if(this._on_ == child)
         {
-            _on_ = null;
+            this._on_ = null;
             return;
         }
 
-        if(_dataName_ == child)
+        if(this._dataName_ == child)
         {
-            _dataName_ = null;
+            this._dataName_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_occurs_ == oldChild)
+        // Replace child
+        if(this._occurs_ == oldChild)
         {
             setOccurs((TOccurs) newChild);
             return;
         }
 
-        if(_occursTo_ == oldChild)
+        if(this._occursTo_ == oldChild)
         {
             setOccursTo((POccursTo) newChild);
             return;
         }
 
-        if(_number_ == oldChild)
+        if(this._number_ == oldChild)
         {
             setNumber((PNumber) newChild);
             return;
         }
 
-        if(_times_ == oldChild)
+        if(this._times_ == oldChild)
         {
             setTimes((TTimes) newChild);
             return;
         }
 
-        if(_depending_ == oldChild)
+        if(this._depending_ == oldChild)
         {
             setDepending((TDepending) newChild);
             return;
         }
 
-        if(_on_ == oldChild)
+        if(this._on_ == oldChild)
         {
             setOn((TOn) newChild);
             return;
         }
 
-        if(_dataName_ == oldChild)
+        if(this._dataName_ == oldChild)
         {
             setDataName((TDataName) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

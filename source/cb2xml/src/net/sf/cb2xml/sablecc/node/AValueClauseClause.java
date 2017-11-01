@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AValueClauseClause extends PClause
 {
     private PValueClause _valueClause_;
 
     public AValueClauseClause()
     {
+        // Constructor
     }
 
     public AValueClauseClause(
-        PValueClause _valueClause_)
+        @SuppressWarnings("hiding") PValueClause _valueClause_)
     {
+        // Constructor
         setValueClause(_valueClause_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AValueClauseClause(
-            (PValueClause) cloneNode(_valueClause_));
+            cloneNode(this._valueClause_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAValueClauseClause(this);
@@ -32,14 +37,14 @@ public final class AValueClauseClause extends PClause
 
     public PValueClause getValueClause()
     {
-        return _valueClause_;
+        return this._valueClause_;
     }
 
     public void setValueClause(PValueClause node)
     {
-        if(_valueClause_ != null)
+        if(this._valueClause_ != null)
         {
-            _valueClause_.parent(null);
+            this._valueClause_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class AValueClauseClause extends PClause
             node.parent(this);
         }
 
-        _valueClause_ = node;
+        this._valueClause_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_valueClause_);
+            + toString(this._valueClause_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_valueClause_ == child)
+        // Remove child
+        if(this._valueClause_ == child)
         {
-            _valueClause_ = null;
+            this._valueClause_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_valueClause_ == oldChild)
+        // Replace child
+        if(this._valueClause_ == oldChild)
         {
             setValueClause((PValueClause) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

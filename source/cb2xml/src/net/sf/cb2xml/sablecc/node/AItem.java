@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AItem extends PItem
 {
     private TNumberNot88 _numberNot88_;
@@ -14,14 +14,16 @@ public final class AItem extends PItem
 
     public AItem()
     {
+        // Constructor
     }
 
     public AItem(
-        TNumberNot88 _numberNot88_,
-        PDataNameOrFiller _dataNameOrFiller_,
-        PRedefinesClause _redefinesClause_,
-        PClauseSequence _clauseSequence_)
+        @SuppressWarnings("hiding") TNumberNot88 _numberNot88_,
+        @SuppressWarnings("hiding") PDataNameOrFiller _dataNameOrFiller_,
+        @SuppressWarnings("hiding") PRedefinesClause _redefinesClause_,
+        @SuppressWarnings("hiding") PClauseSequence _clauseSequence_)
     {
+        // Constructor
         setNumberNot88(_numberNot88_);
 
         setDataNameOrFiller(_dataNameOrFiller_);
@@ -31,15 +33,18 @@ public final class AItem extends PItem
         setClauseSequence(_clauseSequence_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AItem(
-            (TNumberNot88) cloneNode(_numberNot88_),
-            (PDataNameOrFiller) cloneNode(_dataNameOrFiller_),
-            (PRedefinesClause) cloneNode(_redefinesClause_),
-            (PClauseSequence) cloneNode(_clauseSequence_));
+            cloneNode(this._numberNot88_),
+            cloneNode(this._dataNameOrFiller_),
+            cloneNode(this._redefinesClause_),
+            cloneNode(this._clauseSequence_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAItem(this);
@@ -47,14 +52,14 @@ public final class AItem extends PItem
 
     public TNumberNot88 getNumberNot88()
     {
-        return _numberNot88_;
+        return this._numberNot88_;
     }
 
     public void setNumberNot88(TNumberNot88 node)
     {
-        if(_numberNot88_ != null)
+        if(this._numberNot88_ != null)
         {
-            _numberNot88_.parent(null);
+            this._numberNot88_.parent(null);
         }
 
         if(node != null)
@@ -67,19 +72,19 @@ public final class AItem extends PItem
             node.parent(this);
         }
 
-        _numberNot88_ = node;
+        this._numberNot88_ = node;
     }
 
     public PDataNameOrFiller getDataNameOrFiller()
     {
-        return _dataNameOrFiller_;
+        return this._dataNameOrFiller_;
     }
 
     public void setDataNameOrFiller(PDataNameOrFiller node)
     {
-        if(_dataNameOrFiller_ != null)
+        if(this._dataNameOrFiller_ != null)
         {
-            _dataNameOrFiller_.parent(null);
+            this._dataNameOrFiller_.parent(null);
         }
 
         if(node != null)
@@ -92,19 +97,19 @@ public final class AItem extends PItem
             node.parent(this);
         }
 
-        _dataNameOrFiller_ = node;
+        this._dataNameOrFiller_ = node;
     }
 
     public PRedefinesClause getRedefinesClause()
     {
-        return _redefinesClause_;
+        return this._redefinesClause_;
     }
 
     public void setRedefinesClause(PRedefinesClause node)
     {
-        if(_redefinesClause_ != null)
+        if(this._redefinesClause_ != null)
         {
-            _redefinesClause_.parent(null);
+            this._redefinesClause_.parent(null);
         }
 
         if(node != null)
@@ -117,19 +122,19 @@ public final class AItem extends PItem
             node.parent(this);
         }
 
-        _redefinesClause_ = node;
+        this._redefinesClause_ = node;
     }
 
     public PClauseSequence getClauseSequence()
     {
-        return _clauseSequence_;
+        return this._clauseSequence_;
     }
 
     public void setClauseSequence(PClauseSequence node)
     {
-        if(_clauseSequence_ != null)
+        if(this._clauseSequence_ != null)
         {
-            _clauseSequence_.parent(null);
+            this._clauseSequence_.parent(null);
         }
 
         if(node != null)
@@ -142,71 +147,78 @@ public final class AItem extends PItem
             node.parent(this);
         }
 
-        _clauseSequence_ = node;
+        this._clauseSequence_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_numberNot88_)
-            + toString(_dataNameOrFiller_)
-            + toString(_redefinesClause_)
-            + toString(_clauseSequence_);
+            + toString(this._numberNot88_)
+            + toString(this._dataNameOrFiller_)
+            + toString(this._redefinesClause_)
+            + toString(this._clauseSequence_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_numberNot88_ == child)
+        // Remove child
+        if(this._numberNot88_ == child)
         {
-            _numberNot88_ = null;
+            this._numberNot88_ = null;
             return;
         }
 
-        if(_dataNameOrFiller_ == child)
+        if(this._dataNameOrFiller_ == child)
         {
-            _dataNameOrFiller_ = null;
+            this._dataNameOrFiller_ = null;
             return;
         }
 
-        if(_redefinesClause_ == child)
+        if(this._redefinesClause_ == child)
         {
-            _redefinesClause_ = null;
+            this._redefinesClause_ = null;
             return;
         }
 
-        if(_clauseSequence_ == child)
+        if(this._clauseSequence_ == child)
         {
-            _clauseSequence_ = null;
+            this._clauseSequence_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_numberNot88_ == oldChild)
+        // Replace child
+        if(this._numberNot88_ == oldChild)
         {
             setNumberNot88((TNumberNot88) newChild);
             return;
         }
 
-        if(_dataNameOrFiller_ == oldChild)
+        if(this._dataNameOrFiller_ == oldChild)
         {
             setDataNameOrFiller((PDataNameOrFiller) newChild);
             return;
         }
 
-        if(_redefinesClause_ == oldChild)
+        if(this._redefinesClause_ == oldChild)
         {
             setRedefinesClause((PRedefinesClause) newChild);
             return;
         }
 
-        if(_clauseSequence_ == oldChild)
+        if(this._clauseSequence_ == oldChild)
         {
             setClauseSequence((PClauseSequence) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

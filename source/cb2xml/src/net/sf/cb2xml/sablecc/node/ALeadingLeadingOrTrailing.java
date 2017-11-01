@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ALeadingLeadingOrTrailing extends PLeadingOrTrailing
 {
     private TLeading _leading_;
 
     public ALeadingLeadingOrTrailing()
     {
+        // Constructor
     }
 
     public ALeadingLeadingOrTrailing(
-        TLeading _leading_)
+        @SuppressWarnings("hiding") TLeading _leading_)
     {
+        // Constructor
         setLeading(_leading_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ALeadingLeadingOrTrailing(
-            (TLeading) cloneNode(_leading_));
+            cloneNode(this._leading_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseALeadingLeadingOrTrailing(this);
@@ -32,14 +37,14 @@ public final class ALeadingLeadingOrTrailing extends PLeadingOrTrailing
 
     public TLeading getLeading()
     {
-        return _leading_;
+        return this._leading_;
     }
 
     public void setLeading(TLeading node)
     {
-        if(_leading_ != null)
+        if(this._leading_ != null)
         {
-            _leading_.parent(null);
+            this._leading_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ALeadingLeadingOrTrailing extends PLeadingOrTrailing
             node.parent(this);
         }
 
-        _leading_ = node;
+        this._leading_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_leading_);
+            + toString(this._leading_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_leading_ == child)
+        // Remove child
+        if(this._leading_ == child)
         {
-            _leading_ = null;
+            this._leading_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_leading_ == oldChild)
+        // Replace child
+        if(this._leading_ == oldChild)
         {
             setLeading((TLeading) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

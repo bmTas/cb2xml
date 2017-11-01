@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ADollarCharacterSubstring extends PCharacterSubstring
 {
     private TDollar _dollar_;
 
     public ADollarCharacterSubstring()
     {
+        // Constructor
     }
 
     public ADollarCharacterSubstring(
-        TDollar _dollar_)
+        @SuppressWarnings("hiding") TDollar _dollar_)
     {
+        // Constructor
         setDollar(_dollar_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ADollarCharacterSubstring(
-            (TDollar) cloneNode(_dollar_));
+            cloneNode(this._dollar_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseADollarCharacterSubstring(this);
@@ -32,14 +37,14 @@ public final class ADollarCharacterSubstring extends PCharacterSubstring
 
     public TDollar getDollar()
     {
-        return _dollar_;
+        return this._dollar_;
     }
 
     public void setDollar(TDollar node)
     {
-        if(_dollar_ != null)
+        if(this._dollar_ != null)
         {
-            _dollar_.parent(null);
+            this._dollar_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ADollarCharacterSubstring extends PCharacterSubstring
             node.parent(this);
         }
 
-        _dollar_ = node;
+        this._dollar_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_dollar_);
+            + toString(this._dollar_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_dollar_ == child)
+        // Remove child
+        if(this._dollar_ == child)
         {
-            _dollar_ = null;
+            this._dollar_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_dollar_ == oldChild)
+        // Replace child
+        if(this._dollar_ == oldChild)
         {
             setDollar((TDollar) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

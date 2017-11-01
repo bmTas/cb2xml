@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AHighValuesLiteral extends PLiteral
 {
     private THighValues _highValues_;
 
     public AHighValuesLiteral()
     {
+        // Constructor
     }
 
     public AHighValuesLiteral(
-        THighValues _highValues_)
+        @SuppressWarnings("hiding") THighValues _highValues_)
     {
+        // Constructor
         setHighValues(_highValues_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AHighValuesLiteral(
-            (THighValues) cloneNode(_highValues_));
+            cloneNode(this._highValues_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAHighValuesLiteral(this);
@@ -32,14 +37,14 @@ public final class AHighValuesLiteral extends PLiteral
 
     public THighValues getHighValues()
     {
-        return _highValues_;
+        return this._highValues_;
     }
 
     public void setHighValues(THighValues node)
     {
-        if(_highValues_ != null)
+        if(this._highValues_ != null)
         {
-            _highValues_.parent(null);
+            this._highValues_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class AHighValuesLiteral extends PLiteral
             node.parent(this);
         }
 
-        _highValues_ = node;
+        this._highValues_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_highValues_);
+            + toString(this._highValues_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_highValues_ == child)
+        // Remove child
+        if(this._highValues_ == child)
         {
-            _highValues_ = null;
+            this._highValues_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_highValues_ == oldChild)
+        // Replace child
+        if(this._highValues_ == oldChild)
         {
             setHighValues((THighValues) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

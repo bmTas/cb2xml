@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ALowValuesLiteral extends PLiteral
 {
     private TLowValues _lowValues_;
 
     public ALowValuesLiteral()
     {
+        // Constructor
     }
 
     public ALowValuesLiteral(
-        TLowValues _lowValues_)
+        @SuppressWarnings("hiding") TLowValues _lowValues_)
     {
+        // Constructor
         setLowValues(_lowValues_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ALowValuesLiteral(
-            (TLowValues) cloneNode(_lowValues_));
+            cloneNode(this._lowValues_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseALowValuesLiteral(this);
@@ -32,14 +37,14 @@ public final class ALowValuesLiteral extends PLiteral
 
     public TLowValues getLowValues()
     {
-        return _lowValues_;
+        return this._lowValues_;
     }
 
     public void setLowValues(TLowValues node)
     {
-        if(_lowValues_ != null)
+        if(this._lowValues_ != null)
         {
-            _lowValues_.parent(null);
+            this._lowValues_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ALowValuesLiteral extends PLiteral
             node.parent(this);
         }
 
-        _lowValues_ = node;
+        this._lowValues_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_lowValues_);
+            + toString(this._lowValues_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_lowValues_ == child)
+        // Remove child
+        if(this._lowValues_ == child)
         {
-            _lowValues_ = null;
+            this._lowValues_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_lowValues_ == oldChild)
+        // Replace child
+        if(this._lowValues_ == oldChild)
         {
             setLowValues((TLowValues) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

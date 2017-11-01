@@ -2,9 +2,9 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ASequenceCharacterString extends PCharacterString
 {
     private PCharacterString _characterString_;
@@ -12,24 +12,29 @@ public final class ASequenceCharacterString extends PCharacterString
 
     public ASequenceCharacterString()
     {
+        // Constructor
     }
 
     public ASequenceCharacterString(
-        PCharacterString _characterString_,
-        PCharacterSubstring _characterSubstring_)
+        @SuppressWarnings("hiding") PCharacterString _characterString_,
+        @SuppressWarnings("hiding") PCharacterSubstring _characterSubstring_)
     {
+        // Constructor
         setCharacterString(_characterString_);
 
         setCharacterSubstring(_characterSubstring_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ASequenceCharacterString(
-            (PCharacterString) cloneNode(_characterString_),
-            (PCharacterSubstring) cloneNode(_characterSubstring_));
+            cloneNode(this._characterString_),
+            cloneNode(this._characterSubstring_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseASequenceCharacterString(this);
@@ -37,14 +42,14 @@ public final class ASequenceCharacterString extends PCharacterString
 
     public PCharacterString getCharacterString()
     {
-        return _characterString_;
+        return this._characterString_;
     }
 
     public void setCharacterString(PCharacterString node)
     {
-        if(_characterString_ != null)
+        if(this._characterString_ != null)
         {
-            _characterString_.parent(null);
+            this._characterString_.parent(null);
         }
 
         if(node != null)
@@ -57,19 +62,19 @@ public final class ASequenceCharacterString extends PCharacterString
             node.parent(this);
         }
 
-        _characterString_ = node;
+        this._characterString_ = node;
     }
 
     public PCharacterSubstring getCharacterSubstring()
     {
-        return _characterSubstring_;
+        return this._characterSubstring_;
     }
 
     public void setCharacterSubstring(PCharacterSubstring node)
     {
-        if(_characterSubstring_ != null)
+        if(this._characterSubstring_ != null)
         {
-            _characterSubstring_.parent(null);
+            this._characterSubstring_.parent(null);
         }
 
         if(node != null)
@@ -82,45 +87,52 @@ public final class ASequenceCharacterString extends PCharacterString
             node.parent(this);
         }
 
-        _characterSubstring_ = node;
+        this._characterSubstring_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_characterString_)
-            + toString(_characterSubstring_);
+            + toString(this._characterString_)
+            + toString(this._characterSubstring_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_characterString_ == child)
+        // Remove child
+        if(this._characterString_ == child)
         {
-            _characterString_ = null;
+            this._characterString_ = null;
             return;
         }
 
-        if(_characterSubstring_ == child)
+        if(this._characterSubstring_ == child)
         {
-            _characterSubstring_ = null;
+            this._characterSubstring_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_characterString_ == oldChild)
+        // Replace child
+        if(this._characterString_ == oldChild)
         {
             setCharacterString((PCharacterString) newChild);
             return;
         }
 
-        if(_characterSubstring_ == oldChild)
+        if(this._characterSubstring_ == oldChild)
         {
             setCharacterSubstring((PCharacterSubstring) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

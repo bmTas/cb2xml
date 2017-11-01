@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class AItemElementaryItem extends PElementaryItem
 {
     private PItem _item_;
 
     public AItemElementaryItem()
     {
+        // Constructor
     }
 
     public AItemElementaryItem(
-        PItem _item_)
+        @SuppressWarnings("hiding") PItem _item_)
     {
+        // Constructor
         setItem(_item_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new AItemElementaryItem(
-            (PItem) cloneNode(_item_));
+            cloneNode(this._item_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAItemElementaryItem(this);
@@ -32,14 +37,14 @@ public final class AItemElementaryItem extends PElementaryItem
 
     public PItem getItem()
     {
-        return _item_;
+        return this._item_;
     }
 
     public void setItem(PItem node)
     {
-        if(_item_ != null)
+        if(this._item_ != null)
         {
-            _item_.parent(null);
+            this._item_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class AItemElementaryItem extends PElementaryItem
             node.parent(this);
         }
 
-        _item_ = node;
+        this._item_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_item_);
+            + toString(this._item_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_item_ == child)
+        // Remove child
+        if(this._item_ == child)
         {
-            _item_ = null;
+            this._item_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_item_ == oldChild)
+        // Replace child
+        if(this._item_ == oldChild)
         {
             setItem((PItem) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }

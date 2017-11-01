@@ -2,29 +2,34 @@
 
 package net.sf.cb2xml.sablecc.node;
 
-import java.util.*;
 import net.sf.cb2xml.sablecc.analysis.*;
 
+@SuppressWarnings("nls")
 public final class ADateFormatClauseClause extends PClause
 {
     private PDateFormatClause _dateFormatClause_;
 
     public ADateFormatClauseClause()
     {
+        // Constructor
     }
 
     public ADateFormatClauseClause(
-        PDateFormatClause _dateFormatClause_)
+        @SuppressWarnings("hiding") PDateFormatClause _dateFormatClause_)
     {
+        // Constructor
         setDateFormatClause(_dateFormatClause_);
 
     }
+
+    @Override
     public Object clone()
     {
         return new ADateFormatClauseClause(
-            (PDateFormatClause) cloneNode(_dateFormatClause_));
+            cloneNode(this._dateFormatClause_));
     }
 
+    @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseADateFormatClauseClause(this);
@@ -32,14 +37,14 @@ public final class ADateFormatClauseClause extends PClause
 
     public PDateFormatClause getDateFormatClause()
     {
-        return _dateFormatClause_;
+        return this._dateFormatClause_;
     }
 
     public void setDateFormatClause(PDateFormatClause node)
     {
-        if(_dateFormatClause_ != null)
+        if(this._dateFormatClause_ != null)
         {
-            _dateFormatClause_.parent(null);
+            this._dateFormatClause_.parent(null);
         }
 
         if(node != null)
@@ -52,32 +57,39 @@ public final class ADateFormatClauseClause extends PClause
             node.parent(this);
         }
 
-        _dateFormatClause_ = node;
+        this._dateFormatClause_ = node;
     }
 
+    @Override
     public String toString()
     {
         return ""
-            + toString(_dateFormatClause_);
+            + toString(this._dateFormatClause_);
     }
 
-    void removeChild(Node child)
+    @Override
+    void removeChild(@SuppressWarnings("unused") Node child)
     {
-        if(_dateFormatClause_ == child)
+        // Remove child
+        if(this._dateFormatClause_ == child)
         {
-            _dateFormatClause_ = null;
+            this._dateFormatClause_ = null;
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 
-    void replaceChild(Node oldChild, Node newChild)
+    @Override
+    void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
-        if(_dateFormatClause_ == oldChild)
+        // Replace child
+        if(this._dateFormatClause_ == oldChild)
         {
             setDateFormatClause((PDateFormatClause) newChild);
             return;
         }
 
+        throw new RuntimeException("Not a child.");
     }
 }
