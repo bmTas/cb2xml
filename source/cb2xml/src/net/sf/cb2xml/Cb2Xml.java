@@ -66,9 +66,7 @@ public class Cb2Xml {
 								 .setXmlFormat(p.xmlFormat)
 								 .setXmlEncoding(p.font)
 								 .setDialect(p.dialect);
-				if (p.stackSize > 0) {
-					bldr.setStackSize(0);
-				}
+				bldr.setStackSize(p.stackSize);
 				
 				if (p.xml == null || p.xml.length() == 0) {
 					bldr.setXmlEncoding("").writeXml(new OutputStreamWriter(System.out));

@@ -71,7 +71,7 @@ public class Parms {
 		int ss = -1;
 		if (v[STACK_SIZE_IDX] == null) {
 			
-		} else if ("normal".equals(v[STACK_SIZE_IDX])) {
+		} else if ("normal".equalsIgnoreCase(v[STACK_SIZE_IDX])) {
 			ss = 0;
 		} else {
 			try {
@@ -79,7 +79,7 @@ public class Parms {
 			} catch (Exception e) {
 				ok = false;
 				System.err.println();
-				System.err.println("Invalid Stacksize: " + v[STACK_SIZE_IDX] + "it should be normal or the number of megabytes");
+				System.err.println("Invalid Stacksize: " + v[STACK_SIZE_IDX] + " it should be normal or the number of megabytes");
 				System.err.println();
 			}
 		}

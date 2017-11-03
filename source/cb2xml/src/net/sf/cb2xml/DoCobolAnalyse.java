@@ -72,8 +72,10 @@ public abstract class DoCobolAnalyse implements Runnable  {
 		case Cb2xmlConstants.FREE_FORMAT:
 			sr = r;
 			initialColumn = 0;
-			tSize = DEFAULT_THREAD_SIZE;
-			threadSize = DEFAULT_THREAD_SIZE;
+			if (threadSize < 0) {
+				tSize = DEFAULT_THREAD_SIZE;
+				threadSize = DEFAULT_THREAD_SIZE;
+			}
 			break;
 		case Cb2xmlConstants.USE_STANDARD_COLUMNS:
 		case Cb2xmlConstants.USE_COLS_6_TO_80:
@@ -92,16 +94,21 @@ public abstract class DoCobolAnalyse implements Runnable  {
 			break;
 		}
 		
-		if (preProcessed != null) {
-			tSize = preProcessed.length() * 10;
+		//System.out.println("tSize .... " + tSize);
+		if (preProcessed != null && tSize < 0) {
+			tSize = preProcessed.length() * 7;
 			threadSize = tSize + ONE_MEG;
+		} else if (tSize > 0 ){
+			threadSize = tSize;
 		}
 
 		pbr = new PushbackReader(sr, 4000);
 		
 		if (tSize < ONE_MEG) {
+			//System.out.println("run in normal thread ....");
 			this.run();
 		} else {
+			//System.out.println("thread size: " + threadSize);
 			Thread t = new Thread(null, this, name, Math.max(DEFAULT_THREAD_SIZE, threadSize));
 			
 			t.start();

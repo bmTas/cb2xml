@@ -34,7 +34,7 @@ import net.sf.cb2xml.sablecc.parser.ParserException;
  */
 public class Cb2Xml3 {
 	public static final int USE_DEFAULT_THREADSIZE = 0;
-	public static final int USE_DEFAULT_CB2XML_THREADSIZE = 1;
+	public static final int CALCULATE_THREAD_SIZE = -1;
 	
 	static final int ONE_MEG = 1024 * 1024;
 	static final int DEFAULT_THREAD_SIZE = 4 * ONE_MEG;
@@ -104,7 +104,7 @@ public class Cb2Xml3 {
 		private int cblLineFormat = Cb2xmlConstants.USE_STANDARD_COLUMNS, 
 		 			startingColumn = FIRST_COBOL_COLUMN,
 		 			lastColumn = LAST_COBOL_COLUMN;
-		private long stackSize = USE_DEFAULT_THREADSIZE;
+		private long stackSize = CALCULATE_THREAD_SIZE;
 		
 		private NumericDefinition dialect = DialectManager.MAINFRAME_COBOL.getNumericDefinition();
 		

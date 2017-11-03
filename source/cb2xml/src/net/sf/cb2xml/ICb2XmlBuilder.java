@@ -26,6 +26,11 @@ import net.sf.cb2xml.sablecc.parser.ParserException;
  */
 public interface ICb2XmlBuilder {
 
+	/**
+	 * set debug option
+	 * @param debug wether to run in debug mode
+	 * @return cb2xml Builder for further update
+	 */
 	public ICb2XmlBuilder setDebug(boolean debug); 
 	
 	/**
