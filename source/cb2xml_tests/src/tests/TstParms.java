@@ -45,6 +45,7 @@ public class TstParms {
 	@Test
 	public void test2() {
 		tst2(true, new String[] {"a","b","c","true","xx", null, "2017", MAINFRAME});
+		tst2(true, new String[] {"a","b","c","true","xx", "5", "Classic", GNU_COBOL});
 		tst2(true, new String[] {"a","b","c","true","xx", "5", null, GNU_COBOL});
 		tst2(true, new String[] {"a","b","c","true","xx", "5", "new", FUJITSU});
 		tst2(true, new String[] {"a","b","c","true","xx", "5", "2017", null});
@@ -84,7 +85,7 @@ public class TstParms {
 		}
 		
 		Cb2xmlConstants.Cb2xmlXmlFormat eXmlFormat = Cb2xmlConstants.Cb2xmlXmlFormat.CLASSIC;
-		if ("2017".equals(strings[6]) || "new".equalsIgnoreCase(strings[6])) {
+		if (strings[6] == null || "2017".equals(strings[6]) || "new".equalsIgnoreCase(strings[6])) {
 			eXmlFormat = Cb2xmlConstants.Cb2xmlXmlFormat.FORMAT_2017;
 		}
 		assertEquals(eXmlFormat, p.xmlFormat);

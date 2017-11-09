@@ -9,6 +9,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import net.sf.cb2xml.Cb2Xml;
 import net.sf.cb2xml.sablecc.lexer.LexerException;
 import net.sf.cb2xml.sablecc.parser.ParserException;
+import net.sf.cb2xml.util.Parms;
 import net.sf.cb2xml.util.XmlUtils;
 
 import org.junit.Test;
@@ -65,6 +66,14 @@ public class TstCb2xml31a {
 	};
 
 
+	@Test
+	public void testArray1old() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException {
+		tstArray(COPYBOOK_LIST1, "cobolCopybook/", "", false);
+		tstArray(COPYBOOK_LIST2, "cobolCopybook/", "", false);
+		tstArray(COPYBOOK_LIST3, "cobolCopybook/", "", false);
+		tstArray(COPYBOOK_LIST4, "cobolCopybook/", "", false);
+	}
+
 
 	@Test
 	public void testArray1a() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException {
@@ -117,8 +126,15 @@ public class TstCb2xml31a {
 
 
 	public void tstArray(String[] copybooks,  String dir, String font) throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException  {
+		tstArray(copybooks, dir, font, true);
+	}
+
+
+	public void tstArray(String[] copybooks,  String dir, String font, boolean newFormat) throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException  {
 		String cblFilename, xmlFilename, xmlOut;
-			String tmpDir = System.getProperty("java.io.tmpdir") + File.separator;
+		String tmpDir = System.getProperty("java.io.tmpdir") + File.separator;
+		System.out.println(tmpDir);
+		String xmlCompare = "xmlCopybook/";
 		
 		for (String c : copybooks) {
 			xmlFilename = "xmlCpy" + c.substring(3, c.length() - 3) + "Xml";
@@ -131,10 +147,15 @@ public class TstCb2xml31a {
 				args = new String[] {
 					"-cobol", cblFilename, "-xml", xmlOut
 				};
-			} else {
+			} else if (newFormat) {
 				args = new String[] {
 						"-cobol", cblFilename, "-xml", xmlOut, "-font", font
 					};
+			} else {
+				args = new String[] {
+						"-cobol", cblFilename, "-xml", xmlOut, "-font", font, Parms.XML_FORMAT_PRM, "Classic"
+					};
+				xmlCompare = "xmlCopybookClassic/";
 			}
 			
 			
@@ -148,10 +169,9 @@ public class TstCb2xml31a {
 			System.out.println();
 		
 			
-			xmlFilename = Code.getFullName("xmlCopybook/" + xmlFilename);
+			xmlFilename = Code.getFullName(xmlCompare + xmlFilename);
 			common.Code.compare("File: " + cblFilename, xmlFilename, doc);
 			
 		}
-		//fail("Not yet implemented");
 	}
 }

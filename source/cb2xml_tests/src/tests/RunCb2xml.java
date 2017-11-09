@@ -9,7 +9,9 @@ public class RunCb2xml {
 	}
 
 	public static void main(String[] args) {
-		String[] a = {"/media/sf_Shared/JRecordLib/Xmpl.cbl"};
+		//String[] a = {"/media/sf_Shared/JRecordLib/Xmpl.cbl"};
+		//String[] a = {"-cobol", "/media/sf_Shared/JRecordLib/Xmpl.cbl", "-stacksize", "normal"};
+		String[] a = {"-cobol", "/media/sf_Shared/JRecordLib/Xmpl.cbl"};
 		Cb2Xml.main(a);
 	}
 

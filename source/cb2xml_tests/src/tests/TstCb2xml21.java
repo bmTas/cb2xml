@@ -143,12 +143,16 @@ public class TstCb2xml21 {
 
 	@Test
 	public void testArray6() throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException, XMLStreamException {
-		tstArray(COPYBOOK_LIST6, "cobolCopybook/", "utf-8");
+		tstArray(COPYBOOK_LIST6, "cobolCopybook/", "utf-8", true);
 	}
+
 
 
 	public void tstArray(String[] copybooks) throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException, XMLStreamException  {
 		String cblFilename, xmlFilename;
+
+		String xmlCompare = "xmlCopybookClassic/";
+
 		for (String c : copybooks) {
 			xmlFilename = "xmlCpy" + c.substring(3, c.length() - 3) + "Xml";
 			System.out.println("Test: " + c + " " + xmlFilename);
@@ -161,7 +165,7 @@ public class TstCb2xml21 {
 			System.out.println();
 		
 			
-			xmlFilename = Code.getFullName("xmlCopybook/" + xmlFilename);
+			xmlFilename = Code.getFullName(xmlCompare + xmlFilename);
 			common.Code.compare("File: " + cblFilename, xmlFilename, doc);
 			
 		}
@@ -169,11 +173,12 @@ public class TstCb2xml21 {
 	}
 
 	public void tstArrayEbcdic(String[] copybooks) throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException, XMLStreamException  {
-		tstArray(copybooks, "ebcdicCopybook/", "cp037");
+		tstArray(copybooks, "ebcdicCopybook/", "cp037", false);
 	}
 
-	public void tstArray(String[] copybooks, String dir, String font) throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException, XMLStreamException  {
+	public void tstArray(String[] copybooks, String dir, String font, boolean newFormat) throws IOException, SAXException, ParserConfigurationException, ParserException, LexerException, XMLStreamException  {
 		String cblFilename, xmlFilename;
+		String xmlDir = newFormat ? "xmlCopybook/" : "xmlCopybookClassic/";
 		for (String c : copybooks) {
 			xmlFilename = "xmlCpy" + c.substring(3, c.length() - 3) + "Xml";
 			System.out.println("Test: " + c + " " + xmlFilename);
@@ -189,7 +194,7 @@ public class TstCb2xml21 {
 			System.out.println();
 		
 			
-			xmlFilename = Code.getFullName("xmlCopybook/" + xmlFilename);
+			xmlFilename = Code.getFullName(xmlDir + xmlFilename);
 			common.Code.compare("File: " + cblFilename, xmlFilename, doc);
 			
 		}

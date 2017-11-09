@@ -3,7 +3,10 @@ package tests;
 //import static org.junit.Assert.*;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -102,12 +105,7 @@ public class TstCb2xml01 {
 			System.out.println(i + " " + cblFilename + ":");
 			System.out.println(XmlUtils.domToString(doc));
 			System.out.println();
-			
-//			Writer w = new OutputStreamWriter(new FileOutputStream("G:\\Temp\\cb2xml\\xmlCopybooks\\cb2xml_Output" + i + ".xml") , "utf-8");
-//			w.write(XmlUtils.domToString(doc).toString());
-//			w.close();
-		
-			
+	
 			xmlFilename = Code.getFullName(XML_FILE_PREF + i + ".xml");
 			common.Code.compare("File: " + cblFilename, xmlFilename, doc);
 		}
@@ -137,6 +135,7 @@ public class TstCb2xml01 {
 
 	public void tstArray(String[] copybooks) throws IOException, SAXException, ParserConfigurationException {
 		String cblFilename, xmlFilename;
+		String tmpDir = System.getProperty("java.io.tmpdir") + File.separator;
 		for (String c : copybooks) {
 			xmlFilename = "xmlCpy" + c.substring(3, c.length() - 3) + "Xml";
 			System.out.println("Test: " + c + " " + xmlFilename);
@@ -144,15 +143,15 @@ public class TstCb2xml01 {
 			
 			Document doc = Cb2Xml.convertToXMLDOM(new File(cblFilename));
 			
-			System.out.println(c + " --> " + xmlFilename + ":");
-			System.out.println(XmlUtils.domToString(doc));
-			System.out.println();
+//			System.out.println(c + " --> " + xmlFilename + ":");
+//			System.out.println(XmlUtils.domToString(doc));
+//			System.out.println();
 		
-//			Writer w = new OutputStreamWriter(new FileOutputStream("G:\\Temp\\cb2xml\\xmlCopybooks\\" + xmlFilename) , "utf-8");
+//			Writer w = new OutputStreamWriter(new FileOutputStream(tmpDir + xmlFilename) , "utf-8");
 //			w.write(XmlUtils.domToString(doc).toString());
 //			w.close();
 			
-			xmlFilename = Code.getFullName("xmlCopybook/" + xmlFilename);
+			xmlFilename = Code.getFullName("xmlCopybookClassic/" + xmlFilename);
 			common.Code.compare("File: " + cblFilename, xmlFilename, doc);
 			
 		}
