@@ -19,6 +19,7 @@
 	<property name="cb2xml_Jaxb.jar" location="${outputLib.dir}/cb2xml_Jaxb.jar" />
 	<property name="cb2xml_example.jar" location="${outputLib.dir}/cb2xml_example.jar" />
 	<property name="ObscureCopybook.jar" location="${outputLib.dir}/ObscureCopybook.jar" />
+	<property name="CopybookPrettyPrint.jar" location="${outputLib.dir}/CopybookPrettyPrint.jar" />
 	<property name="inputLib.dir" location="../../lib" />
 
 
@@ -32,7 +33,7 @@
 			<!--include name="net/sf/cb2xml/jaxb/**"/!-->
 			<!--include name="net/sf/cb2xml/parse/**"/!-->
 			<classpath>
-				<filelist dir="../cb2xml/lib">
+				<filelist dir="../../workspace/cb2xml/lib">
 					<file name="cb2xml.jar"/>
 				</filelist>
 			</classpath>
@@ -63,6 +64,17 @@
 				<include name="net/sf/cb2xml/jaxb/**"/>
 				<include name="net/sf/cb2xml/parse/**"/>
 				<include name="net/sf/cb2xml/example/Ob**"/>
+			</fileset>
+		</jar>
+		<jar destfile="${CopybookPrettyPrint.jar}" filesonly="true">
+			<manifest>
+			    <attribute name="Main-Class" value="net.sf.cb2xml.example.PrettyPrintCopybook"/>
+			    <attribute name="Class-Path" value="cb2xml.jar"/>
+			</manifest>
+			<fileset dir="${build.dir}">
+				<include name="net/sf/cb2xml/jaxb/**"/>
+				<include name="net/sf/cb2xml/parse/**"/>
+				<include name="net/sf/cb2xml/example/Pr**"/>
 			</fileset>
 		</jar>
 	</target>

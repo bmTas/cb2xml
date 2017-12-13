@@ -19,7 +19,7 @@
 	<property name="sablecc.jar" location="sablecc/sablecc.jar" />
 	<property name="cb2xml.jar" location="${lib.dir}/cb2xml.jar" />
 	<property name="cb2xml_definitions.jar" location="${lib.dir}/cb2xml_definitions.jar" />
-	<property name="version.num" value="0.95.8"/>
+	<property name="version.num" value="1.00"/>
 	<tstamp>
 	  <format property="BUILD_TIMESTAMP" pattern="yyyy-MM-dd HH:mm:ss"/>
 	</tstamp>
@@ -43,7 +43,7 @@
 	
 	<target name="compile" depends="Data_Copy" description="compile cb2xml code" >
 		<mkdir dir="${build.dir}" />
-		<javac srcdir="${src.dir}" destdir="${build.dir}" optimize="true" target="1.4" source="1.4" debug="false"/>
+		<javac srcdir="${src.dir}" destdir="${build.dir}" optimize="true" target="1.7" source="1.7" debug="false"/>
 	</target>
 
 	<target name="build" depends="compile" description="build jar">
@@ -58,6 +58,7 @@
 		<jar destfile="${cb2xml_definitions.jar}" filesonly="true">
 			<fileset dir="${build.dir}">
 				<include name="net/sf/cb2xml/def/*"/>
+				<include name="net/sf/cb2xml/analysis/*"/>
 			</fileset>
 		</jar>
 	</target>	

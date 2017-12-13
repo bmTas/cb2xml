@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.sf</groupId>
     <artifactId>cb2xml</artifactId>
-    <version>0.95.8</version>
+    <version>1.00.0</version>
     <packaging>pom</packaging>
 
     <properties>
