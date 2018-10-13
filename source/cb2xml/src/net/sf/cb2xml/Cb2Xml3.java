@@ -33,8 +33,8 @@ import net.sf.cb2xml.sablecc.parser.ParserException;
  *
  */
 public class Cb2Xml3 {
-	public static final int USE_DEFAULT_THREADSIZE = 0;
-	public static final int CALCULATE_THREAD_SIZE = -1;
+	public static final int USE_DEFAULT_THREADSIZE = Cb2xmlConstants.USE_DEFAULT_THREADSIZE;
+	public static final int CALCULATE_THREAD_SIZE  = Cb2xmlConstants.CALCULATE_THREAD_SIZE;
 	
 	static final int ONE_MEG = 1024 * 1024;
 	static final int DEFAULT_THREAD_SIZE = 4 * ONE_MEG;
@@ -218,7 +218,7 @@ public class Cb2Xml3 {
 		 * @see net.sf.cb2xml.ICb2XmlBuilder#asCobolItemTree()
 		 */
 		@Override
-		public Copybook asCobolItemTree() {
+		public  Copybook asCobolItemTree() {
 			try {
 				return getCopybook();
 			} catch (LexerException e) {

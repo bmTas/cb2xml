@@ -3,7 +3,10 @@ package net.sf.cb2xml.def;
 import java.util.HashMap;
 
 public class Cb2xmlConstants {
-	
+
+	public static final int USE_DEFAULT_THREADSIZE = 0;
+	public static final int CALCULATE_THREAD_SIZE = -1;
+
 	public static final String STANDARD_FONT = "UTF-8";
 	
 	public  static final int USE_STANDARD_COLUMNS = 1;

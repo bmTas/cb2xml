@@ -23,12 +23,12 @@ import net.sf.cb2xml.sablecc.parser.ParserException;
  *
  */
 public abstract class DoCobolAnalyse implements Runnable  {
-	static final int USE_DEFAULT_THREADSIZE = 0;
-	static final int USE_DEFAULT_CB2XML_THREADSIZE = 1;
+//	static final int USE_DEFAULT_THREADSIZE = 0;
+//	static final int USE_DEFAULT_CB2XML_THREADSIZE = 1;
 	static final int ONE_MEG = 1024 * 1024;
 	static final int DEFAULT_THREAD_SIZE = 4 * ONE_MEG;
 
-	
+	private final static Object SYNC_PARSE_COBOL = new Object();
 	private static final int FIRST_COBOL_COLUMN = 6;
 	private static final int LAST_COBOL_COLUMN = 72;
 
@@ -126,31 +126,33 @@ public abstract class DoCobolAnalyse implements Runnable  {
 	 * @see java.lang.Runnable#run()
 	 */
 	@Override
-	public final void run() {
+	public final void run()  {
 		try {
 			Parser parser;
 			Start ast;
-			if (debug) {
-				System.err.println("*** debug mode ***");
-				DebugLexer lexer = new DebugLexer(pbr);
-				parser = new Parser(lexer);
-				try {
-					ast = parser.parse(initialColumn);
-				} catch (ParserException pe) {
-					StringBuffer buffer = lexer.getBuffer();
-					String s = "";
-					if (buffer != null) {
-						s = buffer.toString();
+			synchronized (SYNC_PARSE_COBOL) {
+				if (debug) {
+					System.err.println("*** debug mode ***");
+					DebugLexer lexer = new DebugLexer(pbr);
+					parser = new Parser(lexer);
+					try {
+						ast = parser.parse(initialColumn);
+					} catch (ParserException pe) {
+						StringBuffer buffer = lexer.getBuffer();
+						String s = "";
+						if (buffer != null) {
+							s = buffer.toString();
+						}
+						throw new DebugParserException(pe, s);
 					}
-					throw new DebugParserException(pe, s);
+				} else {
+					parser = new Parser(new Lexer(pbr));
+					ast = parser.parse(initialColumn);
 				}
-			} else {
-				parser = new Parser(new Lexer(pbr));
-				ast = parser.parse(initialColumn);
+	
+	
+				analyseCobolCopybook(parser, ast);
 			}
-
-
-			analyseCobolCopybook(parser, ast);
 		} catch (DebugParserException e) {
 			debugException = e;
 		} catch (LexerException e) {
