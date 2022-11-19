@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook filename="cpyCompInheritence.cbl" dialect="Mainframe">
+    <item level="01" name="MASTER-RECORD" position="1" storage-length="53" display-length="91">
+        <item level="05" name="COMP-DATA" usage="computational" position="1" storage-length="52" display-length="90" numeric="true">
+            <item level="07" name="BEGIN-BAL" picture="S9(13)V99" usage="computational" position="1" storage-length="8" display-length="15" scale="2" numeric="true" inherited-usage="true" signed="true"/>
+            <item level="07" name="NO-CREDITS" picture="S9(7)" usage="computational" position="9" storage-length="4" display-length="7" numeric="true" inherited-usage="true" signed="true"/>
+            <item level="07" name="CR-AMT" picture="S9(13)V99" usage="computational" position="13" storage-length="8" display-length="15" scale="2" numeric="true" inherited-usage="true" signed="true"/>
+            <item level="07" name="NO-DEBITS" picture="S9(7)" usage="computational" position="21" storage-length="4" display-length="7" numeric="true" inherited-usage="true" signed="true"/>
+            <item level="07" name="DR-AMT" picture="S9(13)V99" usage="computational" position="25" storage-length="8" display-length="15" scale="2" numeric="true" inherited-usage="true" signed="true"/>
+            <item level="07" name="SERV-CHG" picture="S9(13)V99" usage="computational" position="33" storage-length="8" display-length="15" scale="2" numeric="true" inherited-usage="true" signed="true"/>
+            <item level="07" name="ITEMS" picture="S9(7)" usage="computational" position="41" storage-length="4" display-length="7" numeric="true" inherited-usage="true" signed="true"/>
+            <item level="07" name="LINES" picture="S9(3)" usage="computational" position="45" storage-length="2" display-length="3" numeric="true" inherited-usage="true" signed="true"/>
+            <item level="07" name="PAGE" picture="S9(5)" usage="computational" position="47" storage-length="4" display-length="5" numeric="true" inherited-usage="true" signed="true"/>
+            <item level="07" name="DUPL" picture="S9" usage="computational" position="51" storage-length="2" display-length="1" numeric="true" inherited-usage="true" signed="true"/>
+        </item>
+        <item level="05" name="SPECL-HANDL" picture="X" position="53" storage-length="1" display-length="1"/>
+    </item>
+</copybook>

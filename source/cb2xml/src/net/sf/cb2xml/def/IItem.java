@@ -30,6 +30,7 @@ package net.sf.cb2xml.def;
 
 import java.util.List;
 
+import net.sf.cb2xml.analysis.IHasConditions;
 import net.sf.cb2xml.def.Cb2xmlConstants.SignClause;
 
 
@@ -45,7 +46,7 @@ import net.sf.cb2xml.def.Cb2xmlConstants.SignClause;
  * 
  *
  */
-public interface IItem extends IItemBase {
+public interface IItem extends IItemBase, IHasConditions {
 
 	public static final int NULL_INT_VALUE = Integer.MIN_VALUE;
 
@@ -103,6 +104,7 @@ public interface IItem extends IItemBase {
 	 */
 	public abstract int getDisplayLength();
 
+	public abstract int getDisplayPosition();
 
 //	public boolean isEditedNumeric();
 
@@ -202,4 +204,8 @@ public interface IItem extends IItemBase {
 	 * is the usage inherited from an upper level
 	 */
 	public boolean isBlankWhenZero();
+
+	public int getRelativeLevel();
+
+//	public int getDoubleByteChars();
 }

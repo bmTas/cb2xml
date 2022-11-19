@@ -12,4 +12,8 @@ public interface IItemBase {
 	 */
 	public abstract List<? extends IItem> getChildItems();
 
+	public abstract List<Object> getAllElements();
+
+	public abstract void addComment(String comment);
+
 }

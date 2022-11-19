@@ -40,6 +40,7 @@ public abstract class BaseItem implements IItemBase {
 		add(item);
 	}
 	
+	@Override
 	public void addComment(String comment) {
 		add(comment);
 	}
@@ -65,6 +66,7 @@ public abstract class BaseItem implements IItemBase {
 	/**
 	 * @return the allElements
 	 */
+	@Override
 	public final List<Object> getAllElements() {
 		return allElements;
 	}

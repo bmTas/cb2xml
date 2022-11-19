@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<copybook filename="cpyUtf8.cbl" dialect="Mainframe" cb2xml-format="2017">
+    <!--* Sample copybook with international characters in UTF8   *-->
+    <!--***********************************************************-->
+    <item level="01" name="TEST" position="1" storage-length="300" display-length="300" display-position="1">
+        <item level="03" name="CHINESE-SIMPLIFIED" picture="X(50)" position="1" storage-length="50" display-length="50" display-position="1" value="&quot;当世界&quot;"/>
+        <item level="03" name="CHINESE-TRADITIONAL" picture="X(50)" position="51" storage-length="50" display-length="50" display-position="51" value="&quot;當世界&quot;"/>
+        <item level="03" name="DANISH" picture="X(50)" position="101" storage-length="50" display-length="50" display-position="101" value="&quot;når verden&quot;"/>
+        <item level="03" name="KOREAN" picture="X(50)" position="151" storage-length="50" display-length="50" display-position="151" value="&quot;때 세계&quot;"/>
+        <item level="03" name="JAPANESE" picture="X(50)" position="201" storage-length="50" display-length="50" display-position="201" value="&quot;時の世界&quot;"/>
+        <item level="03" name="RUSSIAN" picture="X(50)" position="251" storage-length="50" display-length="50" display-position="251" value="&quot;когда мир&quot;"/>
+    </item>
+</copybook>

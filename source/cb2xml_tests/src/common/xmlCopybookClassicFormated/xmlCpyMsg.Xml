@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook filename="cpyMsg.cbl" dialect="Mainframe">
+    <!--* CT750MSG is a new program checked out by V000072-->
+    <item level="01" name="FILLER" picture="X(25)" position="1" storage-length="25" display-length="25" value="&quot;PROFILE ERROR HELP TABLES&quot;"/>
+    <item level="01" name="CT750MSG" position="1" storage-length="162" display-length="162">
+        <!--***********************************************************-->
+        <!--*    T A B L E S    A R E    D A T E    S P E C I F I C   *-->
+        <!--***********************************************************-->
+        <item level="03" name="DATE-COMP-1" picture="X(6)" position="1" storage-length="6" display-length="6" value="&quot;911   &quot;"/>
+        <item level="03" name="DATE-1-LITERALS" position="7" storage-length="156" display-length="156">
+            <item level="05" name="DATE-1-GRP-I1-LITERALS" position="7" storage-length="156" display-length="156">
+                <item level="07" name="GRP-I1-A" picture="X(78)" position="7" storage-length="78" display-length="78" value="&quot;CURRENT YEAR PRESET IS 'FR'                      &quot;"/>
+                <item level="07" name="GRP-I1-B" picture="X(78)" position="85" storage-length="78" display-length="78" value="&quot;CURRENT YEAR HAS ONE OR MORE MATH ERRORS                      &quot;"/>
+            </item>
+        </item>
+    </item>
+</copybook>

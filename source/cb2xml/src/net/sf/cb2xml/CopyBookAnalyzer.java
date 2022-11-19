@@ -799,16 +799,19 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 					break;
 				}
 			}
-			if (redefinedElement != null 
-			&& redefinedElement.hasAttribute(Cb2xmlConstants.POSITION)) {
+			if (redefinedElement == null) {
+				System.out.println(">> " + element.getAttribute(Cb2xmlConstants.NAME)
+					+ " Can not find redefined field "+ redefinedName);
+			} else if (redefinedElement.hasAttribute(Cb2xmlConstants.POSITION)) {
 				startPos = Integer.parseInt(redefinedElement.getAttribute(Cb2xmlConstants.POSITION));
 				redefinedElement.setAttribute(Cb2xmlConstants.REDEFINED, Cb2xmlConstants.TRUE); 
 			} else if (redefinedElement.hasAttribute(Cb2xmlConstants.LEVEL) 
-					&& "01".equals(Cb2xmlConstants.LEVEL)) {
+					&& "01".equals(redefinedElement.getAttribute(Cb2xmlConstants.LEVEL))) {
 				startPos = 0;
 				redefinedElement.setAttribute(Cb2xmlConstants.REDEFINED, Cb2xmlConstants.TRUE); 
 			} else {
-				System.out.println(">> position error " + element.getAttribute(Cb2xmlConstants.NAME) + " %% "+ redefinedName);
+				System.out.println(">> " + element.getAttribute(Cb2xmlConstants.NAME) 
+					+ ": error determining record position of the field being redefined  >> "+ redefinedName);
 			}
 		}
 

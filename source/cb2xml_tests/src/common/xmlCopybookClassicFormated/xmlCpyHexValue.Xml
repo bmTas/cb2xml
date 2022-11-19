@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook filename="cpyHexValue.cbl" dialect="Mainframe">
+    <item level="01" name="COBL-XREF-REC" position="1" storage-length="17" display-length="20">
+        <item level="05" name="XREF-HEADER" position="1" storage-length="17" display-length="20">
+            <!--*            COMBINED BILLING SORT CODE-->
+            <item level="10" name="CB-SORT-CODE" picture="X" position="1" storage-length="1" display-length="1"/>
+            <!--*            STATISTICAL INDICATOR-->
+            <item level="10" name="STATISTICAL-IND" picture="X" position="2" storage-length="1" display-length="1"/>
+            <!--*            HEADER PORTION LENGTH-->
+            <item level="10" name="HDR-PORTION-LENGTH" picture="XX" position="3" storage-length="2" display-length="2"/>
+            <!--*            POLICY BODY LENGTH-->
+            <item level="10" name="POL-BODY-LENGTH" picture="XX" position="5" storage-length="2" display-length="2" redefined="true"/>
+            <item level="10" name="XBOLG-HEX" picture="9(02)" usage="computational" position="5" storage-length="2" display-length="2" numeric="true" redefines="POL-BODY-LENGTH"/>
+            <!--*            OVERFLOW LENGTH-->
+            <item level="10" name="OVERFLOW-LENGTH" picture="XX" position="7" storage-length="2" display-length="2"/>
+            <!--*            ARRANGEMENT TYPE-->
+            <item level="10" name="ARRANGEMENT-TYPE" picture="X" position="9" storage-length="1" display-length="1"/>
+            <!--*            ARRANGEMENT NUMBER-->
+            <item level="10" name="ARRANGEMENT-NUMB" picture="9(05)" usage="computational-3" position="10" storage-length="3" display-length="5" numeric="true"/>
+            <!--*            PAY POINT NUMBER-->
+            <item level="10" name="PAY-POINT-NUMB" picture="9(03)" usage="computational-3" position="13" storage-length="2" display-length="3" numeric="true"/>
+            <!--*            RECORD COUNT-->
+            <!--*        10  XRCCT                  PIC 9(01) COMP-3.-->
+            <item level="10" name="RECORD-COUNT" picture="X" position="15" storage-length="1" display-length="1">
+                <condition name="ONEREC">
+                    <condition value="X'F1'"/>
+                </condition>
+                <condition name="FIRSTREC">
+                    <condition value="X'01'"/>
+                </condition>
+            </item>
+            <!--*            CSO-->
+            <item level="10" name="CSO" picture="X" position="16" storage-length="1" display-length="1"/>
+            <!--*            STATUS CODE-->
+            <item level="10" name="STATUS-CD" picture="X" position="17" storage-length="1" display-length="1"/>
+        </item>
+    </item>
+</copybook>

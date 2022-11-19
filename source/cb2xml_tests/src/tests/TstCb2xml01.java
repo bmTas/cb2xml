@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.io.Writer;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -20,6 +19,10 @@ import org.xml.sax.SAXException;
 import common.Code;
 
 public class TstCb2xml01 {
+	
+	private static boolean writeXml = false;
+	//String tmpDir = System.getProperty("java.io.tmpdir") + File.separator;
+	private static String tmpDir = "/home/bruce/work/XmlDir/";
 	
 	private static int COPYBOOK_COUNT1 = 112;
 	private static int COPYBOOK_COUNT2 = 204;
@@ -83,6 +86,7 @@ public class TstCb2xml01 {
 			"cpyPicNG03.cbl",
 	};
 
+//	private String[] xxx = {"cpyOccursDependingOn42.cbl"};
 	
 	@Test
 	public void test1() throws IOException, SAXException, ParserConfigurationException {
@@ -105,12 +109,22 @@ public class TstCb2xml01 {
 			System.out.println(i + " " + cblFilename + ":");
 			System.out.println(XmlUtils.domToString(doc));
 			System.out.println();
-	
-			xmlFilename = Code.getFullName(XML_FILE_PREF + i + ".xml");
-			common.Code.compare("File: " + cblFilename, xmlFilename, doc);
+
+			if (writeXml) {
+				OutputStreamWriter w = new OutputStreamWriter(new FileOutputStream(tmpDir + "cb2xml_Output" + i + ".xml") , "utf-8");
+				w.write(XmlUtils.domToString(doc).toString());
+				w.close();
+			} else {
+				xmlFilename = Code.getFullName(XML_FILE_PREF + i + ".xml");
+				common.Code.compare("File: " + cblFilename, xmlFilename, doc);
+			}
 		}
 		//fail("Not yet implemented");
 	}
+//	@Test
+//	public void testArray00() throws IOException, SAXException, ParserConfigurationException {
+//		tstArray(xxx);
+//	}
 
 	@Test
 	public void testArray1() throws IOException, SAXException, ParserConfigurationException {
@@ -135,7 +149,7 @@ public class TstCb2xml01 {
 
 	public void tstArray(String[] copybooks) throws IOException, SAXException, ParserConfigurationException {
 		String cblFilename, xmlFilename;
-		String tmpDir = System.getProperty("java.io.tmpdir") + File.separator;
+
 		for (String c : copybooks) {
 			xmlFilename = "xmlCpy" + c.substring(3, c.length() - 3) + "Xml";
 			System.out.println("Test: " + c + " " + xmlFilename);
@@ -146,13 +160,15 @@ public class TstCb2xml01 {
 //			System.out.println(c + " --> " + xmlFilename + ":");
 //			System.out.println(XmlUtils.domToString(doc));
 //			System.out.println();
-		
-//			Writer w = new OutputStreamWriter(new FileOutputStream(tmpDir + xmlFilename) , "utf-8");
-//			w.write(XmlUtils.domToString(doc).toString());
-//			w.close();
-			
-			xmlFilename = Code.getFullName("xmlCopybookClassic/" + xmlFilename);
-			common.Code.compare("File: " + cblFilename, xmlFilename, doc);
+//		
+			if (writeXml) {
+				OutputStreamWriter w = new OutputStreamWriter(new FileOutputStream(tmpDir + xmlFilename) , "utf-8");
+				w.write(XmlUtils.domToString(doc).toString());
+				w.close();
+			} else {
+				xmlFilename = Code.getFullName("xmlCopybookClassic/" + xmlFilename);
+				common.Code.compare("File: " + cblFilename, xmlFilename, doc);
+			}
 			
 		}
 		//fail("Not yet implemented");

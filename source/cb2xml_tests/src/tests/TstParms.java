@@ -17,9 +17,10 @@ import org.junit.Test;
  */
 public class TstParms {
 
-	private static String MAINFRAME = "mainframe";
-	private static String GNU_COBOL = "gnu_cobol";
-	private static String FUJITSU = "fujitsu";
+	private static final String MAINFRAME_64_BIT = "Mainframe_64_Bit";
+	private static final String MAINFRAME = "mainframe";
+	private static final String GNU_COBOL = "gnu_cobol";
+	private static final String FUJITSU = "fujitsu";
 	
 	private static final String[] ARG_NAMES = {
 		Parms.FONT_PRM, Parms.COBOL_PRM, Parms.XML_PRM, Parms.DEBUG_PRM, Parms.INDENT_XML_PRM,
@@ -48,6 +49,8 @@ public class TstParms {
 		tst2(true, new String[] {"a","b","c","true","xx", "5", "Classic", GNU_COBOL});
 		tst2(true, new String[] {"a","b","c","true","xx", "5", null, GNU_COBOL});
 		tst2(true, new String[] {"a","b","c","true","xx", "5", "new", FUJITSU});
+		tst2(true, new String[] {"a","b","c","true","xx", "5", "new", MAINFRAME});
+		tst2(true, new String[] {"a","b","c","true","xx", "5", "new", MAINFRAME_64_BIT});
 		tst2(true, new String[] {"a","b","c","true","xx", "5", "2017", null});
 		tst2(false, new String[] {"a","b","c","true","xx", "xx", "2017", null});
 		tst2(false, new String[] {"a","b","c","true","xx", "5", "2017", "xzx"});
@@ -92,7 +95,8 @@ public class TstParms {
 		IBasicDialect dialect = DialectManager.MAINFRAME_COBOL;
 		
 		if (strings[7] == null || strings[7].length() == 0 || MAINFRAME.equals(strings[7])) {
-			
+		} else if (MAINFRAME_64_BIT.equals(strings[7])) {
+			dialect = DialectManager.MAINFRAME_COBOL_64_BIT;			
 		} else if (FUJITSU.equals(strings[7])) {
 			dialect = DialectManager.FUJITSU_COBOL;
 		} else if (GNU_COBOL.equals(strings[7])) {

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook filename="cpyOccurs.cbl" dialect="Mainframe">
+    <!--**************************************************-->
+    <!--***-->
+    <!--***  This copybook caused problems in earlier releases of cb2xml-->
+    <!--***  so it has been included in automated tests.-->
+    <!--***-->
+    <!--**************************************************-->
+    <item level="01" name="BI-BALANCE-INQUIRY-RS" position="1" storage-length="900" display-length="900">
+        <item level="05" name="BI-ACCT-BAL-RS" position="1" storage-length="800" display-length="800">
+            <item level="10" name="BI-BAL-TYPE-RS" occurs="10" picture="X(80)" position="1" storage-length="80" display-length="80">
+                <condition name="AVAIL-BALANCE">
+                    <condition value="&quot;Avail&quot;"/>
+                    <condition value="&quot;AVAIL&quot;"/>
+                </condition>
+            </item>
+        </item>
+        <item level="05" name="BI-ACCT-NAME" picture="X(100)" position="801" storage-length="100" display-length="100"/>
+    </item>
+</copybook>

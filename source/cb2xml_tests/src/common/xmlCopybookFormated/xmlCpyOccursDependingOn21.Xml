@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook filename="cpyOccursDependingOn21.cbl" dialect="Mainframe" cb2xml-format="2017">
+    <item level="01" name="Location-Details" position="1" storage-length="1638" display-length="1638" display-position="1">
+        <item level="03" name="Location-details" position="1" storage-length="29" display-length="29" display-position="1">
+            <item level="05" name="Location-Number" picture="9(4)" position="1" storage-length="4" display-length="4" numeric="COBOL_NUMERIC" display-position="1"/>
+            <item level="05" name="Location-Name" picture="X(25)" position="5" storage-length="25" display-length="25" display-position="5"/>
+        </item>
+        <item level="03" name="months" picture="s99" position="30" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="30"/>
+        <item level="03" name="week-of-month" picture="s9" position="32" storage-length="1" display-length="1" numeric="COBOL_NUMERIC" display-position="32"/>
+        <item level="03" name="days" picture="s9" position="33" storage-length="1" display-length="1" numeric="COBOL_NUMERIC" display-position="33"/>
+        <item level="03" name="fillers" occurs="12" position="34" storage-length="53" display-length="53" display-position="34">
+            <item level="05" name="" occurs="5" occurs-min="1" depending-on="week-of-month" position="34" storage-length="7" display-length="7" display-position="34">
+                <item level="15" name="daily-sales" picture="s9(7)" position="34" storage-length="7" display-length="7" numeric="COBOL_NUMERIC" display-position="34"/>
+            </item>
+            <item level="05" name="sales-count" picture="s9(7)" position="69" storage-length="7" display-length="7" numeric="COBOL_NUMERIC" display-position="69"/>
+            <item level="05" name="sales-value" picture="s9(9)v99" position="76" storage-length="11" display-length="11" scale="2" numeric="COBOL_NUMERIC" display-position="76"/>
+        </item>
+        <item level="03" name="total-sales" picture="s9(9)v99" position="670" storage-length="11" display-length="11" scale="2" numeric="COBOL_NUMERIC" display-position="670"/>
+        <item level="03" name="week-no" picture="s99" position="681" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="681"/>
+        <item level="03" name="filler" occurs="52" occurs-min="1" depending-on="week-no" position="683" storage-length="18" display-length="18" display-position="683">
+            <item level="05" name="purchase-count" picture="s9(7)" position="683" storage-length="7" display-length="7" numeric="COBOL_NUMERIC" display-position="683"/>
+            <item level="05" name="purchase-value" picture="s9(9)v99" position="690" storage-length="11" display-length="11" scale="2" numeric="COBOL_NUMERIC" display-position="690"/>
+        </item>
+        <item level="03" name="total-purchase-count" picture="s9(9)" position="1619" storage-length="9" display-length="9" numeric="COBOL_NUMERIC" display-position="1619"/>
+        <item level="03" name="total-purchase-value" picture="s9(9)v99" position="1628" storage-length="11" display-length="11" scale="2" numeric="COBOL_NUMERIC" display-position="1628"/>
+    </item>
+</copybook>

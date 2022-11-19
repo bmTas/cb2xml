@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook filename="cpyOccursDepending.cbl" dialect="Mainframe">
+    <item level="01" name="Location-Details" position="1" storage-length="1226" display-length="1226">
+        <item level="03" name="Location-details" position="1" storage-length="39" display-length="39">
+            <item level="05" name="Location-Number" picture="9(4)" position="1" storage-length="4" display-length="4" numeric="true"/>
+            <item level="05" name="Location-Name" picture="X(35)" position="5" storage-length="35" display-length="35"/>
+        </item>
+        <item level="03" name="months" picture="s99" position="40" storage-length="2" display-length="2" numeric="true" signed="true"/>
+        <item level="03" name="fillers" occurs="12" occurs-min="1" depending-on="months" position="42" storage-length="18" display-length="18">
+            <item level="05" name="sales-count" picture="s9(7)" position="42" storage-length="7" display-length="7" numeric="true" signed="true"/>
+            <item level="05" name="sales-value" picture="s9(9)v99" position="49" storage-length="11" display-length="11" scale="2" numeric="true" signed="true"/>
+        </item>
+        <item level="03" name="total-sales" picture="s9(9)v99" position="258" storage-length="11" display-length="11" scale="2" numeric="true" signed="true"/>
+        <item level="03" name="week-no" picture="s99" position="269" storage-length="2" display-length="2" numeric="true" signed="true"/>
+        <item level="03" name="filler" occurs="52" occurs-min="1" depending-on="week-no" position="271" storage-length="18" display-length="18">
+            <item level="05" name="purchase-count" picture="s9(7)" position="271" storage-length="7" display-length="7" numeric="true" signed="true"/>
+            <item level="05" name="purchase-value" picture="s9(9)v99" position="278" storage-length="11" display-length="11" scale="2" numeric="true" signed="true"/>
+        </item>
+        <item level="03" name="total-purchase-count" picture="s9(9)" position="1207" storage-length="9" display-length="9" numeric="true" signed="true"/>
+        <item level="03" name="total-purchase-value" picture="s9(9)v99" position="1216" storage-length="11" display-length="11" scale="2" numeric="true" signed="true"/>
+    </item>
+</copybook>

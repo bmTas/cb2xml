@@ -38,7 +38,7 @@ public class Item extends BaseItem implements IItemJrUpd {
 	/* end internal use */
 
 
-	final int levelNumber;
+	final int levelNumber, relativeLevel;
 	Cb2xmlConstants.Justified justified = Cb2xmlConstants.Justified.NOT_JUSTIFIED; 
 	
 	String dependingOn;
@@ -57,7 +57,7 @@ public class Item extends BaseItem implements IItemJrUpd {
 	int occurs=NULL_INT_VALUE;
 	int occursMin=NULL_INT_VALUE;
 	String picture;
-	int position;
+	int position, displayPosition;
 	String redefines;
 	int scale;
 	int storageLength;
@@ -69,8 +69,7 @@ public class Item extends BaseItem implements IItemJrUpd {
 	private final String fieldName;
 	
 	
-	int type; //JRecord Type Identifier
-	//Item() {}
+	int type;
 	
 	public Item(BaseItem parentItem, int levelNumber, String levelStr, String name) {
 		this.parentItem = parentItem;
@@ -78,9 +77,14 @@ public class Item extends BaseItem implements IItemJrUpd {
 		this.levelString = levelStr;
 		this.fieldName = name;
 		
+		int rLevel = 0;
 		if (parentItem != null) {
 			parentItem.addItem(this);
+			if (parentItem instanceof Item) {
+				rLevel = ((Item) parentItem).relativeLevel + 1;
+			}
 		}
+		this.relativeLevel = rLevel;
 	}
 	
 	public void set(IItem item) {
@@ -90,6 +94,7 @@ public class Item extends BaseItem implements IItemJrUpd {
 		numericClass       = item.getNumericClass();
 		dependingOn        = item.getDependingOn();
 		displayLength      = item.getDisplayLength();
+		displayPosition    = item.getDisplayPosition();
 		usage              = item.getUsage();
 		occurs             = item.getOccurs();
 		occursMin          = item.getOccursMin();
@@ -102,14 +107,15 @@ public class Item extends BaseItem implements IItemJrUpd {
 		value              = item.getValue();
 		fieldRedefined     = item.isFieldRedefined();
 		signClause         = item.getSignClause();
+		inheritedUsage     = item.isInheritedUsage();
 		
 		if (item instanceof IItemJr) {
-			type = ((IItemJr) item).getType();
+			type = ((IItemJr) item).getType();			
 		}
 	}
 	
 	
-	
+
 	/* (non-Javadoc)
 	 * @see net.sf.cb2xml.def.IItem#getParent()
 	 */
@@ -141,6 +147,14 @@ public class Item extends BaseItem implements IItemJrUpd {
 		return levelNumber;
 	}
 	
+	/**
+	 * @return the relativeLevel
+	 */
+	@Override
+	public int getRelativeLevel() {
+		return relativeLevel;
+	}
+
 	@Override
 	public String getFieldName() {
 		return fieldName;
@@ -188,6 +202,14 @@ public class Item extends BaseItem implements IItemJrUpd {
 		return dependingOn;
 	}
 	
+	/**
+	 * @return the displayPosition
+	 */
+	@Override
+	public final int getDisplayPosition() {
+		return displayPosition;
+	}
+
 	@Override
 	public int getDisplayLength() {
 		return displayLength;
@@ -252,6 +274,8 @@ public class Item extends BaseItem implements IItemJrUpd {
 	public String getValue() {
 		return value;
 	}
+
+
 	@Override
 	public boolean isFieldRedefined() {
 		return fieldRedefined;
@@ -305,6 +329,8 @@ public class Item extends BaseItem implements IItemJrUpd {
 		return type;
 	}
 
+
+
 	/**
 	 * Set the JRecord Type id. For use in JRecord !!!
 	 */
@@ -312,5 +338,4 @@ public class Item extends BaseItem implements IItemJrUpd {
 	public void setType(int type) {
 		this.type = type;
 	}
-
 }

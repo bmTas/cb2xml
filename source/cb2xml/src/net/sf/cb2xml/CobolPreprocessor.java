@@ -18,6 +18,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Properties;
 
+
 /**
  * Very simple COBOL pre-processor that chops the left and right margins. 
  * Column start and end positions are configurable using a properties file. 
@@ -26,6 +27,9 @@ import java.util.Properties;
  * comment indicators in the "margins" and this routine removes those. 
  * 
  * @author Peter Thomas
+ * 
+ * @deprecated has been replaced by {@link net.sf.cb2xml.copybookReader.ICobolCopybookTextSource} interface and its
+ * implementations {@link net.sf.cb2xml.copybookReader.ReadCobolCopybook} and {@link net.sf.cb2xml.copybookReader.BasicReadCobolCopybook}
  */
 public class CobolPreprocessor {
 

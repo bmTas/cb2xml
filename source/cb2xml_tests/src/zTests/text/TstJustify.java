@@ -22,10 +22,10 @@ public class TstJustify {
 	static String expectedXml 
 				= "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
 				+ "<copybook filename=\"Record\" dialect=\"Mainframe\" cb2xml-format=\"2017\">\n"
-				+ "    <item level=\"01\" name=\"Record\" position=\"1\" storage-length=\"9\" display-length=\"9\">\n"
-				+ "        <item level=\"03\" name=\"pic-x-1\" picture=\"x(3)\" position=\"1\" storage-length=\"3\" display-length=\"3\"/>\n"
-				+ "        <item level=\"03\" name=\"pic-x-Justified\" picture=\"x(3)\" justified=\"true\" position=\"4\" storage-length=\"3\" display-length=\"3\"/>\n"
-				+ "        <item level=\"03\" name=\"pic-x-Justified-right\" picture=\"x(3)\" justified=\"right\" position=\"7\" storage-length=\"3\" display-length=\"3\"/>\n"
+				+ "    <item level=\"01\" name=\"Record\" position=\"1\" storage-length=\"9\" display-length=\"9\" display-position=\"1\">\n"
+				+ "        <item level=\"03\" name=\"pic-x-1\" picture=\"x(3)\" position=\"1\" storage-length=\"3\" display-length=\"3\" display-position=\"1\"/>\n"
+				+ "        <item level=\"03\" name=\"pic-x-Justified\" picture=\"x(3)\" justified=\"true\" position=\"4\" storage-length=\"3\" display-length=\"3\" display-position=\"4\"/>\n"
+				+ "        <item level=\"03\" name=\"pic-x-Justified-right\" picture=\"x(3)\" justified=\"right\" position=\"7\" storage-length=\"3\" display-length=\"3\" display-position=\"7\"/>\n"
 				+ "    </item>\n"
 				+ "</copybook>";
 	

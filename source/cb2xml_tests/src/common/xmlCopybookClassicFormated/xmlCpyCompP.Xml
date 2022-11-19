@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook filename="cpyCompP.cbl" dialect="Mainframe">
+    <item level="01" name="CompFields" position="1" storage-length="145" display-length="220">
+        <item level="03" name="NumA" picture="--,---,---,---,---,--9.99" position="1" storage-length="25" display-length="25" scale="2" numeric="true" editted-numeric="true"/>
+        <item level="03" name="sep0" picture="x" position="26" storage-length="1" display-length="1"/>
+        <item level="03" name="Num0" picture="s99" usage="computational" position="27" storage-length="2" display-length="2" numeric="true" signed="true"/>
+        <item level="03" name="sep1" picture="x" position="29" storage-length="1" display-length="1"/>
+        <item level="03" name="Num1" picture="s9v99" usage="computational" position="30" storage-length="2" display-length="3" scale="2" numeric="true" signed="true"/>
+        <item level="03" name="sep2" picture="x" position="32" storage-length="1" display-length="1"/>
+        <item level="03" name="Num2" picture="9(02)v99" usage="computational" position="33" storage-length="2" display-length="4" scale="2" numeric="true"/>
+        <item level="03" name="sep3" picture="x" position="35" storage-length="1" display-length="1"/>
+        <item level="03" name="Num3" picture="9(03)v99" usage="computational" position="36" storage-length="4" display-length="5" scale="2" numeric="true"/>
+        <item level="03" name="sep4" picture="x" position="40" storage-length="1" display-length="1"/>
+        <item level="03" name="Num4" picture="9(04)v99" usage="computational" position="41" storage-length="4" display-length="6" scale="2" numeric="true"/>
+        <item level="03" name="sep5" picture="x" position="45" storage-length="1" display-length="1"/>
+        <item level="03" name="Num5" picture="9(05)v99" usage="computational" position="46" storage-length="4" display-length="7" scale="2" numeric="true"/>
+        <item level="03" name="sep6" picture="x" position="50" storage-length="1" display-length="1"/>
+        <item level="03" name="Num6" picture="9(06)v99" usage="computational" position="51" storage-length="4" display-length="8" scale="2" numeric="true"/>
+        <item level="03" name="sep7" picture="x" position="55" storage-length="1" display-length="1"/>
+        <item level="03" name="Num7" picture="9(07)v99" usage="computational" position="56" storage-length="4" display-length="9" scale="2" numeric="true"/>
+        <item level="03" name="sep8" picture="x" position="60" storage-length="1" display-length="1"/>
+        <item level="03" name="Num8" picture="9(08)v99" usage="computational" position="61" storage-length="8" display-length="10" scale="2" numeric="true"/>
+        <item level="03" name="sep9" picture="x" position="69" storage-length="1" display-length="1"/>
+        <item level="03" name="Num9" picture="9(09)v99" usage="computational" position="70" storage-length="8" display-length="11" scale="2" numeric="true"/>
+        <item level="03" name="sep10" picture="x" position="78" storage-length="1" display-length="1"/>
+        <item level="03" name="Num10" picture="9(10)v99" usage="computational" position="79" storage-length="8" display-length="12" scale="2" numeric="true"/>
+        <item level="03" name="sep11" picture="x" position="87" storage-length="1" display-length="1"/>
+        <item level="03" name="Num11" picture="9(11)v99" usage="computational" position="88" storage-length="8" display-length="13" scale="2" numeric="true"/>
+        <item level="03" name="sep12" picture="x" position="96" storage-length="1" display-length="1"/>
+        <item level="03" name="Num12" picture="9(12)v99" usage="computational" position="97" storage-length="8" display-length="14" scale="2" numeric="true"/>
+        <item level="03" name="sep13" picture="x" position="105" storage-length="1" display-length="1"/>
+        <item level="03" name="Num13" picture="9(13)v99" usage="computational" position="106" storage-length="8" display-length="15" scale="2" numeric="true"/>
+        <item level="03" name="sep14" picture="x" position="114" storage-length="1" display-length="1"/>
+        <item level="03" name="Num14" picture="9(14)v99" usage="computational" position="115" storage-length="8" display-length="16" scale="2" numeric="true"/>
+        <item level="03" name="sep15" picture="x" position="123" storage-length="1" display-length="1"/>
+        <item level="03" name="Num15" picture="9(15)v99" usage="computational" position="124" storage-length="8" display-length="17" scale="2" numeric="true"/>
+        <item level="03" name="sep16" picture="x" position="132" storage-length="1" display-length="1"/>
+        <item level="03" name="Num16" picture="9(16)v99" usage="computational" position="133" storage-length="8" display-length="18" scale="2" numeric="true"/>
+        <item level="03" name="sep17" picture="x" position="141" storage-length="1" display-length="1"/>
+        <item level="03" name="Num17" picture="9(05)v99" usage="computational" position="142" storage-length="4" display-length="7" scale="2" numeric="true"/>
+    </item>
+</copybook>

@@ -16,14 +16,20 @@ import javax.xml.transform.Result;
 import net.sf.cb2xml.analysis.CopyBookAnalyzer;
 
 import net.sf.cb2xml.analysis.Copybook;
+import net.sf.cb2xml.copybookReader.ICobolCopybookTextSource;
+import net.sf.cb2xml.copybookReader.ReadCobolCopybook;
 import net.sf.cb2xml.def.Cb2xmlConstants;
 import net.sf.cb2xml.def.DialectManager;
 import net.sf.cb2xml.def.IBasicDialect;
+import net.sf.cb2xml.def.ICopybook;
 import net.sf.cb2xml.def.NumericDefinition;
 import net.sf.cb2xml.sablecc.lexer.LexerException;
 import net.sf.cb2xml.sablecc.node.Start;
 import net.sf.cb2xml.sablecc.parser.Parser;
 import net.sf.cb2xml.sablecc.parser.ParserException;
+import net.sf.cb2xml.update.IUpdateItem;
+import net.sf.cb2xml.update.UpdateCopybook;
+import net.sf.cb2xml.walker.CobolCopybookWalker;
 
 /**
  * cb2xml interface program (Number 3). It provides a 
@@ -41,6 +47,38 @@ public class Cb2Xml3 {
 	private static final int FIRST_COBOL_COLUMN = 6;
 	private static final int LAST_COBOL_COLUMN = 72;
 
+	
+	/**
+	 * You use this class when<ul>
+	 * <li>You want to combine multiple copyooks
+	 * <li>You need to support the Cobol copy Statement (replacing option is not supported)
+	 * </ul>
+	 * 
+	 * Usage:
+	 * <pre>
+	 *		ReadCobolCopybook copybook = Cb2Xml3.newCobolCopybookReader()
+	 *				.setDirectoriesToSearch("/home/bruce/work/Cobol/CopyBooks")
+	 *				.setColumns(CopybookColumns.STANDARD_COLUMNS)
+	 *				.addCobolCopybook("/home/bruce/work/Cobol/Main01.cbl")
+	 *				.setColumns(CopybookColumns.FREE_FORMAT)	// load following copybooks as freeformat	
+	 *				.addCobolCopybook("/home/bruce/work/Cobol/Main02.cbl")
+	 *				.addCobolCopybook(new StringReader("\n"
+	 *						+ "   03 Extra-Field-01   pic x(10)."
+	 *						+ "   03 Extra-Field-02   pic s9(7)v99 comp-3."))
+	 *				;
+	 *
+	 *		System.out.println(
+	 *			Cb2Xml3.newBuilder(copybook.getFreeFormatCopybookReader(), "Main01")
+	 *					.setCobolLineFormat(Cb2xmlConstants.FREE_FORMAT)
+	 *					.setIndent(true)
+	 *					.asXmlString()
+	 *				);
+	 * </pre> 
+	 * @return Class to Read one or more <i>Cobol Copybooks</i>.
+	 */
+	public static ReadCobolCopybook newCobolCopybookReader() {
+		return new ReadCobolCopybook();
+	}
 	
 	/**
 	 * Create a new Builder for Cobol Copybook Analysis / writing as Xml 
@@ -77,6 +115,16 @@ public class Cb2Xml3 {
 	}
 	
 	/**
+	 * Create a new Builder from the IReadCopybook interface.
+	 * @param copyBookReader Source of the Cobol copybook
+	 * @return  Cobol CopybookAnalysis Builder
+	 */
+	public static IBasicCb2XmlBuilder newBuilder(ICobolCopybookTextSource copyBookReader) {
+		return new BldrImp(copyBookReader);
+	}
+
+	
+	/**
 	 * Builder specifically for JRecord. It provides a lower level
 	 * Copybook interface
 	 */
@@ -84,7 +132,30 @@ public class Cb2Xml3 {
 		return new BldrImp(reader, copybookName);
 	}
 
+	/**
+	 * Create a new Builder from the IReadCopybook interface,
+	 * specifically for JRecord.
+	 * @param copyBookReader Source of the Cobol copybook
+	 * @return  Cobol CopybookAnalysis Builder
+	 */
+	public static BldrImp newBuilderJRec(ICobolCopybookTextSource copyBookReader) {
+		return new BldrImp(copyBookReader);
+	}
 	
+	/**
+	 * Apply standard changes to all items in a Copybook
+	 * <pre>
+	 *     // Create Deep-Copy of a Copybook.
+	 *     Copybook deepCopy = Cb2Xml3.updateCopybook(copybook, UpdateItemAdapter.NO_UPDATE);
+	 * </pre>
+	 * @param copybook input Copybook
+	 * @param itemUpdater class to create updated Items
+	 * @return updated copybook
+	 */
+	public static Copybook updateCopybook(ICopybook copybook, IUpdateItem itemUpdater, NumericDefinition cobolDialectDefinition) {
+		return new UpdateCopybook(itemUpdater)
+						.update(copybook, cobolDialectDefinition);
+	}
 	/**
 	 * Builder Implementation
 	 * 
@@ -108,12 +179,21 @@ public class Cb2Xml3 {
 		
 		private NumericDefinition dialect = DialectManager.MAINFRAME_COBOL.getNumericDefinition();
 		
+		private ICobolCopybookTextSource copyBookReader;
 		private Copybook copybook;
 		
 		
 		public BldrImp(Reader reader, String copybookName) {
 			this.reader = reader;
 			this.copybookName = copybookName;
+		}
+		
+		public BldrImp(ICobolCopybookTextSource copyBookReader) {
+			this.copyBookReader = copyBookReader;
+			this.reader = null;
+			this.copybookName = copyBookReader.getCopybookName();
+			this.cblLineFormat = Cb2xmlConstants.FREE_FORMAT;
+			this.stackSize = DoCobolAnalyse.calculateThreadSize(copyBookReader.length());
 		}
 		
 		/* (non-Javadoc)
@@ -214,6 +294,10 @@ public class Cb2Xml3 {
 			return sw.toString();
 		}
 
+		@Override
+		public CobolCopybookWalker asCobolCopybookWalker() {
+			return new CobolCopybookWalker( asCobolItemTree());
+		}
 		/**
 		 * @see net.sf.cb2xml.ICb2XmlBuilder#asCobolItemTree()
 		 */
@@ -233,7 +317,8 @@ public class Cb2Xml3 {
 		private Copybook getCopybook() throws LexerException, IOException, ParserException {
 			if (copybook == null) {
 				DoCblAnalyse da = new DoCblAnalyse(copybookName, dialect, loadComments);
-				da.doAnalysis(debug, cblLineFormat, startingColumn, lastColumn, reader, stackSize);
+				da.setCopybookReader(copyBookReader, cblLineFormat, startingColumn, lastColumn, copybookName, reader)
+				  .doAnalysis(debug, stackSize);
 				copybook = da.copybook;
 			}
 			return copybook;

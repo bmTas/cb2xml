@@ -85,6 +85,79 @@ copybook filename="FD8.COP.CLEAN">
 </copybook>
 ```
 
+### calling cb2xml in java
+
+From java, a cobol can be converted to a:
+* Xml file or String
+* A Copybook object, this a java representation of the Xml.
+* CopybookWalker which you can supply an *item* listner.
+
+#### Convert Copybook to Xml
+```java
+		System.out.println(
+			Cb2Xml3.newBuilder(copybook)
+					.setIndent(true)
+					.asXmlString()
+				);
+```
+
+#### Convert to java objects
+
+```java
+	   ICopybookJrUpd copybook = Cb2Xml3.newBuilder(copybook)
+	                                    .asCobolItemTree();
+```
+
+#### Walk throught the Cobol Items in the Copybook
+```
+		 Cb2Xml3.newBuilder(Code.getFullName("cobolCopybook/cbl2xml_Test101.cbl"))
+			.asCobolCopybookWalker()
+				.walk(new CopybookListnerAdapter() {
+					@Override public void startItem(IItem item) {
+						String spaces = "                                                           ";
+						StringBuilder b = new StringBuilder(
+								'\n'
+							+	spaces.substring(0, 2 * item.getRelativeLevel())
+							+	item.getLevelString()
+							+	' '
+							+	item.getFieldName());
+						
+						b	.append(spaces.substring(0, 50 - b.length()))
+							.append(item.getPosition()).append('\t')
+							.append(item.getStorageLength()).append('\t');
+						
+						if (item.getPicture() != null) {
+							b.append(item.getPicture());
+						}
+						
+						if (item.getUsage() != null && item.getUsage() != Cb2xmlConstants.Usage.NONE) {
+							b.append('\t').append(item.getUsage().getName());
+						}
+						b.append("    ");
+						System.out.print(b);
+					}
+				});
+```
+
+### calling cb2xml in batch
+
+```
+   java -jar ../../lib/cb2xml.jar -cobol cbl2xml_Test102.cbl -xml cbl2xml_Test102_new1.cbl.xml
+```
+
+### ReadCobolCopybook class
+
+The **ReadCobolCopybook** class can:
+
+* read and combine multiple Cobol copybooks
+* expand very basic Cobol copy statements
+* used in cb2xml, JRecord ad JRecords child projects as a `Cobol copybook source`
+
+
+### Downloading cb2xml
+
+Jars and source code for **cb2xml**  can be downloaded from sourceforge: https://sourceforge.net/projects/cb2xml/files/cb2xml/
+
 ### Examples of Using cb2xml
 
 * The [examples dircectory](examples) holds examples of using cb2xml output in a variety of languages

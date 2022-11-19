@@ -4,6 +4,7 @@ package net.sf.cb2xml.sablecc.parser;
 
 import net.sf.cb2xml.sablecc.lexer.*;
 import net.sf.cb2xml.sablecc.node.*;
+import net.sf.cb2xml.copybookReader.ICobolCopybookTextSource;
 import net.sf.cb2xml.sablecc.analysis.*;
 import java.util.*;
 
@@ -111,8 +112,7 @@ public class Parser
         return this.converter.index;
     }
 
-    @SuppressWarnings("unchecked")
-    public Start parse(int initialColumn) throws ParserException, LexerException, IOException
+    public Start parse(ICobolCopybookTextSource copyBookReader) throws ParserException, LexerException, IOException
     {
         push(0, null, true);
         List<Node> ign = null;
@@ -188,8 +188,11 @@ public class Parser
                         return node;
                     }
                 case ERROR:
+                	String msg = copyBookReader == null 
+                			? "line=" + this.last_line + ", Column=" + (this.last_pos)
+                			: copyBookReader.toPositionMessage(this.last_line, this.last_pos);
                     throw new ParserException(this.last_token,
-                        "[line=" + this.last_line + ", Column=" + (initialColumn+this.last_pos) + "] " +
+                        "[" + msg + "] " +
                         Parser.errorMessages[Parser.errors[this.action[1]]]);
             }
         }
@@ -1152,7 +1155,6 @@ public class Parser
 
 
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     ArrayList<Object> new0() /* reduce ARecordDescription */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
@@ -1175,7 +1177,6 @@ public class Parser
 
 
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     ArrayList<Object> new1() /* reduce ASingleGroupItem */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
@@ -1195,7 +1196,6 @@ public class Parser
 
 
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     ArrayList<Object> new2() /* reduce ASequenceGroupItem */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
@@ -1354,7 +1354,7 @@ public class Parser
 
 
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({"rawtypes" })
     ArrayList<Object> new9() /* reduce AAitem4Item */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();

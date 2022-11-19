@@ -28,7 +28,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.stream.XMLStreamException;
 
 import net.sf.cb2xml.Cb2Xml3;
-import net.sf.cb2xml.def.ICopybook;
+import net.sf.cb2xml.def.ICopybookJrUpd;
 import net.sf.cb2xml.def.IItem;
 import net.sf.cb2xml.example.cobolItemTT.CobolItemModel;
 import net.sf.cb2xml.example.cobolItemTT.CobolItemNode;
@@ -65,7 +65,7 @@ public class DemoCobolJTreeTable {
         
         JFrame frame = new JFrame();      
         
-		ICopybook copybook = Cb2Xml3.newBuilder(copybookName).asCobolItemTree();
+        ICopybookJrUpd copybook = Cb2Xml3.newBuilder(copybookName).asCobolItemTree();
 		DefaultMutableTreeNode root = new DefaultMutableTreeNode(copybook.getFilename());
 
         List<? extends IItem> items = copybook.getChildItems();

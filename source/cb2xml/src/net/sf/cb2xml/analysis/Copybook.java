@@ -3,14 +3,14 @@
  */
 package net.sf.cb2xml.analysis;
 
-import net.sf.cb2xml.def.ICopybook;
+import net.sf.cb2xml.def.ICopybookJrUpd;
 import net.sf.cb2xml.def.IItemBase;
 
 /**
  * @author bruce
  *
  */
-public class Copybook extends BaseItem implements ICopybook {
+public class Copybook extends BaseItem implements ICopybookJrUpd {
 
 	final String filename, dialect;
 	

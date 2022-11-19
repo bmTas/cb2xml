@@ -30,7 +30,8 @@ public class Parms {
 			FONT_PRM, COBOL_PRM, XML_PRM, DEBUG_PRM, INDENT_XML_PRM, XML_FORMAT_PRM, STACK_SIZE_PRM, DIALECT_PRM,
 	};
 	private static final IBasicDialect[] ALL_DIALECTS = {
-			DialectManager.MAINFRAME_COBOL, DialectManager.GNU_COBOL, DialectManager.FUJITSU_COBOL
+			DialectManager.MAINFRAME_COBOL, DialectManager.MAINFRAME_COBOL_64_BIT, 
+			DialectManager.GNU_COBOL, DialectManager.FUJITSU_COBOL
 	};
 	public final String font, cobol, xml;
 	public final boolean debug, indentXml;
@@ -87,21 +88,21 @@ public class Parms {
 		
 		IBasicDialect d = DialectManager.MAINFRAME_COBOL;
 		String dialectStr = v[DIALECT_IDX];
-		if (dialectStr == null || dialectStr.length() == 0 || dialectStr.startsWith("m") || dialectStr.startsWith("M")) {
-			
-		} else if (dialectStr.toLowerCase().startsWith("gnu_")) {
-			d = DialectManager.GNU_COBOL;
-		} else if (dialectStr.toLowerCase().startsWith("f")) {
-			d = DialectManager.FUJITSU_COBOL;
-		} else {
-			boolean looking = true;
-			for (IBasicDialect dialect : ALL_DIALECTS) {
-				if (dialect.getNumericDefinition().getName().equalsIgnoreCase(dialectStr)) {
-					d = dialect;
-					looking = false;
-				}
+		boolean looking = true;
+		for (IBasicDialect dialect : ALL_DIALECTS) {
+			if (dialect.getNumericDefinition().getName().equalsIgnoreCase(dialectStr)) {
+				d = dialect;
+				looking = false;
 			}
-			if (looking) {
+		}
+		if (looking) {
+			if (dialectStr == null || dialectStr.length() == 0 || dialectStr.startsWith("m") || dialectStr.startsWith("M")) {
+				
+			} else if (dialectStr.toLowerCase().startsWith("gnu_")) {
+				d = DialectManager.GNU_COBOL;
+			} else if (dialectStr.toLowerCase().startsWith("f")) {
+				d = DialectManager.FUJITSU_COBOL;
+			} else {
 				ok = false;
 				System.err.println();
 				System.err.println("Invalid Cobol Dialect: " + dialectStr + "it should be Mainframe, Gnu_Cobol or Fujitsu");

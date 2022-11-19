@@ -27,8 +27,8 @@ public class TstValueContinuation {
 	static final String EXPECTED_XML
 				= "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
 				+ "<copybook filename=\"Record\" dialect=\"Mainframe\" cb2xml-format=\"2017\">\n"
-				+ "    <item level=\"01\" name=\"ROOT\" position=\"1\" storage-length=\"1\" display-length=\"1\">\n"
-				+ "        <item level=\"05\" name=\"SUBLEVEL\" picture=\"X\" position=\"1\" storage-length=\"1\" display-length=\"1\">\n"
+				+ "    <item level=\"01\" name=\"ROOT\" position=\"1\" storage-length=\"1\" display-length=\"1\" display-position=\"1\">\n"
+				+ "        <item level=\"05\" name=\"SUBLEVEL\" picture=\"X\" position=\"1\" storage-length=\"1\" display-length=\"1\" display-position=\"1\">\n"
 				+ "            <condition name=\"FIRST-VALUE\">\n"
 				+ "                <condition value=\"&quot;S&quot;\"/>\n"
 				+ "            </condition>\n"

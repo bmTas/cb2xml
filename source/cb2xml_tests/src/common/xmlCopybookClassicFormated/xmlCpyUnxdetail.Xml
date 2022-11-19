@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook filename="cpyUnxdetail.cbl" dialect="Mainframe">
+    <!--***************************************************************-->
+    <!--**** DETAIL RECORD.                                          **-->
+    <!--***   MAKE SURE ANY CHANGES HERE ARE REFLECTED IN THE TBL-  **-->
+    <!--***      FOR DTL RECORDS TOWARDS THE BOTTOM                 **-->
+    <!--***************************************************************-->
+    <item level="01" name="UNX-STMT-DETAIL-RECORD" position="1" storage-length="1747" display-length="1747">
+        <item level="02" name="UNX-DTL-INFO" position="1" storage-length="31" display-length="31">
+            <item level="03" name="UNX-DTL-REC-TYPE" picture="X(03)" position="1" storage-length="3" display-length="3" value="&quot;DTL&quot;"/>
+            <item level="03" name="UNX-DTL-SYS-PRIN" picture="X(08)" position="4" storage-length="8" display-length="8"/>
+            <item level="03" name="UNX-DTL-ACCT-NUMBER" picture="X(20)" position="12" storage-length="20" display-length="20"/>
+        </item>
+        <item level="02" name="UNX-DETAIL-RECORD" position="32" storage-length="1716" display-length="1716">
+            <item level="03" name="UNX-DTL-RECORD-TYPE" picture="X(03)" position="32" storage-length="3" display-length="3"/>
+            <item level="03" name="UNX-DTL-PARTNER-ID" picture="9(08)" position="35" storage-length="8" display-length="8" numeric="true"/>
+            <item level="03" name="UNX-DTL-MEMBER-ID" picture="9(13)" position="43" storage-length="13" display-length="13" numeric="true"/>
+            <item level="03" name="UNX-DTL-ARRANGE-NUM" picture="9(02)" position="56" storage-length="2" display-length="2" numeric="true"/>
+            <item level="03" name="UNX-DTL-STMT-ORDER" picture="9(02)" position="58" storage-length="2" display-length="2" numeric="true"/>
+            <item level="03" name="UNX-DTL-INVOICE-NUM" picture="X(11)" position="60" storage-length="11" display-length="11"/>
+            <item level="03" name="UNX-DTL-LAYER" picture="9(03)" position="71" storage-length="3" display-length="3" numeric="true"/>
+            <item level="03" name="UNX-DTL-PARENT-GROUP" picture="9(03)" position="74" storage-length="3" display-length="3" numeric="true"/>
+            <item level="03" name="UNX-DTL-GROUP-ID" picture="9(03)" position="77" storage-length="3" display-length="3" numeric="true"/>
+            <item level="03" name="UNX-DTL-SUB-GROUP-ID" picture="9(03)" position="80" storage-length="3" display-length="3" numeric="true"/>
+            <item level="03" name="UNX-DTL-TRAN-DATE" position="83" storage-length="8" display-length="8">
+                <item level="05" name="UNX-DTL-TRAN-YYYY" picture="9(04)" position="83" storage-length="4" display-length="4" numeric="true"/>
+                <item level="05" name="UNX-DTL-TRAN-MM" picture="9(02)" position="87" storage-length="2" display-length="2" numeric="true"/>
+                <item level="05" name="UNX-DTL-TRAN-DD" picture="9(02)" position="89" storage-length="2" display-length="2" numeric="true"/>
+            </item>
+            <item level="03" name="UNX-DTL-PREFIX-NUM" picture="9(03)" position="91" storage-length="3" display-length="3" numeric="true"/>
+            <item level="03" name="UNX-DTL-RUN-NUM" picture="9(05)" position="94" storage-length="5" display-length="5" numeric="true"/>
+            <item level="03" name="UNX-DTL-DETAIL-NUM" picture="9(07)" position="99" storage-length="7" display-length="7" numeric="true"/>
+            <item level="03" name="UNX-DTL-SIBLING-NUM" picture="9(03)" position="106" storage-length="3" display-length="3" numeric="true"/>
+            <item level="03" name="UNX-DTL-SIBLING-MSG-IND" picture="X(01)" position="109" storage-length="1" display-length="1"/>
+            <item level="03" name="UNX-DTL-SEQ-NUM" picture="9(03)" position="110" storage-length="3" display-length="3" numeric="true"/>
+            <item level="03" name="UNX-DTL-BILLER-ACCT-NUM" picture="X(20)" position="113" storage-length="20" display-length="20"/>
+            <item level="03" name="UNX-DTL-LOB" picture="X(02)" position="133" storage-length="2" display-length="2"/>
+            <item level="03" name="UNX-DTL-DETAIL-CATEGORY" picture="X(02)" position="135" storage-length="2" display-length="2"/>
+            <item level="03" name="UNX-DTL-DETAIL-TYPE" picture="X(05)" position="137" storage-length="5" display-length="5"/>
+            <item level="03" name="UNX-DTL-DETAIL-TRAN-TYPE" picture="X(03)" position="142" storage-length="3" display-length="3"/>
+            <item level="03" name="UNX-DTL-LEVEL" picture="9(02)" position="145" storage-length="2" display-length="2" numeric="true"/>
+            <item level="03" name="UNX-DTL-LINE-DEF" picture="X(05)" position="147" storage-length="5" display-length="5"/>
+            <item level="03" name="UNX-DTL-LINE-DEF-2" picture="X(05)" position="152" storage-length="5" display-length="5"/>
+            <item level="03" name="UNX-DTL-LINE-DEF-3" picture="X(05)" position="157" storage-length="5" display-length="5"/>
+            <item level="03" name="UNX-DTL-COLUMN-DEF" picture="X(05)" position="162" storage-length="5" display-length="5"/>
+            <item level="03" name="UNX-DTL-ICON-ID" picture="X(08)" position="167" storage-length="8" display-length="8"/>
+            <item level="03" name="UNX-DTL-LOCATION" picture="X(01)" position="175" storage-length="1" display-length="1"/>
+            <item level="03" name="UNX-DTL-GROUP-TYPE" picture="X(01)" position="176" storage-length="1" display-length="1"/>
+            <item level="03" name="FILLER" picture="X(03)" position="177" storage-length="3" display-length="3"/>
+            <item level="03" name="UNX-DTL-MSG-ID" picture="X(08)" position="180" storage-length="8" display-length="8"/>
+            <item level="03" name="UNX-DTL-MSG-TEXT" picture="X(500)" position="188" storage-length="500" display-length="500"/>
+            <item level="03" name="UNX-DTL-POST-DATE" position="688" storage-length="8" display-length="8">
+                <item level="05" name="UNX-DTL-POST-YYYY" picture="9(04)" position="688" storage-length="4" display-length="4" numeric="true"/>
+                <item level="05" name="UNX-DTL-POST-MM" picture="9(02)" position="692" storage-length="2" display-length="2" numeric="true"/>
+                <item level="05" name="UNX-DTL-POST-DD" picture="9(02)" position="694" storage-length="2" display-length="2" numeric="true"/>
+            </item>
+            <item level="03" name="UNX-DTL-FROM-DATE" position="696" storage-length="8" display-length="8">
+                <item level="05" name="UNX-DTL-FROM-YYYY" picture="9(04)" position="696" storage-length="4" display-length="4" numeric="true"/>
+                <item level="05" name="UNX-DTL-FROM-MM" picture="9(02)" position="700" storage-length="2" display-length="2" numeric="true"/>
+                <item level="05" name="UNX-DTL-FROM-DD" picture="9(02)" position="702" storage-length="2" display-length="2" numeric="true"/>
+            </item>
+            <item level="03" name="UNX-DTL-FROM-TIME" position="704" storage-length="6" display-length="6">
+                <item level="05" name="UNX-DTL-FROM-HOUR" picture="9(02)" position="704" storage-length="2" display-length="2" numeric="true"/>
+                <item level="05" name="UNX-DTL-FROM-MINUTE" picture="9(02)" position="706" storage-length="2" display-length="2" numeric="true"/>
+                <item level="05" name="UNX-DTL-FROM-SECOND" picture="9(02)" position="708" storage-length="2" display-length="2" numeric="true"/>
+            </item>
+            <item level="03" name="UNX-DTL-THRU-DATE" position="710" storage-length="8" display-length="8">
+                <item level="05" name="UNX-DTL-THRU-YYYY" picture="9(04)" position="710" storage-length="4" display-length="4" numeric="true"/>
+                <item level="05" name="UNX-DTL-THRU-MM" picture="9(02)" position="714" storage-length="2" display-length="2" numeric="true"/>
+                <item level="05" name="UNX-DTL-THRU-DD" picture="9(02)" position="716" storage-length="2" display-length="2" numeric="true"/>
+            </item>
+            <item level="03" name="UNX-DTL-THRU-TIME" position="718" storage-length="6" display-length="6">
+                <item level="05" name="UNX-DTL-THRU-HOUR" picture="9(02)" position="718" storage-length="2" display-length="2" numeric="true"/>
+                <item level="05" name="UNX-DTL-THRU-MINUTE" picture="9(02)" position="720" storage-length="2" display-length="2" numeric="true"/>
+                <item level="05" name="UNX-DTL-THRU-SECOND" picture="9(02)" position="722" storage-length="2" display-length="2" numeric="true"/>
+            </item>
+            <item level="03" name="UNX-DTL-CHARGE" picture="S9(11)V99" position="724" storage-length="13" display-length="13" scale="2" numeric="true" signed="true"/>
+            <item level="03" name="UNX-DTL-PHANTOM-ID" picture="X(01)" position="737" storage-length="1" display-length="1"/>
+            <item level="03" name="UNX-DTL-REFERENCE-NUM" position="738" storage-length="9" display-length="9">
+                <item level="05" name="UNX-DTL-REF-NUM-4" picture="X(4)" position="738" storage-length="4" display-length="4"/>
+                <item level="05" name="UNX-DTL-REF-NUM-5" picture="X(5)" position="742" storage-length="5" display-length="5"/>
+            </item>
+            <item level="03" name="UNX-DTL-PROD-SERV-REF" picture="X(08)" position="747" storage-length="8" display-length="8"/>
+            <item level="03" name="UNX-DTL-ITEM-NUMBER" picture="X(05)" position="755" storage-length="5" display-length="5"/>
+            <item level="03" name="UNX-DTL-EQUIP-TELNO" picture="X(20)" position="760" storage-length="20" display-length="20"/>
+            <item level="03" name="UNX-DTL-EQUIP-PID" picture="9(05)" position="780" storage-length="5" display-length="5" numeric="true"/>
+            <item level="03" name="UNX-DTL-EQUIP-SID" picture="9(05)" position="785" storage-length="5" display-length="5" numeric="true"/>
+            <item level="03" name="UNX-DTL-BUSINESS-ID" picture="X(05)" position="790" storage-length="5" display-length="5"/>
+            <item level="03" name="UNX-DTL-VARIABLE1" picture="S9(11)V99" position="795" storage-length="13" display-length="13" scale="2" numeric="true" signed="true"/>
+            <item level="03" name="UNX-DTL-VARIABLE2" picture="S9(11)V99" position="808" storage-length="13" display-length="13" scale="2" numeric="true" signed="true"/>
+            <item level="03" name="UNX-DTL-VARIABLE3" picture="S9(11)V99" position="821" storage-length="13" display-length="13" scale="2" numeric="true" signed="true"/>
+            <item level="03" name="UNX-DTL-VARIABLE4" picture="S9(11)V99" position="834" storage-length="13" display-length="13" scale="2" numeric="true" signed="true"/>
+            <item level="03" name="UNX-DTL-ROLLUP-FLAG" picture="X(01)" position="847" storage-length="1" display-length="1"/>
+            <item level="03" name="UNX-DTL-PRINT-HEADING" picture="X(01)" position="848" storage-length="1" display-length="1"/>
+            <item level="03" name="UNX-DTL-RESERVED-UNIX1" picture="X(04)" position="849" storage-length="4" display-length="4"/>
+            <item level="03" name="UNX-DTL-SIBLING-INFORMATION" position="853" storage-length="10" display-length="10">
+                <item level="05" name="UNX-DTL-SIBLING-MMDD" picture="9(04)" position="853" storage-length="4" display-length="4" numeric="true"/>
+                <item level="05" name="UNX-DTL-SIBLING-SEQ" picture="9(04)" position="857" storage-length="4" display-length="4" numeric="true" redefined="true"/>
+                <item level="05" name="FILLER" picture="X(4)" position="857" storage-length="4" display-length="4" redefines="UNX-DTL-SIBLING-SEQ"/>
+                <item level="05" name="UNX-DTL-SIBLING-ID" picture="X(02)" position="861" storage-length="2" display-length="2"/>
+            </item>
+            <item level="03" name="UNX-DTL-ACCT-HIERARCHY-INFO" position="863" storage-length="62" display-length="62">
+                <item level="05" name="UNX-DTL-AH-REPORT-GROUP" picture="X(08)" position="863" storage-length="8" display-length="8"/>
+                <item level="05" name="UNX-DTL-AH-LEVELS-DOWN" picture="X(04)" position="871" storage-length="4" display-length="4"/>
+                <item level="05" name="UNX-DTL-AH-GROUP-ID" picture="X(08)" position="875" storage-length="8" display-length="8"/>
+                <item level="05" name="UNX-DTL-AH-SUBSCRIBER-NR" picture="X(16)" position="883" storage-length="16" display-length="16"/>
+                <item level="05" name="UNX-DTL-AH-LEAF-PRIN-NM" picture="X(26)" position="899" storage-length="26" display-length="26"/>
+            </item>
+            <item level="03" name="UNX-DTL-GRAPHIC-LOC" picture="X(02)" position="925" storage-length="2" display-length="2"/>
+            <item level="03" name="UNX-DTL-AMT-LITERAL" picture="X(08)" position="927" storage-length="8" display-length="8"/>
+            <item level="03" name="UNX-DTL-PRIMARY-PHONE-FLAG" picture="X(01)" position="935" storage-length="1" display-length="1"/>
+            <item level="03" name="UNX-DTL-CTRLBRK-PHONE" picture="X(20)" position="936" storage-length="20" display-length="20"/>
+            <item level="03" name="UNX-DTL-UNIT-QTY" picture="9(04)" position="956" storage-length="4" display-length="4" numeric="true"/>
+            <item level="03" name="UNX-DTL-BULK-SERVICE-IND" picture="X(01)" position="960" storage-length="1" display-length="1"/>
+            <item level="03" name="UNX-DTL-GRAPHIC-FORMAT" picture="X(03)" position="961" storage-length="3" display-length="3"/>
+            <item level="03" name="UNX-DTL-CMSG-FLAG" picture="X(01)" position="964" storage-length="1" display-length="1"/>
+            <item level="03" name="unx-dtl-transfer-account" picture="x(16)" position="965" storage-length="16" display-length="16"/>
+            <item level="03" name="FILLER" picture="X(16)" position="981" storage-length="16" display-length="16"/>
+            <item level="03" name="UNX-DTL-LOB-DATA" picture="X(750)" position="997" storage-length="750" display-length="750" redefined="true"/>
+            <item level="03" name="UNX-DTL-TELEPHONY-DATA" position="997" storage-length="750" display-length="750" redefines="UNX-DTL-LOB-DATA">
+                <item level="05" name="UNX-DTLT-BILLING-NUM" picture="X(20)" position="997" storage-length="20" display-length="20"/>
+                <item level="05" name="UNX-DTLT-DURATION" picture="9(06)" position="1017" storage-length="6" display-length="6" numeric="true" redefined="true"/>
+                <item level="05" name="FILLER" position="1017" storage-length="6" display-length="6" redefines="UNX-DTLT-DURATION">
+                    <item level="10" name="UNX-DTLT-MIN" picture="9(04)" position="1017" storage-length="4" display-length="4" numeric="true"/>
+                    <item level="10" name="UNX-DTLT-SEC" picture="9(02)" position="1021" storage-length="2" display-length="2" numeric="true"/>
+                </item>
+                <item level="05" name="UNX-DTLT-CALL-TYPE" picture="X(02)" position="1023" storage-length="2" display-length="2"/>
+                <item level="05" name="UNX-DTLT-RATE" picture="X(02)" position="1025" storage-length="2" display-length="2"/>
+                <item level="05" name="UNX-DTLT-PLCMNT-CD" picture="X(04)" position="1027" storage-length="4" display-length="4"/>
+                <item level="05" name="UNX-DTLT-OCP" picture="X(05)" position="1031" storage-length="5" display-length="5"/>
+                <item level="05" name="UNX-DTLT-CARRIER-CD" picture="X(04)" position="1036" storage-length="4" display-length="4"/>
+                <item level="05" name="UNX-DTLT-CARRIER-VALUE" picture="X(04)" position="1040" storage-length="4" display-length="4"/>
+                <item level="05" name="UNX-DTLT-CALL-AMT1" picture="-9(11)V99" position="1044" storage-length="14" display-length="14" scale="2" numeric="true" editted-numeric="true"/>
+                <item level="05" name="UNX-DTLT-CALL-AMT2" picture="-9(11)V99" position="1058" storage-length="14" display-length="14" scale="2" numeric="true" editted-numeric="true"/>
+                <item level="05" name="UNX-DTLT-CALL-AMT3" picture="-9(11)V99" position="1072" storage-length="14" display-length="14" scale="2" numeric="true" editted-numeric="true"/>
+                <item level="05" name="UNX-DTLT-FROM-NUM" picture="X(20)" position="1086" storage-length="20" display-length="20"/>
+                <item level="05" name="UNX-DTLT-FROM-CITY" picture="X(24)" position="1106" storage-length="24" display-length="24"/>
+                <item level="05" name="UNX-DTLT-FROM-STATE" picture="X(02)" position="1130" storage-length="2" display-length="2"/>
+                <item level="05" name="UNX-DTLT-FROM-COUNTRY" position="1132" storage-length="24" display-length="24">
+                    <item level="10" name="UNX-DTLT-FROM-CNTRY" picture="X(03)" position="1132" storage-length="3" display-length="3"/>
+                    <item level="10" name="FILLER" picture="X(21)" position="1135" storage-length="21" display-length="21"/>
+                </item>
+                <item level="05" name="UNX-DTLT-TO-NUM" picture="X(20)" position="1156" storage-length="20" display-length="20"/>
+                <item level="05" name="UNX-DTLT-TO-CITY" picture="X(24)" position="1176" storage-length="24" display-length="24"/>
+                <item level="05" name="UNX-DTLT-TO-STATE" picture="X(02)" position="1200" storage-length="2" display-length="2"/>
+                <item level="05" name="UNX-DTLT-TO-COUNTRY" position="1202" storage-length="24" display-length="24">
+                    <item level="10" name="UNX-DTLT-TO-CNTRY" picture="X(03)" position="1202" storage-length="3" display-length="3"/>
+                    <item level="10" name="FILLER" picture="X(21)" position="1205" storage-length="21" display-length="21"/>
+                </item>
+                <item level="05" name="UNX-DTLT-QUANTITY" picture="-9(13)" position="1226" storage-length="14" display-length="14" numeric="true" editted-numeric="true"/>
+                <item level="05" name="UNX-DTLT-TEL-PAC-CODE" picture="X(30)" position="1240" storage-length="30" display-length="30"/>
+                <item level="05" name="FILLER" picture="X(477)" position="1270" storage-length="477" display-length="477"/>
+            </item>
+            <item level="03" name="UNX-DTL-PARM-DATA" position="997" storage-length="741" display-length="741" redefines="UNX-DTL-LOB-DATA">
+                <item level="05" name="UNX-DTL-PARM-TYPE" picture="X(01)" position="997" storage-length="1" display-length="1"/>
+                <item level="05" name="UNX-DTL-PARM-STMT-ORDER" picture="9(05)" position="998" storage-length="5" display-length="5" numeric="true"/>
+                <item level="05" name="unx-dtl-parm-sibling-order" picture="9(03)" position="1003" storage-length="3" display-length="3" numeric="true"/>
+                <item level="05" name="UNX-DTL-PARM-TREE-LEVEL" picture="9(03)" position="1006" storage-length="3" display-length="3" numeric="true"/>
+                <item level="05" name="UNX-DTL-PARM-REF-NO" picture="X(20)" position="1009" storage-length="20" display-length="20"/>
+                <item level="05" name="UNX-DTL-PARM-ROOT-ID" picture="X(20)" position="1029" storage-length="20" display-length="20"/>
+                <item level="05" name="UNX-DTL-PARM-PARENT-ID" picture="X(20)" position="1049" storage-length="20" display-length="20"/>
+                <item level="05" name="UNX-DTL-PARM-SID" picture="9(05)" position="1069" storage-length="5" display-length="5" numeric="true"/>
+                <item level="05" name="UNX-DTL-PARM-TYPE" picture="X(20)" position="1074" storage-length="20" display-length="20"/>
+                <item level="05" name="UNX-DTL-PARM-OFFER-ID" picture="9(08)" position="1094" storage-length="8" display-length="8" numeric="true"/>
+                <item level="05" name="UNX-DTL-PARM-PRODUCT-ID" picture="9(08)" position="1102" storage-length="8" display-length="8" numeric="true"/>
+                <item level="05" name="UNX-DTL-PARM-PRICE-PLAN-ID" picture="9(08)" position="1110" storage-length="8" display-length="8" numeric="true"/>
+                <item level="05" name="UNX-DTL-PARM-VALUE" picture="X(255)" position="1118" storage-length="255" display-length="255" redefined="true"/>
+                <item level="05" name="UNX-DTL-ID-AREA" position="1118" storage-length="255" display-length="255" redefines="UNX-DTL-PARM-VALUE">
+                    <item level="10" name="UNX-DTL-SAVINGS-AMT" picture="-9(11)V99" position="1118" storage-length="14" display-length="14" scale="2" numeric="true" editted-numeric="true"/>
+                    <item level="10" name="UNX-DTL-TRANS-REMAIN-MTHS" picture="9(03)" position="1132" storage-length="3" display-length="3" numeric="true"/>
+                    <item level="10" name="UNX-DTL-TRANS-END-DATE" picture="9(07)" position="1135" storage-length="7" display-length="7" numeric="true"/>
+                    <item level="10" name="UNX-DTL-BUNDLE-TYPE-IND" picture="X(01)" position="1142" storage-length="1" display-length="1"/>
+                    <item level="10" name="UNX-DTL-DISCOUNT-IND" picture="X(01)" position="1143" storage-length="1" display-length="1"/>
+                    <item level="10" name="UNX-DTL-BLANK-OUT-PRICE" picture="X(01)" position="1144" storage-length="1" display-length="1"/>
+                    <item level="10" name="UNX-DTL-NUM-TEXT-IDS" picture="9(02)" position="1145" storage-length="2" display-length="2" numeric="true"/>
+                    <item level="10" name="UNX-DTL-ID-TBL" occurs="10" position="1147" storage-length="14" display-length="14">
+                        <item level="15" name="UNX-DTL-ID-TYPE" picture="9(03)" position="1147" storage-length="3" display-length="3" numeric="true"/>
+                        <item level="15" name="UNX-DTL-LANGUAGE" picture="X(01)" position="1150" storage-length="1" display-length="1"/>
+                        <item level="15" name="UNX-DTL-VALUE" picture="9(10)" position="1151" storage-length="10" display-length="10" numeric="true"/>
+                    </item>
+                    <item level="10" name="UNX-DTL-DISCOUNT-CODE" picture="X(02)" position="1287" storage-length="2" display-length="2"/>
+                    <item level="10" name="UNX-DTL-LANGUAGE-IND" picture="X(01)" position="1289" storage-length="1" display-length="1"/>
+                    <item level="10" name="UNX-DTL-PRM-ACTUAL-LANG" picture="X(01)" position="1290" storage-length="1" display-length="1"/>
+                    <item level="10" name="FILLER" picture="X(82)" position="1291" storage-length="82" display-length="82"/>
+                </item>
+                <item level="05" name="unx-dtl-oarm-message-id" position="1118" storage-length="255" display-length="255" redefines="unx-dtl-parm-value">
+                    <item level="10" name="unx-dtl-parm-msg-text-key" picture="9(10)" position="1118" storage-length="10" display-length="10" numeric="true"/>
+                    <item level="10" name="unx-dtl-parm-msg-location" picture="9(03)" position="1128" storage-length="3" display-length="3" numeric="true"/>
+                    <item level="10" name="unx-dtl-parm-payload-area" occurs="2" position="1131" storage-length="70" display-length="70">
+                        <item level="15" name="unx-dtl-parm-variable" picture="x(20)" position="1131" storage-length="20" display-length="20"/>
+                        <item level="15" name="unx-dtl-parm-resolved-var" picture="x(50)" position="1151" storage-length="50" display-length="50"/>
+                    </item>
+                    <item level="10" name="unx-dtl-parm-msg-line-def-4" picture="x(05)" position="1271" storage-length="5" display-length="5"/>
+                    <item level="10" name="unx-dtl-parm-msg-line-def-5" picture="x(05)" position="1276" storage-length="5" display-length="5"/>
+                    <item level="10" name="filler" picture="x(92)" position="1281" storage-length="92" display-length="92"/>
+                </item>
+                <item level="05" name="UNX-DTL-PRM-PRO-MSG-SIBLING" position="1118" storage-length="245" display-length="245" redefines="UNX-DTL-PARM-VALUE">
+                    <item level="10" name="UNX-DTL-PRM-PRO-MSG-KEY" picture="9(10)" position="1118" storage-length="10" display-length="10" numeric="true"/>
+                    <item level="10" name="UNX-DTL-PRM-PRO-MSG-LOCATION" picture="9(03)" position="1128" storage-length="3" display-length="3" numeric="true"/>
+                    <item level="10" name="UNX-DTL-PRM-PRO-MSG-PAYLOAD" occurs="4" position="1131" storage-length="50" display-length="50">
+                        <item level="15" name="UNX-DTL-PRM-PRO-MSG-VAR" picture="X(20)" position="1131" storage-length="20" display-length="20"/>
+                        <item level="15" name="UNX-DTL-PRM-PRO-MSG-TXT" picture="X(30)" position="1151" storage-length="30" display-length="30"/>
+                    </item>
+                    <item level="10" name="FILLER" picture="X(32)" position="1331" storage-length="32" display-length="32"/>
+                </item>
+                <item level="05" name="UNX-DTL-PARM-PRORATE-IND" picture="X(01)" position="1373" storage-length="1" display-length="1"/>
+                <item level="05" name="UNX-DTL-OFFER-COMP-ID" picture="9(10)" position="1374" storage-length="10" display-length="10" numeric="true" redefined="true"/>
+                <item level="05" name="unx-dtl-bundle-comp-id" picture="9(10)" position="1374" storage-length="10" display-length="10" numeric="true" redefines="unx-dtl-offer-comp-id"/>
+                <item level="05" name="FILLER" picture="X(354)" position="1384" storage-length="354" display-length="354"/>
+            </item>
+            <item level="03" name="UNX-DTL-PRORATE-PARA-DATA" position="997" storage-length="750" display-length="750" redefines="UNX-DTL-LOB-DATA">
+                <item level="05" name="UNX-PROPARA-KEY" position="997" storage-length="16" display-length="16">
+                    <item level="10" name="UNX-PROPARA-BILL-DATE" picture="9(08)" position="997" storage-length="8" display-length="8" numeric="true"/>
+                    <item level="10" name="UNX-PROPARA-TYPE-IND" picture="X(01)" position="1005" storage-length="1" display-length="1"/>
+                    <item level="10" name="UNX-PROPARA-SENTENCE-TYPE" picture="X(01)" position="1006" storage-length="1" display-length="1"/>
+                    <item level="10" name="UNX-PROPARA-ORIG-GROUP-ID" picture="9(03)" position="1007" storage-length="3" display-length="3" numeric="true"/>
+                    <item level="10" name="UNX-PROPARA-ORIG-GROUP-ID2" picture="9(03)" position="1010" storage-length="3" display-length="3" numeric="true"/>
+                </item>
+                <item level="05" name="UNX-PRO-PARA-CONTROL-FLAGS" position="1013" storage-length="5" display-length="5">
+                    <item level="10" name="UNX-PROPARA-NEW-PARAGRAPH" picture="X(01)" position="1013" storage-length="1" display-length="1"/>
+                    <item level="10" name="UNX-PROPARA-NEW-SENTENCE" picture="X(01)" position="1014" storage-length="1" display-length="1"/>
+                    <item level="10" name="UNX-PROPARA-END-PARENT" picture="X(01)" position="1015" storage-length="1" display-length="1"/>
+                    <item level="10" name="UNX-PROPARA-END-SENTENCE" picture="X(01)" position="1016" storage-length="1" display-length="1"/>
+                    <item level="10" name="UNX-PROPARA-END-PARAGRAPH" picture="X(01)" position="1017" storage-length="1" display-length="1"/>
+                </item>
+                <item level="05" name="UNX-PROPARA-DETAILS" position="1018" storage-length="195" display-length="195">
+                    <item level="10" name="UNX-PROPARA-TEXT-TYPE" picture="9(03)" position="1018" storage-length="3" display-length="3" numeric="true"/>
+                    <item level="10" name="UNX-PROPARA-LANG-IND" picture="X(01)" position="1021" storage-length="1" display-length="1"/>
+                    <item level="10" name="UNX-PROPARA-TEXT-ID" picture="9(10)" position="1022" storage-length="10" display-length="10" numeric="true"/>
+                    <item level="10" name="UNX-PROPARA-PARENT-TEXT-TYPE" picture="9(03)" position="1032" storage-length="3" display-length="3" numeric="true"/>
+                    <item level="10" name="UNX-PROPARA-PARENT-TEXT-ID" picture="9(10)" position="1035" storage-length="10" display-length="10" numeric="true"/>
+                    <item level="10" name="UNX-PROPARA-MONTHLY-RATE" picture="9(11)V99" position="1045" storage-length="13" display-length="13" scale="2" numeric="true"/>
+                    <item level="10" name="UNX-PROPARA-DISC-RATE" picture="9(11)V99" position="1058" storage-length="13" display-length="13" scale="2" numeric="true"/>
+                    <item level="10" name="UNX-PROPARA-NET-RATE" picture="9(11)V99" position="1071" storage-length="13" display-length="13" scale="2" numeric="true"/>
+                    <item level="10" name="UNX-PROPARA-SHORT-DESC" picture="X(24)" position="1084" storage-length="24" display-length="24"/>
+                    <item level="10" name="UNX-PROPARA-SHORT-DISC-DESC" picture="X(24)" position="1108" storage-length="24" display-length="24"/>
+                    <item level="10" name="UNX-PROPARA-PRO-OFFER-SUP-IND" picture="X(01)" position="1132" storage-length="1" display-length="1"/>
+                    <item level="10" name="UNX-PROPARA-PARENT-MTHLY-RATE" picture="9(11)V99" position="1133" storage-length="13" display-length="13" scale="2" numeric="true"/>
+                    <item level="10" name="UNX-PROPARA-PARENT-DISC-RATE" picture="9(11)V99" position="1146" storage-length="13" display-length="13" scale="2" numeric="true"/>
+                    <item level="10" name="UNX-PROPARA-PARENT-NET-RATE" picture="9(11)V99" position="1159" storage-length="13" display-length="13" scale="2" numeric="true"/>
+                    <item level="10" name="UNX-PROPARA-NET-QTY-CHG" picture="9(04)" position="1172" storage-length="4" display-length="4" numeric="true"/>
+                    <item level="10" name="UNX-PROPARA-PKG-SVC" picture="X(05)" position="1176" storage-length="5" display-length="5"/>
+                    <item level="10" name="UNX-PROPARA-DISC-CODE" picture="X(02)" position="1181" storage-length="2" display-length="2"/>
+                    <item level="10" name="UNX-PROPARA-OFFER-ID" picture="9(10)" position="1183" storage-length="10" display-length="10" numeric="true"/>
+                    <item level="10" name="UNX-PROPARA-OFFER-COMP-ID" picture="9(10)" position="1193" storage-length="10" display-length="10" numeric="true"/>
+                    <item level="10" name="UNX-PROPARA-PRICE-PLAN-ID" picture="9(10)" position="1203" storage-length="10" display-length="10" numeric="true"/>
+                </item>
+                <item level="05" name="FILLER" picture="X(534)" position="1213" storage-length="534" display-length="534"/>
+            </item>
+            <item level="03" name="UNX-DTL-AH-DATA" position="997" storage-length="750" display-length="750" redefines="UNX-DTL-LOB-DATA">
+                <item level="05" name="UNX-DTL-AH-LEAF-ADDRESS-1" picture="X(26)" position="997" storage-length="26" display-length="26"/>
+                <item level="05" name="UNX-DTL-AH-LEAF-ADDRESS-2" picture="X(26)" position="1023" storage-length="26" display-length="26"/>
+                <item level="05" name="UNX-DTL-AH-LEAF-CITY" picture="X(18)" position="1049" storage-length="18" display-length="18"/>
+                <item level="05" name="UNX-DTL-AH-LEAF-STATE" picture="X(02)" position="1067" storage-length="2" display-length="2"/>
+                <item level="05" name="UNX-DTL-AH-LEAF-ZIP-CODE" picture="X(09)" position="1069" storage-length="9" display-length="9"/>
+                <item level="05" name="UNX-DTL-AH-LEAF-TELEPHONE-NBR" picture="X(20)" position="1078" storage-length="20" display-length="20"/>
+                <item level="05" name="FILLER" picture="X(649)" position="1098" storage-length="649" display-length="649"/>
+            </item>
+            <item level="03" name="UNX-DTL-CMSG-DATA" position="997" storage-length="750" display-length="750" redefines="UNX-DTL-LOB-DATA">
+                <item level="05" name="UNX-DTL-CMSG-TEXT-KEY" picture="X(10)" position="997" storage-length="10" display-length="10"/>
+                <item level="05" name="UNX-DTL-CMSG-LOCATION" picture="9(03)" position="1007" storage-length="3" display-length="3" numeric="true"/>
+                <item level="05" name="UNX-DTL-CMSG-PAYLOAD-AREA" occurs="10" position="1010" storage-length="70" display-length="70">
+                    <item level="10" name="UNX-DTL-CMSG-VAR" picture="X(20)" position="1010" storage-length="20" display-length="20"/>
+                    <item level="10" name="UNX-DTL-CMSG-VAR-TXT" picture="X(50)" position="1030" storage-length="50" display-length="50"/>
+                </item>
+                <item level="05" name="FILLER" picture="X(37)" position="1710" storage-length="37" display-length="37"/>
+            </item>
+            <item level="03" name="UNX-DTL-EOR" picture="X(01)" position="1747" storage-length="1" display-length="1"/>
+        </item>
+    </item>
+</copybook>

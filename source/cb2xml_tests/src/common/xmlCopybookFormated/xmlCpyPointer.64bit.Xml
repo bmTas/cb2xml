@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<copybook filename="cpyPointer.cbl" dialect="Mainframe_64_Bit" cb2xml-format="2017">
+    <item level="01" name="Ams-Vendor" position="1" storage-length="66" display-length="62" display-position="1">
+        <item level="03" name="Brand" picture="x(3)" position="1" storage-length="3" display-length="3" display-position="1"/>
+        <item level="03" name="Address-3" picture="X(35)" position="4" storage-length="35" display-length="35" display-position="4"/>
+        <item level="03" name="before-blah" picture="S9(8)" usage="computational" position="39" storage-length="4" display-length="8" numeric="COBOL_NUMERIC" display-position="39"/>
+        <item level="03" name="blah" usage="pointer" position="43" storage-length="8" display-length="0" display-position="47"/>
+        <item level="03" name="afterblah" picture="X(12)" position="51" storage-length="12" display-length="12" display-position="47"/>
+        <item level="03" name="Postcode" picture="9(4)" position="63" storage-length="4" display-length="4" numeric="COBOL_NUMERIC" display-position="59"/>
+    </item>
+</copybook>

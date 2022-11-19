@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook filename="cpyValueContinuation.cbl" dialect="Mainframe">
+    <item level="02" name="LINE-8" position="1" storage-length="103" display-length="103">
+        <item level="03" name="FILLER8" picture="X(103)" position="1" storage-length="103" display-length="103" value="&quot;      SSN        FILE NO.   DESIGNATOR     DATE OF BIRTH   AGE    PROF.SERV.DATE       FOR BOARD USE   &quot;"/>
+    </item>
+</copybook>

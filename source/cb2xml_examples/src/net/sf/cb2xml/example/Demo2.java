@@ -20,7 +20,7 @@ package net.sf.cb2xml.example;
 import java.util.List;
 
 import net.sf.cb2xml.Cb2Xml3;
-import net.sf.cb2xml.def.ICopybook;
+import net.sf.cb2xml.def.ICopybookJrUpd;
 import net.sf.cb2xml.def.IItem;
 
 
@@ -41,7 +41,7 @@ public class Demo2 {
 			copybookName = Code.getFullName("BitOfEverything.cbl").getFile();
 		}
 
-		ICopybook copybook = Cb2Xml3.newBuilder(copybookName).asCobolItemTree();
+		ICopybookJrUpd copybook = Cb2Xml3.newBuilder(copybookName).asCobolItemTree();
 
         System.out.println();
         System.out.println("Printing Items");

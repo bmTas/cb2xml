@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook filename="cpyBitOfEverything.cbl" dialect="Mainframe" cb2xml-format="2017">
+    <item level="01" name="CompFields" position="1" storage-length="5107" display-length="5141" display-position="1">
+        <item level="03" name="NumA" picture="--,---,---,---,---,--9.99" position="1" storage-length="25" display-length="25" scale="2" numeric="Numeric_Edited" display-position="1"/>
+        <item level="03" name="NumB" picture="9V99" position="26" storage-length="3" display-length="3" scale="2" numeric="COBOL_NUMERIC" display-position="26"/>
+        <item level="03" name="NumC" picture="999" position="29" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="29"/>
+        <item level="03" name="text" picture="x(20)" position="32" storage-length="20" display-length="20" display-position="32"/>
+        <item level="03" name="NumD" picture="VPPP999" position="52" storage-length="3" display-length="6" scale="6" numeric="COBOL_NUMERIC" display-position="52"/>
+        <item level="03" name="NumE" picture="999PPP" position="55" storage-length="3" display-length="6" scale="-3" numeric="COBOL_NUMERIC" display-position="58"/>
+        <item level="03" name="float" usage="computational-1" position="58" storage-length="4" display-length="10" numeric="COBOL_NUMERIC" display-position="64"/>
+        <item level="03" name="double" usage="computational-2" position="62" storage-length="8" display-length="18" numeric="COBOL_NUMERIC" display-position="74"/>
+        <item level="03" name="filler" position="70" storage-length="23" display-length="23" display-position="92">
+            <item level="05" name="RBI-REPETITIVE-AREA" position="70" storage-length="13" display-length="13" display-position="92">
+                <item level="10" name="RBI-REPEAT" occurs="1" position="70" storage-length="13" display-length="13" display-position="92">
+                    <item level="15" name="RBI-NUMBER-S96SLS" picture="S9(06)" position="70" storage-length="7" display-length="7" numeric="COBOL_NUMERIC" sign-clause="leading_separate" display-position="92"/>
+                    <item level="15" name="RBI-NUMBER-S96DISP" picture="S9(06)" position="77" storage-length="6" display-length="6" numeric="COBOL_NUMERIC" display-position="99"/>
+                </item>
+            </item>
+            <item level="05" name="SFIELD-SEP" picture="S9(7)V99" position="83" storage-length="10" display-length="10" scale="2" numeric="COBOL_NUMERIC" sign-clause="leading_separate" display-position="105"/>
+        </item>
+        <item level="03" name="88-levels" position="93" storage-length="9" display-length="9" display-position="115">
+            <item level="05" name="REN-RETURNED-DATE" position="93" storage-length="6" display-length="6" display-position="115">
+                <item level="10" name="REN-RETURNED-YEAR" picture="9(2)" position="93" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="115"/>
+                <item level="10" name="REN-RETURNED-MONTH" picture="9(2)" position="95" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="117">
+                    <condition name="VALID-MONTHS">
+                        <condition value="1" through="12"/>
+                    </condition>
+                    <condition name="FEBRUARY">
+                        <condition value="2"/>
+                    </condition>
+                    <condition name="D30-DAY-MONTH">
+                        <condition value="4"/>
+                        <condition value="6"/>
+                        <condition value="9"/>
+                        <condition value="11"/>
+                    </condition>
+                    <condition name="D31-DAY-MONTH">
+                        <condition value="1"/>
+                        <condition value="3"/>
+                        <condition value="5"/>
+                        <condition value="7"/>
+                        <condition value="8"/>
+                        <condition value="10"/>
+                        <condition value="12"/>
+                    </condition>
+                </item>
+                <item level="10" name="REN-RETURNED-DAY" picture="9(2)" position="97" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="119"/>
+            </item>
+            <item level="05" name="REN-CAR-TYPE" picture="X" position="99" storage-length="1" display-length="1" display-position="121">
+                <condition name="VALID-CAR-TYPES">
+                    <condition value="&quot;E&quot;"/>
+                    <condition value="&quot;C&quot;"/>
+                    <condition value="&quot;M&quot;"/>
+                    <condition value="&quot;F&quot;"/>
+                    <condition value="&quot;L&quot;"/>
+                </condition>
+            </item>
+            <item level="05" name="REN-DAYS-RENTED" picture="99" position="100" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="122">
+                <condition name="ZERO-DAYS-RENTED">
+                    <condition value="0"/>
+                </condition>
+                <condition name="VALID-DAYS-RENTED">
+                    <condition value="1" through="35"/>
+                </condition>
+            </item>
+        </item>
+        <item level="03" name="occurs-items" position="102" storage-length="4885" display-length="4885" display-position="124">
+            <item level="15" name="Store-Num" picture="9(4)" position="102" storage-length="4" display-length="4" numeric="COBOL_NUMERIC" display-position="124"/>
+            <item level="15" name="Store-Name" picture="x(30)" position="106" storage-length="30" display-length="30" display-position="128"/>
+            <item level="15" name="Department-Dtls" occurs="5" position="136" storage-length="925" display-length="925" display-position="158">
+                <item level="20" name="Department-Num" picture="9(4)" position="136" storage-length="4" display-length="4" numeric="COBOL_NUMERIC" display-position="158"/>
+                <item level="20" name="Department-name" picture="x(20)" position="140" storage-length="20" display-length="20" display-position="162"/>
+                <item level="20" name="Product-details" occurs="10" position="160" storage-length="88" display-length="88" display-position="182">
+                    <item level="25" name="keycode" picture="9(8)" position="160" storage-length="8" display-length="8" numeric="COBOL_NUMERIC" display-position="182"/>
+                    <item level="25" name="A-Sale" occurs="5" position="168" storage-length="16" display-length="16" display-position="190">
+                        <item level="30" name="Qty" picture="-(5)9" position="168" storage-length="6" display-length="6" numeric="Numeric_Edited" display-position="190"/>
+                        <item level="30" name="Price" picture="-(5)9.99" position="174" storage-length="9" display-length="9" scale="2" numeric="Numeric_Edited" display-position="196"/>
+                        <item level="30" name="trans-type" picture="x" position="183" storage-length="1" display-length="1" display-position="205"/>
+                    </item>
+                </item>
+                <item level="20" name="Summary" position="1040" storage-length="21" display-length="21" display-position="1062">
+                    <item level="25" name="Qty" picture="-(5)9" position="1040" storage-length="6" display-length="6" numeric="Numeric_Edited" display-position="1062"/>
+                    <item level="25" name="Price" picture="-(5)9.99" position="1046" storage-length="9" display-length="9" scale="2" numeric="Numeric_Edited" display-position="1068"/>
+                    <item level="25" name="Sku-Count" picture="-(5)9" position="1055" storage-length="6" display-length="6" numeric="Numeric_Edited" display-position="1077"/>
+                </item>
+            </item>
+            <item level="15" name="Orders" occurs="15" position="4761" storage-length="14" display-length="14" display-position="4783">
+                <item level="20" name="keycode" picture="9(8)" position="4761" storage-length="8" display-length="8" numeric="COBOL_NUMERIC" display-position="4783"/>
+                <item level="20" name="Qty" picture="-(5)9" position="4769" storage-length="6" display-length="6" numeric="Numeric_Edited" display-position="4791"/>
+            </item>
+            <item level="15" name="array-fld" occurs="3" picture="xx" position="4971" storage-length="2" display-length="2" display-position="4993"/>
+            <item level="15" name="data-field" picture="x(10)" position="4977" storage-length="10" display-length="10" display-position="4999" value="&quot;1234567890&quot;" redefined="true"/>
+            <item level="15" name="array-redef" position="4977" storage-length="10" display-length="10" display-position="4999" redefines="data-field">
+                <item level="20" name="rc" occurs="5" picture="99" position="4977" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="4999"/>
+            </item>
+            <item level="15" name="filler" position="4977" storage-length="10" display-length="10" display-position="4999" redefines="data-field">
+                <item level="20" name="rc1" occurs="5" picture="99" position="4977" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="4999"/>
+            </item>
+            <item level="15" name="" position="4977" storage-length="10" display-length="10" display-position="4999" redefines="data-field">
+                <item level="20" name="filler" occurs="5" position="4977" storage-length="2" display-length="2" display-position="4999">
+                    <item level="25" name="rc2" picture="99" position="4977" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="4999"/>
+                </item>
+            </item>
+            <item level="15" name="" position="4977" storage-length="10" display-length="10" display-position="4999" redefines="data-field">
+                <item level="20" name="" occurs="5" position="4977" storage-length="2" display-length="2" display-position="4999">
+                    <item level="25" name="rc3" picture="99" position="4977" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="4999"/>
+                </item>
+            </item>
+        </item>
+        <item level="03" name="Signed-Comp" position="4987" storage-length="9" display-length="12" display-position="5009">
+            <item level="15" name="sep0" picture="x" position="4987" storage-length="1" display-length="1" display-position="5009"/>
+            <item level="15" name="Num0" picture="s99" usage="computational" position="4988" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="5010"/>
+            <item level="15" name="sep1" picture="x" position="4990" storage-length="1" display-length="1" display-position="5012"/>
+            <item level="15" name="Num1" picture="s9v99" usage="computational" position="4991" storage-length="2" display-length="3" scale="2" numeric="COBOL_NUMERIC" display-position="5013"/>
+            <item level="15" name="sep2" picture="x" position="4993" storage-length="1" display-length="1" display-position="5016"/>
+            <item level="15" name="Num2" picture="s9(02)v99" usage="computational" position="4994" storage-length="2" display-length="4" scale="2" numeric="COBOL_NUMERIC" display-position="5017"/>
+        </item>
+        <item level="03" name="UnSigned-Comp" position="4996" storage-length="9" display-length="12" display-position="5021">
+            <item level="05" name="aa" position="4996" storage-length="9" display-length="12" display-position="5021">
+                <item level="07" name="bb" position="4996" storage-length="9" display-length="12" display-position="5021">
+                    <item level="09" name="cc" position="4996" storage-length="9" display-length="12" display-position="5021">
+                        <item level="11" name="dd" position="4996" storage-length="9" display-length="12" display-position="5021">
+                            <item level="15" name="sep0" picture="x" position="4996" storage-length="1" display-length="1" display-position="5021"/>
+                            <item level="15" name="Num0" picture="99" usage="computational" position="4997" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="5022"/>
+                            <item level="15" name="sep1" picture="x" position="4999" storage-length="1" display-length="1" display-position="5024"/>
+                            <item level="15" name="Num1" picture="9v99" usage="computational" position="5000" storage-length="2" display-length="3" scale="2" numeric="COBOL_NUMERIC" display-position="5025"/>
+                            <item level="15" name="sep2" picture="x" position="5002" storage-length="1" display-length="1" display-position="5028"/>
+                            <item level="15" name="Num2" picture="9(02)v99" usage="computational" position="5003" storage-length="2" display-length="4" scale="2" numeric="COBOL_NUMERIC" display-position="5029"/>
+                        </item>
+                    </item>
+                </item>
+            </item>
+        </item>
+        <item level="03" name="Signed-Comp-3" position="5005" storage-length="6" display-length="7" display-position="5033">
+            <item level="05" name="aa" position="5005" storage-length="6" display-length="7" display-position="5033">
+                <item level="15" name="sep0" picture="x" position="5005" storage-length="1" display-length="1" display-position="5033"/>
+                <item level="15" name="Num0" picture="s99" usage="computational-3" position="5006" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="5034"/>
+                <item level="15" name="sep1" picture="x" position="5008" storage-length="1" display-length="1" display-position="5036"/>
+                <item level="15" name="Num1" picture="s9v99" usage="computational-3" position="5009" storage-length="2" display-length="3" scale="2" numeric="COBOL_NUMERIC" display-position="5037"/>
+            </item>
+        </item>
+        <item level="03" name="UnSigned-Comp-3" position="5011" storage-length="7" display-length="8" display-position="5040">
+            <item level="05" name="aa" position="5011" storage-length="7" display-length="8" display-position="5040">
+                <item level="15" name="sep0" picture="x" position="5011" storage-length="1" display-length="1" display-position="5040"/>
+                <item level="15" name="Num0" picture="99" usage="computational-3" position="5012" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="5041"/>
+                <item level="15" name="sep1" picture="x" position="5014" storage-length="1" display-length="1" display-position="5043"/>
+                <item level="15" name="Num1" picture="99v99" usage="computational-3" position="5015" storage-length="3" display-length="4" scale="2" numeric="COBOL_NUMERIC" display-position="5044"/>
+            </item>
+        </item>
+        <item level="03" name="Signed-Comp-sync" position="5018" storage-length="7" display-length="7" display-position="5048">
+            <item level="15" name="sep0" picture="x" position="5018" storage-length="1" display-length="1" display-position="5048"/>
+            <item level="15" name="Num0" picture="s99" usage="computational" position="5019" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="5049" sync="true"/>
+            <item level="15" name="sep1" picture="x" position="5021" storage-length="1" display-length="1" display-position="5051"/>
+            <item level="15" name="Num1" picture="s9v99" usage="computational" position="5023" storage-length="2" display-length="3" scale="2" numeric="COBOL_NUMERIC" display-position="5052" sync="true"/>
+        </item>
+        <item level="03" name="G-Comp-4" position="5025" storage-length="8" display-length="10" display-position="5055">
+            <item level="05" name="aa" position="5025" storage-length="8" display-length="10" display-position="5055">
+                <item level="15" name="sep0" picture="x" position="5025" storage-length="1" display-length="1" display-position="5055"/>
+                <item level="15" name="Num0" picture="s99" usage="computational-4" position="5026" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="5056"/>
+                <item level="15" name="sep1" picture="x" position="5028" storage-length="1" display-length="1" display-position="5058"/>
+                <item level="15" name="Num1" picture="s9v99" usage="computational-4" position="5029" storage-length="2" display-length="3" scale="2" numeric="COBOL_NUMERIC" display-position="5059"/>
+                <item level="15" name="Num2" picture="9v99" usage="computational-4" position="5031" storage-length="2" display-length="3" scale="2" numeric="COBOL_NUMERIC" display-position="5062"/>
+            </item>
+        </item>
+        <item level="03" name="G-Comp-5" position="5033" storage-length="8" display-length="10" display-position="5065">
+            <item level="05" name="aa" position="5033" storage-length="8" display-length="10" display-position="5065">
+                <item level="15" name="sep0" picture="x" position="5033" storage-length="1" display-length="1" display-position="5065"/>
+                <item level="15" name="Num0" picture="s99" usage="computational-5" position="5034" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="5066"/>
+                <item level="15" name="sep1" picture="x" position="5036" storage-length="1" display-length="1" display-position="5068"/>
+                <item level="15" name="Num1" picture="s9v99" usage="computational-5" position="5037" storage-length="2" display-length="3" scale="2" numeric="COBOL_NUMERIC" display-position="5069"/>
+                <item level="15" name="Num2" picture="9v99" usage="computational-5" position="5039" storage-length="2" display-length="3" scale="2" numeric="COBOL_NUMERIC" display-position="5072"/>
+            </item>
+        </item>
+        <item level="03" name="some-more-items" position="5041" storage-length="67" display-length="67" display-position="5075">
+            <item level="10" name="TOP-LEVEL-ITEM" position="5041" storage-length="65" display-length="65" display-position="5075">
+                <item level="20" name="PIC-TEST-1" picture="X" position="5041" storage-length="1" display-length="1" display-position="5075"/>
+                <item level="20" name="PIC-TEST-2" picture="XX" position="5042" storage-length="2" display-length="2" display-position="5076"/>
+                <item level="20" name="PIC-TEST-3" picture="X(3)" position="5044" storage-length="3" display-length="3" display-position="5078"/>
+                <item level="20" name="PIC-TEST-4" picture="S9" position="5047" storage-length="1" display-length="1" numeric="COBOL_NUMERIC" display-position="5081"/>
+                <item level="20" name="PIC-TEST-5" picture="S9.9" position="5048" storage-length="3" display-length="3" scale="1" numeric="Numeric_Edited" display-position="5082"/>
+                <item level="20" name="PIC-TEST-6" picture="S9V99" position="5051" storage-length="3" display-length="3" scale="2" numeric="COBOL_NUMERIC" display-position="5085"/>
+                <item level="20" name="PIC-TEST-7" picture="$ZZZZ9999" position="5054" storage-length="8" display-length="8" numeric="Numeric_Edited" display-position="5088"/>
+                <!--*-->
+                <!--*    ===========================================================-->
+                <!--*    DOM PARSER SHOULD INSERT SPACES IN THESE DASHED LINES-->
+                <!--*    TO AVOID CLASHING WITH THE XML COMMENT TAG / DELIMITER-->
+                <!--*    ===========================================================-->
+                <!--*    DIFFERENT VALUE CLAUSES AND CONSTANTS-->
+                <item level="20" name="VALUE-TEST-GROUP" position="5062" storage-length="17" display-length="17" display-position="5096">
+                    <item level="30" name="VALUE-TEST-1" picture="XXX" position="5062" storage-length="3" display-length="3" display-position="5096" value="spaces"/>
+                    <item level="30" name="VALUE-TEST-2" picture="999" position="5065" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="5099" value="zeros"/>
+                    <item level="30" name="VALUE-TEST-3" picture="XXX" position="5068" storage-length="3" display-length="3" display-position="5102" value="nulls"/>
+                    <item level="30" name="VALUE-TEST-4" picture="999" position="5071" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="5105" value="300"/>
+                    <item level="30" name="VALUE-TEST-5" picture="XXXXX" position="5074" storage-length="5" display-length="5" display-position="5108" value="&quot;HELLO\&quot;"/>
+                </item>
+                <!--*    THE RARELY USED \"DEPENDING ON\" OCCURS SYNTAX-->
+                <item level="20" name="DEPENDING-ON-TEST-GROUP" position="5079" storage-length="10" display-length="10" display-position="5113">
+                    <item level="30" name="DEPENDING-TEST-1" picture="9" position="5079" storage-length="1" display-length="1" numeric="COBOL_NUMERIC" display-position="5113"/>
+                    <item level="30" name="DEPENDING-TEST-2" occurs="9" occurs-min="1" depending-on="DEPENDING-TEST-1" picture="X" position="5080" storage-length="1" display-length="1" display-position="5114"/>
+                </item>
+                <!--*    88 LEVELS CAN APPEAR FOR GROUP DECLARATIONS-->
+                <item level="20" name="GROUP-WITH-88-LEVEL" position="5089" storage-length="5" display-length="5" display-position="5123">
+                    <condition name="GROUP-WITH-88-LEVEL-CONDITION-1">
+                        <condition value="&quot;HELLO\&quot;"/>
+                    </condition>
+                    <condition name="GROUP-WITH-88-LEVEL-CONDITION-2">
+                        <condition value="&quot;WORLD\&quot;"/>
+                    </condition>
+                    <item level="30" name="GROUP-WITH-88-LEVEL-ITEM-1" picture="XX" position="5089" storage-length="2" display-length="2" display-position="5123"/>
+                    <item level="30" name="GROUP-WITH-88-LEVEL-ITEM-2" picture="XXX" position="5091" storage-length="3" display-length="3" display-position="5125"/>
+                </item>
+                <!--*    COBOL KEYWORDS CAN BE LOWERCASE =-->
+                <!--*    AND CB2XML IS CASE INSENSITIVE.-->
+                <!--*    88 VALUES ARE CAPTURED CORRECTLY =-->
+                <!--*    AND NOT BULK CONVERTED TO UPPERCASE.-->
+                <item level="20" name="GROUP-WITH-LOWERCASE" position="5094" storage-length="10" display-length="10" display-position="5128">
+                    <item level="30" name="LOWERCASE-KEYWORDS" picture="9" position="5094" storage-length="1" display-length="1" numeric="COBOL_NUMERIC" display-position="5128" value="nulls"/>
+                    <item level="30" name="lowercase-identifier" picture="X" position="5095" storage-length="1" display-length="1" display-position="5129"/>
+                    <item level="30" name="MiXeDcAsE-TEST" picture="XXX" position="5096" storage-length="3" display-length="3" display-position="5130" value="spaces"/>
+                    <item level="30" name="LOWERCASE-88-VALUE" picture="X(5)" position="5099" storage-length="5" display-length="5" display-position="5133">
+                        <condition name="LOWER-AND-UPPER-CASE-88-VALUES">
+                            <condition value="&quot;HELLO&quot;"/>
+                            <condition value="&quot;hello&quot;"/>
+                        </condition>
+                    </item>
+                </item>
+                <!--*    THE \"/\" CHARACTER IN THE FIRST COLUMN SIGNIFIES A COMMENT-->
+                <item level="20" name="INDICATOR-COLUMN-SLASH-TEST-GROUP" position="5104" storage-length="0" display-length="0" display-position="5138"/>
+                <item level="20" name="UNCOMMENTED-1" picture="X" position="5104" storage-length="1" display-length="1" display-position="5138"/>
+                <!--*             20 INDICATOR-SLASH-COMMENTED PIC X.-->
+                <item level="20" name="UNCOMMENTED-2" picture="X" position="5105" storage-length="1" display-length="1" display-position="5139"/>
+            </item>
+            <!--*    THERE CAN BE MULTIPLE RECORD LAYOUTS-->
+            <!--*    DEFINED WITHIN A SINGLE COPYBOOK-->
+            <item level="10" name="ANOTHER-TOP-LEVEL-ITEM" position="5106" storage-length="2" display-length="2" display-position="5140">
+                <item level="20" name="PIC-TEST-99" picture="X" position="5106" storage-length="1" display-length="1" display-position="5140"/>
+                <item level="20" name="PIC-TEST-98" picture="9" position="5107" storage-length="1" display-length="1" numeric="COBOL_NUMERIC" display-position="5141"/>
+            </item>
+        </item>
+    </item>
+    <item level="01" name="Fields-2" position="1" storage-length="101" display-length="123" display-position="1">
+        <item level="03" name="NumA" picture="--,---,---,---,---,--9.99" position="1" storage-length="25" display-length="25" scale="2" numeric="Numeric_Edited" display-position="1"/>
+        <item level="03" name="NumB" picture="9V99" position="26" storage-length="3" display-length="3" scale="2" numeric="COBOL_NUMERIC" display-position="26"/>
+        <item level="03" name="NumC" picture="999" position="29" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="29"/>
+        <item level="03" name="text" picture="x(20)" position="32" storage-length="20" display-length="20" display-position="32"/>
+        <item level="03" name="NumD" picture="VPPP999" position="52" storage-length="3" display-length="6" scale="6" numeric="COBOL_NUMERIC" display-position="52"/>
+        <item level="03" name="NumE" picture="999PPP" position="55" storage-length="3" display-length="6" scale="-3" numeric="COBOL_NUMERIC" display-position="58"/>
+        <item level="03" name="float" usage="computational-1" position="58" storage-length="4" display-length="10" numeric="COBOL_NUMERIC" display-position="64"/>
+        <item level="03" name="double" usage="computational-2" position="62" storage-length="8" display-length="18" numeric="COBOL_NUMERIC" display-position="74"/>
+        <item level="03" name="filler" position="70" storage-length="23" display-length="23" display-position="92">
+            <item level="05" name="RBI-REPETITIVE-AREA" position="70" storage-length="13" display-length="13" display-position="92">
+                <item level="10" name="RBI-REPEAT" occurs="1" position="70" storage-length="13" display-length="13" display-position="92">
+                    <item level="15" name="RBI-NUMBER-S96SLS" picture="S9(06)" position="70" storage-length="7" display-length="7" numeric="COBOL_NUMERIC" sign-clause="leading_separate" display-position="92"/>
+                    <item level="15" name="RBI-NUMBER-S96DISP" picture="S9(06)" position="77" storage-length="6" display-length="6" numeric="COBOL_NUMERIC" display-position="99"/>
+                </item>
+            </item>
+            <item level="05" name="SFIELD-SEP" picture="S9(7)V99" position="83" storage-length="10" display-length="10" scale="2" numeric="COBOL_NUMERIC" sign-clause="leading_separate" display-position="105"/>
+        </item>
+        <item level="03" name="88-levels" position="93" storage-length="9" display-length="9" display-position="115">
+            <item level="05" name="REN-RETURNED-DATE" position="93" storage-length="6" display-length="6" display-position="115">
+                <item level="10" name="REN-RETURNED-YEAR" picture="9(2)" position="93" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="115"/>
+                <item level="10" name="REN-RETURNED-MONTH" picture="9(2)" position="95" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="117">
+                    <condition name="VALID-MONTHS">
+                        <condition value="1" through="12"/>
+                    </condition>
+                    <condition name="FEBRUARY">
+                        <condition value="2"/>
+                    </condition>
+                    <condition name="D30-DAY-MONTH">
+                        <condition value="4"/>
+                        <condition value="6"/>
+                        <condition value="9"/>
+                        <condition value="11"/>
+                    </condition>
+                    <condition name="D31-DAY-MONTH">
+                        <condition value="1"/>
+                        <condition value="3"/>
+                        <condition value="5"/>
+                        <condition value="7"/>
+                        <condition value="8"/>
+                        <condition value="10"/>
+                        <condition value="12"/>
+                    </condition>
+                </item>
+                <item level="10" name="REN-RETURNED-DAY" picture="9(2)" position="97" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="119"/>
+            </item>
+            <item level="05" name="REN-CAR-TYPE" picture="X" position="99" storage-length="1" display-length="1" display-position="121">
+                <condition name="VALID-CAR-TYPES">
+                    <condition value="&quot;E&quot;"/>
+                    <condition value="&quot;C&quot;"/>
+                    <condition value="&quot;M&quot;"/>
+                    <condition value="&quot;F&quot;"/>
+                    <condition value="&quot;L&quot;"/>
+                </condition>
+            </item>
+            <item level="05" name="REN-DAYS-RENTED" picture="99" position="100" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="122">
+                <condition name="ZERO-DAYS-RENTED">
+                    <condition value="0"/>
+                </condition>
+                <condition name="VALID-DAYS-RENTED">
+                    <condition value="1" through="35"/>
+                </condition>
+            </item>
+        </item>
+    </item>
+    <item level="01" name="CompFields-3" position="1" storage-length="101" display-length="123" display-position="1">
+        <item level="03" name="NumA" picture="--,---,---,---,---,--9.99" position="1" storage-length="25" display-length="25" scale="2" numeric="Numeric_Edited" display-position="1"/>
+        <item level="03" name="NumB" picture="9V99" position="26" storage-length="3" display-length="3" scale="2" numeric="COBOL_NUMERIC" display-position="26"/>
+        <item level="03" name="NumC" picture="999" position="29" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="29"/>
+        <item level="03" name="text" picture="x(20)" position="32" storage-length="20" display-length="20" display-position="32"/>
+        <item level="03" name="NumD" picture="VPPP999" position="52" storage-length="3" display-length="6" scale="6" numeric="COBOL_NUMERIC" display-position="52"/>
+        <item level="03" name="NumE" picture="999PPP" position="55" storage-length="3" display-length="6" scale="-3" numeric="COBOL_NUMERIC" display-position="58"/>
+        <item level="03" name="float" usage="computational-1" position="58" storage-length="4" display-length="10" numeric="COBOL_NUMERIC" display-position="64"/>
+        <item level="03" name="double" usage="computational-2" position="62" storage-length="8" display-length="18" numeric="COBOL_NUMERIC" display-position="74"/>
+        <item level="03" name="filler" position="70" storage-length="23" display-length="23" display-position="92">
+            <item level="05" name="RBI-REPETITIVE-AREA" position="70" storage-length="13" display-length="13" display-position="92">
+                <item level="10" name="RBI-REPEAT" occurs="1" position="70" storage-length="13" display-length="13" display-position="92">
+                    <item level="15" name="RBI-NUMBER-S96SLS" picture="S9(06)" position="70" storage-length="7" display-length="7" numeric="COBOL_NUMERIC" sign-clause="leading_separate" display-position="92"/>
+                    <item level="15" name="RBI-NUMBER-S96DISP" picture="S9(06)" position="77" storage-length="6" display-length="6" numeric="COBOL_NUMERIC" display-position="99"/>
+                </item>
+            </item>
+            <item level="05" name="SFIELD-SEP" picture="S9(7)V99" position="83" storage-length="10" display-length="10" scale="2" numeric="COBOL_NUMERIC" sign-clause="leading_separate" display-position="105"/>
+        </item>
+        <item level="03" name="88-levels" position="93" storage-length="9" display-length="9" display-position="115">
+            <item level="05" name="REN-RETURNED-DATE" position="93" storage-length="6" display-length="6" display-position="115">
+                <item level="10" name="REN-RETURNED-YEAR" picture="9(2)" position="93" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="115"/>
+                <item level="10" name="REN-RETURNED-MONTH" picture="9(2)" position="95" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="117">
+                    <condition name="VALID-MONTHS">
+                        <condition value="1" through="12"/>
+                    </condition>
+                    <condition name="FEBRUARY">
+                        <condition value="2"/>
+                    </condition>
+                    <condition name="D30-DAY-MONTH">
+                        <condition value="4"/>
+                        <condition value="6"/>
+                        <condition value="9"/>
+                        <condition value="11"/>
+                    </condition>
+                    <condition name="D31-DAY-MONTH">
+                        <condition value="1"/>
+                        <condition value="3"/>
+                        <condition value="5"/>
+                        <condition value="7"/>
+                        <condition value="8"/>
+                        <condition value="10"/>
+                        <condition value="12"/>
+                    </condition>
+                </item>
+                <item level="10" name="REN-RETURNED-DAY" picture="9(2)" position="97" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="119"/>
+            </item>
+            <item level="05" name="REN-CAR-TYPE" picture="X" position="99" storage-length="1" display-length="1" display-position="121">
+                <condition name="VALID-CAR-TYPES">
+                    <condition value="&quot;E&quot;"/>
+                    <condition value="&quot;C&quot;"/>
+                    <condition value="&quot;M&quot;"/>
+                    <condition value="&quot;F&quot;"/>
+                    <condition value="&quot;L&quot;"/>
+                </condition>
+            </item>
+            <item level="05" name="REN-DAYS-RENTED" picture="99" position="100" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="122">
+                <condition name="ZERO-DAYS-RENTED">
+                    <condition value="0"/>
+                </condition>
+                <condition name="VALID-DAYS-RENTED">
+                    <condition value="1" through="35"/>
+                </condition>
+            </item>
+        </item>
+    </item>
+</copybook>

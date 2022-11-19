@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook filename="cpyOccursDependingOn42.cbl" dialect="Mainframe" cb2xml-format="2017">
+    <item level="01" name="Location-Details" position="1" storage-length="493" display-length="493" display-position="1">
+        <item level="03" name="Record-Type" picture="x" position="1" storage-length="1" display-length="1" display-position="1"/>
+        <item level="03" name="Level-Count" picture="s99" position="2" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="2"/>
+        <item level="03" name="Attr-count" picture="s99" position="4" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="4"/>
+        <item level="03" name="Location-Levels" position="6" storage-length="75" display-length="75" display-position="6">
+            <item level="05" name="" occurs="5" occurs-min="1" depending-on="Level-Count" position="6" storage-length="13" display-length="13" display-position="6">
+                <item level="10" name="Level" picture="999" position="6" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="6"/>
+                <item level="10" name="" occurs="5" occurs-min="1" depending-on="Attr-count" position="9" storage-length="2" display-length="2" display-position="9">
+                    <item level="15" name="Attr" picture="99" position="9" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="9"/>
+                </item>
+            </item>
+            <item level="05" name="" occurs="5" occurs-min="1" depending-on="Attr-count" position="71" storage-length="2" display-length="2" display-position="71">
+                <item level="10" name="Attribute" picture="99" position="71" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="71"/>
+            </item>
+        </item>
+        <item level="03" name="Record-Details" picture="x(120)" position="81" storage-length="120" display-length="120" display-position="81" redefined="true"/>
+        <item level="03" name="Store-details" position="81" storage-length="413" display-length="413" display-position="81" redefines="Record-Details">
+            <item level="05" name="months" picture="s99" position="81" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="81"/>
+            <item level="05" name="week-of-month" picture="s9" position="83" storage-length="1" display-length="1" numeric="COBOL_NUMERIC" display-position="83"/>
+            <item level="05" name="days" picture="s9" position="84" storage-length="1" display-length="1" numeric="COBOL_NUMERIC" display-position="84"/>
+            <item level="05" name="fillers" occurs="12" occurs-min="1" depending-on="months" position="85" storage-length="33" display-length="33" display-position="85">
+                <item level="10" name="sales-count" picture="s9(7)" position="85" storage-length="7" display-length="7" numeric="COBOL_NUMERIC" display-position="85"/>
+                <item level="10" name="sales-value" picture="s9(9)v99" position="92" storage-length="11" display-length="11" scale="2" numeric="COBOL_NUMERIC" display-position="92"/>
+                <item level="10" name="" occurs="5" occurs-min="1" depending-on="Level-Count" position="103" storage-length="3" display-length="3" display-position="103">
+                    <item level="15" name="Level-desc" picture="999" position="103" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="103"/>
+                </item>
+            </item>
+            <item level="05" name="total-sales" picture="s9(9)v99" position="481" storage-length="11" display-length="11" scale="2" numeric="COBOL_NUMERIC" display-position="481"/>
+            <item level="05" name="week-no" picture="s99" position="492" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="492"/>
+        </item>
+        <item level="03" name="Region-details" position="81" storage-length="409" display-length="409" display-position="81" redefines="Record-Details">
+            <item level="05" name="Region-months" picture="s99" position="81" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="81"/>
+            <item level="05" name="fillers" occurs="12" occurs-min="1" depending-on="Region-months" position="83" storage-length="33" display-length="33" display-position="83">
+                <item level="10" name="Region-sales-count" picture="s9(7)" position="83" storage-length="7" display-length="7" numeric="COBOL_NUMERIC" display-position="83"/>
+                <item level="10" name="Region-sales-value" picture="s9(9)v99" position="90" storage-length="11" display-length="11" scale="2" numeric="COBOL_NUMERIC" display-position="90"/>
+                <item level="10" name="" occurs="5" occurs-min="1" depending-on="Level-Count" position="101" storage-length="3" display-length="3" display-position="101">
+                    <item level="15" name="Region-Level-desc" picture="999" position="101" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="101"/>
+                </item>
+            </item>
+            <item level="05" name="Region-total-sales" picture="s9(9)v99" position="479" storage-length="11" display-length="11" scale="2" numeric="COBOL_NUMERIC" display-position="479"/>
+        </item>
+    </item>
+</copybook>

@@ -6,7 +6,7 @@ import java.util.List;
 
 import net.sf.cb2xml.def.ICondition;
 
-public class Condition implements ICondition {
+public class Condition implements ICondition, IHasConditions {
 
 	private static List<Condition> EMPTY = Collections.unmodifiableList(new ArrayList<Condition>(0));
 	
@@ -17,6 +17,16 @@ public class Condition implements ICondition {
     boolean all = false;
     
     
+    public static Condition copyConditionAndChildren(ICondition condition) {
+    	Condition ret = new Condition(condition);
+    	
+		for (ICondition c : condition.getChildConditions()) {
+			ret.addCondition(copyConditionAndChildren(c));
+		}
+		
+		return ret;
+    }
+    
 	public Condition(String name, String through, String value) {
 		super();
 		this.name = name;
@@ -24,12 +34,13 @@ public class Condition implements ICondition {
 		this.value = value;
 	}
 	
-	public Condition(ICondition c) {
-		this.name = c.getName();
-		this.through = c.getValue();
-		this.value = c.getThrough();
+	public Condition(ICondition condition) {
+		this.name = condition.getName();
+		this.value = condition.getValue();
+		this.through = condition.getThrough();
 	}
 	
+	@Override
 	public void addCondition(Condition c) {
 		if (childConditions == EMPTY) {
 			childConditions = new ArrayList<Condition>(5);
@@ -40,11 +51,14 @@ public class Condition implements ICondition {
 	/**
 	 * @return the getChildConditions
 	 */
-    @Override
 	public final List<Condition> getChildConditions() {
 		return childConditions;
 	}
     
+    @Override
+    public List<? extends ICondition> getConditions() {
+    	return childConditions;
+    }
 	/**
 	 * @return the getName
 	 */

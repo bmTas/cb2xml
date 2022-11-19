@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook filename="cpyUnxdetail.cbl" dialect="Mainframe" cb2xml-format="2017">
+    <!--***************************************************************-->
+    <!--**** DETAIL RECORD.                                          **-->
+    <!--***   MAKE SURE ANY CHANGES HERE ARE REFLECTED IN THE TBL-  **-->
+    <!--***      FOR DTL RECORDS TOWARDS THE BOTTOM                 **-->
+    <!--***************************************************************-->
+    <item level="01" name="UNX-STMT-DETAIL-RECORD" position="1" storage-length="1747" display-length="1747" display-position="1">
+        <item level="02" name="UNX-DTL-INFO" position="1" storage-length="31" display-length="31" display-position="1">
+            <item level="03" name="UNX-DTL-REC-TYPE" picture="X(03)" position="1" storage-length="3" display-length="3" display-position="1" value="&quot;DTL&quot;"/>
+            <item level="03" name="UNX-DTL-SYS-PRIN" picture="X(08)" position="4" storage-length="8" display-length="8" display-position="4"/>
+            <item level="03" name="UNX-DTL-ACCT-NUMBER" picture="X(20)" position="12" storage-length="20" display-length="20" display-position="12"/>
+        </item>
+        <item level="02" name="UNX-DETAIL-RECORD" position="32" storage-length="1716" display-length="1716" display-position="32">
+            <item level="03" name="UNX-DTL-RECORD-TYPE" picture="X(03)" position="32" storage-length="3" display-length="3" display-position="32"/>
+            <item level="03" name="UNX-DTL-PARTNER-ID" picture="9(08)" position="35" storage-length="8" display-length="8" numeric="COBOL_NUMERIC" display-position="35"/>
+            <item level="03" name="UNX-DTL-MEMBER-ID" picture="9(13)" position="43" storage-length="13" display-length="13" numeric="COBOL_NUMERIC" display-position="43"/>
+            <item level="03" name="UNX-DTL-ARRANGE-NUM" picture="9(02)" position="56" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="56"/>
+            <item level="03" name="UNX-DTL-STMT-ORDER" picture="9(02)" position="58" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="58"/>
+            <item level="03" name="UNX-DTL-INVOICE-NUM" picture="X(11)" position="60" storage-length="11" display-length="11" display-position="60"/>
+            <item level="03" name="UNX-DTL-LAYER" picture="9(03)" position="71" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="71"/>
+            <item level="03" name="UNX-DTL-PARENT-GROUP" picture="9(03)" position="74" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="74"/>
+            <item level="03" name="UNX-DTL-GROUP-ID" picture="9(03)" position="77" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="77"/>
+            <item level="03" name="UNX-DTL-SUB-GROUP-ID" picture="9(03)" position="80" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="80"/>
+            <item level="03" name="UNX-DTL-TRAN-DATE" position="83" storage-length="8" display-length="8" display-position="83">
+                <item level="05" name="UNX-DTL-TRAN-YYYY" picture="9(04)" position="83" storage-length="4" display-length="4" numeric="COBOL_NUMERIC" display-position="83"/>
+                <item level="05" name="UNX-DTL-TRAN-MM" picture="9(02)" position="87" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="87"/>
+                <item level="05" name="UNX-DTL-TRAN-DD" picture="9(02)" position="89" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="89"/>
+            </item>
+            <item level="03" name="UNX-DTL-PREFIX-NUM" picture="9(03)" position="91" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="91"/>
+            <item level="03" name="UNX-DTL-RUN-NUM" picture="9(05)" position="94" storage-length="5" display-length="5" numeric="COBOL_NUMERIC" display-position="94"/>
+            <item level="03" name="UNX-DTL-DETAIL-NUM" picture="9(07)" position="99" storage-length="7" display-length="7" numeric="COBOL_NUMERIC" display-position="99"/>
+            <item level="03" name="UNX-DTL-SIBLING-NUM" picture="9(03)" position="106" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="106"/>
+            <item level="03" name="UNX-DTL-SIBLING-MSG-IND" picture="X(01)" position="109" storage-length="1" display-length="1" display-position="109"/>
+            <item level="03" name="UNX-DTL-SEQ-NUM" picture="9(03)" position="110" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="110"/>
+            <item level="03" name="UNX-DTL-BILLER-ACCT-NUM" picture="X(20)" position="113" storage-length="20" display-length="20" display-position="113"/>
+            <item level="03" name="UNX-DTL-LOB" picture="X(02)" position="133" storage-length="2" display-length="2" display-position="133"/>
+            <item level="03" name="UNX-DTL-DETAIL-CATEGORY" picture="X(02)" position="135" storage-length="2" display-length="2" display-position="135"/>
+            <item level="03" name="UNX-DTL-DETAIL-TYPE" picture="X(05)" position="137" storage-length="5" display-length="5" display-position="137"/>
+            <item level="03" name="UNX-DTL-DETAIL-TRAN-TYPE" picture="X(03)" position="142" storage-length="3" display-length="3" display-position="142"/>
+            <item level="03" name="UNX-DTL-LEVEL" picture="9(02)" position="145" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="145"/>
+            <item level="03" name="UNX-DTL-LINE-DEF" picture="X(05)" position="147" storage-length="5" display-length="5" display-position="147"/>
+            <item level="03" name="UNX-DTL-LINE-DEF-2" picture="X(05)" position="152" storage-length="5" display-length="5" display-position="152"/>
+            <item level="03" name="UNX-DTL-LINE-DEF-3" picture="X(05)" position="157" storage-length="5" display-length="5" display-position="157"/>
+            <item level="03" name="UNX-DTL-COLUMN-DEF" picture="X(05)" position="162" storage-length="5" display-length="5" display-position="162"/>
+            <item level="03" name="UNX-DTL-ICON-ID" picture="X(08)" position="167" storage-length="8" display-length="8" display-position="167"/>
+            <item level="03" name="UNX-DTL-LOCATION" picture="X(01)" position="175" storage-length="1" display-length="1" display-position="175"/>
+            <item level="03" name="UNX-DTL-GROUP-TYPE" picture="X(01)" position="176" storage-length="1" display-length="1" display-position="176"/>
+            <item level="03" name="FILLER" picture="X(03)" position="177" storage-length="3" display-length="3" display-position="177"/>
+            <item level="03" name="UNX-DTL-MSG-ID" picture="X(08)" position="180" storage-length="8" display-length="8" display-position="180"/>
+            <item level="03" name="UNX-DTL-MSG-TEXT" picture="X(500)" position="188" storage-length="500" display-length="500" display-position="188"/>
+            <item level="03" name="UNX-DTL-POST-DATE" position="688" storage-length="8" display-length="8" display-position="688">
+                <item level="05" name="UNX-DTL-POST-YYYY" picture="9(04)" position="688" storage-length="4" display-length="4" numeric="COBOL_NUMERIC" display-position="688"/>
+                <item level="05" name="UNX-DTL-POST-MM" picture="9(02)" position="692" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="692"/>
+                <item level="05" name="UNX-DTL-POST-DD" picture="9(02)" position="694" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="694"/>
+            </item>
+            <item level="03" name="UNX-DTL-FROM-DATE" position="696" storage-length="8" display-length="8" display-position="696">
+                <item level="05" name="UNX-DTL-FROM-YYYY" picture="9(04)" position="696" storage-length="4" display-length="4" numeric="COBOL_NUMERIC" display-position="696"/>
+                <item level="05" name="UNX-DTL-FROM-MM" picture="9(02)" position="700" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="700"/>
+                <item level="05" name="UNX-DTL-FROM-DD" picture="9(02)" position="702" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="702"/>
+            </item>
+            <item level="03" name="UNX-DTL-FROM-TIME" position="704" storage-length="6" display-length="6" display-position="704">
+                <item level="05" name="UNX-DTL-FROM-HOUR" picture="9(02)" position="704" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="704"/>
+                <item level="05" name="UNX-DTL-FROM-MINUTE" picture="9(02)" position="706" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="706"/>
+                <item level="05" name="UNX-DTL-FROM-SECOND" picture="9(02)" position="708" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="708"/>
+            </item>
+            <item level="03" name="UNX-DTL-THRU-DATE" position="710" storage-length="8" display-length="8" display-position="710">
+                <item level="05" name="UNX-DTL-THRU-YYYY" picture="9(04)" position="710" storage-length="4" display-length="4" numeric="COBOL_NUMERIC" display-position="710"/>
+                <item level="05" name="UNX-DTL-THRU-MM" picture="9(02)" position="714" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="714"/>
+                <item level="05" name="UNX-DTL-THRU-DD" picture="9(02)" position="716" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="716"/>
+            </item>
+            <item level="03" name="UNX-DTL-THRU-TIME" position="718" storage-length="6" display-length="6" display-position="718">
+                <item level="05" name="UNX-DTL-THRU-HOUR" picture="9(02)" position="718" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="718"/>
+                <item level="05" name="UNX-DTL-THRU-MINUTE" picture="9(02)" position="720" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="720"/>
+                <item level="05" name="UNX-DTL-THRU-SECOND" picture="9(02)" position="722" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="722"/>
+            </item>
+            <item level="03" name="UNX-DTL-CHARGE" picture="S9(11)V99" position="724" storage-length="13" display-length="13" scale="2" numeric="COBOL_NUMERIC" display-position="724"/>
+            <item level="03" name="UNX-DTL-PHANTOM-ID" picture="X(01)" position="737" storage-length="1" display-length="1" display-position="737"/>
+            <item level="03" name="UNX-DTL-REFERENCE-NUM" position="738" storage-length="9" display-length="9" display-position="738">
+                <item level="05" name="UNX-DTL-REF-NUM-4" picture="X(4)" position="738" storage-length="4" display-length="4" display-position="738"/>
+                <item level="05" name="UNX-DTL-REF-NUM-5" picture="X(5)" position="742" storage-length="5" display-length="5" display-position="742"/>
+            </item>
+            <item level="03" name="UNX-DTL-PROD-SERV-REF" picture="X(08)" position="747" storage-length="8" display-length="8" display-position="747"/>
+            <item level="03" name="UNX-DTL-ITEM-NUMBER" picture="X(05)" position="755" storage-length="5" display-length="5" display-position="755"/>
+            <item level="03" name="UNX-DTL-EQUIP-TELNO" picture="X(20)" position="760" storage-length="20" display-length="20" display-position="760"/>
+            <item level="03" name="UNX-DTL-EQUIP-PID" picture="9(05)" position="780" storage-length="5" display-length="5" numeric="COBOL_NUMERIC" display-position="780"/>
+            <item level="03" name="UNX-DTL-EQUIP-SID" picture="9(05)" position="785" storage-length="5" display-length="5" numeric="COBOL_NUMERIC" display-position="785"/>
+            <item level="03" name="UNX-DTL-BUSINESS-ID" picture="X(05)" position="790" storage-length="5" display-length="5" display-position="790"/>
+            <item level="03" name="UNX-DTL-VARIABLE1" picture="S9(11)V99" position="795" storage-length="13" display-length="13" scale="2" numeric="COBOL_NUMERIC" display-position="795"/>
+            <item level="03" name="UNX-DTL-VARIABLE2" picture="S9(11)V99" position="808" storage-length="13" display-length="13" scale="2" numeric="COBOL_NUMERIC" display-position="808"/>
+            <item level="03" name="UNX-DTL-VARIABLE3" picture="S9(11)V99" position="821" storage-length="13" display-length="13" scale="2" numeric="COBOL_NUMERIC" display-position="821"/>
+            <item level="03" name="UNX-DTL-VARIABLE4" picture="S9(11)V99" position="834" storage-length="13" display-length="13" scale="2" numeric="COBOL_NUMERIC" display-position="834"/>
+            <item level="03" name="UNX-DTL-ROLLUP-FLAG" picture="X(01)" position="847" storage-length="1" display-length="1" display-position="847"/>
+            <item level="03" name="UNX-DTL-PRINT-HEADING" picture="X(01)" position="848" storage-length="1" display-length="1" display-position="848"/>
+            <item level="03" name="UNX-DTL-RESERVED-UNIX1" picture="X(04)" position="849" storage-length="4" display-length="4" display-position="849"/>
+            <item level="03" name="UNX-DTL-SIBLING-INFORMATION" position="853" storage-length="10" display-length="10" display-position="853">
+                <item level="05" name="UNX-DTL-SIBLING-MMDD" picture="9(04)" position="853" storage-length="4" display-length="4" numeric="COBOL_NUMERIC" display-position="853"/>
+                <item level="05" name="UNX-DTL-SIBLING-SEQ" picture="9(04)" position="857" storage-length="4" display-length="4" numeric="COBOL_NUMERIC" display-position="857" redefined="true"/>
+                <item level="05" name="FILLER" picture="X(4)" position="857" storage-length="4" display-length="4" display-position="857" redefines="UNX-DTL-SIBLING-SEQ"/>
+                <item level="05" name="UNX-DTL-SIBLING-ID" picture="X(02)" position="861" storage-length="2" display-length="2" display-position="861"/>
+            </item>
+            <item level="03" name="UNX-DTL-ACCT-HIERARCHY-INFO" position="863" storage-length="62" display-length="62" display-position="863">
+                <item level="05" name="UNX-DTL-AH-REPORT-GROUP" picture="X(08)" position="863" storage-length="8" display-length="8" display-position="863"/>
+                <item level="05" name="UNX-DTL-AH-LEVELS-DOWN" picture="X(04)" position="871" storage-length="4" display-length="4" display-position="871"/>
+                <item level="05" name="UNX-DTL-AH-GROUP-ID" picture="X(08)" position="875" storage-length="8" display-length="8" display-position="875"/>
+                <item level="05" name="UNX-DTL-AH-SUBSCRIBER-NR" picture="X(16)" position="883" storage-length="16" display-length="16" display-position="883"/>
+                <item level="05" name="UNX-DTL-AH-LEAF-PRIN-NM" picture="X(26)" position="899" storage-length="26" display-length="26" display-position="899"/>
+            </item>
+            <item level="03" name="UNX-DTL-GRAPHIC-LOC" picture="X(02)" position="925" storage-length="2" display-length="2" display-position="925"/>
+            <item level="03" name="UNX-DTL-AMT-LITERAL" picture="X(08)" position="927" storage-length="8" display-length="8" display-position="927"/>
+            <item level="03" name="UNX-DTL-PRIMARY-PHONE-FLAG" picture="X(01)" position="935" storage-length="1" display-length="1" display-position="935"/>
+            <item level="03" name="UNX-DTL-CTRLBRK-PHONE" picture="X(20)" position="936" storage-length="20" display-length="20" display-position="936"/>
+            <item level="03" name="UNX-DTL-UNIT-QTY" picture="9(04)" position="956" storage-length="4" display-length="4" numeric="COBOL_NUMERIC" display-position="956"/>
+            <item level="03" name="UNX-DTL-BULK-SERVICE-IND" picture="X(01)" position="960" storage-length="1" display-length="1" display-position="960"/>
+            <item level="03" name="UNX-DTL-GRAPHIC-FORMAT" picture="X(03)" position="961" storage-length="3" display-length="3" display-position="961"/>
+            <item level="03" name="UNX-DTL-CMSG-FLAG" picture="X(01)" position="964" storage-length="1" display-length="1" display-position="964"/>
+            <item level="03" name="unx-dtl-transfer-account" picture="x(16)" position="965" storage-length="16" display-length="16" display-position="965"/>
+            <item level="03" name="FILLER" picture="X(16)" position="981" storage-length="16" display-length="16" display-position="981"/>
+            <item level="03" name="UNX-DTL-LOB-DATA" picture="X(750)" position="997" storage-length="750" display-length="750" display-position="997" redefined="true"/>
+            <item level="03" name="UNX-DTL-TELEPHONY-DATA" position="997" storage-length="750" display-length="750" display-position="997" redefines="UNX-DTL-LOB-DATA">
+                <item level="05" name="UNX-DTLT-BILLING-NUM" picture="X(20)" position="997" storage-length="20" display-length="20" display-position="997"/>
+                <item level="05" name="UNX-DTLT-DURATION" picture="9(06)" position="1017" storage-length="6" display-length="6" numeric="COBOL_NUMERIC" display-position="1017" redefined="true"/>
+                <item level="05" name="FILLER" position="1017" storage-length="6" display-length="6" display-position="1017" redefines="UNX-DTLT-DURATION">
+                    <item level="10" name="UNX-DTLT-MIN" picture="9(04)" position="1017" storage-length="4" display-length="4" numeric="COBOL_NUMERIC" display-position="1017"/>
+                    <item level="10" name="UNX-DTLT-SEC" picture="9(02)" position="1021" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="1021"/>
+                </item>
+                <item level="05" name="UNX-DTLT-CALL-TYPE" picture="X(02)" position="1023" storage-length="2" display-length="2" display-position="1023"/>
+                <item level="05" name="UNX-DTLT-RATE" picture="X(02)" position="1025" storage-length="2" display-length="2" display-position="1025"/>
+                <item level="05" name="UNX-DTLT-PLCMNT-CD" picture="X(04)" position="1027" storage-length="4" display-length="4" display-position="1027"/>
+                <item level="05" name="UNX-DTLT-OCP" picture="X(05)" position="1031" storage-length="5" display-length="5" display-position="1031"/>
+                <item level="05" name="UNX-DTLT-CARRIER-CD" picture="X(04)" position="1036" storage-length="4" display-length="4" display-position="1036"/>
+                <item level="05" name="UNX-DTLT-CARRIER-VALUE" picture="X(04)" position="1040" storage-length="4" display-length="4" display-position="1040"/>
+                <item level="05" name="UNX-DTLT-CALL-AMT1" picture="-9(11)V99" position="1044" storage-length="14" display-length="14" scale="2" numeric="Numeric_Edited" display-position="1044"/>
+                <item level="05" name="UNX-DTLT-CALL-AMT2" picture="-9(11)V99" position="1058" storage-length="14" display-length="14" scale="2" numeric="Numeric_Edited" display-position="1058"/>
+                <item level="05" name="UNX-DTLT-CALL-AMT3" picture="-9(11)V99" position="1072" storage-length="14" display-length="14" scale="2" numeric="Numeric_Edited" display-position="1072"/>
+                <item level="05" name="UNX-DTLT-FROM-NUM" picture="X(20)" position="1086" storage-length="20" display-length="20" display-position="1086"/>
+                <item level="05" name="UNX-DTLT-FROM-CITY" picture="X(24)" position="1106" storage-length="24" display-length="24" display-position="1106"/>
+                <item level="05" name="UNX-DTLT-FROM-STATE" picture="X(02)" position="1130" storage-length="2" display-length="2" display-position="1130"/>
+                <item level="05" name="UNX-DTLT-FROM-COUNTRY" position="1132" storage-length="24" display-length="24" display-position="1132">
+                    <item level="10" name="UNX-DTLT-FROM-CNTRY" picture="X(03)" position="1132" storage-length="3" display-length="3" display-position="1132"/>
+                    <item level="10" name="FILLER" picture="X(21)" position="1135" storage-length="21" display-length="21" display-position="1135"/>
+                </item>
+                <item level="05" name="UNX-DTLT-TO-NUM" picture="X(20)" position="1156" storage-length="20" display-length="20" display-position="1156"/>
+                <item level="05" name="UNX-DTLT-TO-CITY" picture="X(24)" position="1176" storage-length="24" display-length="24" display-position="1176"/>
+                <item level="05" name="UNX-DTLT-TO-STATE" picture="X(02)" position="1200" storage-length="2" display-length="2" display-position="1200"/>
+                <item level="05" name="UNX-DTLT-TO-COUNTRY" position="1202" storage-length="24" display-length="24" display-position="1202">
+                    <item level="10" name="UNX-DTLT-TO-CNTRY" picture="X(03)" position="1202" storage-length="3" display-length="3" display-position="1202"/>
+                    <item level="10" name="FILLER" picture="X(21)" position="1205" storage-length="21" display-length="21" display-position="1205"/>
+                </item>
+                <item level="05" name="UNX-DTLT-QUANTITY" picture="-9(13)" position="1226" storage-length="14" display-length="14" numeric="Numeric_Edited" display-position="1226"/>
+                <item level="05" name="UNX-DTLT-TEL-PAC-CODE" picture="X(30)" position="1240" storage-length="30" display-length="30" display-position="1240"/>
+                <item level="05" name="FILLER" picture="X(477)" position="1270" storage-length="477" display-length="477" display-position="1270"/>
+            </item>
+            <item level="03" name="UNX-DTL-PARM-DATA" position="997" storage-length="741" display-length="741" display-position="997" redefines="UNX-DTL-LOB-DATA">
+                <item level="05" name="UNX-DTL-PARM-TYPE" picture="X(01)" position="997" storage-length="1" display-length="1" display-position="997"/>
+                <item level="05" name="UNX-DTL-PARM-STMT-ORDER" picture="9(05)" position="998" storage-length="5" display-length="5" numeric="COBOL_NUMERIC" display-position="998"/>
+                <item level="05" name="unx-dtl-parm-sibling-order" picture="9(03)" position="1003" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="1003"/>
+                <item level="05" name="UNX-DTL-PARM-TREE-LEVEL" picture="9(03)" position="1006" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="1006"/>
+                <item level="05" name="UNX-DTL-PARM-REF-NO" picture="X(20)" position="1009" storage-length="20" display-length="20" display-position="1009"/>
+                <item level="05" name="UNX-DTL-PARM-ROOT-ID" picture="X(20)" position="1029" storage-length="20" display-length="20" display-position="1029"/>
+                <item level="05" name="UNX-DTL-PARM-PARENT-ID" picture="X(20)" position="1049" storage-length="20" display-length="20" display-position="1049"/>
+                <item level="05" name="UNX-DTL-PARM-SID" picture="9(05)" position="1069" storage-length="5" display-length="5" numeric="COBOL_NUMERIC" display-position="1069"/>
+                <item level="05" name="UNX-DTL-PARM-TYPE" picture="X(20)" position="1074" storage-length="20" display-length="20" display-position="1074"/>
+                <item level="05" name="UNX-DTL-PARM-OFFER-ID" picture="9(08)" position="1094" storage-length="8" display-length="8" numeric="COBOL_NUMERIC" display-position="1094"/>
+                <item level="05" name="UNX-DTL-PARM-PRODUCT-ID" picture="9(08)" position="1102" storage-length="8" display-length="8" numeric="COBOL_NUMERIC" display-position="1102"/>
+                <item level="05" name="UNX-DTL-PARM-PRICE-PLAN-ID" picture="9(08)" position="1110" storage-length="8" display-length="8" numeric="COBOL_NUMERIC" display-position="1110"/>
+                <item level="05" name="UNX-DTL-PARM-VALUE" picture="X(255)" position="1118" storage-length="255" display-length="255" display-position="1118" redefined="true"/>
+                <item level="05" name="UNX-DTL-ID-AREA" position="1118" storage-length="255" display-length="255" display-position="1118" redefines="UNX-DTL-PARM-VALUE">
+                    <item level="10" name="UNX-DTL-SAVINGS-AMT" picture="-9(11)V99" position="1118" storage-length="14" display-length="14" scale="2" numeric="Numeric_Edited" display-position="1118"/>
+                    <item level="10" name="UNX-DTL-TRANS-REMAIN-MTHS" picture="9(03)" position="1132" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="1132"/>
+                    <item level="10" name="UNX-DTL-TRANS-END-DATE" picture="9(07)" position="1135" storage-length="7" display-length="7" numeric="COBOL_NUMERIC" display-position="1135"/>
+                    <item level="10" name="UNX-DTL-BUNDLE-TYPE-IND" picture="X(01)" position="1142" storage-length="1" display-length="1" display-position="1142"/>
+                    <item level="10" name="UNX-DTL-DISCOUNT-IND" picture="X(01)" position="1143" storage-length="1" display-length="1" display-position="1143"/>
+                    <item level="10" name="UNX-DTL-BLANK-OUT-PRICE" picture="X(01)" position="1144" storage-length="1" display-length="1" display-position="1144"/>
+                    <item level="10" name="UNX-DTL-NUM-TEXT-IDS" picture="9(02)" position="1145" storage-length="2" display-length="2" numeric="COBOL_NUMERIC" display-position="1145"/>
+                    <item level="10" name="UNX-DTL-ID-TBL" occurs="10" position="1147" storage-length="14" display-length="14" display-position="1147">
+                        <item level="15" name="UNX-DTL-ID-TYPE" picture="9(03)" position="1147" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="1147"/>
+                        <item level="15" name="UNX-DTL-LANGUAGE" picture="X(01)" position="1150" storage-length="1" display-length="1" display-position="1150"/>
+                        <item level="15" name="UNX-DTL-VALUE" picture="9(10)" position="1151" storage-length="10" display-length="10" numeric="COBOL_NUMERIC" display-position="1151"/>
+                    </item>
+                    <item level="10" name="UNX-DTL-DISCOUNT-CODE" picture="X(02)" position="1287" storage-length="2" display-length="2" display-position="1287"/>
+                    <item level="10" name="UNX-DTL-LANGUAGE-IND" picture="X(01)" position="1289" storage-length="1" display-length="1" display-position="1289"/>
+                    <item level="10" name="UNX-DTL-PRM-ACTUAL-LANG" picture="X(01)" position="1290" storage-length="1" display-length="1" display-position="1290"/>
+                    <item level="10" name="FILLER" picture="X(82)" position="1291" storage-length="82" display-length="82" display-position="1291"/>
+                </item>
+                <item level="05" name="unx-dtl-oarm-message-id" position="1118" storage-length="255" display-length="255" display-position="1118" redefines="unx-dtl-parm-value">
+                    <item level="10" name="unx-dtl-parm-msg-text-key" picture="9(10)" position="1118" storage-length="10" display-length="10" numeric="COBOL_NUMERIC" display-position="1118"/>
+                    <item level="10" name="unx-dtl-parm-msg-location" picture="9(03)" position="1128" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="1128"/>
+                    <item level="10" name="unx-dtl-parm-payload-area" occurs="2" position="1131" storage-length="70" display-length="70" display-position="1131">
+                        <item level="15" name="unx-dtl-parm-variable" picture="x(20)" position="1131" storage-length="20" display-length="20" display-position="1131"/>
+                        <item level="15" name="unx-dtl-parm-resolved-var" picture="x(50)" position="1151" storage-length="50" display-length="50" display-position="1151"/>
+                    </item>
+                    <item level="10" name="unx-dtl-parm-msg-line-def-4" picture="x(05)" position="1271" storage-length="5" display-length="5" display-position="1271"/>
+                    <item level="10" name="unx-dtl-parm-msg-line-def-5" picture="x(05)" position="1276" storage-length="5" display-length="5" display-position="1276"/>
+                    <item level="10" name="filler" picture="x(92)" position="1281" storage-length="92" display-length="92" display-position="1281"/>
+                </item>
+                <item level="05" name="UNX-DTL-PRM-PRO-MSG-SIBLING" position="1118" storage-length="245" display-length="245" display-position="1118" redefines="UNX-DTL-PARM-VALUE">
+                    <item level="10" name="UNX-DTL-PRM-PRO-MSG-KEY" picture="9(10)" position="1118" storage-length="10" display-length="10" numeric="COBOL_NUMERIC" display-position="1118"/>
+                    <item level="10" name="UNX-DTL-PRM-PRO-MSG-LOCATION" picture="9(03)" position="1128" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="1128"/>
+                    <item level="10" name="UNX-DTL-PRM-PRO-MSG-PAYLOAD" occurs="4" position="1131" storage-length="50" display-length="50" display-position="1131">
+                        <item level="15" name="UNX-DTL-PRM-PRO-MSG-VAR" picture="X(20)" position="1131" storage-length="20" display-length="20" display-position="1131"/>
+                        <item level="15" name="UNX-DTL-PRM-PRO-MSG-TXT" picture="X(30)" position="1151" storage-length="30" display-length="30" display-position="1151"/>
+                    </item>
+                    <item level="10" name="FILLER" picture="X(32)" position="1331" storage-length="32" display-length="32" display-position="1331"/>
+                </item>
+                <item level="05" name="UNX-DTL-PARM-PRORATE-IND" picture="X(01)" position="1373" storage-length="1" display-length="1" display-position="1373"/>
+                <item level="05" name="UNX-DTL-OFFER-COMP-ID" picture="9(10)" position="1374" storage-length="10" display-length="10" numeric="COBOL_NUMERIC" display-position="1374" redefined="true"/>
+                <item level="05" name="unx-dtl-bundle-comp-id" picture="9(10)" position="1374" storage-length="10" display-length="10" numeric="COBOL_NUMERIC" display-position="1374" redefines="unx-dtl-offer-comp-id"/>
+                <item level="05" name="FILLER" picture="X(354)" position="1384" storage-length="354" display-length="354" display-position="1384"/>
+            </item>
+            <item level="03" name="UNX-DTL-PRORATE-PARA-DATA" position="997" storage-length="750" display-length="750" display-position="997" redefines="UNX-DTL-LOB-DATA">
+                <item level="05" name="UNX-PROPARA-KEY" position="997" storage-length="16" display-length="16" display-position="997">
+                    <item level="10" name="UNX-PROPARA-BILL-DATE" picture="9(08)" position="997" storage-length="8" display-length="8" numeric="COBOL_NUMERIC" display-position="997"/>
+                    <item level="10" name="UNX-PROPARA-TYPE-IND" picture="X(01)" position="1005" storage-length="1" display-length="1" display-position="1005"/>
+                    <item level="10" name="UNX-PROPARA-SENTENCE-TYPE" picture="X(01)" position="1006" storage-length="1" display-length="1" display-position="1006"/>
+                    <item level="10" name="UNX-PROPARA-ORIG-GROUP-ID" picture="9(03)" position="1007" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="1007"/>
+                    <item level="10" name="UNX-PROPARA-ORIG-GROUP-ID2" picture="9(03)" position="1010" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="1010"/>
+                </item>
+                <item level="05" name="UNX-PRO-PARA-CONTROL-FLAGS" position="1013" storage-length="5" display-length="5" display-position="1013">
+                    <item level="10" name="UNX-PROPARA-NEW-PARAGRAPH" picture="X(01)" position="1013" storage-length="1" display-length="1" display-position="1013"/>
+                    <item level="10" name="UNX-PROPARA-NEW-SENTENCE" picture="X(01)" position="1014" storage-length="1" display-length="1" display-position="1014"/>
+                    <item level="10" name="UNX-PROPARA-END-PARENT" picture="X(01)" position="1015" storage-length="1" display-length="1" display-position="1015"/>
+                    <item level="10" name="UNX-PROPARA-END-SENTENCE" picture="X(01)" position="1016" storage-length="1" display-length="1" display-position="1016"/>
+                    <item level="10" name="UNX-PROPARA-END-PARAGRAPH" picture="X(01)" position="1017" storage-length="1" display-length="1" display-position="1017"/>
+                </item>
+                <item level="05" name="UNX-PROPARA-DETAILS" position="1018" storage-length="195" display-length="195" display-position="1018">
+                    <item level="10" name="UNX-PROPARA-TEXT-TYPE" picture="9(03)" position="1018" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="1018"/>
+                    <item level="10" name="UNX-PROPARA-LANG-IND" picture="X(01)" position="1021" storage-length="1" display-length="1" display-position="1021"/>
+                    <item level="10" name="UNX-PROPARA-TEXT-ID" picture="9(10)" position="1022" storage-length="10" display-length="10" numeric="COBOL_NUMERIC" display-position="1022"/>
+                    <item level="10" name="UNX-PROPARA-PARENT-TEXT-TYPE" picture="9(03)" position="1032" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="1032"/>
+                    <item level="10" name="UNX-PROPARA-PARENT-TEXT-ID" picture="9(10)" position="1035" storage-length="10" display-length="10" numeric="COBOL_NUMERIC" display-position="1035"/>
+                    <item level="10" name="UNX-PROPARA-MONTHLY-RATE" picture="9(11)V99" position="1045" storage-length="13" display-length="13" scale="2" numeric="COBOL_NUMERIC" display-position="1045"/>
+                    <item level="10" name="UNX-PROPARA-DISC-RATE" picture="9(11)V99" position="1058" storage-length="13" display-length="13" scale="2" numeric="COBOL_NUMERIC" display-position="1058"/>
+                    <item level="10" name="UNX-PROPARA-NET-RATE" picture="9(11)V99" position="1071" storage-length="13" display-length="13" scale="2" numeric="COBOL_NUMERIC" display-position="1071"/>
+                    <item level="10" name="UNX-PROPARA-SHORT-DESC" picture="X(24)" position="1084" storage-length="24" display-length="24" display-position="1084"/>
+                    <item level="10" name="UNX-PROPARA-SHORT-DISC-DESC" picture="X(24)" position="1108" storage-length="24" display-length="24" display-position="1108"/>
+                    <item level="10" name="UNX-PROPARA-PRO-OFFER-SUP-IND" picture="X(01)" position="1132" storage-length="1" display-length="1" display-position="1132"/>
+                    <item level="10" name="UNX-PROPARA-PARENT-MTHLY-RATE" picture="9(11)V99" position="1133" storage-length="13" display-length="13" scale="2" numeric="COBOL_NUMERIC" display-position="1133"/>
+                    <item level="10" name="UNX-PROPARA-PARENT-DISC-RATE" picture="9(11)V99" position="1146" storage-length="13" display-length="13" scale="2" numeric="COBOL_NUMERIC" display-position="1146"/>
+                    <item level="10" name="UNX-PROPARA-PARENT-NET-RATE" picture="9(11)V99" position="1159" storage-length="13" display-length="13" scale="2" numeric="COBOL_NUMERIC" display-position="1159"/>
+                    <item level="10" name="UNX-PROPARA-NET-QTY-CHG" picture="9(04)" position="1172" storage-length="4" display-length="4" numeric="COBOL_NUMERIC" display-position="1172"/>
+                    <item level="10" name="UNX-PROPARA-PKG-SVC" picture="X(05)" position="1176" storage-length="5" display-length="5" display-position="1176"/>
+                    <item level="10" name="UNX-PROPARA-DISC-CODE" picture="X(02)" position="1181" storage-length="2" display-length="2" display-position="1181"/>
+                    <item level="10" name="UNX-PROPARA-OFFER-ID" picture="9(10)" position="1183" storage-length="10" display-length="10" numeric="COBOL_NUMERIC" display-position="1183"/>
+                    <item level="10" name="UNX-PROPARA-OFFER-COMP-ID" picture="9(10)" position="1193" storage-length="10" display-length="10" numeric="COBOL_NUMERIC" display-position="1193"/>
+                    <item level="10" name="UNX-PROPARA-PRICE-PLAN-ID" picture="9(10)" position="1203" storage-length="10" display-length="10" numeric="COBOL_NUMERIC" display-position="1203"/>
+                </item>
+                <item level="05" name="FILLER" picture="X(534)" position="1213" storage-length="534" display-length="534" display-position="1213"/>
+            </item>
+            <item level="03" name="UNX-DTL-AH-DATA" position="997" storage-length="750" display-length="750" display-position="997" redefines="UNX-DTL-LOB-DATA">
+                <item level="05" name="UNX-DTL-AH-LEAF-ADDRESS-1" picture="X(26)" position="997" storage-length="26" display-length="26" display-position="997"/>
+                <item level="05" name="UNX-DTL-AH-LEAF-ADDRESS-2" picture="X(26)" position="1023" storage-length="26" display-length="26" display-position="1023"/>
+                <item level="05" name="UNX-DTL-AH-LEAF-CITY" picture="X(18)" position="1049" storage-length="18" display-length="18" display-position="1049"/>
+                <item level="05" name="UNX-DTL-AH-LEAF-STATE" picture="X(02)" position="1067" storage-length="2" display-length="2" display-position="1067"/>
+                <item level="05" name="UNX-DTL-AH-LEAF-ZIP-CODE" picture="X(09)" position="1069" storage-length="9" display-length="9" display-position="1069"/>
+                <item level="05" name="UNX-DTL-AH-LEAF-TELEPHONE-NBR" picture="X(20)" position="1078" storage-length="20" display-length="20" display-position="1078"/>
+                <item level="05" name="FILLER" picture="X(649)" position="1098" storage-length="649" display-length="649" display-position="1098"/>
+            </item>
+            <item level="03" name="UNX-DTL-CMSG-DATA" position="997" storage-length="750" display-length="750" display-position="997" redefines="UNX-DTL-LOB-DATA">
+                <item level="05" name="UNX-DTL-CMSG-TEXT-KEY" picture="X(10)" position="997" storage-length="10" display-length="10" display-position="997"/>
+                <item level="05" name="UNX-DTL-CMSG-LOCATION" picture="9(03)" position="1007" storage-length="3" display-length="3" numeric="COBOL_NUMERIC" display-position="1007"/>
+                <item level="05" name="UNX-DTL-CMSG-PAYLOAD-AREA" occurs="10" position="1010" storage-length="70" display-length="70" display-position="1010">
+                    <item level="10" name="UNX-DTL-CMSG-VAR" picture="X(20)" position="1010" storage-length="20" display-length="20" display-position="1010"/>
+                    <item level="10" name="UNX-DTL-CMSG-VAR-TXT" picture="X(50)" position="1030" storage-length="50" display-length="50" display-position="1030"/>
+                </item>
+                <item level="05" name="FILLER" picture="X(37)" position="1710" storage-length="37" display-length="37" display-position="1710"/>
+            </item>
+            <item level="03" name="UNX-DTL-EOR" picture="X(01)" position="1747" storage-length="1" display-length="1" display-position="1747"/>
+        </item>
+    </item>
+</copybook>

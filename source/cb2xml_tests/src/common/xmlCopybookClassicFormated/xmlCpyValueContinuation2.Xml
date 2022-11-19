@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<copybook filename="cpyValueContinuation2.cbl" dialect="Mainframe">
+    <item level="02" name="LINE-8" position="1" storage-length="1000" display-length="1000">
+        <item level="03" name="FILLER8" picture="X(1000)" position="1" storage-length="1000" display-length="1000" value="&quot;&lt;---                       1                            ---&gt;&lt;---                       2                            ---&gt;&lt;---                       3                            ---&gt;&lt;---                       4                            ---&gt;&lt;---                       5        ---&gt;&quot;"/>
+    </item>
+</copybook>

@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.sf</groupId>
     <artifactId>cb2xml</artifactId>
-    <version>1.01.0</version>
+    <version>1.01.6</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -14,7 +14,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.4</version>
+            <version>4.13</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>

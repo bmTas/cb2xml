@@ -60,10 +60,17 @@ public class BasicNumericDefinition implements NumericDefinition {
 	private int floatSync =4;
 	private int doubleSync = 8;
 	
+	private final int pointerSizeInBytes;
+	
 	private String name;
 	
 	public BasicNumericDefinition(String encodingName, int[] sizes, int[] syncSize, boolean usePositiveInt, 
 			int floatSyncAt,  int doubleSyncAt) {
+		this(encodingName, sizes, syncSize, usePositiveInt, floatSyncAt, doubleSyncAt, 4);
+	}
+	
+	public BasicNumericDefinition(String encodingName, int[] sizes, int[] syncSize, boolean usePositiveInt, 
+			int floatSyncAt,  int doubleSyncAt, int pointerSizeInBytes) {
 		int idx;
 		int[] tmpPositive = new int[sizes.length];
 		compSizesUsed = new int[sizes.length];
@@ -90,6 +97,7 @@ public class BasicNumericDefinition implements NumericDefinition {
 		
 		floatSync = floatSyncAt;
 		doubleSync =doubleSyncAt;
+		this.pointerSizeInBytes = pointerSizeInBytes;
 	}
 	
     public String getName() {
@@ -107,6 +115,10 @@ public class BasicNumericDefinition implements NumericDefinition {
         		|| Cb2xmlConstants.PACKED_DECIMAL.equalsIgnoreCase(usage)
         		|| Cb2xmlConstants.COMP_6.equalsIgnoreCase(usage)) {
             storageLength = (numDigits) / 2 + 1;
+        } else if (Cb2xmlConstants.POINTER.equalsIgnoreCase(usage) 
+        		|| Cb2xmlConstants.FUNCTION_POINTER.equalsIgnoreCase(usage)
+        		|| Cb2xmlConstants.PROCEDURAL_POINTER.equalsIgnoreCase(usage)) {
+            storageLength = pointerSizeInBytes;
         } else if (isBinary(usage)) {
         	storageLength = compSizesUsed[compSizesUsed.length - 1];
         	for (int i = 0; i < digitsAvailable.length - 1; i++) {
@@ -143,7 +155,7 @@ public class BasicNumericDefinition implements NumericDefinition {
 	
 	public int chkStorageLength(int storageLength, String usage) {
 		int ret = storageLength;
-		if (storageLength == 0) {
+		if (storageLength <= 0) {
 			if  (Cb2xmlConstants.COMP_1.equalsIgnoreCase(usage)) {
 				ret = 10;
 			} else if  (Cb2xmlConstants.COMP_2.equalsIgnoreCase(usage)) {
