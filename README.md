@@ -47,7 +47,7 @@ cb2xml converts Cobol:
 To xml:
 
 ```xml
-copybook filename="FD8.COP.CLEAN">
+<copybook filename="FD8.COP.CLEAN">
     <item display-length="428" level="01" name="REC-FACTURE" position="1" storage-length="428">
         <item display-length="1" level="03" name="FS1" picture="X" position="1" storage-length="1"/>
         <item display-length="9" level="03" name="FS2" position="2" storage-length="9">
