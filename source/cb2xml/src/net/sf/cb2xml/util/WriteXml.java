@@ -47,12 +47,12 @@ public class WriteXml {
 	 * @throws XMLStreamException
 	 * @throws IOException 
 	 */
-	public final void writeCopybook(Writer fileWriter, ICopybook copybook, boolean indent) throws XMLStreamException, IOException {
+	public final void writeCopybook(Writer fileWriter, ICopybook copybook, boolean pretty) throws XMLStreamException, IOException {
 		XMLOutputFactory xmlFactory = XMLOutputFactory.newInstance();
 		
 		XMLStreamWriter writer = xmlFactory.createXMLStreamWriter(fileWriter);
 		
-		writeCopybook(writer, copybook, indent);
+		writeCopybook(writer, copybook, pretty);
 		
 		fileWriter.close();
 	}

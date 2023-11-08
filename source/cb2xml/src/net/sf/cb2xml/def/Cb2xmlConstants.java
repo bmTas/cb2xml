@@ -303,7 +303,7 @@ public class Cb2xmlConstants {
     public static NumericClass toNumeric(String name) {
     	NumericClass numeric = NumericClass.NON_NUMERIC;
 		
-		if (NumericClass.NUMERIC_IN_COBOL.getName().equals(name)) {
+		if (NumericClass.NUMERIC_IN_COBOL.getName().equals(name) || "true".equalsIgnoreCase(name)) {
 			numeric = NumericClass.NUMERIC_IN_COBOL;
 		} else if (NumericClass.NUMERIC_EDITED.getName().equals(name)) {
 			numeric = NumericClass.NUMERIC_EDITED;

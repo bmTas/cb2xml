@@ -21,7 +21,7 @@ public interface NumericDefinition {
      */
     public abstract String getName();
 
-     public abstract int getBinarySize(String usage, int numDigits, boolean positive, boolean sync);
+    public abstract int getBinarySize(String usage, int numDigits, boolean positive, boolean sync);
     
 	public abstract int chkStorageLength(int storageLength, String usage);
 

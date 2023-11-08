@@ -65,19 +65,25 @@ public class BasicReadCobolCopybook implements ICobolCopybookTextSource {
 	}
 	
 	public BasicReadCobolCopybook setColumns(int firstColumn, int lastColumn) throws IOException {
-		IReadLine readCopybook = new ReadColumnFromLine(reader, firstColumn, lastColumn);
-		
-		this.firstColumn = firstColumn;
-		StringBuilder b = new StringBuilder();
-		String s;
-		
-		while ((s = readCopybook.readLine()) != null) {
-			b.append(s).append('\n');
-			//sep = "\n";
+		if (copybookDetails == null) {
+			synchronized (this) {	
+				if (copybookDetails == null) {
+					IReadLine readCopybook = new ReadColumnFromLine(reader, firstColumn, lastColumn);
+					
+					this.firstColumn = firstColumn;
+					StringBuilder b = new StringBuilder();
+					String s;
+					
+					while ((s = readCopybook.readLine()) != null) {
+						b.append(s).append('\n');
+						//sep = "\n";
+					}
+					readCopybook.close();
+					
+					copybookDetails = b.toString();
+				}
+			}
 		}
-		readCopybook.close();
-		
-		copybookDetails= b.toString();
 		return this;
 	}
 

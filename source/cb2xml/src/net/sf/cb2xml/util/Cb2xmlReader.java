@@ -126,6 +126,7 @@ public class Cb2xmlReader {
 		itmBldr.setInheritedUsage(rBldr.getBooleanAttr(Cb2xmlConstants.INHERITED_USAGE));
 		itmBldr.setJustified(rBldr.getJustified());
 		itmBldr.setNumericClass(rBldr.getNumericClass());
+		
 		itmBldr.setPicture(rBldr.getAttr(Cb2xmlConstants.PICTURE));
 		itmBldr.setRedefines(rBldr.getAttr(Cb2xmlConstants.REDEFINES));
 
