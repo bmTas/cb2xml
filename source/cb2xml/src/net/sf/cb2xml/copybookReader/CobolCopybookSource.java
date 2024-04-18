@@ -16,12 +16,12 @@ public class CobolCopybookSource implements ICobolCopybookTextSource {
 	/**
 	 * Basic Static implementation of {@link ICobolCopybookTextSource}
 	 * @param copybookname Name of the copybook
-	 * @param cobolCopybookSource Free form text of the copybook
+	 * @param freeFormatCobolCopybookSource Free form text of the copybook
 	 */
-	public CobolCopybookSource(String copybookname, String cobolCopybookSource) {
+	public CobolCopybookSource(String copybookname, String freeFormatCobolCopybookSource) {
 		super();
 		this.copybookname = copybookname;
-		this.cobolCopybookSource = cobolCopybookSource;
+		this.cobolCopybookSource = freeFormatCobolCopybookSource;
 	}
 
 	@Override

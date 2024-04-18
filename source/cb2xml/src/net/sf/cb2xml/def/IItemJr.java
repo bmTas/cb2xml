@@ -15,6 +15,7 @@ public interface IItemJr extends IItem {
 
 	public abstract int getType();
 
+
 	/* (non-Javadoc)
 	 * @see net.sf.cb2xml.def.IItem#getChildItems()
 	 */

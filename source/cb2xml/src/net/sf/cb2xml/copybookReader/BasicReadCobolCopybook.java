@@ -116,7 +116,7 @@ public class BasicReadCobolCopybook implements ICobolCopybookTextSource {
 	@Override
 	public String toPositionMessage(int lineNumber, int columnNumber) {
 		checkCopybook();
-		return "Line Number = " + lineNumber + ", Column = " + (columnNumber - firstColumn);
+		return "Line Number = " + lineNumber + ", Column = " + (columnNumber + firstColumn);
 	}
 
 	private void checkCopybook() {
