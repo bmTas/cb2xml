@@ -1,0 +1,85 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>net.sf</groupId>
+	<artifactId>cb2xml</artifactId>
+	<version>1.01.08</version>
+	<packaging>jar</packaging>
+
+	<name>cb2xml</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<build>
+		<testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>false</filtering>
+            </testResource>
+        </testResources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.4</version>
+				<executions>
+					<execution>
+						<id>copy</id>
+						<phase>compile</phase>
+						<configuration>
+							<tasks>
+								<copy
+									file="src/main/java/net/sf/cb2xml/sablecc/lexer/lexer.dat"
+									tofile="target/classes/net/sf/cb2xml/sablecc/lexer/lexer.dat" />
+                                <copy
+									file="src/main/java/net/sf/cb2xml/sablecc/parser/parser.dat"
+									tofile="target/classes/net/sf/cb2xml/sablecc/parser/parser.dat" />
+                                <copy
+									file="src/test/java/cb2xml.properties"
+									tofile="./cb2xml.properties" /> --> </tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<finalName>cb2xml</finalName>
+	</build>
+
+	<dependencies>
+		<!--    <dependency>-->
+		<!--      <groupId>junit</groupId>-->
+		<!--      <artifactId>junit</artifactId>-->
+		<!--      <version>3.8.2</version>-->
+		<!--      <scope>test</scope>-->
+		<!--    </dependency>-->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.8.2</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub cb2xml Package</name>
+      <url>https://maven.pkg.github.com/bmTas/cb2xml</url>
+    </repository>
+  </distributionManagement>
+</project>
