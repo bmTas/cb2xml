@@ -38,7 +38,7 @@ public class CobolCopybookWalker {
 	 * 
 	 * @return This CobolCopybookWalker so you can string more Tree traversals
 	 */
-	public CobolCopybookWalker walk(ICopybookListner copybookListner) {
+	public CobolCopybookWalker walk(ICopybookListener copybookListner) {
 		
 		copybookListner.startCopybook(copybook);
 		
@@ -49,7 +49,7 @@ public class CobolCopybookWalker {
 		return this;
 	}
 	
-	private void processElements(ICopybookListner listner, List<Object> elements) {
+	private void processElements(ICopybookListener listner, List<Object> elements) {
 		if (elements != null) {
 			for (Object e : elements) {
 				if (e instanceof IItem) {
@@ -73,7 +73,7 @@ public class CobolCopybookWalker {
 	 * @param listner
 	 * @param condition
 	 */
-	private void processCondition(ICopybookListner listner, ICondition condition) {
+	private void processCondition(ICopybookListener listner, ICondition condition) {
 		listner.startCondition(condition);
 		for (ICondition c : condition.getChildConditions()) {
 			processCondition(listner, c);
