@@ -6,16 +6,18 @@ import net.sf.cb2xml.def.IItem;
 
 public interface ICopybookListener {
 
-	public void processComment(String Comment);
-	
-	public void startCopybook(ICopybook copybook);
-	
-	public void endCopybook(ICopybook copybook);
-	
-	public void startCondition(ICondition condition);
-	public void endCondition(ICondition condition);
+    void processComment(String Comment);
 
-	public void startItem(IItem item);
-	public void endItem(IItem item);
+    void startCopybook(ICopybook copybook);
+
+    void endCopybook(ICopybook copybook);
+
+    void startCondition(ICondition condition);
+
+    void endCondition(ICondition condition);
+
+    void startItem(IItem item);
+
+    void endItem(IItem item);
 
 }
