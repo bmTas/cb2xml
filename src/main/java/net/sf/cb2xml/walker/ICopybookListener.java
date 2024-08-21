@@ -4,7 +4,7 @@ import net.sf.cb2xml.def.ICondition;
 import net.sf.cb2xml.def.ICopybook;
 import net.sf.cb2xml.def.IItem;
 
-public interface ICopybookListner {
+public interface ICopybookListener {
 
 	public void processComment(String Comment);
 	

@@ -5,13 +5,13 @@ import net.sf.cb2xml.def.ICopybook;
 import net.sf.cb2xml.def.IItem;
 
 /**
- * A base {@link ICopybookListner} that the you can overide
+ * A base {@link ICopybookListener} that the you can overide
  * methods as required
  * 
  * @author Bruce Martin
  *
  */
-public class CopybookListnerAdapter implements ICopybookListner {
+public class CopybookListnerAdapter implements ICopybookListener {
 
 	@Override
 	public void processComment(String Comment) {}
