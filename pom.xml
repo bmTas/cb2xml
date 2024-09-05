@@ -1,22 +1,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>net.sf</groupId>
-	<artifactId>cb2xml</artifactId>
-	<version>1.01.08</version>
-	<packaging>jar</packaging>
+    <groupId>net.sf</groupId>
+    <artifactId>cb2xml</artifactId>
+    <version>1.01.08</version>
+    <packaging>jar</packaging>
 
-	<name>cb2xml</name>
-	<url>http://maven.apache.org</url>
+    <name>cb2xml</name>
+    <url>http://maven.apache.org</url>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
-	<build>
-		<testResources>
+    <build>
+        <testResources>
             <testResource>
                 <directory>src/test/resources</directory>
                 <filtering>false</filtering>
@@ -33,13 +33,13 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.8</version>
+				<version>3.1.0</version>
 				<executions>
 					<execution>
 						<id>copy</id>
 						<phase>compile</phase>
 						<configuration>
-							<tasks>
+							<target>
 								<copy
 									file="src/main/java/net/sf/cb2xml/sablecc/lexer/lexer.dat"
 									tofile="target/classes/net/sf/cb2xml/sablecc/lexer/lexer.dat" />
@@ -48,7 +48,8 @@
 									tofile="target/classes/net/sf/cb2xml/sablecc/parser/parser.dat" />
                                 <copy
 									file="src/test/java/cb2xml.properties"
-									tofile="./cb2xml.properties" /> --> </tasks>
+									tofile="./cb2xml.properties" />
+                                </target>
 						</configuration>
 						<goals>
 							<goal>run</goal>
@@ -60,20 +61,20 @@
 		<finalName>cb2xml</finalName>
 	</build>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-api</artifactId>
-			<version>5.10.3</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.11.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
-  <distributionManagement>
-    <repository>
-      <id>github</id>
-      <name>GitHub cb2xml Package</name>
-      <url>https://maven.pkg.github.com/bmTas/cb2xml</url>
-    </repository>
-  </distributionManagement>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub cb2xml Package</name>
+            <url>https://maven.pkg.github.com/bmTas/cb2xml</url>
+        </repository>
+    </distributionManagement>
 </project>
