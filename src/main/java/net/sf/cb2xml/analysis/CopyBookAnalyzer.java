@@ -134,14 +134,18 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 
 	// check for comments before these Tokens and add to XML
 	public void caseTNumberNot88(TNumberNot88 node) {
-		checkForComments(node);
+		checkForComments(node, curItem);
 	}
 
 	public void caseTNumber88(TNumber88 node) {
-		checkForComments(node);
+		checkForComments(node, condition);
 	}
 
 	public void checkForComments(Token node) {
+		checkForComments(node, curItem);
+	}
+
+	private void checkForComments(Token node, Object currentNode) {
 		if (loadComments) {
 			List list = (List) parser.ignoredTokens.getIn(node);
 			if (list != null) {
@@ -150,7 +154,7 @@ public class CopyBookAnalyzer extends DepthFirstAdapter {
 					String s = i.next().toString().trim();
 					if (s.length() > 0) {
 	                    parent.addBefore(
-	                    		curItem,
+	                    		currentNode,
 	                            correctForMinus(s));
 					}
 				}
