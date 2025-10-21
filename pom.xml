@@ -31,9 +31,10 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+			
 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
-				<version>3.1.0</version>
+				<version>3.2.0</version>
 				<executions>
 					<execution>
 						<id>copy</id>
@@ -43,13 +44,13 @@
 								<copy
 									file="src/main/java/net/sf/cb2xml/sablecc/lexer/lexer.dat"
 									tofile="target/classes/net/sf/cb2xml/sablecc/lexer/lexer.dat" />
-                                <copy
+								<copy
 									file="src/main/java/net/sf/cb2xml/sablecc/parser/parser.dat"
 									tofile="target/classes/net/sf/cb2xml/sablecc/parser/parser.dat" />
-                                <copy
+								<copy
 									file="src/test/java/cb2xml.properties"
 									tofile="./cb2xml.properties" />
-                                </target>
+							</target>
 						</configuration>
 						<goals>
 							<goal>run</goal>
@@ -57,8 +58,36 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.cyclonedx</groupId>
+				<artifactId>cyclonedx-maven-plugin</artifactId>
+				<version>2.9.1</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>makeAggregateBom</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<projectType>library</projectType>
+					<schemaVersion>1.6</schemaVersion>
+					<includeBomSerialNumber>true</includeBomSerialNumber>
+					<includeCompileScope>true</includeCompileScope>
+					<includeProvidedScope>true</includeProvidedScope>
+					<includeRuntimeScope>true</includeRuntimeScope>
+					<includeSystemScope>true</includeSystemScope>
+					<includeTestScope>false</includeTestScope>
+					<includeLicenseText>false</includeLicenseText>
+					<outputReactorProjects>true</outputReactorProjects>
+					<outputFormat>all</outputFormat>
+					<outputName>cb2xml-Sbom</outputName>
+				</configuration>
+			</plugin>
 		</plugins>
-		<finalName>cb2xml</finalName>
+		<finalName>
+			cb2xml</finalName>
 	</build>
 
     <dependencies>
