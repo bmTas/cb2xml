@@ -1,19 +1,11 @@
 package net.sf.cb2xml.zTests.cb2xmlReader;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 
 import javax.xml.stream.XMLStreamException;
-
-import org.junit.jupiter.api.Test;
-
-//import org.junit.Test;
 
 import net.sf.cb2xml.Cb2Xml3;
 import net.sf.cb2xml.analysis.Copybook;
@@ -85,18 +77,18 @@ public class TestCb2XmlReader01 {
 	};
 
 
-	@Test
+	@org.junit.jupiter.api.Test
 	public void test1() throws FileNotFoundException, XMLStreamException, LexerException, IOException, ParserException {
 		
 		doTests(COPYBOOK_LIST1);
 	}
 
-	@Test
+	@org.junit.jupiter.api.Test
 	public void test2() throws FileNotFoundException, XMLStreamException, LexerException, IOException, ParserException {
 		
 		doTests(COPYBOOK_LIST2);
 	}
-	@Test
+	@org.junit.jupiter.api.Test
 	public void test3() throws FileNotFoundException, XMLStreamException, LexerException, IOException, ParserException {
 		
 		doTests(COPYBOOK_LIST3);
@@ -130,7 +122,7 @@ public class TestCb2XmlReader01 {
 				.writeCopybook(writer, copybook, true);
 		String cb2xml2 = writer.toString();
 		
-		assertEquals(cb2xml1, cb2xml2);
+		org.junit.jupiter.api.Assertions.assertArrayEquals(cb2xml1.toCharArray(), cb2xml2.toCharArray());
 	}
 
 }

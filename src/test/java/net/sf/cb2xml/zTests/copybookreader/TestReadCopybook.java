@@ -12,7 +12,7 @@ import net.sf.cb2xml.copybookReader.CopybookColumns;
 import net.sf.cb2xml.copybookReader.ReadCobolCopybook;
 import net.sf.cb2xml.zTests.common.Code;
 
-public class TstReadCopybook {
+public class TestReadCopybook {
 
 	private String dtar020Cpybook = Code.getFullName("cobolCopybook/DTAR020.cbl");
 	
