@@ -5,7 +5,7 @@
 
     <groupId>net.sf</groupId>
     <artifactId>cb2xml</artifactId>
-    <version>1.01.08</version>
+    <version>1.01.09</version>
     <packaging>jar</packaging>
 
     <name>cb2xml</name>

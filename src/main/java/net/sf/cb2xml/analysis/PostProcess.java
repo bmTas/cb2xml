@@ -183,6 +183,7 @@ public class PostProcess {
 		String ucCharacterString = pictureString.toUpperCase();
 		for (int i = 0; i < pictureString.length(); i++) {
 			char c = ucCharacterString.charAt(i);
+			boolean lastChar = i == pictureString.length() -1;
 			currSizeAdj = 0;
 			switch (c) {
 			case 'G':
@@ -247,9 +248,13 @@ public class PostProcess {
 					decimalCount += 1;
 				}
 			case '/':
-			case ',':
 			case 'X':
 				displayLength++;
+				break;
+			case ',':
+				if (! lastChar) {
+					displayLength++;
+				}
 				break;
 			case '(':
 				int endParenPos = pictureString.indexOf(')', i + 1);
