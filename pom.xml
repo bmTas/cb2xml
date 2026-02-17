@@ -58,7 +58,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
+			<!--plugin>
 				<groupId>org.cyclonedx</groupId>
 				<artifactId>cyclonedx-maven-plugin</artifactId>
 				<version>2.9.1</version>
@@ -84,7 +84,7 @@
 					<outputFormat>all</outputFormat>
 					<outputName>cb2xml-Sbom</outputName>
 				</configuration>
-			</plugin>
+			</plugin-->
 		</plugins>
 		<finalName>
 			cb2xml</finalName>
